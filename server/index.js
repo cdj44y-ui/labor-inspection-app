@@ -1,6 +1,6 @@
+import 'dotenv/config'
 import express from 'express'
 import cors from 'cors'
-import { GoogleGenerativeAI } from '@google/generative-ai'
 
 const app = express()
 const port = process.env.PORT || 8787
@@ -14,14 +14,8 @@ app.use(express.json())
 
 const apiKey = process.env.GEMINI_API_KEY
 
-let model = null
-if (apiKey) {
-  const genAI = new GoogleGenerativeAI(apiKey)
-  model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' })
-}
-
 app.post('/api/gemini/analysis', async (req, res) => {
-  if (!apiKey || !model) {
+  if (!apiKey) {
     return res.status(500).json({ error: 'GEMINI_API_KEY 환경 변수가 설정되어 있지 않습니다.' })
   }
 
@@ -53,8 +47,35 @@ ${(nonCompliantPreview || [])
 불필요한 꾸밈말은 줄이고, 사업장 담당자가 바로 이해할 수 있는 실무적인 톤으로 작성하세요.
 `
 
-    const result = await model.generateContent(prompt)
-    const text = result?.response?.text?.() || ''
+    const response = await fetch(
+      `https://generativelanguage.googleapis.com/v1/models/gemini-2.5-flash:generateContent?key=${apiKey}`,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          contents: [
+            {
+              parts: [{ text: prompt }],
+            },
+          ],
+        }),
+      },
+    )
+
+    if (!response.ok) {
+      const errorBody = await response.text()
+      console.error('Gemini 분석 HTTP 오류:', response.status, errorBody)
+      return res.status(500).json({ error: 'Gemini 분석 요청 중 오류가 발생했습니다.' })
+    }
+
+    const data = await response.json()
+    const candidates = data.candidates || []
+    const text =
+      candidates[0]?.content?.parts?.map((p) => p.text).join(' ') ||
+      candidates[0]?.content?.parts?.[0]?.text ||
+      ''
 
     return res.json({ summary: text })
   } catch (err) {
@@ -64,7 +85,7 @@ ${(nonCompliantPreview || [])
 })
 
 app.post('/api/gemini/chat', async (req, res) => {
-  if (!apiKey || !model) {
+  if (!apiKey) {
     return res.status(500).json({ error: 'GEMINI_API_KEY 환경 변수가 설정되어 있지 않습니다.' })
   }
 
@@ -110,8 +131,35 @@ ${question}
 - 단, 실제 법률 자문이 아니라는 점을 간단히 한 줄로 덧붙입니다.
 `
 
-    const result = await model.generateContent(prompt)
-    const text = result?.response?.text?.() || ''
+    const response = await fetch(
+      `https://generativelanguage.googleapis.com/v1/models/gemini-2.5-flash:generateContent?key=${apiKey}`,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          contents: [
+            {
+              parts: [{ text: prompt }],
+            },
+          ],
+        }),
+      },
+    )
+
+    if (!response.ok) {
+      const errorBody = await response.text()
+      console.error('Gemini 상세 상담 HTTP 오류:', response.status, errorBody)
+      return res.status(500).json({ error: 'Gemini 상세 상담 요청 중 오류가 발생했습니다.' })
+    }
+
+    const data = await response.json()
+    const candidates = data.candidates || []
+    const text =
+      candidates[0]?.content?.parts?.map((p) => p.text).join(' ') ||
+      candidates[0]?.content?.parts?.[0]?.text ||
+      ''
 
     return res.json({ answer: text })
   } catch (err) {
