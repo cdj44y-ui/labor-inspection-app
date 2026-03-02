@@ -7,8 +7,9 @@
 body {
   margin: 0;
   font-family: 'Pretendard', system-ui, sans-serif;
-  background-color: #F8FAFC;
-  color: #1E293B;
+  background: radial-gradient(circle at top, #e0f2fe 0, #f9fafb 45%, #f9fafb 100%);
+  color: #0f172a;
+  -webkit-font-smoothing: antialiased;
 }
 
 #root {
