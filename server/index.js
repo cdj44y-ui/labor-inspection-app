@@ -1,6 +1,7 @@
 import 'dotenv/config'
 import express from 'express'
 import cors from 'cors'
+import { saveEncryptedSession, loadEncryptedSession } from './cryptoStore.js'
 
 const app = express()
 const port = process.env.PORT || 8787
@@ -165,6 +166,35 @@ ${question}
   } catch (err) {
     console.error('Gemini chat API 호출 오류:', err)
     return res.status(500).json({ error: 'Gemini 상세 상담 요청 중 오류가 발생했습니다.' })
+  }
+})
+
+// 민감 데이터 암호화 저장용 엔드포인트
+// 예: 사업장 정보 + 진단 결과를 하나의 세션으로 저장
+app.post('/api/secure-sessions', (req, res) => {
+  try {
+    const { business, answers, resultSummary } = req.body || {}
+    if (!business && !answers && !resultSummary) {
+      return res.status(400).json({ error: '저장할 데이터가 필요합니다.' })
+    }
+    const id = saveEncryptedSession({ business, answers, resultSummary })
+    return res.status(201).json({ id })
+  } catch (err) {
+    console.error('암호화 세션 저장 오류:', err)
+    return res.status(500).json({ error: '암호화 저장 중 오류가 발생했습니다.' })
+  }
+})
+
+app.get('/api/secure-sessions/:id', (req, res) => {
+  try {
+    const session = loadEncryptedSession(req.params.id)
+    if (!session) {
+      return res.status(404).json({ error: '세션을 찾을 수 없습니다.' })
+    }
+    return res.json(session)
+  } catch (err) {
+    console.error('암호화 세션 조회 오류:', err)
+    return res.status(500).json({ error: '암호화 세션 조회 중 오류가 발생했습니다.' })
   }
 })
 

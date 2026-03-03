@@ -16,6 +16,27 @@ const FAQ_ITEMS = [
   { q: '어떤 사업장이 이용할 수 있나요?', a: '중소기업, 개인사업자, 스타트업 등 상시 근로자가 있는 사업장이면 이용 가능합니다.' },
 ]
 
+const CASES = [
+  {
+    tag: '외식·프랜차이즈',
+    title: '주 52시간 초과 + 연장수당 미지급',
+    body: '유명 카페·베이커리 사업장에서 실제 근로시간(주 60시간 내외)을 기록하지 않고, 포괄임금 형태로 연장수당을 지급하지 않아 근로감독 시 시정지시와 과태료, 체불임금 지급 명령을 받은 사례가 다수 보고되었습니다.',
+    loss: '연장수당·주휴수당 등 수천만 원 규모의 소급 지급 + 사회적 평판 하락',
+  },
+  {
+    tag: '스타트업·사무직',
+    title: '“자율 출퇴근제”인데 연장근로 관리 부재',
+    body: 'IT·스타트업에서 자율 출퇴근제를 운영하면서도 야근·주말 근무를 사실상 강요했지만, 근로시간 기록과 연장근로 승인·수당 지급 체계를 갖추지 않아 근로감독에서 근로시간 위반으로 판단된 사례가 있습니다.',
+    loss: '연장·야간·휴일근로수당 일괄 정산 + 향후 근로시간 제도 전면 재설계 부담',
+  },
+  {
+    tag: '소규모 사업장',
+    title: '알바·단시간 근로자 4대보험·연차 미부여',
+    body: '소규모 매장·사무실에서 파트타이머는 단순 도우미라고 인식해 4대보험 가입과 연차휴가, 주휴수당을 지급하지 않았다가 노동부 진정 및 근로감독 과정에서 다년간의 체불이 한꺼번에 적발된 사례가 반복됩니다.',
+    loss: '과거 근로자 전원에 대한 체불임금 정산 + 과태료 및 가산이자 부담',
+  },
+]
+
 export default function Landing() {
   const [openFaq, setOpenFaq] = useState(null)
 
@@ -37,7 +58,18 @@ export default function Landing() {
               </span>
             </div>
           </div>
-          <div className="hidden items-center gap-3 text-xs md:flex">
+          <div className="hidden items-center gap-4 text-xs md:flex">
+            <nav className="flex items-center gap-4 text-slate-500">
+              <Link to="/info" className="hover:text-slate-900 transition-colors">
+                진단 시작
+              </Link>
+              <Link to="/diagnosis" className="hover:text-slate-900 transition-colors">
+                문항 보기
+              </Link>
+              <Link to="/result" className="hover:text-slate-900 transition-colors">
+                결과 보기
+              </Link>
+            </nav>
             <span className="rounded-full bg-slate-50 px-3 py-1 text-[11px] font-medium text-slate-500 border border-slate-200">
               Closed Beta · 리스크 진단 파트너
             </span>
@@ -49,6 +81,23 @@ export default function Landing() {
             </Link>
           </div>
         </header>
+
+        {/* Privacy banner */}
+        <div className="mt-4 rounded-2xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-[11px] text-emerald-900 shadow-sm md:px-5 md:py-3.5">
+          <div className="flex flex-col gap-1 md:flex-row md:items-center md:justify-between">
+            <div className="flex items-center gap-2">
+              <span className="flex h-5 w-5 items-center justify-center rounded-full bg-emerald-500 text-[10px] text-white">
+                🔒
+              </span>
+              <p className="font-semibold">
+                입력하신 진단 데이터는 현재 버전에서 서버 DB에 저장되지 않는 휘발성 자가진단입니다.
+              </p>
+            </div>
+            <p className="mt-1 text-[10px] text-emerald-800 md:mt-0">
+              브라우저에서만 보관되며, 로그인 없이도 결과를 확인할 수 있고, 별도 동의 없이는 제3자(노무사 등)에게 공유되지 않습니다.
+            </p>
+          </div>
+        </div>
 
         <main className="mt-10 flex flex-1 flex-col gap-16 md:mt-16">
           <section className="mx-auto grid w-full max-w-5xl gap-10 md:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)] md:items-center">
@@ -81,6 +130,21 @@ export default function Landing() {
                 <div className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white/80 px-4 py-2 text-[11px] text-slate-600">
                   <span className="h-1.5 w-1.5 rounded-full bg-secondary" />
                   자가진단 · 저장은 로컬 브라우저 기준
+                </div>
+              </div>
+
+              <div className="mt-4 flex flex-wrap gap-2 text-[11px] text-slate-500">
+                <div className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white/70 px-3 py-1">
+                  <span className="h-1 w-1 rounded-full bg-emerald-400" />
+                  53개 핵심 문항
+                </div>
+                <div className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white/70 px-3 py-1">
+                  <span className="h-1 w-1 rounded-full bg-sky-400" />
+                  7개 카테고리별 리스크
+                </div>
+                <div className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white/70 px-3 py-1">
+                  <span className="h-1 w-1 rounded-full bg-violet-500" />
+                  리포트 & AI 코멘트 자동 생성
                 </div>
               </div>
             </div>
@@ -134,7 +198,7 @@ export default function Landing() {
           </section>
 
           {/* Features */}
-          <section className="mx-auto w-full max-w-5xl">
+          <section id="features" className="mx-auto w-full max-w-5xl">
             <div className="flex flex-col items-center gap-3 text-center">
               <p className="text-[11px] font-medium uppercase tracking-[0.2em] text-slate-500">
                 Why This Studio
@@ -177,7 +241,10 @@ export default function Landing() {
           </section>
 
           {/* Process */}
-          <section className="mx-auto w-full max-w-4xl rounded-3xl border border-slate-200 bg-white p-6 shadow-[0_20px_80px_rgba(148,163,184,0.35)] backdrop-blur md:p-8">
+          <section
+            id="flow"
+            className="mx-auto w-full max-w-4xl rounded-3xl border border-slate-200 bg-white p-6 shadow-[0_20px_80px_rgba(148,163,184,0.35)] backdrop-blur md:p-8"
+          >
             <div className="flex flex-col items-center gap-3 text-center">
               <p className="text-[11px] font-medium uppercase tracking-[0.2em] text-slate-500">
                 Flow
@@ -201,8 +268,56 @@ export default function Landing() {
             </div>
           </section>
 
+          {/* Real cases */}
+          <section className="mx-auto w-full max-w-5xl">
+            <div className="mb-6 flex flex-col items-center gap-2 text-center">
+              <p className="text-[11px] font-medium uppercase tracking-[0.2em] text-slate-500">
+                Real Inspection Signals
+              </p>
+              <h2 className="text-xl font-semibold tracking-tight text-slate-900 md:text-2xl">
+                실제 근로감독 사례로 보는
+                <span className="bg-gradient-to-r from-rose-500 via-orange-500 to-amber-400 bg-clip-text text-transparent">
+                  {' '}
+                  리스크 경고등
+                </span>
+              </h2>
+              <p className="max-w-2xl text-xs leading-relaxed text-slate-600 md:text-sm">
+                노동부 보도자료와 언론에 자주 등장하는 유형을 바탕으로 재구성한 예시입니다.
+                “우리 사업장은 괜찮겠지”라고 넘기기 쉬운 지점이 실제로는 가장 먼저 적발되는 구간입니다.
+              </p>
+            </div>
+            <div className="grid gap-4 md:grid-cols-3">
+              {CASES.map((c, i) => (
+                <article
+                  key={c.title}
+                  className="flex h-full flex-col rounded-2xl border border-slate-200 bg-white p-5 text-xs text-slate-800 shadow-[0_18px_60px_rgba(148,163,184,0.25)]"
+                >
+                  <div className="inline-flex items-center gap-2 rounded-full bg-slate-50 px-2.5 py-1 text-[10px] font-medium text-slate-600">
+                    <span className="h-1.5 w-1.5 rounded-full bg-rose-500" />
+                    {c.tag}
+                  </div>
+                  <h3 className="mt-3 text-sm font-semibold text-slate-900">
+                    {c.title}
+                  </h3>
+                  <p className="mt-2 flex-1 leading-relaxed text-slate-600">
+                    {c.body}
+                  </p>
+                  <div className="mt-3 rounded-xl bg-rose-50 px-3 py-2 text-[11px] text-rose-700">
+                    <span className="font-semibold">적발 시 손실 가능성 · </span>
+                    {c.loss}
+                  </div>
+                  {i === 0 && (
+                    <p className="mt-2 text-[10px] text-slate-400">
+                      * 유명 카페·베이커리, 런던베이글과 같이 언론에 보도된 사례들을 일반화한 유형입니다.
+                    </p>
+                  )}
+                </article>
+              ))}
+            </div>
+          </section>
+
           {/* FAQ */}
-          <section className="mx-auto w-full max-w-3xl">
+          <section id="faq" className="mx-auto w-full max-w-3xl">
             <div className="flex flex-col items-center gap-3 text-center">
               <p className="text-[11px] font-medium uppercase tracking-[0.2em] text-slate-500">
                 FAQ
@@ -263,8 +378,13 @@ export default function Landing() {
           </section>
         </main>
 
-        <footer className="mt-10 border-t border-slate-200 pt-6 text-center text-[11px] text-slate-500">
-          근로감독 자가진단 서비스 · 참고용 자가점검 도구입니다.
+        <footer className="mt-10 border-t border-slate-200 pt-6 text-center text-[11px] text-slate-500 space-y-1">
+          <p>근로감독 자가진단 서비스 · 참고용 자가점검 도구입니다.</p>
+          <p className="max-w-3xl mx-auto text-[10px] text-slate-400">
+            본 서비스는 노동관계 법령과 공개 자료를 바탕으로 한 일반적인 리스크 점검 도구이며, 개별 사건에 대한
+            법률 자문이나 행정해석을 대체하지 않습니다. 최종적인 법적 책임과 판단은 사용자 및 관계 기관(법원·노동부
+            등)에 있으며, 서비스 제공자는 본 진단 결과만을 근거로 한 의사결정에 대해 법적 책임을 지지 않습니다.
+          </p>
         </footer>
       </div>
     </div>
