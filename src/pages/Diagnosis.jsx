@@ -6,12 +6,12 @@ const STORAGE_KEY = 'labor_diagnosis_business'
 const ANSWERS_KEY = 'labor_diagnosis_answers'
 
 const answerButtonClass = {
-  예: 'bg-safe text-white hover:opacity-90',
-  아니오: 'bg-danger text-white hover:opacity-90',
-  일부: 'bg-caution text-gray-900 hover:opacity-90',
-  모름: 'bg-caution text-gray-900 hover:opacity-90',
-  확인필요: 'bg-caution text-gray-900 hover:opacity-90',
-  해당없음: 'bg-gray-400 text-white hover:opacity-90',
+  예: 'border-2 border-ink bg-white text-ink hover:bg-zinc-50',
+  아니오: 'border-2 border-danger bg-white text-danger hover:bg-red-50',
+  일부: 'border-2 border-caution bg-white text-amber-800 hover:opacity-90',
+  모름: 'border-2 border-caution bg-white text-amber-800 hover:opacity-90',
+  확인필요: 'border-2 border-caution bg-white text-amber-800 hover:opacity-90',
+  해당없음: 'border-2 border-zinc-400 bg-white text-zinc-700 hover:bg-zinc-50',
 }
 
 export default function Diagnosis() {
@@ -78,24 +78,24 @@ export default function Diagnosis() {
     <div className="min-h-screen bg-paper text-ink">
 
       <div className="relative mx-auto flex min-h-screen max-w-5xl flex-col px-4 pb-16 pt-6 md:px-6 md:pt-8">
-        {/* 상단 헤더 + 진행률 */}
-        <div className="mb-4 flex flex-col gap-3 md:mb-6 md:flex-row md:items-center md:justify-between">
-          <div className="flex items-center gap-2 text-xs text-slate-500">
-            <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-gradient-to-tr from-secondary via-sky-400 to-emerald-300 text-[11px] font-semibold text-slate-950 shadow-md shadow-secondary/40">
+        {/* 상단 헤더 + 진행률 — 밝은 배경 + 검정 글씨 */}
+        <div className="mb-4 flex flex-col gap-3 rounded-2xl border-2 border-zinc-200 bg-white px-4 py-3 shadow-edge md:mb-6 md:flex-row md:items-center md:justify-between md:px-6">
+          <div className="flex items-center gap-3 text-xs">
+            <span className="flex h-9 w-9 items-center justify-center rounded-xl border-2 border-ink bg-white text-[11px] font-bold text-ink">
               D
             </span>
-            <span className="text-[11px] font-medium uppercase tracking-[0.18em]">
+            <span className="text-[11px] font-semibold uppercase tracking-[0.18em] text-zinc-600">
               Diagnosis Flow
             </span>
           </div>
           <div className="w-full md:w-2/3">
-            <div className="h-1.5 overflow-hidden rounded-full bg-slate-200">
+            <div className="h-1.5 overflow-hidden rounded-full bg-zinc-200">
               <div
-                className="h-full rounded-full bg-gradient-to-r from-secondary via-sky-400 to-emerald-300 transition-all"
+                className="h-full rounded-full bg-ink transition-all"
                 style={{ width: `${progress}%` }}
               />
             </div>
-            <p className="mt-1 text-[11px] text-slate-500">
+            <p className="mt-1 text-[11px] font-medium text-zinc-700">
               {answeredCount} / {QUESTIONS.length} 문항 응답 완료
             </p>
           </div>
@@ -104,7 +104,7 @@ export default function Diagnosis() {
         <div className="flex flex-1 flex-col md:flex-row md:gap-5">
           {/* 사이드바: 카테고리 (데스크톱) */}
           <aside className="mb-3 hidden w-60 shrink-0 md:block">
-            <div className="rounded-2xl border border-slate-100 bg-white p-3 text-xs text-slate-700 shadow-card">
+            <div className="rounded-2xl border-2 border-zinc-200 bg-white p-3 text-xs text-zinc-700 shadow-edge">
               <p className="mb-3 text-[11px] font-medium text-slate-600">
                 카테고리 맵
               </p>
@@ -121,15 +121,15 @@ export default function Diagnosis() {
                       }}
                       className={`flex w-full items-center gap-2 rounded-xl px-3 py-2 text-left transition ${
                         active
-                          ? 'border border-secondary/70 bg-secondary/10 text-primary'
-                          : 'border border-slate-200 bg-slate-50 text-slate-600 hover:border-secondary/50 hover:bg-white'
+                          ? 'border border-ink bg-ink/10 text-ink'
+                          : 'border border-slate-200 bg-slate-50 text-slate-600 hover:border-ink/50 hover:bg-white'
                       }`}
                     >
                       <span
-                        className={`flex h-4 w-4 items-center justify-center rounded-full border text-[9px] ${
+                        className={`flex h-4 w-4 items-center justify-center rounded-full border-2 text-[9px] font-bold ${
                           allDone
-                            ? 'border-transparent bg-emerald-400 text-white'
-                            : 'border-slate-300 text-slate-400'
+                            ? 'border-ink bg-white text-ink'
+                            : 'border-slate-300 bg-slate-100 text-slate-400'
                         }`}
                       >
                         {allDone ? '✓' : ''}
@@ -144,7 +144,7 @@ export default function Diagnosis() {
 
           {/* 메인: 질문 카드 */}
           <main className="flex-1">
-            <div className="rounded-3xl border border-slate-100 bg-white p-5 text-sm text-slate-900 shadow-card md:p-7">
+            <div className="rounded-3xl border-2 border-zinc-200 bg-white p-5 text-sm text-slate-900 shadow-edge md:p-7">
               <p className="mb-2 text-[11px] text-slate-500">
                 {CATEGORIES[currentQ?.categoryId]?.name} ·{' '}
                 {
@@ -175,8 +175,8 @@ export default function Diagnosis() {
                     onClick={() => setAnswer(opt)}
                     className={`px-5 py-2.5 rounded-xl text-sm font-medium transition ${
                       answers[currentIndex] === opt
-                        ? `${answerButtonClass[opt] || 'bg-gray-400 text-white'} shadow-md shadow-slate-300/50`
-                        : 'border border-slate-200 bg-slate-50 text-slate-700 hover:border-secondary/60 hover:bg-white'
+                        ? `${answerButtonClass[opt] || 'border-2 border-zinc-400 bg-white text-zinc-700'} shadow-md shadow-slate-300/50`
+                        : 'border border-slate-200 bg-slate-50 text-slate-700 hover:border-ink/60 hover:bg-white'
                     }`}
                   >
                     {opt}
@@ -191,15 +191,15 @@ export default function Diagnosis() {
                 onClick={() => setAutoAdvance((v) => !v)}
                 className={`inline-flex items-center gap-1 rounded-full border px-3 py-1 transition ${
                   autoAdvance
-                    ? 'border-secondary bg-secondary/10 text-secondary'
-                    : 'border-slate-200 bg-slate-50 text-slate-500 hover:border-secondary/50'
+                    ? 'border-ink bg-ink/10 text-ink'
+                    : 'border-slate-200 bg-slate-50 text-slate-500 hover:border-ink/50'
                 }`}
               >
                 <span
-                  className={`flex h-3 w-3 items-center justify-center rounded-full border text-[9px] ${
+                  className={`flex h-3 w-3 items-center justify-center rounded-full border-2 text-[9px] font-bold ${
                     autoAdvance
-                      ? 'border-transparent bg-secondary text-white'
-                      : 'border-slate-300 text-slate-400'
+                      ? 'border-ink bg-white text-ink'
+                      : 'border-slate-300 bg-slate-100 text-slate-400'
                   }`}
                 >
                   {autoAdvance ? '✓' : ''}
@@ -224,7 +224,7 @@ export default function Diagnosis() {
                 <button
                   type="button"
                   onClick={goNext}
-                  className="inline-flex items-center rounded-full bg-ink px-6 py-3 text-sm font-semibold text-white transition hover:bg-primary-hover"
+                  className="inline-flex items-center rounded-full bg-ink px-6 py-3 text-sm font-semibold text-white shadow-edge transition hover:bg-zinc-800"
                 >
                   다음 문항
                 </button>
@@ -233,7 +233,7 @@ export default function Diagnosis() {
                   type="button"
                   onClick={handleFinish}
                   disabled={!allAnswered}
-                  className="inline-flex items-center rounded-full bg-secondary px-7 py-2.5 text-[11px] font-semibold tracking-wide text-slate-950 shadow-lg shadow-secondary/60 transition hover:bg-secondary/90 disabled:cursor-not-allowed disabled:opacity-50"
+                  className="inline-flex items-center rounded-full bg-ink px-7 py-2.5 text-[11px] font-semibold tracking-wide text-white shadow-edge transition hover:bg-zinc-800 disabled:cursor-not-allowed disabled:opacity-50"
                 >
                   결과 보기
                 </button>
@@ -243,7 +243,7 @@ export default function Diagnosis() {
         </div>
 
         {/* 현재 카테고리 빠른 이동 맵 (데스크톱 전용) */}
-        <div className="mt-4 hidden rounded-2xl border border-slate-100 bg-white p-4 text-[11px] text-slate-700 shadow-card md:block">
+        <div className="mt-4 hidden rounded-2xl border-2 border-zinc-200 bg-white p-4 text-[11px] text-zinc-700 shadow-edge md:block">
           <div className="mb-3 flex items-center justify-between">
             <div>
               <p className="font-medium text-slate-700">
@@ -265,8 +265,8 @@ export default function Diagnosis() {
               <span
                 className={`flex h-3 w-3 items-center justify-center rounded-full border text-[9px] ${
                   showOnlyUnanswered
-                    ? 'border-transparent bg-amber-500 text-white'
-                    : 'border-slate-300 text-slate-400'
+                    ? 'border-2 border-amber-500 bg-white text-amber-700'
+                    : 'border-slate-300 bg-slate-100 text-slate-400'
                 }`}
               >
                 {showOnlyUnanswered ? '!' : ''}
@@ -289,17 +289,17 @@ export default function Diagnosis() {
                     onClick={() => setCurrentIndex(q.index)}
                     className={`flex w-full items-start gap-3 rounded-2xl border px-3 py-2 text-left text-[10px] transition ${
                       active
-                        ? 'border-secondary bg-secondary/10 text-primary'
+                        ? 'border-ink bg-ink/10 text-ink'
                         : answered
-                        ? 'border-emerald-200 bg-emerald-50 text-slate-700'
-                        : 'border-slate-200 bg-slate-50 text-slate-500 hover:border-secondary/50 hover:bg-white'
+                        ? 'border-zinc-300 bg-zinc-100 text-slate-700'
+                        : 'border-slate-200 bg-slate-50 text-slate-500 hover:border-ink/50 hover:bg-white'
                     }`}
                   >
                     <span
-                      className={`mt-0.5 flex h-5 w-5 items-center justify-center rounded-full text-[9px] font-semibold ${
+                      className={`mt-0.5 flex h-5 w-5 items-center justify-center rounded-full border-2 text-[9px] font-bold ${
                         answered
-                          ? 'bg-emerald-500 text-white'
-                          : 'bg-slate-200 text-slate-600'
+                          ? 'border-ink bg-white text-ink'
+                          : 'border-slate-300 bg-slate-200 text-slate-600'
                       }`}
                     >
                       {order}
@@ -310,7 +310,7 @@ export default function Diagnosis() {
                         <span
                           className={`inline-flex items-center rounded-full px-2 py-0.5 text-[9px] ${
                             answered
-                              ? 'bg-emerald-500/10 text-emerald-700'
+                              ? 'bg-ink/10 text-ink'
                               : 'bg-slate-200 text-slate-600'
                           }`}
                         >
@@ -342,10 +342,10 @@ export default function Diagnosis() {
                   const first = QUESTIONS.findIndex((q) => q.categoryId === cid)
                   if (first >= 0) setCurrentIndex(first)
                 }}
-                className={`shrink-0 rounded-full px-3 py-1.5 whitespace-nowrap ${
+                className={`shrink-0 rounded-full border-2 px-3 py-1.5 whitespace-nowrap ${
                   currentQ?.categoryId === cid
-                    ? 'bg-secondary text-slate-950'
-                    : 'bg-slate-100 text-slate-600'
+                    ? 'border-ink bg-white text-ink font-semibold'
+                    : 'border-slate-200 bg-slate-100 text-slate-600'
                 }`}
               >
                 {cat.name}
