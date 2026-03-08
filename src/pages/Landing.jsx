@@ -93,6 +93,9 @@ export default function Landing() {
               <Link to="/result" className="font-medium transition hover:text-zinc-600">
                 결과 보기
               </Link>
+              <Link to="/pricing" className="font-medium transition hover:text-zinc-600">
+                요금제
+              </Link>
             </nav>
             <span className="rounded-full border-2 border-zinc-300 bg-zinc-50 px-3 py-1.5 text-[11px] font-medium text-zinc-700">
               Closed Beta
