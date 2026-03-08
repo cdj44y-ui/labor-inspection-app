@@ -68,9 +68,17 @@ export default function Info() {
               Labor Risk Studio
             </span>
           </Link>
-          <span className="rounded-full border border-slate-200 bg-white/80 px-3 py-1 text-[11px]">
-            1/4 · 사업장 기본 정보
-          </span>
+          <div className="flex items-center gap-2">
+            <span className="rounded-full border border-slate-200 bg-white/80 px-3 py-1 text-[11px]">
+              1/4 · 사업장 기본 정보
+            </span>
+            <Link
+              to="/diagnosis"
+              className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-[11px] text-slate-600 hover:bg-slate-100 hover:text-slate-900 transition"
+            >
+              기본정보 없이 진단만 하기
+            </Link>
+          </div>
         </header>
 
         {/* 진행률 */}

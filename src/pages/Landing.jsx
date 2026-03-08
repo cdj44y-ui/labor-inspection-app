@@ -1,18 +1,35 @@
 import { Link } from 'react-router-dom'
 import { useState } from 'react'
+import { getUser, clearAuth, authFetch } from '../utils/auth.js'
+import { CONTACT_PHONE, RAPIDO_CONTENT_URL } from '../constants/contact.js'
 
 const FEATURES = [
-  { title: '5분 만에 자가진단', desc: '간단한 체크리스트로 노동법 준수 여부를 빠르게 점검할 수 있습니다.' },
-  { title: '항목별 위험도 분석', desc: '7개 카테고리별로 위험도를 파악하고 개선이 필요한 항목을 확인하세요.' },
-  { title: '맞춤형 개선 가이드', desc: '진단 결과에 따른 구체적인 개선 방법과 관련 법령을 안내합니다.' },
+  {
+    title: '노동부 자율점검표 기반',
+    desc: "2025년 고용노동부 '사업장 기초노동질서 자율진단표'를 토대로 50여개 핵심 문항을 재구성했습니다.",
+  },
+  {
+    title: '실제 근로감독·형사 사건 반영',
+    desc: '런던베이글 등 SNS·보도자료에 등장한 임금체불·연장근로·연차·4대보험 이슈를 중심으로 리스크를 짚어드립니다.',
+  },
+  {
+    title: '우선순위 액션 플랜 제시',
+    desc: '위험도가 높은 영역부터 어떤 서류·규정·제도를 손보면 좋을지, 단계별 개선 방향을 제안합니다.',
+  },
 ]
 
-const STEPS = ['기본정보 입력', '진단 문항 응답', '결과 확인', '개선 가이드 활용']
+const STEPS = ['기본정보 입력', '진단 문항 응답', '결과 요약 확인', '우선 개선 영역 정리']
 
 const FAQ_ITEMS = [
-  { q: '진단에 얼마나 걸리나요?', a: '약 5~10분 정도 소요됩니다. 53개 문항에 답하시면 됩니다.' },
-  { q: '무료인가요?', a: '네. 무료로 자가진단을 이용하실 수 있습니다.' },
-  { q: '진단 결과는 저장되나요?', a: '현재 버전에서는 브라우저에 임시 저장됩니다. 로그인 후 히스토리는 추후 제공 예정입니다.' },
+  {
+    q: '이 서비스는 어떤 서비스인가요?',
+    a: '고용노동부 자율점검표와 실제 근로감독·형사 사건 사례를 바탕으로, 우리 회사의 근로감독 리스크를 미리 점검해보는 자가진단 툴입니다.',
+  },
+  { q: '진단에 얼마나 걸리나요?', a: '약 5~10분 정도 소요됩니다. 50여개 핵심 문항에 답하시면 됩니다.' },
+  {
+    q: '진단 결과는 저장되나요?',
+    a: '현재 버전에서는 브라우저에만 임시 저장되며, 서버 DB에는 저장되지 않습니다. 상담을 신청할 경우에만 암호화 저장 후 노무사에게 공유됩니다.',
+  },
   { q: '어떤 사업장이 이용할 수 있나요?', a: '중소기업, 개인사업자, 스타트업 등 상시 근로자가 있는 사업장이면 이용 가능합니다.' },
 ]
 
@@ -39,6 +56,13 @@ const CASES = [
 
 export default function Landing() {
   const [openFaq, setOpenFaq] = useState(null)
+  const [user, setUser] = useState(() => getUser())
+
+  const handleLogout = () => {
+    authFetch('/api/auth/logout', { method: 'POST' }).catch(() => {})
+    clearAuth()
+    setUser(null)
+  }
 
   return (
     <div className="min-h-screen bg-transparent text-slate-900">
@@ -73,12 +97,35 @@ export default function Landing() {
             <span className="rounded-full bg-slate-50 px-3 py-1 text-[11px] font-medium text-slate-500 border border-slate-200">
               Closed Beta · 리스크 진단 파트너
             </span>
-            <Link
-              to="/info"
-              className="rounded-full bg-primary text-[11px] font-semibold tracking-wide text-white shadow-sm transition hover:bg-primary-hover"
-            >
-              <span className="px-4 py-1.5 inline-block">무료 진단 시작</span>
-            </Link>
+            {user ? (
+              <div className="flex items-center gap-2">
+                <span className="text-[11px] text-slate-600 truncate max-w-[120px]" title={user.email}>
+                  {user.email}
+                </span>
+                <button
+                  type="button"
+                  onClick={handleLogout}
+                  className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-[11px] font-medium text-slate-600 hover:bg-slate-100 transition"
+                >
+                  로그아웃
+                </button>
+              </div>
+            ) : (
+              <>
+                <Link to="/login" className="text-slate-600 hover:text-slate-900 transition-colors text-[11px] font-medium">
+                  로그인
+                </Link>
+                <Link to="/signup" className="text-slate-600 hover:text-slate-900 transition-colors text-[11px] font-medium">
+                  회원가입
+                </Link>
+                <Link
+                  to="/diagnosis"
+                  className="rounded-full bg-primary text-[11px] font-semibold tracking-wide text-white shadow-sm transition hover:bg-primary-hover"
+                >
+                  <span className="px-4 py-1.5 inline-block">바로 진단하기</span>
+                </Link>
+              </>
+            )}
           </div>
         </header>
 
@@ -104,28 +151,39 @@ export default function Landing() {
             <div>
               <div className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white/80 px-3 py-1 text-[11px] font-medium text-slate-600 backdrop-blur">
                 <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
-                근로감독 전, 리스크 먼저 확인하세요
+                고용노동부 자율점검표 기반 · 실제 근로감독 사례 반영
               </div>
               <h1 className="mt-5 text-3xl font-semibold tracking-tight text-slate-900 md:text-4xl lg:text-5xl">
-                근로감독
+                근로감독 전에,
                 <span className="block bg-gradient-to-r from-sky-500 via-secondary to-emerald-400 bg-clip-text text-transparent">
-                  리스크 진단 셀프 스튜디오
+                  우리 회사 리스크부터 확인하세요
                 </span>
               </h1>
               <p className="mt-4 text-sm leading-relaxed text-slate-600 md:text-base">
-                53개 핵심 체크리스트로 사업장의 노동법 준수 상태를 한눈에 정리합니다.
-                근로감독 전,
-                <span className="font-medium text-slate-900"> 리스크 포인트</span>를 미리 발견하고
-                <span className="font-medium text-slate-900"> 우선순위 액션 플랜</span>을 세워보세요.
+                노동부 자율점검표를 바탕으로
+                <span className="font-medium text-slate-900"> 50여개 핵심 문항</span>을 정리했습니다.
+                SNS·노동부 보도자료에 자주 등장하는
+                <span className="font-medium text-slate-900">
+                  {' '}
+                  임금체불·연장근로·휴게시간·연차휴가·근로계약·4대보험·산재
+                </span>
+                이슈를 한 번에 점검하고,
+                <span className="font-medium text-slate-900"> 근로감독·형사 사건으로 번지기 전</span>에 리스크를 줄여보세요.
               </p>
 
               <div className="mt-8 flex flex-wrap items-center gap-3">
                 <Link
-                  to="/info"
+                  to="/diagnosis"
                   className="inline-flex items-center justify-center gap-2 rounded-full bg-primary px-7 py-3 text-sm font-semibold text-white shadow-lg shadow-slate-300/60 transition hover:bg-primary-hover"
                 >
-                  무료 진단 시작하기
+                  바로 진단하기 (기본정보 없이)
                   <span className="text-xs text-slate-200">약 5~10분 소요</span>
+                </Link>
+                <Link
+                  to="/info"
+                  className="inline-flex items-center justify-center rounded-full border border-slate-300 bg-white px-5 py-3 text-sm font-medium text-slate-700 shadow-sm transition hover:bg-slate-50"
+                >
+                  사업장 정보 입력 후 진단
                 </Link>
                 <div className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white/80 px-4 py-2 text-[11px] text-slate-600">
                   <span className="h-1.5 w-1.5 rounded-full bg-secondary" />
@@ -136,7 +194,7 @@ export default function Landing() {
               <div className="mt-4 flex flex-wrap gap-2 text-[11px] text-slate-500">
                 <div className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white/70 px-3 py-1">
                   <span className="h-1 w-1 rounded-full bg-emerald-400" />
-                  53개 핵심 문항
+                  50여개 핵심 문항
                 </div>
                 <div className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white/70 px-3 py-1">
                   <span className="h-1 w-1 rounded-full bg-sky-400" />
@@ -144,7 +202,7 @@ export default function Landing() {
                 </div>
                 <div className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white/70 px-3 py-1">
                   <span className="h-1 w-1 rounded-full bg-violet-500" />
-                  리포트 & AI 코멘트 자동 생성
+                  종합 리포트 자동 생성
                 </div>
               </div>
             </div>
@@ -316,6 +374,67 @@ export default function Landing() {
             </div>
           </section>
 
+          {/* 조대진 노무사 소개 + 비대면 상담 */}
+          <section
+            id="consult"
+            className="mx-auto w-full max-w-5xl rounded-3xl border border-slate-200 bg-white p-6 shadow-[0_18px_70px_rgba(148,163,184,0.35)] backdrop-blur md:p-7"
+          >
+            <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between md:gap-8">
+              <div className="flex items-start gap-3">
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-secondary via-sky-400 to-emerald-300 text-[12px] font-semibold text-slate-950 shadow-md shadow-secondary/40 md:h-14 md:w-14">
+                  JD
+                </div>
+                <div className="min-w-0 flex-1 space-y-2">
+                  <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-slate-500">
+                    Labor Risk Partner
+                  </p>
+                  <h2 className="text-base font-semibold tracking-tight text-slate-900 md:text-lg">
+                    노무법인 위너스 조대진 노무사 1:1 리스크 코칭
+                  </h2>
+                  <p className="text-[11px] leading-relaxed text-slate-600">
+                    근로감독 리스크를 실제로 줄이고 싶다면, HR·산업안전·컨설팅 실무를 두루 경험한 조대진 노무사에게
+                    맞춤 코칭을 받아보세요.
+                  </p>
+                  <div className="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-slate-50 px-3 py-2">
+                    <span className="text-[10px] font-medium uppercase tracking-wider text-slate-500">
+                      유선 연락처
+                    </span>
+                    <a
+                      href={`tel:${CONTACT_PHONE}`}
+                      className="text-sm font-semibold tracking-tight text-slate-900 transition hover:text-primary md:text-base"
+                    >
+                      {CONTACT_PHONE}
+                    </a>
+                  </div>
+                  <ul className="flex flex-wrap gap-1.5 text-[10px] text-slate-700">
+                    <li className="rounded-full bg-slate-100 px-2.5 py-1">
+                      현대카드 · 삼성서울병원 HR팀 출신
+                    </li>
+                    <li className="rounded-full bg-slate-100 px-2.5 py-1">
+                      컨설팅 회사 근무 · 산업안전공학 박사 과정
+                    </li>
+                    <li className="rounded-full bg-slate-100 px-2.5 py-1">
+                      삼성전자 · SK가스 · 두산그룹 등 다수 기업 강의
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div className="flex flex-col gap-2 md:shrink-0 md:basis-44">
+                <a
+                  href={RAPIDO_CONTENT_URL}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center justify-center rounded-full bg-primary px-6 py-3 text-sm font-semibold tracking-wide text-white shadow-lg shadow-slate-300/60 transition hover:bg-primary-hover"
+                >
+                  비대면 상담
+                </a>
+                <p className="text-center text-[10px] leading-relaxed text-slate-500">
+                  래피드에서 비대면 상담을 신청할 수 있습니다.
+                </p>
+              </div>
+            </div>
+          </section>
+
           {/* FAQ */}
           <section id="faq" className="mx-auto w-full max-w-3xl">
             <div className="flex flex-col items-center gap-3 text-center">
@@ -358,19 +477,26 @@ export default function Landing() {
               <span className="block text-slate-800">숫자와 문장으로 정리해 보세요.</span>
             </h3>
             <p className="mt-3 text-xs leading-relaxed text-slate-800/80 md:text-sm">
-              진단 결과는 브라우저에만 임시 저장되며, 입력하신 정보는 서버로 전송되지 않습니다.
-              안심하고 사업장 현황을 점검해 보세요.
+              진단 결과는 브라우저에만 임시 저장되며, 입력하신 정보는 서버로 전송되지 않습니다. 2025년 고용노동부
+              사업장 기초노동질서 자율진단표와 동일한 7개 영역 기준으로 우리 사업장의 리스크를 숫자와 문장으로 정리해
+              보세요.
             </p>
             <div className="mt-6 flex flex-wrap justify-center gap-3">
               <Link
-                to="/info"
+                to="/diagnosis"
                 className="inline-flex items-center justify-center rounded-full bg-primary px-7 py-3 text-sm font-semibold text-white shadow-lg shadow-slate-300/60 transition hover:bg-primary-hover"
               >
-                무료 진단 시작하기
+                바로 진단하기 (기본정보 없이)
+              </Link>
+              <Link
+                to="/info"
+                className="inline-flex items-center justify-center rounded-full border border-slate-300 bg-white px-6 py-3 text-sm font-medium text-slate-900 shadow-sm transition hover:bg-slate-50"
+              >
+                사업장 정보 입력 후 진단
               </Link>
               <Link
                 to="/diagnosis"
-                className="inline-flex items-center justify-center rounded-full border border-slate-300 bg-white px-6 py-3 text-sm font-medium text-slate-900 shadow-sm transition hover:bg-slate-50"
+                className="inline-flex items-center justify-center rounded-full border border-slate-200 bg-white/80 px-5 py-3 text-sm font-medium text-slate-600 shadow-sm transition hover:bg-slate-50"
               >
                 이미 진단 중이에요
               </Link>
