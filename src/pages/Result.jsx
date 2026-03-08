@@ -63,20 +63,18 @@ export default function Result() {
 
   if (!answers || answers.length !== QUESTIONS.length) {
     return (
-      <div className="min-h-screen bg-transparent text-slate-900">
-        <div className="pointer-events-none fixed inset-0 -z-10 bg-[radial-gradient(circle_at_top,_#e0f2fe_0,_#f9fafb_45%,_#f9fafb_100%)]" />
+      <div className="min-h-screen bg-paper text-ink">
         <div className="relative mx-auto flex min-h-screen max-w-xl items-center justify-center px-4 py-10">
-          <div className="w-full rounded-3xl border border-slate-200 bg-white p-6 text-center text-sm text-slate-700 shadow-[0_18px_70px_rgba(148,163,184,0.35)] backdrop-blur md:p-8">
-            <p className="mb-3 text-sm text-slate-800">
+          <div className="w-full rounded-3xl border border-slate-100 bg-white p-8 text-center shadow-card md:p-10">
+            <p className="mb-3 text-base font-semibold text-ink">
               진단 결과가 없습니다. 먼저 진단을 완료해 주세요.
             </p>
-            <p className="mb-6 text-xs text-slate-500">
-              사업장 정보를 입력하고 50여개 핵심 문항에 응답하면,
-              카테고리별 리스크와 우선순위 액션 플랜이 자동으로 생성됩니다.
+            <p className="mb-8 text-sm text-slate-600">
+              ​50여개 핵심 문항에 응답하면 카테고리별 리스크와 우선순위 액션 플랜이 자동으로 생성됩니다.
             </p>
             <Link
               to="/diagnosis"
-              className="inline-flex items-center justify-center rounded-full bg-primary px-6 py-2.5 text-[11px] font-semibold tracking-wide text-white shadow-lg shadow-slate-300/70 transition hover:bg-primary-hover"
+              className="inline-flex items-center justify-center rounded-full bg-ink px-6 py-3 text-sm font-semibold text-white transition hover:bg-primary-hover"
             >
               지금 진단하러 가기
             </Link>
@@ -106,35 +104,32 @@ export default function Result() {
     .slice(0, 3)
 
   return (
-    <div className="min-h-screen bg-transparent text-slate-900">
-      <div className="pointer-events-none fixed inset-0 -z-10 bg-[radial-gradient(circle_at_top,_#e0f2fe_0,_#f9fafb_45%,_#f9fafb_100%)]" />
-
+    <div className="min-h-screen bg-paper text-ink">
       <div className="relative mx-auto flex min-h-screen max-w-5xl flex-col px-4 pb-16 pt-6 md:px-6 md:pt-8">
-        <header className="mb-6 flex items-center justify-between text-xs text-slate-500 md:mb-8">
+        <header className="mb-6 flex items-center justify-between md:mb-8">
           <div className="flex items-center gap-2">
-            <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-gradient-to-tr from-secondary via-sky-400 to-emerald-300 text-[11px] font-semibold text-slate-950 shadow-md shadow-secondary/40">
+            <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-ink text-[11px] font-bold text-white">
               R
             </span>
-            <span className="text-[11px] font-medium uppercase tracking-[0.18em]">
+            <span className="text-[10px] font-medium uppercase tracking-[0.2em] text-slate-400">
               Result Snapshot
             </span>
           </div>
-          <span className="rounded-full border border-slate-200 bg-white/80 px-3 py-1 text-[11px] text-slate-600">
+          <span className="rounded-full border border-slate-100 bg-white px-3 py-1.5 text-[11px] font-medium text-slate-600">
             근로감독 리스크 리포트
           </span>
         </header>
 
         <div className="space-y-5 md:space-y-6">
           {/* (A) 종합 점수 + 한 줄 요약 */}
-          <section className="rounded-3xl border border-slate-200 bg-white p-6 shadow-[0_20px_80px_rgba(148,163,184,0.35)] backdrop-blur md:p-7">
+          <section className="rounded-3xl border border-slate-100 bg-white p-6 shadow-card md:p-8">
             <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
               <div>
-                <h1 className="mb-1 text-xl font-semibold tracking-tight text-slate-900 md:text-2xl">
+                <h1 className="mb-2 text-xl font-bold tracking-tight text-ink md:text-2xl">
                   진단 결과 요약
                 </h1>
-                <p className="text-xs leading-relaxed text-slate-600 md:text-sm">
-                  종합 점수는 {totalScore}점, 등급은 {gradeInfo.label}입니다. 아래 우선 개선 영역 3가지를 먼저
-                  정비하면 근로감독 리스크를 빠르게 줄일 수 있습니다.
+                <p className="text-sm leading-relaxed text-slate-600">
+                  종합 점수 {totalScore}점, 등급 {gradeInfo.label}. 아래 우선 개선 영역 3가지를 먼저 정비하면 리스크를 줄일 수 있습니다.
                 </p>
               </div>
               <div className="mt-3 md:mt-0">
@@ -144,7 +139,7 @@ export default function Result() {
           </section>
 
           {/* (B) 우선 개선 영역 Top 3 */}
-          <section className="rounded-3xl border border-slate-200 bg-white p-5 text-xs text-slate-900 shadow-[0_18px_70px_rgba(148,163,184,0.35)] backdrop-blur md:p-6">
+          <section className="rounded-3xl border border-slate-100 bg-white p-6 shadow-card md:p-7">
             <h2 className="mb-2 text-sm font-semibold text-slate-900 md:text-base">
               우선 개선이 필요한 3가지 영역
             </h2>
@@ -191,7 +186,7 @@ export default function Result() {
           </section>
 
           {/* (C) 카테고리별 점수 요약 (압축형) */}
-          <section className="rounded-3xl border border-slate-200 bg-white p-5 text-sm shadow-[0_18px_70px_rgba(148,163,184,0.35)] backdrop-blur md:p-6">
+          <section className="rounded-3xl border border-slate-100 bg-white p-6 shadow-card md:p-7">
             <h2 className="mb-3 text-sm font-semibold text-slate-900 md:text-base">
               카테고리별 점수 한눈에 보기
             </h2>
@@ -221,33 +216,33 @@ export default function Result() {
         </div>
 
         {/* (E) CTA */}
-        <section className="mt-6 flex flex-wrap gap-3 text-[11px] text-slate-700">
+        <section className="mt-6 flex flex-wrap gap-3">
           <Link
             to="/diagnosis"
-            className="inline-flex items-center justify-center rounded-full border border-slate-200 px-6 py-2.5 font-medium transition hover:bg-slate-50"
+            className="inline-flex items-center justify-center rounded-full border border-slate-200 px-6 py-3 text-sm font-medium text-ink transition hover:bg-slate-50"
           >
             다시 진단하기
           </Link>
           <Link
             to="/"
-            className="inline-flex items-center justify-center rounded-full bg-primary px-7 py-2.5 font-semibold tracking-wide text-white shadow-lg shadow-slate-300/70 transition hover:bg-primary-hover"
+            className="inline-flex items-center justify-center rounded-full bg-ink px-7 py-3 text-sm font-semibold text-white transition hover:bg-primary-hover"
           >
             홈으로
           </Link>
         </section>
 
         {/* (F) 노무법인 위너스 · 조대진 노무사 리스크 코칭 */}
-        <section className="mt-5 rounded-3xl border border-slate-200 bg-white p-6 text-[11px] text-slate-800 shadow-[0_18px_70px_rgba(148,163,184,0.35)] backdrop-blur md:mt-6 md:p-7">
+        <section className="mt-6 rounded-3xl border border-slate-100 bg-white p-6 shadow-card md:p-8">
           <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between md:gap-8">
-            <div className="flex items-start gap-3">
-              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-secondary via-sky-400 to-emerald-300 text-[12px] font-semibold text-slate-950 shadow-md shadow-secondary/40 md:h-14 md:w-14">
+            <div className="flex items-start gap-4">
+              <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-ink text-sm font-bold text-white md:h-16 md:w-16">
                 JD
               </div>
               <div className="min-w-0 flex-1 space-y-2">
-                <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-slate-500">
+                <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-slate-400">
                   Labor Risk Partner
                 </p>
-                <h2 className="text-base font-semibold tracking-tight text-slate-900 md:text-lg">
+                <h2 className="text-base font-bold tracking-tight text-ink md:text-lg">
                   노무법인 위너스 조대진 노무사 1:1 리스크 코칭
                 </h2>
                 <p className="text-[11px] leading-relaxed text-slate-600">
@@ -283,7 +278,7 @@ export default function Result() {
                 href={RAPIDO_CONTENT_URL}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center justify-center rounded-full bg-primary px-6 py-3 text-sm font-semibold tracking-wide text-white shadow-lg shadow-slate-300/60 transition hover:bg-primary-hover"
+                className="inline-flex items-center justify-center rounded-full bg-ink px-6 py-3 text-sm font-semibold tracking-tight text-white transition hover:bg-primary-hover"
               >
                 비대면 상담
               </a>

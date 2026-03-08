@@ -46,8 +46,7 @@ export default function SignUp() {
   }
 
   return (
-    <div className="min-h-screen bg-transparent text-slate-900">
-      <div className="pointer-events-none fixed inset-0 -z-10 bg-[radial-gradient(circle_at_top,_#e0f2fe_0,_#f9fafb_45%,_#f9fafb_100%)]" />
+    <div className="min-h-screen bg-paper text-ink">
 
       <div className="relative mx-auto flex min-h-screen max-w-md flex-col px-4 pb-10 pt-6 md:px-6 md:pt-8">
         <header className="mb-6 flex items-center justify-between text-xs text-slate-500 md:mb-8">
@@ -68,7 +67,7 @@ export default function SignUp() {
         </header>
 
         <div className="flex flex-1 flex-col justify-center">
-          <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-[0_18px_70px_rgba(148,163,184,0.35)] backdrop-blur md:p-8">
+          <div className="rounded-3xl border border-slate-100 bg-white p-6 shadow-card md:p-8">
             <h1 className="text-xl font-semibold tracking-tight text-slate-900 md:text-2xl">
               회원가입
             </h1>
@@ -124,7 +123,7 @@ export default function SignUp() {
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full rounded-full bg-primary py-3 text-sm font-semibold text-white shadow-lg transition hover:bg-primary-hover disabled:opacity-60"
+                className="w-full rounded-full bg-ink py-3 text-sm font-semibold text-white transition hover:bg-primary-hover disabled:opacity-60"
               >
                 {loading ? '가입 중…' : '회원가입'}
               </button>

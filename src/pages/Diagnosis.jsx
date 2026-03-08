@@ -75,8 +75,7 @@ export default function Diagnosis() {
   )
 
   return (
-    <div className="min-h-screen bg-transparent text-slate-900">
-      <div className="pointer-events-none fixed inset-0 -z-10 bg-[radial-gradient(circle_at_top,_#e0f2fe_0,_#f9fafb_45%,_#f9fafb_100%)]" />
+    <div className="min-h-screen bg-paper text-ink">
 
       <div className="relative mx-auto flex min-h-screen max-w-5xl flex-col px-4 pb-16 pt-6 md:px-6 md:pt-8">
         {/* 상단 헤더 + 진행률 */}
@@ -105,7 +104,7 @@ export default function Diagnosis() {
         <div className="flex flex-1 flex-col md:flex-row md:gap-5">
           {/* 사이드바: 카테고리 (데스크톱) */}
           <aside className="mb-3 hidden w-60 shrink-0 md:block">
-            <div className="rounded-2xl border border-slate-200 bg-white p-3 text-xs text-slate-700 shadow-[0_16px_60px_rgba(148,163,184,0.35)] backdrop-blur">
+            <div className="rounded-2xl border border-slate-100 bg-white p-3 text-xs text-slate-700 shadow-card">
               <p className="mb-3 text-[11px] font-medium text-slate-600">
                 카테고리 맵
               </p>
@@ -145,7 +144,7 @@ export default function Diagnosis() {
 
           {/* 메인: 질문 카드 */}
           <main className="flex-1">
-            <div className="rounded-3xl border border-slate-200 bg-white p-5 text-sm text-slate-900 shadow-[0_18px_70px_rgba(148,163,184,0.35)] backdrop-blur md:p-7">
+            <div className="rounded-3xl border border-slate-100 bg-white p-5 text-sm text-slate-900 shadow-card md:p-7">
               <p className="mb-2 text-[11px] text-slate-500">
                 {CATEGORIES[currentQ?.categoryId]?.name} ·{' '}
                 {
@@ -225,7 +224,7 @@ export default function Diagnosis() {
                 <button
                   type="button"
                   onClick={goNext}
-                  className="inline-flex items-center rounded-full bg-primary px-6 py-2.5 text-[11px] font-semibold tracking-wide text-white shadow-lg shadow-slate-300/70 transition hover:bg-primary-hover"
+                  className="inline-flex items-center rounded-full bg-ink px-6 py-3 text-sm font-semibold text-white transition hover:bg-primary-hover"
                 >
                   다음 문항
                 </button>
@@ -244,7 +243,7 @@ export default function Diagnosis() {
         </div>
 
         {/* 현재 카테고리 빠른 이동 맵 (데스크톱 전용) */}
-        <div className="mt-4 hidden rounded-2xl border border-slate-200 bg-white p-4 text-[11px] text-slate-700 shadow-[0_16px_60px_rgba(148,163,184,0.25)] backdrop-blur md:block">
+        <div className="mt-4 hidden rounded-2xl border border-slate-100 bg-white p-4 text-[11px] text-slate-700 shadow-card md:block">
           <div className="mb-3 flex items-center justify-between">
             <div>
               <p className="font-medium text-slate-700">

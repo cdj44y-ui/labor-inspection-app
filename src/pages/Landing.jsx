@@ -65,19 +65,19 @@ export default function Landing() {
   }
 
   return (
-    <div className="min-h-screen bg-transparent text-slate-900">
-      <div className="pointer-events-none fixed inset-0 -z-10 bg-[radial-gradient(circle_at_top,_#e0f2fe_0,_#f9fafb_45%,_#f9fafb_100%)]" />
-
-      <div className="relative mx-auto flex min-h-screen max-w-6xl flex-col px-4 pb-10 pt-6 md:px-8 md:pt-8">
+    <div className="min-h-screen bg-paper text-ink">
+      <div className="relative mx-auto flex min-h-screen max-w-6xl flex-col px-4 pb-12 pt-6 md:px-8 md:pt-8">
         {/* Top bar */}
-        <header className="flex items-center justify-between rounded-full border border-slate-200 bg-white/80 px-4 py-2 shadow-sm backdrop-blur md:px-6">
+        <header className="flex items-center justify-between rounded-2xl border border-slate-100 bg-white px-4 py-2.5 shadow-card md:px-6">
           <div className="flex items-center gap-2">
-            <div className="h-7 w-7 rounded-full bg-gradient-to-tr from-secondary via-sky-500 to-emerald-400 shadow-md shadow-secondary/30" />
+            <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-ink text-[10px] font-bold text-white tracking-tight" style={{ letterSpacing: '-0.04em' }}>
+              L
+            </div>
             <div className="flex flex-col">
-              <span className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">
+              <span className="text-[10px] font-medium uppercase tracking-[0.2em] text-slate-400">
                 Labor Risk Studio
               </span>
-              <span className="text-sm font-semibold text-slate-900">
+              <span className="text-sm font-semibold tracking-tight text-ink">
                 근로감독 자가진단
               </span>
             </div>
@@ -120,9 +120,9 @@ export default function Landing() {
                 </Link>
                 <Link
                   to="/diagnosis"
-                  className="rounded-full bg-primary text-[11px] font-semibold tracking-wide text-white shadow-sm transition hover:bg-primary-hover"
+                  className="rounded-full bg-ink px-4 py-1.5 text-[11px] font-semibold tracking-tight text-white transition hover:bg-primary-hover"
                 >
-                  <span className="px-4 py-1.5 inline-block">바로 진단하기</span>
+                  바로 진단하기
                 </Link>
               </>
             )}
@@ -130,169 +130,118 @@ export default function Landing() {
         </header>
 
         {/* Privacy banner */}
-        <div className="mt-4 rounded-2xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-[11px] text-emerald-900 shadow-sm md:px-5 md:py-3.5">
+        <div className="mt-4 rounded-2xl border border-slate-100 bg-white px-4 py-3 text-[11px] text-slate-700 shadow-card md:px-5 md:py-3.5">
           <div className="flex flex-col gap-1 md:flex-row md:items-center md:justify-between">
             <div className="flex items-center gap-2">
-              <span className="flex h-5 w-5 items-center justify-center rounded-full bg-emerald-500 text-[10px] text-white">
+              <span className="flex h-5 w-5 items-center justify-center rounded-lg bg-slate-100 text-[10px] text-slate-600">
                 🔒
               </span>
-              <p className="font-semibold">
+              <p className="font-medium text-ink">
                 입력하신 진단 데이터는 현재 버전에서 서버 DB에 저장되지 않는 휘발성 자가진단입니다.
               </p>
             </div>
-            <p className="mt-1 text-[10px] text-emerald-800 md:mt-0">
+            <p className="mt-1 text-[10px] text-slate-500 md:mt-0">
               브라우저에서만 보관되며, 로그인 없이도 결과를 확인할 수 있고, 별도 동의 없이는 제3자(노무사 등)에게 공유되지 않습니다.
             </p>
           </div>
         </div>
 
-        <main className="mt-10 flex flex-1 flex-col gap-16 md:mt-16">
-          <section className="mx-auto grid w-full max-w-5xl gap-10 md:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)] md:items-center">
+        <main className="mt-12 flex flex-1 flex-col gap-20 md:mt-16">
+          <section className="mx-auto grid w-full max-w-5xl gap-12 md:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)] md:items-center">
             <div>
-              <div className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white/80 px-3 py-1 text-[11px] font-medium text-slate-600 backdrop-blur">
-                <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
+              <p className="text-[10px] font-medium uppercase tracking-[0.22em] text-slate-400">
                 고용노동부 자율점검표 기반 · 실제 근로감독 사례 반영
-              </div>
-              <h1 className="mt-5 text-3xl font-semibold tracking-tight text-slate-900 md:text-4xl lg:text-5xl">
+              </p>
+              <h1 className="mt-4 text-display font-bold tracking-tight text-ink md:text-display-md lg:text-display-lg">
                 근로감독 전에,
-                <span className="block bg-gradient-to-r from-sky-500 via-secondary to-emerald-400 bg-clip-text text-transparent">
-                  우리 회사 리스크부터 확인하세요
-                </span>
+                <br />
+                우리 회사 리스크부터 확인하세요
               </h1>
-              <p className="mt-4 text-sm leading-relaxed text-slate-600 md:text-base">
-                노동부 자율점검표를 바탕으로
-                <span className="font-medium text-slate-900"> 50여개 핵심 문항</span>을 정리했습니다.
-                SNS·노동부 보도자료에 자주 등장하는
-                <span className="font-medium text-slate-900">
-                  {' '}
-                  임금체불·연장근로·휴게시간·연차휴가·근로계약·4대보험·산재
-                </span>
-                이슈를 한 번에 점검하고,
-                <span className="font-medium text-slate-900"> 근로감독·형사 사건으로 번지기 전</span>에 리스크를 줄여보세요.
+              <p className="mt-6 max-w-xl text-sm leading-relaxed text-slate-600 md:text-base">
+                노동부 자율점검표를 바탕으로 <span className="font-medium text-ink">50여개 핵심 문항</span>을 정리했습니다.
+                임금체불·연장근로·휴게시간·연차휴가·근로계약·4대보험·산재 이슈를 한 번에 점검하고,
+                <span className="font-medium text-ink"> 근로감독·형사 사건으로 번지기 전</span>에 리스크를 줄여보세요.
               </p>
 
-              <div className="mt-8 flex flex-wrap items-center gap-3">
+              <div className="mt-10 flex flex-wrap items-center gap-3">
                 <Link
                   to="/diagnosis"
-                  className="inline-flex items-center justify-center gap-2 rounded-full bg-primary px-7 py-3 text-sm font-semibold text-white shadow-lg shadow-slate-300/60 transition hover:bg-primary-hover"
+                  className="inline-flex items-center justify-center rounded-full bg-ink px-8 py-3.5 text-sm font-semibold tracking-tight text-white transition hover:bg-primary-hover"
                 >
                   바로 진단하기 (기본정보 없이)
-                  <span className="text-xs text-slate-200">약 5~10분 소요</span>
                 </Link>
                 <Link
                   to="/info"
-                  className="inline-flex items-center justify-center rounded-full border border-slate-300 bg-white px-5 py-3 text-sm font-medium text-slate-700 shadow-sm transition hover:bg-slate-50"
+                  className="inline-flex items-center justify-center rounded-full border border-slate-200 bg-white px-6 py-3.5 text-sm font-medium text-ink transition hover:border-slate-300 hover:bg-slate-50"
                 >
                   사업장 정보 입력 후 진단
                 </Link>
-                <div className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white/80 px-4 py-2 text-[11px] text-slate-600">
-                  <span className="h-1.5 w-1.5 rounded-full bg-secondary" />
-                  자가진단 · 저장은 로컬 브라우저 기준
-                </div>
               </div>
 
-              <div className="mt-4 flex flex-wrap gap-2 text-[11px] text-slate-500">
-                <div className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white/70 px-3 py-1">
-                  <span className="h-1 w-1 rounded-full bg-emerald-400" />
-                  50여개 핵심 문항
-                </div>
-                <div className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white/70 px-3 py-1">
-                  <span className="h-1 w-1 rounded-full bg-sky-400" />
-                  7개 카테고리별 리스크
-                </div>
-                <div className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white/70 px-3 py-1">
-                  <span className="h-1 w-1 rounded-full bg-violet-500" />
-                  종합 리포트 자동 생성
-                </div>
+              <div className="mt-6 flex flex-wrap gap-2 text-[11px] text-slate-500">
+                <span className="rounded-full border border-slate-100 bg-white px-3 py-1.5">50여개 핵심 문항</span>
+                <span className="rounded-full border border-slate-100 bg-white px-3 py-1.5">7개 카테고리별 리스크</span>
+                <span className="rounded-full border border-slate-100 bg-white px-3 py-1.5">종합 리포트 자동 생성</span>
               </div>
             </div>
 
-            <div className="relative">
-              <div className="pointer-events-none absolute -inset-8 -z-10 bg-[radial-gradient(circle_at_top,_rgba(59,130,246,0.16),transparent_60%)]" />
-              <div className="rounded-3xl border border-slate-200 bg-white p-5 shadow-2xl shadow-slate-200/80 backdrop-blur">
-                <div className="flex items-center justify-between text-xs text-slate-500">
-                  <span className="inline-flex items-center gap-1.5">
-                    <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
-                    리스크 스냅샷
-                  </span>
-                  <span className="rounded-full bg-slate-50 px-2 py-0.5 text-[10px] border border-slate-200">
-                    Demo View
+            <div className="rounded-3xl border border-slate-100 bg-white p-6 shadow-card">
+              <p className="text-[10px] font-medium uppercase tracking-wider text-slate-400">
+                리스크 스냅샷
+              </p>
+              <div className="mt-4 rounded-2xl border border-slate-100 bg-slate-50/50 p-4">
+                <div className="flex items-center justify-between text-[11px] text-slate-600">
+                  <span className="font-medium text-ink">종합 리스크 레벨</span>
+                  <span className="rounded-full bg-slate-200 px-2 py-0.5 text-[10px] font-medium text-slate-700">
+                    양호 · B 등급
                   </span>
                 </div>
-                <div className="mt-4 rounded-2xl border border-slate-100 bg-slate-50 p-4">
-                  <div className="flex items-center justify-between text-[11px] text-slate-600">
-                    <span className="font-medium text-slate-800">종합 리스크 레벨</span>
-                    <span className="rounded-full bg-emerald-500/10 px-2 py-0.5 text-emerald-600">
-                      양호 · B 등급
-                    </span>
-                  </div>
-                  <div className="mt-3 h-2 rounded-full bg-slate-200">
-                    <div className="h-full w-3/4 rounded-full bg-gradient-to-r from-emerald-400 via-yellow-300 to-orange-400 shadow-sm" />
-                  </div>
-
-                  <div className="mt-5 grid grid-cols-3 gap-2 text-[11px] text-slate-600">
-                    {['근로시간', '임금·수당', '휴가·휴일'].map((label, i) => (
-                      <div
-                        key={label}
-                        className="rounded-xl border border-slate-100 bg-white px-3 py-2"
-                      >
-                        <p className="text-[10px] text-slate-500">{label}</p>
-                        <p className="mt-1 text-sm font-semibold text-slate-900">
-                          {i === 0 ? '78점' : i === 1 ? '91점' : '84점'}
-                        </p>
-                        <p className="mt-0.5 text-[10px] text-emerald-600">
-                          {i === 1 ? '우수' : '개선 필요'}
-                        </p>
-                      </div>
-                    ))}
-                  </div>
+                <div className="mt-3 h-2 rounded-full bg-slate-200">
+                  <div className="h-full w-3/4 rounded-full bg-ink" />
                 </div>
-                <p className="mt-3 text-[10px] leading-relaxed text-slate-500">
-                  실제 진단에서는 귀 사업장의 답변 데이터를 기반으로 카테고리별 점수와
-                  개선이 필요한 항목을 자동으로 정리해 드립니다.
-                </p>
+                <div className="mt-4 grid grid-cols-3 gap-2 text-[11px] text-slate-600">
+                  {['근로시간', '임금·수당', '휴가·휴일'].map((label, i) => (
+                    <div key={label} className="rounded-xl border border-slate-100 bg-white px-3 py-2">
+                      <p className="text-[10px] text-slate-500">{label}</p>
+                      <p className="mt-1 text-sm font-semibold tracking-tight text-ink">
+                        {i === 0 ? '78점' : i === 1 ? '91점' : '84점'}
+                      </p>
+                    </div>
+                  ))}
+                </div>
               </div>
+              <p className="mt-4 text-[10px] leading-relaxed text-slate-500">
+                실제 진단에서는 귀 사업장의 답변 데이터를 기반으로 카테고리별 점수와 개선 항목을 정리해 드립니다.
+              </p>
             </div>
           </section>
 
           {/* Features */}
           <section id="features" className="mx-auto w-full max-w-5xl">
-            <div className="flex flex-col items-center gap-3 text-center">
-              <p className="text-[11px] font-medium uppercase tracking-[0.2em] text-slate-500">
-                Why This Studio
-              </p>
-              <h2 className="text-xl font-semibold tracking-tight text-slate-900 md:text-2xl">
-                근로감독 리스크를
-                <span className="bg-gradient-to-r from-sky-500 via-secondary to-emerald-400 bg-clip-text text-transparent">
-                  {' '}
-                  한 장의 리포트로
-                </span>
-              </h2>
-              <p className="max-w-2xl text-xs leading-relaxed text-slate-600 md:text-sm">
-                복잡한 법령 조항 대신, 직관적인 점수와 우선순위 기반 액션 포인트로 정리해 드립니다.
-                내부 인사·노무 담당자가 바로 실행할 수 있는 수준의 디테일을 목표로 설계되었습니다.
-              </p>
-            </div>
-            <div className="mt-8 grid gap-4 md:grid-cols-3">
+            <p className="text-center text-[10px] font-medium uppercase tracking-[0.22em] text-slate-400">
+              Why This Studio
+            </p>
+            <h2 className="mt-2 text-center text-2xl font-bold tracking-tight text-ink md:text-3xl">
+              근로감독 리스크를 한 장의 리포트로
+            </h2>
+            <p className="mx-auto mt-3 max-w-2xl text-center text-sm leading-relaxed text-slate-600">
+              복잡한 법령 대신, 점수와 우선순위 기반 액션 포인트로 정리합니다.
+            </p>
+            <div className="mt-10 grid gap-5 md:grid-cols-3">
               {FEATURES.map((f, i) => (
                 <div
                   key={i}
-                  className="group relative overflow-hidden rounded-2xl border border-slate-200 bg-white p-6 shadow-[0_18px_60px_rgba(148,163,184,0.35)] backdrop-blur transition hover:border-secondary/60 hover:shadow-[0_22px_70px_rgba(129,140,248,0.35)]"
+                  className="rounded-2xl border border-slate-100 bg-white p-6 shadow-card transition hover:shadow-card-hover"
                 >
-                  <div className="pointer-events-none absolute inset-0 opacity-0 transition group-hover:opacity-100">
-                    <div className="absolute inset-x-0 -top-16 h-32 bg-gradient-to-b from-secondary/25 via-transparent to-transparent blur-2xl" />
+                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-slate-100 text-ink text-sm font-semibold">
+                    {i + 1}
                   </div>
-                  <div className="relative">
-                    <div className="flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-tr from-secondary to-sky-400 text-lg shadow-md shadow-secondary/30 text-white">
-                      {(i === 0 && '⏱') || (i === 1 && '📊') || '📋'}
-                    </div>
-                    <h3 className="mt-4 text-sm font-semibold text-slate-900 md:text-base">
-                      {f.title}
-                    </h3>
-                    <p className="mt-2 text-xs leading-relaxed text-slate-600 md:text-sm">
-                      {f.desc}
-                    </p>
-                  </div>
+                  <h3 className="mt-4 text-base font-semibold tracking-tight text-ink">
+                    {f.title}
+                  </h3>
+                  <p className="mt-2 text-sm leading-relaxed text-slate-600">
+                    {f.desc}
+                  </p>
                 </div>
               ))}
             </div>
@@ -301,23 +250,21 @@ export default function Landing() {
           {/* Process */}
           <section
             id="flow"
-            className="mx-auto w-full max-w-4xl rounded-3xl border border-slate-200 bg-white p-6 shadow-[0_20px_80px_rgba(148,163,184,0.35)] backdrop-blur md:p-8"
+            className="mx-auto w-full max-w-4xl rounded-3xl border border-slate-100 bg-white p-8 shadow-card md:p-10"
           >
-            <div className="flex flex-col items-center gap-3 text-center">
-              <p className="text-[11px] font-medium uppercase tracking-[0.2em] text-slate-500">
-                Flow
-              </p>
-              <h2 className="text-xl font-semibold tracking-tight text-slate-900 md:text-2xl">
-                4단계로 끝내는 근로감독 대비 플로우
-              </h2>
-            </div>
-            <div className="mt-8 flex flex-wrap justify-center gap-4 md:gap-6">
+            <p className="text-center text-[10px] font-medium uppercase tracking-[0.22em] text-slate-400">
+              Flow
+            </p>
+            <h2 className="mt-2 text-center text-xl font-bold tracking-tight text-ink md:text-2xl">
+              4단계로 끝내는 근로감독 대비
+            </h2>
+            <div className="mt-8 flex flex-wrap justify-center gap-3 md:gap-4">
               {STEPS.map((step, i) => (
                 <div
                   key={i}
-                  className="flex items-center gap-3 rounded-full border border-slate-200 bg-slate-50 px-4 py-2 text-xs text-slate-700 md:px-5 md:py-2.5 md:text-sm"
+                  className="flex items-center gap-2.5 rounded-full border border-slate-100 bg-paper px-4 py-2.5 text-sm font-medium text-ink"
                 >
-                  <span className="flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br from-secondary via-sky-400 to-emerald-300 text-xs font-semibold text-slate-950 shadow-md shadow-secondary/40 md:h-9 md:w-9">
+                  <span className="flex h-7 w-7 items-center justify-center rounded-full bg-ink text-[10px] font-semibold text-white">
                     {i + 1}
                   </span>
                   <span className="whitespace-nowrap">{step}</span>
@@ -328,45 +275,37 @@ export default function Landing() {
 
           {/* Real cases */}
           <section className="mx-auto w-full max-w-5xl">
-            <div className="mb-6 flex flex-col items-center gap-2 text-center">
-              <p className="text-[11px] font-medium uppercase tracking-[0.2em] text-slate-500">
-                Real Inspection Signals
-              </p>
-              <h2 className="text-xl font-semibold tracking-tight text-slate-900 md:text-2xl">
-                실제 근로감독 사례로 보는
-                <span className="bg-gradient-to-r from-rose-500 via-orange-500 to-amber-400 bg-clip-text text-transparent">
-                  {' '}
-                  리스크 경고등
-                </span>
-              </h2>
-              <p className="max-w-2xl text-xs leading-relaxed text-slate-600 md:text-sm">
-                노동부 보도자료와 언론에 자주 등장하는 유형을 바탕으로 재구성한 예시입니다.
-                “우리 사업장은 괜찮겠지”라고 넘기기 쉬운 지점이 실제로는 가장 먼저 적발되는 구간입니다.
-              </p>
-            </div>
-            <div className="grid gap-4 md:grid-cols-3">
+            <p className="text-center text-[10px] font-medium uppercase tracking-[0.22em] text-slate-400">
+              Real Inspection Signals
+            </p>
+            <h2 className="mt-2 text-center text-2xl font-bold tracking-tight text-ink md:text-3xl">
+              실제 근로감독 사례로 보는 리스크 경고등
+            </h2>
+            <p className="mx-auto mt-3 max-w-2xl text-center text-sm leading-relaxed text-slate-600">
+              노동부 보도자료와 언론에 자주 등장하는 유형을 바탕으로 재구성한 예시입니다.
+            </p>
+            <div className="mt-10 grid gap-5 md:grid-cols-3">
               {CASES.map((c, i) => (
                 <article
                   key={c.title}
-                  className="flex h-full flex-col rounded-2xl border border-slate-200 bg-white p-5 text-xs text-slate-800 shadow-[0_18px_60px_rgba(148,163,184,0.25)]"
+                  className="flex h-full flex-col rounded-2xl border border-slate-100 bg-white p-6 shadow-card"
                 >
-                  <div className="inline-flex items-center gap-2 rounded-full bg-slate-50 px-2.5 py-1 text-[10px] font-medium text-slate-600">
-                    <span className="h-1.5 w-1.5 rounded-full bg-rose-500" />
+                  <p className="text-[10px] font-medium uppercase tracking-wider text-slate-400">
                     {c.tag}
-                  </div>
-                  <h3 className="mt-3 text-sm font-semibold text-slate-900">
+                  </p>
+                  <h3 className="mt-3 text-base font-semibold tracking-tight text-ink">
                     {c.title}
                   </h3>
-                  <p className="mt-2 flex-1 leading-relaxed text-slate-600">
+                  <p className="mt-2 flex-1 text-sm leading-relaxed text-slate-600">
                     {c.body}
                   </p>
-                  <div className="mt-3 rounded-xl bg-rose-50 px-3 py-2 text-[11px] text-rose-700">
-                    <span className="font-semibold">적발 시 손실 가능성 · </span>
+                  <div className="mt-4 rounded-xl border border-slate-100 bg-slate-50/50 px-3 py-2.5 text-[11px] text-slate-700">
+                    <span className="font-semibold text-ink">적발 시 손실 가능성 · </span>
                     {c.loss}
                   </div>
                   {i === 0 && (
-                    <p className="mt-2 text-[10px] text-slate-400">
-                      * 유명 카페·베이커리, 런던베이글과 같이 언론에 보도된 사례들을 일반화한 유형입니다.
+                    <p className="mt-3 text-[10px] text-slate-400">
+                      * 유명 카페·베이커리, 런던베이글 등 언론 보도 사례를 일반화한 유형입니다.
                     </p>
                   )}
                 </article>
@@ -377,11 +316,11 @@ export default function Landing() {
           {/* 조대진 노무사 소개 + 비대면 상담 */}
           <section
             id="consult"
-            className="mx-auto w-full max-w-5xl rounded-3xl border border-slate-200 bg-white p-6 shadow-[0_18px_70px_rgba(148,163,184,0.35)] backdrop-blur md:p-7"
+            className="mx-auto w-full max-w-5xl rounded-3xl border border-slate-100 bg-white p-6 shadow-card md:p-8"
           >
             <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between md:gap-8">
-              <div className="flex items-start gap-3">
-                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-secondary via-sky-400 to-emerald-300 text-[12px] font-semibold text-slate-950 shadow-md shadow-secondary/40 md:h-14 md:w-14">
+              <div className="flex items-start gap-4">
+                <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-ink text-sm font-bold text-white md:h-16 md:w-16">
                   JD
                 </div>
                 <div className="min-w-0 flex-1 space-y-2">
@@ -424,7 +363,7 @@ export default function Landing() {
                   href={RAPIDO_CONTENT_URL}
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex items-center justify-center rounded-full bg-primary px-6 py-3 text-sm font-semibold tracking-wide text-white shadow-lg shadow-slate-300/60 transition hover:bg-primary-hover"
+                  className="inline-flex items-center justify-center rounded-full bg-ink px-6 py-3 text-sm font-semibold tracking-tight text-white transition hover:bg-primary-hover"
                 >
                   비대면 상담
                 </a>
@@ -437,19 +376,17 @@ export default function Landing() {
 
           {/* FAQ */}
           <section id="faq" className="mx-auto w-full max-w-3xl">
-            <div className="flex flex-col items-center gap-3 text-center">
-              <p className="text-[11px] font-medium uppercase tracking-[0.2em] text-slate-500">
-                FAQ
-              </p>
-              <h2 className="text-xl font-semibold tracking-tight text-slate-900 md:text-2xl">
-                자주 묻는 질문
-              </h2>
-            </div>
-            <div className="mt-6 space-y-2">
+            <p className="text-center text-[10px] font-medium uppercase tracking-[0.22em] text-slate-400">
+              FAQ
+            </p>
+            <h2 className="mt-2 text-center text-2xl font-bold tracking-tight text-ink">
+              자주 묻는 질문
+            </h2>
+            <div className="mt-8 space-y-2">
               {FAQ_ITEMS.map((item, i) => (
                 <div
                   key={i}
-                  className="overflow-hidden rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-900 shadow-[0_16px_60px_rgba(148,163,184,0.35)] backdrop-blur md:px-5 md:py-4"
+                  className="overflow-hidden rounded-2xl border border-slate-100 bg-white px-5 py-4 shadow-card"
                 >
                   <button
                     className="flex w-full items-center justify-between gap-4 text-left"
@@ -471,32 +408,30 @@ export default function Landing() {
           </section>
 
           {/* CTA */}
-          <section className="mx-auto w-full max-w-3xl rounded-3xl border border-secondary/40 bg-gradient-to-r from-sky-100 via-indigo-100 to-emerald-100 px-6 py-8 text-center text-slate-950 shadow-[0_20px_80px_rgba(129,140,248,0.35)] backdrop-blur md:px-8 md:py-10">
-            <h3 className="text-xl font-semibold tracking-tight md:text-2xl">
+          <section className="mx-auto w-full max-w-3xl rounded-3xl border border-slate-100 bg-white px-8 py-10 text-center shadow-card md:px-10 md:py-12">
+            <h3 className="text-xl font-bold tracking-tight text-ink md:text-2xl">
               지금 사업장의 근로감독 리스크를
-              <span className="block text-slate-800">숫자와 문장으로 정리해 보세요.</span>
+              <span className="block mt-1">숫자와 문장으로 정리해 보세요.</span>
             </h3>
-            <p className="mt-3 text-xs leading-relaxed text-slate-800/80 md:text-sm">
-              진단 결과는 브라우저에만 임시 저장되며, 입력하신 정보는 서버로 전송되지 않습니다. 2025년 고용노동부
-              사업장 기초노동질서 자율진단표와 동일한 7개 영역 기준으로 우리 사업장의 리스크를 숫자와 문장으로 정리해
-              보세요.
+            <p className="mt-4 text-sm leading-relaxed text-slate-600">
+              진단 결과는 브라우저에만 임시 저장됩니다. 2025년 고용노동부 자율진단표 7개 영역 기준으로 리스크를 정리해 드립니다.
             </p>
-            <div className="mt-6 flex flex-wrap justify-center gap-3">
+            <div className="mt-8 flex flex-wrap justify-center gap-3">
               <Link
                 to="/diagnosis"
-                className="inline-flex items-center justify-center rounded-full bg-primary px-7 py-3 text-sm font-semibold text-white shadow-lg shadow-slate-300/60 transition hover:bg-primary-hover"
+                className="inline-flex items-center justify-center rounded-full bg-ink px-8 py-3.5 text-sm font-semibold text-white transition hover:bg-primary-hover"
               >
                 바로 진단하기 (기본정보 없이)
               </Link>
               <Link
                 to="/info"
-                className="inline-flex items-center justify-center rounded-full border border-slate-300 bg-white px-6 py-3 text-sm font-medium text-slate-900 shadow-sm transition hover:bg-slate-50"
+                className="inline-flex items-center justify-center rounded-full border border-slate-200 bg-white px-6 py-3.5 text-sm font-medium text-ink transition hover:bg-slate-50"
               >
                 사업장 정보 입력 후 진단
               </Link>
               <Link
                 to="/diagnosis"
-                className="inline-flex items-center justify-center rounded-full border border-slate-200 bg-white/80 px-5 py-3 text-sm font-medium text-slate-600 shadow-sm transition hover:bg-slate-50"
+                className="inline-flex items-center justify-center rounded-full border border-slate-100 bg-paper px-5 py-3.5 text-sm font-medium text-slate-600 transition hover:bg-slate-100"
               >
                 이미 진단 중이에요
               </Link>
@@ -504,7 +439,7 @@ export default function Landing() {
           </section>
         </main>
 
-        <footer className="mt-10 border-t border-slate-200 pt-6 text-center text-[11px] text-slate-500 space-y-1">
+        <footer className="mt-12 border-t border-slate-100 pt-8 text-center text-[11px] text-slate-500 space-y-1">
           <p>근로감독 자가진단 서비스 · 참고용 자가점검 도구입니다.</p>
           <p className="max-w-3xl mx-auto text-[10px] text-slate-400">
             본 서비스는 노동관계 법령과 공개 자료를 바탕으로 한 일반적인 리스크 점검 도구이며, 개별 사건에 대한

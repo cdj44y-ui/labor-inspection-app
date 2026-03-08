@@ -54,8 +54,7 @@ export default function Info() {
   }
 
   return (
-    <div className="min-h-screen bg-transparent text-slate-900">
-      <div className="pointer-events-none fixed inset-0 -z-10 bg-[radial-gradient(circle_at_top,_#e0f2fe_0,_#f9fafb_45%,_#f9fafb_100%)]" />
+    <div className="min-h-screen bg-paper text-ink">
 
       <div className="relative mx-auto flex min-h-screen max-w-4xl flex-col px-4 pb-10 pt-6 md:px-6 md:pt-8">
         {/* 헤더 */}
@@ -95,7 +94,7 @@ export default function Info() {
         </div>
 
         {/* 카드 */}
-        <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-[0_18px_70px_rgba(148,163,184,0.35)] backdrop-blur md:p-7">
+        <div className="rounded-3xl border border-slate-100 bg-white p-6 shadow-card md:p-8">
           <div className="mb-6 flex flex-col gap-2 md:mb-7">
             <h1 className="text-xl font-semibold tracking-tight text-slate-900 md:text-2xl">
               사업장 기본 정보
@@ -243,7 +242,7 @@ export default function Info() {
                 </Link>
                 <button
                   type="submit"
-                  className="inline-flex flex-1 items-center justify-center rounded-full bg-primary px-6 py-2.5 text-[11px] font-semibold tracking-wide text-white shadow-lg shadow-slate-300/60 transition hover:bg-primary-hover md:flex-none"
+                  className="inline-flex flex-1 items-center justify-center rounded-full bg-ink px-6 py-3 text-sm font-semibold text-white transition hover:bg-primary-hover md:flex-none"
                 >
                   다음 단계로 · 진단 시작
                 </button>

@@ -6,12 +6,18 @@
 
 body {
   margin: 0;
-  font-family: 'Pretendard', system-ui, sans-serif;
-  background: radial-gradient(circle at top, #e0f2fe 0, #f9fafb 45%, #f9fafb 100%);
-  color: #0f172a;
+  font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  background: #fafafa;
+  color: #0a0a0a;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 #root {
   min-height: 100vh;
+}
+
+/* 현대카드 스타일: 타이포 강조 */
+h1, h2, .font-display {
+  letter-spacing: -0.03em;
 }
