@@ -35,3 +35,54 @@ h1, h2, .font-display {
 .bg-dark-card .text-ink {
   color: #0a0a0a !important;
 }
+
+/* 검정 CTA 버튼: 비대면 상담·진단하기 등 — 항상 흰 글자, 가독성 확보 */
+a.btn-black-cta,
+button.btn-black-cta,
+.btn-black-cta {
+  background-color: #0a0a0a !important;
+  color: #ffffff !important;
+}
+a.btn-black-cta:hover,
+a.btn-black-cta:focus,
+a.btn-black-cta:active,
+a.btn-black-cta:visited,
+button.btn-black-cta:hover,
+button.btn-black-cta:focus,
+button.btn-black-cta:active {
+  background-color: #27272a !important;
+  color: #ffffff !important;
+}
+
+/* 다크 뱃지(태그): 검정/짙은 배경에 흰 글자 확실히 */
+.badge-dark,
+span.badge-dark {
+  background-color: #0a0a0a !important;
+  color: #ffffff !important;
+}
+.badge-dark-zinc,
+span.badge-dark-zinc {
+  background-color: #27272a !important;
+  color: #ffffff !important;
+}
+
+/* FLOW 단계 숫자 원: 1,2,3,4 — 토스 블루 강조 */
+.step-num-circle {
+  background-color: #3182F6 !important;
+  color: #ffffff !important;
+}
+
+/* 강조 링크: 토스 블루 */
+a.text-toss,
+.text-toss-link {
+  color: #3182F6;
+}
+a.text-toss:hover,
+.text-toss-link:hover {
+  color: #1B64DA;
+}
+
+/* 강조 라벨(섹션 소제목): 남색 */
+.section-label {
+  color: #1e3a8a;
+}

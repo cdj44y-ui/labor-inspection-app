@@ -2,25 +2,46 @@ import { useEffect, useState } from 'react'
 import { useLocation, Link } from 'react-router-dom'
 import { loadTossPayments, ANONYMOUS } from '@tosspayments/tosspayments-sdk'
 import { checkout } from '../api/payments'
+import { getPlans } from '../api/plans'
 import { DIAGNOSIS_CTA_CLASS } from '../constants/contact.js'
 
 const clientKey = import.meta.env.VITE_TOSS_CLIENT_KEY || ''
 
 export default function Payment() {
   const location = useLocation()
-  const plan = location.state?.plan
+  const statePlan = location.state?.plan
+  const statePlanId = location.state?.planId
+  const [plan, setPlan] = useState(statePlan ?? null)
   const [checkoutData, setCheckoutData] = useState(null)
   const [widgets, setWidgets] = useState(null)
   const [ready, setReady] = useState(false)
-  const [loading, setLoading] = useState(!!plan)
+  const [loading, setLoading] = useState(!!statePlan || !!statePlanId)
   const [error, setError] = useState(null)
 
+  // planId만 있으면 플랜 조회 (비대면 상담 등 직접 진입)
   useEffect(() => {
-    if (!plan) {
+    if (statePlan) {
+      setPlan(statePlan)
+      return
+    }
+    if (!statePlanId) {
       setError('플랜을 선택해 주세요.')
       setLoading(false)
       return
     }
+    getPlans()
+      .then((list) => {
+        const p = list.find((x) => x.id === statePlanId)
+        setPlan(p || null)
+        if (!p) setError('해당 플랜을 찾을 수 없습니다.')
+      })
+      .catch((e) => setError(e.message))
+      .finally(() => setLoading(false))
+  }, [statePlanId, statePlan])
+
+  useEffect(() => {
+    if (!plan) return
+    setLoading(true)
     checkout(plan.id)
       .then(setCheckoutData)
       .catch((e) => setError(e.message))
@@ -69,10 +90,16 @@ export default function Payment() {
     return (
       <div className="min-h-screen bg-paper text-ink">
         <div className="mx-auto max-w-lg px-4 py-12 text-center">
-          <p className="text-zinc-600">플랜을 선택해 주세요.</p>
-          <Link to="/pricing" className="mt-4 inline-block text-sm font-medium text-ink underline">
-            요금제 보기
-          </Link>
+          {statePlanId && loading ? (
+            <p className="text-zinc-600">플랜 정보를 불러오는 중…</p>
+          ) : (
+            <>
+              <p className="text-zinc-600">{error || '플랜을 선택해 주세요.'}</p>
+              <Link to="/pricing" className="mt-4 inline-block text-sm font-medium text-ink underline">
+                요금제 보기
+              </Link>
+            </>
+          )}
         </div>
       </div>
     )

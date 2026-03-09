@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useSearchParams, Link } from 'react-router-dom'
 import { confirmPayment } from '../api/payments'
-import { DIAGNOSIS_CTA_CLASS } from '../constants/contact.js'
+import { CONSULT_PLAN_ID, RAPIDO_CONTENT_URL, DIAGNOSIS_CTA_CLASS, CONSULT_BUTTON_CLASS } from '../constants/contact.js'
 
 export default function PaymentSuccess() {
   const [searchParams] = useSearchParams()
@@ -36,12 +36,31 @@ export default function PaymentSuccess() {
               <p className="mt-1 text-sm text-zinc-600">
                 이용 기간: ~ {result.expiresAt ? new Date(result.expiresAt).toLocaleDateString('ko-KR') : '-'}
               </p>
-              <Link
-                to="/"
-                className={`mt-8 inline-block w-full px-4 py-3 text-center text-sm font-bold ${DIAGNOSIS_CTA_CLASS}`}
-              >
-                홈으로
-              </Link>
+              {result.planId === CONSULT_PLAN_ID ? (
+                <div className="mt-6 space-y-3">
+                  <a
+                    href={RAPIDO_CONTENT_URL}
+                    target="_blank"
+                    rel="noreferrer"
+                    className={'inline-block w-full px-4 py-3 text-center text-sm font-bold ' + CONSULT_BUTTON_CLASS + ' no-underline visited:text-white'}
+                  >
+                    비대면 상담 진행하기
+                  </a>
+                  <Link
+                    to="/"
+                    className="block w-full px-4 py-3 text-center text-sm font-medium text-zinc-600 underline"
+                  >
+                    홈으로
+                  </Link>
+                </div>
+              ) : (
+                <Link
+                  to="/"
+                  className={'mt-8 inline-block w-full px-4 py-3 text-center text-sm font-bold ' + DIAGNOSIS_CTA_CLASS}
+                >
+                  홈으로
+                </Link>
+              )}
             </>
           )}
           {error && (

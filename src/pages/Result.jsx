@@ -2,8 +2,7 @@ import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { QUESTIONS, CATEGORIES } from '../data/questions.js'
 import { getTotalScore, getCategoryScores, getGrade, GRADE_LABELS } from '../utils/score.js'
-
-import { CONTACT_PHONE, RAPIDO_CONTENT_URL, CONSULT_BUTTON_CLASS } from '../constants/contact.js'
+import { CONTACT_PHONE, CONSULT_PLAN_ID, CONSULT_BUTTON_CLASS, DIAGNOSIS_CTA_CLASS } from '../constants/contact.js'
 
 const ANSWERS_KEY = 'labor_diagnosis_answers'
 
@@ -155,11 +154,11 @@ export default function Result() {
                 return (
                   <li
                     key={cid}
-                    className="rounded-2xl border-l-4 border-ink border border-zinc-200 bg-zinc-50 px-3 py-2.5 text-[11px]"
+                    className="rounded-2xl border-l-4 border-toss border border-zinc-200 bg-zinc-50 px-3 py-2.5 text-[11px]"
                   >
                     <div className="flex items-center justify-between gap-2">
                       <div className="flex items-center gap-2">
-                        <span className="inline-flex h-5 w-5 items-center justify-center rounded-full bg-ink text-[10px] font-bold text-white">
+                        <span className="inline-flex h-5 w-5 items-center justify-center rounded-full bg-toss text-[10px] font-bold text-white">
                           {idx + 1}
                         </span>
                         <span className="text-[11px] font-bold text-ink">
@@ -219,13 +218,13 @@ export default function Result() {
         <section className="mt-6 flex flex-wrap gap-3">
           <Link
             to="/diagnosis"
-            className="inline-flex items-center justify-center rounded-full border-2 border-zinc-600 bg-white px-6 py-3 text-sm font-semibold text-zinc-800 transition hover:bg-zinc-50"
+            className={"inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-semibold " + DIAGNOSIS_CTA_CLASS}
           >
             다시 진단하기
           </Link>
           <Link
             to="/"
-            className="inline-flex items-center justify-center rounded-full bg-ink px-7 py-3 text-sm font-bold text-white shadow-edge transition hover:bg-zinc-800"
+            className={"inline-flex items-center justify-center rounded-full px-7 py-3 text-sm font-bold shadow-edge " + DIAGNOSIS_CTA_CLASS}
           >
             홈으로
           </Link>
@@ -255,7 +254,7 @@ export default function Result() {
                   </span>
                   <a
                     href={`tel:${CONTACT_PHONE}`}
-                    className="text-sm font-bold tracking-tight text-ink underline decoration-ink/40 transition hover:opacity-80 md:text-base"
+                    className="text-toss text-sm font-bold tracking-tight underline decoration-toss/50 transition hover:text-toss-hover md:text-base"
                   >
                     {CONTACT_PHONE}
                   </a>
@@ -265,7 +264,7 @@ export default function Result() {
                     현대카드 · 삼성서울병원 HR팀 출신
                   </li>
                   <li className="rounded-full border border-zinc-200 bg-zinc-50 px-2.5 py-1">
-                    컨설팅 회사 근무 · 산업안전공학 박사 과정
+                    산업안전공학 박사
                   </li>
                   <li className="rounded-full border border-zinc-200 bg-zinc-50 px-2.5 py-1">
                     삼성전자 · SK가스 · 두산그룹 등 다수 기업 강의
@@ -274,17 +273,13 @@ export default function Result() {
               </div>
             </div>
             <div className="flex flex-col gap-2 md:shrink-0 md:basis-44">
-              <a
-                href={RAPIDO_CONTENT_URL}
-                target="_blank"
-                rel="noreferrer"
-                className={CONSULT_BUTTON_CLASS}
+              <Link
+                to="/payment"
+                state={{ planId: CONSULT_PLAN_ID }}
+                className={CONSULT_BUTTON_CLASS + ' no-underline visited:text-white'}
               >
                 비대면 상담
-              </a>
-              <p className="text-center text-[10px] leading-relaxed text-zinc-700">
-                온라인 상담 신청 시 필요한 범위 내에서만 노무사에게 정보가 공유됩니다.
-              </p>
+              </Link>
             </div>
           </div>
         </section>

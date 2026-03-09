@@ -1,11 +1,13 @@
 import { useState, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { QUESTIONS, CATEGORIES } from '../data/questions.js'
+import { DIAGNOSIS_CTA_CLASS } from '../constants/contact.js'
 
 const STORAGE_KEY = 'labor_diagnosis_business'
 const ANSWERS_KEY = 'labor_diagnosis_answers'
 
-const answerButtonClass = {
+// 선택됐을 때만 적용되는 스타일 (미선택 시에는 모두 동일한 neutral 사용)
+const answerButtonClassWhenSelected = {
   예: 'border-2 border-ink bg-white text-ink hover:bg-zinc-50',
   아니오: 'border-2 border-danger bg-white text-danger hover:bg-red-50',
   일부: 'border-2 border-caution bg-white text-amber-800 hover:opacity-90',
@@ -13,6 +15,7 @@ const answerButtonClass = {
   확인필요: 'border-2 border-caution bg-white text-amber-800 hover:opacity-90',
   해당없음: 'border-2 border-zinc-400 bg-white text-zinc-700 hover:bg-zinc-50',
 }
+const answerButtonClassUnselected = 'border-2 border-zinc-300 bg-white text-zinc-800 hover:border-zinc-500 hover:bg-zinc-50'
 
 export default function Diagnosis() {
   const navigate = useNavigate()
@@ -84,14 +87,14 @@ export default function Diagnosis() {
             <span className="flex h-9 w-9 items-center justify-center rounded-xl border-2 border-ink bg-white text-[11px] font-bold text-ink">
               D
             </span>
-            <span className="text-[11px] font-semibold uppercase tracking-[0.18em] text-zinc-600">
+            <span className="section-label text-[11px] font-semibold uppercase tracking-[0.18em]">
               Diagnosis Flow
             </span>
           </div>
           <div className="w-full md:w-2/3">
             <div className="h-1.5 overflow-hidden rounded-full bg-zinc-200">
               <div
-                className="h-full rounded-full bg-ink transition-all"
+                className="h-full rounded-full bg-toss transition-all"
                 style={{ width: `${progress}%` }}
               />
             </div>
@@ -175,8 +178,8 @@ export default function Diagnosis() {
                     onClick={() => setAnswer(opt)}
                     className={`px-5 py-2.5 rounded-xl text-sm font-medium transition ${
                       answers[currentIndex] === opt
-                        ? `${answerButtonClass[opt] || 'border-2 border-zinc-400 bg-white text-zinc-700'} shadow-md shadow-slate-300/50`
-                        : 'border border-slate-200 bg-slate-50 text-slate-700 hover:border-ink/60 hover:bg-white'
+                        ? `${answerButtonClassWhenSelected[opt] || 'border-2 border-zinc-400 bg-white text-zinc-700'} shadow-md shadow-slate-300/50`
+                        : answerButtonClassUnselected
                     }`}
                   >
                     {opt}
@@ -224,7 +227,7 @@ export default function Diagnosis() {
                 <button
                   type="button"
                   onClick={goNext}
-                  className="inline-flex items-center rounded-full bg-ink px-6 py-3 text-sm font-semibold text-white shadow-edge transition hover:bg-zinc-800"
+                  className={'inline-flex items-center rounded-full px-6 py-3 text-sm font-semibold shadow-edge disabled:opacity-50 ' + DIAGNOSIS_CTA_CLASS}
                 >
                   다음 문항
                 </button>
@@ -233,7 +236,7 @@ export default function Diagnosis() {
                   type="button"
                   onClick={handleFinish}
                   disabled={!allAnswered}
-                  className="inline-flex items-center rounded-full bg-ink px-7 py-2.5 text-[11px] font-semibold tracking-wide text-white shadow-edge transition hover:bg-zinc-800 disabled:cursor-not-allowed disabled:opacity-50"
+                  className={'inline-flex items-center rounded-full px-7 py-2.5 text-[11px] font-semibold tracking-wide shadow-edge disabled:cursor-not-allowed disabled:opacity-50 ' + DIAGNOSIS_CTA_CLASS}
                 >
                   결과 보기
                 </button>

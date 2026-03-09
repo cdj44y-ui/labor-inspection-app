@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import { useState } from 'react'
 import { getUser, clearAuth, authFetch } from '../utils/auth.js'
-import { CONTACT_PHONE, RAPIDO_CONTENT_URL, CONSULT_BUTTON_CLASS, DIAGNOSIS_CTA_CLASS } from '../constants/contact.js'
+import { CONTACT_PHONE, CONSULT_PLAN_ID, RAPIDO_CONTENT_URL, CONSULT_BUTTON_CLASS, DIAGNOSIS_CTA_CLASS } from '../constants/contact.js'
 
 const FEATURES = [
   {
@@ -84,16 +84,16 @@ export default function Landing() {
           </div>
           <div className="hidden items-center gap-4 text-xs md:flex">
             <nav className="flex items-center gap-5 text-ink">
-              <Link to="/info" className="font-medium transition hover:text-zinc-600">
+              <Link to="/info" className="font-medium text-zinc-700 transition hover:text-toss">
                 진단 시작
               </Link>
-              <Link to="/diagnosis" className="font-medium transition hover:text-zinc-600">
+              <Link to="/diagnosis" className="font-medium text-zinc-700 transition hover:text-toss">
                 문항 보기
               </Link>
-              <Link to="/result" className="font-medium transition hover:text-zinc-600">
+              <Link to="/result" className="font-medium text-zinc-700 transition hover:text-toss">
                 결과 보기
               </Link>
-              <Link to="/pricing" className="font-medium transition hover:text-zinc-600">
+              <Link to="/pricing" className="font-medium text-zinc-700 transition hover:text-toss">
                 요금제
               </Link>
             </nav>
@@ -171,7 +171,7 @@ export default function Landing() {
                   to="/diagnosis"
                   className={`inline-flex items-center justify-center rounded-full px-8 py-3.5 text-sm font-bold ${DIAGNOSIS_CTA_CLASS}`}
                 >
-                  바로 진단하기 (기본정보 없이)
+                  바로 진단하기
                 </Link>
                 <Link
                   to="/info"
@@ -182,8 +182,8 @@ export default function Landing() {
               </div>
 
               <div className="mt-6 flex flex-wrap gap-2 text-[11px]">
-                <span className="rounded-full bg-ink px-3 py-1.5 font-medium text-white">50여개 핵심 문항</span>
-                <span className="rounded-full bg-zinc-800 px-3 py-1.5 font-medium text-white">7개 카테고리</span>
+                <span className="badge-dark rounded-full px-3 py-1.5 font-medium">50여개 핵심 문항</span>
+                <span className="badge-dark-zinc rounded-full px-3 py-1.5 font-medium">7개 카테고리</span>
                 <span className="rounded-full border-2 border-zinc-600 bg-white px-3 py-1.5 font-semibold text-zinc-800">종합 리포트</span>
               </div>
             </div>
@@ -219,9 +219,9 @@ export default function Landing() {
             </div>
           </section>
 
-          {/* Features — 중앙 카드 다크로 하이라이트 */}
+          {/* Features — 2번 카드 토스 블루 강조 */}
           <section id="features" className="mx-auto w-full max-w-5xl">
-            <p className="text-center text-[10px] font-semibold uppercase tracking-[0.22em] text-zinc-800">
+            <p className="section-label text-center text-[10px] font-semibold uppercase tracking-[0.22em]">
               Why This Studio
             </p>
             <h2 className="mt-2 text-center text-2xl font-bold tracking-tight text-ink md:text-3xl">
@@ -235,11 +235,11 @@ export default function Landing() {
                 <div
                   key={i}
                   className={`rounded-2xl border-2 p-6 shadow-edge transition ${
-                    i === 1 ? 'border-ink bg-zinc-50' : 'border-zinc-200 bg-white'
+                    i === 1 ? 'border-toss bg-toss/5' : 'border-zinc-200 bg-white'
                   }`}
                 >
                   <div className={`flex h-10 w-10 items-center justify-center rounded-xl text-sm font-bold ${
-                    i === 1 ? 'bg-ink text-white' : 'bg-zinc-100 text-ink'
+                    i === 1 ? 'bg-toss text-white' : 'bg-zinc-100 text-ink'
                   }`}>
                     {i + 1}
                   </div>
@@ -254,12 +254,12 @@ export default function Landing() {
             </div>
           </section>
 
-          {/* Process — 밝은 배경 + 검정 글씨 */}
+          {/* Process — 플로우 숫자 토스 블루 */}
           <section
             id="flow"
             className="mx-auto w-full max-w-4xl rounded-3xl border-2 border-zinc-200 bg-white p-8 shadow-edge md:p-10"
           >
-            <p className="text-center text-[10px] font-semibold uppercase tracking-[0.22em] text-zinc-600">
+            <p className="section-label text-center text-[10px] font-semibold uppercase tracking-[0.22em]">
               Flow
             </p>
             <h2 className="mt-2 text-center text-xl font-bold tracking-tight text-ink md:text-2xl">
@@ -271,7 +271,7 @@ export default function Landing() {
                   key={i}
                   className="flex items-center gap-2.5 rounded-full border-2 border-zinc-200 bg-zinc-50 px-4 py-2.5 text-sm font-medium text-ink"
                 >
-                  <span className="flex h-7 w-7 items-center justify-center rounded-full bg-ink text-[10px] font-bold text-white">
+                  <span className="step-num-circle flex h-7 w-7 items-center justify-center rounded-full text-[10px] font-bold">
                     {i + 1}
                   </span>
                   <span className="whitespace-nowrap">{step}</span>
@@ -280,9 +280,9 @@ export default function Landing() {
             </div>
           </section>
 
-          {/* Real cases — 첫 카드 다크 + 좌측 보더 강조 */}
+          {/* Real cases — 좌측 보더 토스 블루 강조 */}
           <section className="mx-auto w-full max-w-5xl">
-            <p className="text-center text-[10px] font-semibold uppercase tracking-[0.22em] text-zinc-800">
+            <p className="section-label text-center text-[10px] font-semibold uppercase tracking-[0.22em]">
               Real Inspection Signals
             </p>
             <h2 className="mt-2 text-center text-2xl font-bold tracking-tight text-ink md:text-3xl">
@@ -295,7 +295,7 @@ export default function Landing() {
               {CASES.map((c, i) => (
                 <article
                   key={c.title}
-                  className="flex h-full flex-col rounded-2xl border-l-4 border-ink border border-zinc-200 bg-white p-6 shadow-edge"
+                  className="flex h-full flex-col rounded-2xl border-l-4 border-toss border border-zinc-200 bg-white p-6 shadow-edge"
                 >
                   <p className="text-[10px] font-semibold uppercase tracking-wider text-zinc-600">
                     {c.tag}
@@ -347,7 +347,7 @@ export default function Landing() {
                     </span>
                     <a
                       href={`tel:${CONTACT_PHONE}`}
-                      className="text-sm font-bold tracking-tight text-ink underline decoration-ink/40 transition hover:opacity-80 md:text-base"
+                      className="text-toss text-sm font-bold tracking-tight underline decoration-toss/50 transition hover:text-toss-hover md:text-base"
                     >
                       {CONTACT_PHONE}
                     </a>
@@ -357,7 +357,7 @@ export default function Landing() {
                       현대카드 · 삼성서울병원 HR팀 출신
                     </li>
                     <li className="rounded-full border border-zinc-200 bg-zinc-50 px-2.5 py-1">
-                      컨설팅 회사 근무 · 산업안전공학 박사 과정
+                      산업안전공학 박사
                     </li>
                     <li className="rounded-full border border-zinc-200 bg-zinc-50 px-2.5 py-1">
                       삼성전자 · SK가스 · 두산그룹 등 다수 기업 강의
@@ -366,24 +366,20 @@ export default function Landing() {
                 </div>
               </div>
               <div className="flex flex-col gap-2 md:shrink-0 md:basis-44">
-                <a
-                  href={RAPIDO_CONTENT_URL}
-                  target="_blank"
-                  rel="noreferrer"
-                  className={CONSULT_BUTTON_CLASS}
+                <Link
+                  to="/payment"
+                  state={{ planId: CONSULT_PLAN_ID }}
+                  className={CONSULT_BUTTON_CLASS + ' no-underline visited:text-white'}
                 >
                   비대면 상담
-                </a>
-                <p className="text-center text-[10px] leading-relaxed text-zinc-700">
-                  래피드에서 비대면 상담을 신청할 수 있습니다.
-                </p>
+                </Link>
               </div>
             </div>
           </section>
 
-          {/* FAQ — 검정 보더 강조 */}
+          {/* FAQ */}
           <section id="faq" className="mx-auto w-full max-w-3xl">
-            <p className="text-center text-[10px] font-semibold uppercase tracking-[0.22em] text-zinc-800">
+            <p className="section-label text-center text-[10px] font-semibold uppercase tracking-[0.22em]">
               FAQ
             </p>
             <h2 className="mt-2 text-center text-2xl font-bold tracking-tight text-ink">
@@ -428,7 +424,7 @@ export default function Landing() {
                 to="/diagnosis"
                 className={`inline-flex items-center justify-center rounded-full px-8 py-3.5 text-sm font-bold ${DIAGNOSIS_CTA_CLASS}`}
               >
-                바로 진단하기 (기본정보 없이)
+                바로 진단하기
               </Link>
               <Link
                 to="/info"
@@ -438,7 +434,7 @@ export default function Landing() {
               </Link>
               <Link
                 to="/diagnosis"
-                className="inline-flex items-center justify-center rounded-full bg-zinc-700 px-5 py-3.5 text-sm font-medium text-white transition hover:bg-zinc-600"
+                className={`inline-flex items-center justify-center rounded-full px-5 py-3.5 text-sm font-medium ${DIAGNOSIS_CTA_CLASS}`}
               >
                 이미 진단 중이에요
               </Link>

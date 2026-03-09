@@ -80,11 +80,11 @@ export default function Info() {
           </div>
         </header>
 
-        {/* 진행률 */}
+        {/* 진행률 — 토스 블루 */}
         <div className="mb-6 md:mb-8">
           <div className="h-1.5 overflow-hidden rounded-full bg-slate-200">
             <div
-              className="h-full rounded-full bg-gradient-to-r from-secondary via-sky-400 to-emerald-300"
+              className="h-full rounded-full bg-toss transition-all"
               style={{ width: `${progress}%` }}
             />
           </div>
