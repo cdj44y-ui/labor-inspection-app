@@ -366,13 +366,14 @@ export default function Landing() {
                 </div>
               </div>
               <div className="flex flex-col gap-2 md:shrink-0 md:basis-44">
-                <Link
-                  to="/payment"
-                  state={{ planId: CONSULT_PLAN_ID }}
-                  className={CONSULT_BUTTON_CLASS + ' no-underline visited:text-white'}
+                <a
+                  href="https://www.notion.so/2f5a65e0676180a9964cd57c9efd6147?v=8232b087526f4419ab68bd26bfd4d9ce"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={CONSULT_BUTTON_CLASS + ' no-underline visited:text-white text-center'}
                 >
                   비대면 상담
-                </Link>
+                </a>
               </div>
             </div>
           </section>
