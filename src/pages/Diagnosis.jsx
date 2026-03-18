@@ -17,7 +17,7 @@ const answerButtonClassWhenSelected = {
 }
 // 미선택 상태 — 모두 동일한 연한 회색 버튼으로 bias 최소화
 const answerButtonClassUnselected =
-  'border-2 border-zinc-300 bg-white text-zinc-800 hover:border-zinc-500 hover:bg-zinc-50 focus:outline-none focus:ring-2 focus:ring-toss/40 focus:ring-offset-2'
+  'border-2 border-zinc-300 bg-white text-zinc-800 hover:border-zinc-500 hover:bg-zinc-50 focus:outline-none focus:ring-1 focus:ring-zinc-400/40 focus:ring-offset-0'
 
 export default function Diagnosis() {
   const navigate = useNavigate()
