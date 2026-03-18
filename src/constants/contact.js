@@ -8,14 +8,20 @@ export const CONSULT_PLAN_ID = 'a0000000-0000-0000-0000-000000000001'
 export const RAPIDO_CONTENT_URL =
   import.meta.env.VITE_RAPIDO_CONTENT_URL ||
   'https://www.latpeed.com/spaces/0/products/editor?product_short_id=oYzwz&type=link&content_closed=true'
-// 검정 버튼 공통 — 가독성 최우선, 마우스 없이도 흰 글자 확실 (index.css .btn-black-cta와 연동)
+// 버튼 공통: 검정/토스 블루 (index.css .btn-black-cta / .btn-toss-cta와 연동)
 const BLACK_BTN_BASE =
-  'btn-black-cta inline-flex items-center justify-center rounded-full bg-[#0a0a0a] text-white shadow-edge transition no-underline cursor-pointer'
+  'btn-black-cta inline-flex items-center justify-center rounded-full text-white shadow-edge transition no-underline cursor-pointer'
 const BLACK_BTN_STATES =
   'hover:bg-zinc-800 hover:!text-white active:bg-zinc-800 active:!text-white focus:bg-[#0a0a0a] focus:!text-white focus:outline-none focus:ring-2 focus:ring-zinc-500 focus:ring-offset-2 visited:!text-white'
-// 비대면 상담 버튼
+
+const TOSS_BTN_BASE =
+  'btn-toss-cta inline-flex items-center justify-center rounded-full text-white shadow-edge transition no-underline cursor-pointer'
+const TOSS_BTN_STATES =
+  'hover:!text-white active:!text-white focus:!text-white focus:outline-none focus:ring-2 focus:ring-toss focus:ring-offset-2 visited:!text-white'
+
+// 비대면 상담 버튼 — 검정
 export const CONSULT_BUTTON_CLASS =
   BLACK_BTN_BASE + ' px-6 py-3 text-sm font-bold ' + BLACK_BTN_STATES
-// 바로 진단하기 버튼
+// 바로 진단하기 버튼 — 토스 블루 포인트
 export const DIAGNOSIS_CTA_CLASS =
-  BLACK_BTN_BASE + ' ' + BLACK_BTN_STATES
+  TOSS_BTN_BASE + ' ' + TOSS_BTN_STATES

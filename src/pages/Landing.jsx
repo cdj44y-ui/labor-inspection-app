@@ -204,27 +204,30 @@ export default function Landing() {
                 <p className="text-[13px] font-medium text-ink">종합 리스크 레벨</p>
                 <div className="mt-4 flex items-center gap-0 overflow-hidden rounded-full border border-zinc-300 bg-zinc-100">
                   <div
-                    className="flex h-10 min-w-0 flex-1 items-center justify-end bg-zinc-400 pr-0"
+                    className="flex h-10 min-w-0 flex-1 items-center justify-end bg-toss pr-0"
                     style={{ flexBasis: '72%', maxWidth: '72%' }}
                   >
-                    <span className="inline-flex shrink-0 items-center rounded-full bg-ink px-3 py-1.5 text-[11px] font-bold text-white md:text-xs">
+                    <span className="inline-flex shrink-0 items-center rounded-full bg-[#0a0a0a] px-3 py-1.5 text-[11px] font-bold text-white md:text-xs">
                       양호 B등급
                     </span>
                   </div>
                   <div className="h-10 min-w-[28%] flex-1 bg-zinc-100" aria-hidden />
                 </div>
                 <div className="mt-6 grid grid-cols-3 gap-2.5">
-                  {[
-                    { label: '근로시간', score: '78' },
-                    { label: '임금·수당', score: '91' },
-                    { label: '휴가·휴일', score: '84' },
-                  ].map(({ label, score }) => (
+                    {[
+                      { label: '근로시간', score: '78' },
+                      { label: '임금·수당', score: '91' },
+                      { label: '휴가·휴일', score: '84' },
+                    ].map(({ label, score }) => (
                     <div
                       key={label}
                       className="rounded-lg border border-ink/80 bg-white px-3 py-3 text-center md:px-3.5"
                     >
                       <p className="text-[11px] font-medium text-zinc-600">{label}</p>
-                      <p className="mt-1.5 text-lg font-bold tracking-tight text-ink md:text-xl">{score}점</p>
+                      <p className="mt-1.5 text-lg font-bold tracking-tight text-toss md:text-xl">
+                        {score}
+                        <span className="ml-0.5 text-[13px] text-ink">점</span>
+                      </p>
                     </div>
                   ))}
                 </div>

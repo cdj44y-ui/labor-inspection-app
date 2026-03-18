@@ -38,7 +38,7 @@ h1, h2, .font-display {
   color: #0a0a0a !important;
 }
 
-/* 검정 CTA 버튼: 비대면 상담·진단하기 등 — 항상 흰 글자, 가독성 확보 */
+/* 검정 CTA 버튼: 비대면 상담 등 — 항상 흰 글자, 가독성 확보 */
 a.btn-black-cta,
 button.btn-black-cta,
 .btn-black-cta {
@@ -53,6 +53,24 @@ button.btn-black-cta:hover,
 button.btn-black-cta:focus,
 button.btn-black-cta:active {
   background-color: #27272a !important;
+  color: #ffffff !important;
+}
+
+/* 토스 블루 CTA 버튼: 메인 진단 버튼 등 포인트 강조 */
+a.btn-toss-cta,
+button.btn-toss-cta,
+.btn-toss-cta {
+  background-color: #3182F6 !important;
+  color: #ffffff !important;
+}
+a.btn-toss-cta:hover,
+a.btn-toss-cta:focus,
+a.btn-toss-cta:active,
+a.btn-toss-cta:visited,
+button.btn-toss-cta:hover,
+button.btn-toss-cta:focus,
+button.btn-toss-cta:active {
+  background-color: #1B64DA !important;
   color: #ffffff !important;
 }
 
