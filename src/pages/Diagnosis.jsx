@@ -6,10 +6,10 @@ import { DIAGNOSIS_CTA_CLASS } from '../constants/contact.js'
 const STORAGE_KEY = 'labor_diagnosis_business'
 const ANSWERS_KEY = 'labor_diagnosis_answers'
 
-// 선택 상태 — 예/아니오를 가장 강하게, 나머지는 보조 색으로 구분
+// 선택 상태 — 예/아니오를 가장 강하게(토스 블루/검정), 나머지는 보조 색으로 구분
 const answerButtonClassWhenSelected = {
-  예: 'border-2 border-toss bg-toss text-white shadow-md hover:bg-toss-hover',
-  아니오: 'border-2 border-danger bg-danger text-white shadow-md hover:bg-red-700',
+  예: 'border-2 border-toss bg-toss text-white shadow-md hover:bg-toss-hover ring-2 ring-toss ring-offset-2 ring-offset-white',
+  아니오: 'border-2 border-ink bg-ink text-white shadow-md hover:bg-zinc-900 ring-2 ring-ink ring-offset-2 ring-offset-white',
   일부: 'border-2 border-caution bg-amber-50 text-amber-900 shadow-sm hover:bg-amber-100',
   모름: 'border-2 border-caution bg-amber-50 text-amber-900 shadow-sm hover:bg-amber-100',
   확인필요: 'border-2 border-caution bg-amber-50 text-amber-900 shadow-sm hover:bg-amber-100',
@@ -17,7 +17,7 @@ const answerButtonClassWhenSelected = {
 }
 // 미선택 상태 — 모두 동일한 연한 회색 버튼으로 bias 최소화
 const answerButtonClassUnselected =
-  'border-2 border-zinc-300 bg-white text-zinc-800 hover:border-zinc-500 hover:bg-zinc-50'
+  'border-2 border-zinc-300 bg-white text-zinc-800 hover:border-zinc-500 hover:bg-zinc-50 focus:outline-none focus:ring-2 focus:ring-toss/40 focus:ring-offset-2'
 
 export default function Diagnosis() {
   const navigate = useNavigate()
@@ -178,13 +178,21 @@ export default function Diagnosis() {
                     key={opt}
                     type="button"
                     onClick={() => setAnswer(opt)}
-                    className={`inline-flex min-w-[82px] items-center justify-center rounded-full px-5 py-2.5 text-sm font-semibold transition ${
+                    className={`inline-flex min-w-[92px] items-center justify-center gap-1.5 rounded-full px-5 py-2.5 text-sm font-semibold transition ${
                       answers[currentIndex] === opt
                         ? `${answerButtonClassWhenSelected[opt] || 'border-2 border-zinc-400 bg-white text-zinc-700'} shadow-md shadow-slate-300/50`
                         : answerButtonClassUnselected
                     }`}
                   >
-                    {opt}
+                    <span className="leading-none">{opt}</span>
+                    {answers[currentIndex] === opt && (
+                      <span
+                        className="inline-flex h-5 w-5 items-center justify-center rounded-full bg-white/20 text-[12px] font-extrabold leading-none"
+                        aria-hidden
+                      >
+                        ✓
+                      </span>
+                    )}
                   </button>
                 ))}
               </div>
