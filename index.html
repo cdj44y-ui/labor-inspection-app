@@ -14,7 +14,35 @@
     <title>근로감독 자가진단 서비스 | RISK119</title>
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root">
+      <!-- JS 로드 전·실패 시에도 안내 (배포 후 React가 이 내용을 교체함) -->
+      <div
+        style="
+          min-height: 100vh;
+          margin: 0;
+          padding: 2rem 1.5rem;
+          font-family: system-ui, 'Malgun Gothic', sans-serif;
+          background: #e8e8e8;
+          color: #0a0a0a;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          text-align: center;
+          box-sizing: border-box;
+        "
+      >
+        <p style="font-size: 1.05rem; font-weight: 600; margin: 0 0 0.75rem">근로감독 자가진단</p>
+        <p style="font-size: 0.95rem; margin: 0; line-height: 1.6; max-width: 22rem; color: #333">
+          화면을 불러오는 중입니다…
+        </p>
+        <p style="font-size: 0.8rem; margin: 1.25rem 0 0; line-height: 1.55; max-width: 24rem; color: #555">
+          이 문구가 계속 보이면 자바스크립트가 로드되지 않은 것입니다. Vercel에서
+          <strong>Build Output이 dist</strong>인지 확인하거나, 다른 브라우저·시크릿 창으로
+          다시 열어 보세요.
+        </p>
+      </div>
+    </div>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

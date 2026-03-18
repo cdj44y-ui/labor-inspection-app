@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import { useState } from 'react'
 import { getUser, clearAuth, authFetch } from '../utils/auth.js'
-import { CONTACT_PHONE, CONSULT_PLAN_ID, RAPIDO_CONTENT_URL, CONSULT_BUTTON_CLASS, DIAGNOSIS_CTA_CLASS } from '../constants/contact.js'
+import { CONTACT_PHONE, CONSULT_BUTTON_CLASS, DIAGNOSIS_CTA_CLASS } from '../constants/contact.js'
 
 const FEATURES = [
   {
@@ -68,32 +68,32 @@ export default function Landing() {
     <div className="min-h-screen bg-paper text-ink">
       <div className="relative mx-auto flex min-h-screen max-w-6xl flex-col px-4 pb-12 pt-6 md:px-8 md:pt-8">
         {/* Top bar — 밝은 배경 + 검정 글씨 (가독성) */}
-        <header className="flex items-center justify-between rounded-2xl border-2 border-zinc-200 bg-white px-4 py-3 shadow-edge md:px-6">
+        <header className="flex items-center justify-between rounded-xl border border-zinc-300/80 bg-white px-4 py-3 shadow-card md:px-6">
           <div className="flex items-center gap-3">
-            <div className="flex h-9 w-9 items-center justify-center rounded-xl border-2 border-ink bg-white text-xs font-bold tracking-tight text-ink">
+            <div className="flex h-9 w-9 items-center justify-center rounded-lg border border-ink bg-white text-xs font-extrabold tracking-tight text-ink">
               L
             </div>
             <div className="flex flex-col">
-              <span className="text-[10px] font-medium uppercase tracking-[0.2em] text-zinc-500">
+              <span className="text-[10px] font-semibold uppercase tracking-[0.18em] text-zinc-500">
                 Labor Risk Studio
               </span>
-              <span className="text-sm font-bold tracking-tight text-ink">
+              <span className="text-[15px] font-bold tracking-tight text-ink">
                 근로감독 자가진단
               </span>
             </div>
           </div>
-          <div className="hidden items-center gap-4 text-xs md:flex">
+          <div className="hidden items-center gap-4 text-[13px] md:flex">
             <nav className="flex items-center gap-5 text-ink">
-              <Link to="/info" className="font-medium text-zinc-700 transition hover:text-toss">
+              <Link to="/info" className="font-medium text-zinc-800 transition hover:text-ink">
                 진단 시작
               </Link>
-              <Link to="/diagnosis" className="font-medium text-zinc-700 transition hover:text-toss">
+              <Link to="/diagnosis" className="font-medium text-zinc-800 transition hover:text-ink">
                 문항 보기
               </Link>
-              <Link to="/result" className="font-medium text-zinc-700 transition hover:text-toss">
+              <Link to="/result" className="font-medium text-zinc-800 transition hover:text-ink">
                 결과 보기
               </Link>
-              <Link to="/pricing" className="font-medium text-zinc-700 transition hover:text-toss">
+              <Link to="/pricing" className="font-medium text-zinc-800 transition hover:text-ink">
                 요금제
               </Link>
             </nav>
@@ -132,88 +132,104 @@ export default function Landing() {
           </div>
         </header>
 
-        {/* Privacy — 밝은 배경 + 검정 글씨 */}
-        <div className="mt-4 rounded-2xl border-2 border-zinc-200 bg-white px-4 py-3.5 text-[11px] text-ink shadow-edge md:px-5">
-          <div className="flex flex-col gap-1 md:flex-row md:items-center md:justify-between">
-            <div className="flex items-center gap-2">
-              <span className="flex h-5 w-5 items-center justify-center rounded-lg bg-zinc-100 text-[10px]">
-                🔒
-              </span>
-              <p className="font-semibold text-ink">
-                입력하신 진단 데이터는 서버 DB에 저장되지 않는 휘발성 자가진단입니다.
-              </p>
-            </div>
-            <p className="mt-1 text-[10px] text-zinc-700 md:mt-0">
+        {/* 상단 안내 — 첨부 레이아웃: 좌(주황 아이콘+강조) / 우(보조 문구) */}
+        <div className="mt-4 flex flex-col gap-2 md:flex-row md:items-stretch md:gap-3">
+          <div className="hx-banner-bar flex flex-1 items-center gap-3 rounded-lg px-4 py-3 md:px-5 md:py-3.5">
+            <span
+              className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md bg-white text-[#ea580c] shadow-sm"
+              aria-hidden
+            >
+              <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden>
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm4 18H6V4h7v5h5v11z" />
+              </svg>
+            </span>
+            <p className="text-[13px] font-semibold leading-snug text-ink md:text-[14px] md:leading-relaxed">
+              입력하신 진단 데이터는 서버 DB에 저장되지 않는 휘발성 자가진단입니다.
+            </p>
+          </div>
+          <div className="hx-banner-bar flex items-center rounded-lg px-4 py-3 md:max-w-md md:px-5 md:py-3.5">
+            <p className="text-[12px] leading-relaxed text-zinc-800 md:text-[13px]">
               브라우저에서만 보관되며, 별도 동의 없이는 제3자에게 공유되지 않습니다.
             </p>
           </div>
         </div>
 
-        <main className="mt-12 flex flex-1 flex-col gap-20 md:mt-16">
-          <section className="mx-auto grid w-full max-w-5xl gap-10 md:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)] md:items-center">
-            <div className="rounded-2xl border-2 border-zinc-200 bg-white p-8 shadow-edge md:p-10">
-              <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-zinc-600">
-                고용노동부 자율점검표 기반 · 실제 근로감독 사례 반영
+        <main className="mt-10 flex flex-1 flex-col gap-20 md:mt-14">
+          <section className="mx-auto grid w-full max-w-5xl gap-8 md:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)] md:items-stretch md:gap-10">
+            <div className="rounded-xl border border-zinc-300/90 bg-white p-8 shadow-card md:p-10 md:pt-11">
+              <p className="text-[13px] font-medium leading-snug text-ink md:text-sm">
+                고용노동부 자율점검표 기반 실제 근로감독 사례 반영
               </p>
-              <h1 className="mt-4 text-display font-bold tracking-tight text-ink md:text-display-md lg:text-display-lg">
+              <h1 className="mt-5 text-display-xl font-extrabold tracking-tight text-ink md:text-display-2xl lg:text-display-3xl">
                 근로감독 전에,
                 <br />
-                <span className="text-ink">우리 회사 리스크</span>부터 확인하세요
+                우리 회사 리스크부터 확인하세요
               </h1>
-              <p className="mt-6 max-w-xl text-sm leading-relaxed text-zinc-800 md:text-base">
-                노동부 자율점검표를 바탕으로 <span className="font-bold text-ink">50여개 핵심 문항</span>을 정리했습니다.
-                임금체불·연장근로·휴게시간·연차·4대보험·산재 이슈를 한 번에 점검하고,
-                <span className="font-bold text-ink"> 근로감독·형사 사건으로 번지기 전</span>에 리스크를 줄여보세요.
+              <p className="mt-8 max-w-xl text-[15px] font-normal leading-[1.75] text-zinc-800 md:text-base md:leading-[1.78]">
+                노동부 자율점검표를 바탕으로 <span className="font-bold text-ink">50여개</span> 핵심 문항을 정리했습니다.
+                임금체불·연장근로·휴게시간·연차·4대보험·산재 이슈를 한 번에 점검하고,{' '}
+                <span className="font-bold text-ink">근로감독·형사 사건으로 번지기 전</span>에 리스크를 줄여보세요.
               </p>
 
               <div className="mt-10 flex flex-wrap items-center gap-3">
                 <Link
                   to="/diagnosis"
-                  className={`inline-flex items-center justify-center rounded-full px-8 py-3.5 text-sm font-bold ${DIAGNOSIS_CTA_CLASS}`}
+                  className={`inline-flex min-h-[48px] items-center justify-center rounded-full px-9 py-3.5 text-[15px] font-bold ${DIAGNOSIS_CTA_CLASS}`}
                 >
                   바로 진단하기
                 </Link>
                 <Link
                   to="/info"
-                  className="inline-flex items-center justify-center rounded-full border-2 border-zinc-700 bg-zinc-100 px-6 py-3.5 text-sm font-semibold text-zinc-800 transition hover:bg-zinc-200"
+                  className="inline-flex min-h-[48px] items-center justify-center rounded-full border border-ink bg-white px-7 py-3.5 text-[15px] font-semibold text-ink transition hover:bg-zinc-50"
                 >
                   사업장 정보 입력 후 진단
                 </Link>
               </div>
 
-              <div className="mt-6 flex flex-wrap gap-2 text-[11px]">
-                <span className="badge-dark rounded-full px-3 py-1.5 font-medium">50여개 핵심 문항</span>
-                <span className="badge-dark-zinc rounded-full px-3 py-1.5 font-medium">7개 카테고리</span>
-                <span className="rounded-full border-2 border-zinc-600 bg-white px-3 py-1.5 font-semibold text-zinc-800">종합 리포트</span>
+              <div className="mt-8 flex flex-wrap gap-2">
+                {['50여개 핵심 문항', '7개 카테고리', '종합 리포트'].map((t) => (
+                  <span
+                    key={t}
+                    className="rounded-full border border-ink/85 bg-white px-3.5 py-2 text-[12px] font-medium text-ink"
+                  >
+                    {t}
+                  </span>
+                ))}
               </div>
             </div>
 
-            <div className="rounded-3xl border-2 border-zinc-200 bg-white p-6 shadow-edge md:p-8">
-              <p className="text-[10px] font-semibold uppercase tracking-wider text-zinc-600">
-                리스크 스냅샷
-              </p>
-              <div className="mt-4 rounded-2xl border-2 border-zinc-200 bg-zinc-50 p-4">
-                <div className="flex items-center justify-between text-[11px] text-ink">
-                  <span className="font-medium">종합 리스크 레벨</span>
-                  <span className="rounded-full bg-ink px-2.5 py-0.5 text-[10px] font-bold text-white">
-                    양호 · B 등급
-                  </span>
+            <div className="flex flex-col rounded-xl border border-zinc-300/90 bg-white p-6 shadow-card md:p-8">
+              <p className="text-[15px] font-semibold tracking-tight text-ink">리스크 스냅샷</p>
+              <div className="mt-5 flex flex-1 flex-col rounded-lg border border-zinc-300/80 bg-white p-5">
+                <p className="text-[13px] font-medium text-ink">종합 리스크 레벨</p>
+                <div className="mt-4 flex items-center gap-0 overflow-hidden rounded-full border border-zinc-300 bg-zinc-100">
+                  <div
+                    className="flex h-10 min-w-0 flex-1 items-center justify-end bg-zinc-400 pr-0"
+                    style={{ flexBasis: '72%', maxWidth: '72%' }}
+                  >
+                    <span className="inline-flex shrink-0 items-center rounded-full bg-ink px-3 py-1.5 text-[11px] font-bold text-white md:text-xs">
+                      양호 B등급
+                    </span>
+                  </div>
+                  <div className="h-10 min-w-[28%] flex-1 bg-zinc-100" aria-hidden />
                 </div>
-                <div className="mt-3 h-2 rounded-full bg-zinc-200">
-                  <div className="h-full w-3/4 rounded-full bg-ink" />
-                </div>
-                <div className="mt-4 grid grid-cols-3 gap-2 text-[11px] text-ink">
-                  {['근로시간', '임금·수당', '휴가·휴일'].map((label, i) => (
-                    <div key={label} className="rounded-xl border-2 border-zinc-200 bg-white px-3 py-2.5">
-                      <p className="text-[10px] text-zinc-600">{label}</p>
-                      <p className="mt-1 text-sm font-bold text-ink">
-                        {i === 0 ? '78' : i === 1 ? '91' : '84'}점
-                      </p>
+                <div className="mt-6 grid grid-cols-3 gap-2.5">
+                  {[
+                    { label: '근로시간', score: '78' },
+                    { label: '임금·수당', score: '91' },
+                    { label: '휴가·휴일', score: '84' },
+                  ].map(({ label, score }) => (
+                    <div
+                      key={label}
+                      className="rounded-lg border border-ink/80 bg-white px-3 py-3 text-center md:px-3.5"
+                    >
+                      <p className="text-[11px] font-medium text-zinc-600">{label}</p>
+                      <p className="mt-1.5 text-lg font-bold tracking-tight text-ink md:text-xl">{score}점</p>
                     </div>
                   ))}
                 </div>
               </div>
-              <p className="mt-4 text-[10px] leading-relaxed text-zinc-700">
+              <p className="mt-5 text-[12px] leading-relaxed text-zinc-700 md:text-[13px]">
                 귀 사업장 답변 기반으로 카테고리별 점수와 개선 항목을 정리해 드립니다.
               </p>
             </div>
@@ -221,32 +237,34 @@ export default function Landing() {
 
           {/* Features — 2번 카드 토스 블루 강조 */}
           <section id="features" className="mx-auto w-full max-w-5xl">
-            <p className="section-label text-center text-[10px] font-semibold uppercase tracking-[0.22em]">
+            <p className="text-center text-[10px] font-semibold uppercase tracking-[0.2em] text-zinc-500">
               Why This Studio
             </p>
-            <h2 className="mt-2 text-center text-2xl font-bold tracking-tight text-ink md:text-3xl">
+            <h2 className="mt-2 text-center text-2xl font-extrabold tracking-tight text-ink md:text-3xl">
               근로감독 리스크를 한 장의 리포트로
             </h2>
-            <p className="mx-auto mt-3 max-w-2xl text-center text-sm leading-relaxed text-zinc-800">
+            <p className="mx-auto mt-4 max-w-2xl text-center text-[15px] leading-relaxed text-zinc-800 md:text-base md:leading-[1.7]">
               복잡한 법령 대신, 점수와 우선순위 기반 액션 포인트로 정리합니다.
             </p>
             <div className="mt-10 grid gap-5 md:grid-cols-3">
               {FEATURES.map((f, i) => (
                 <div
                   key={i}
-                  className={`rounded-2xl border-2 p-6 shadow-edge transition ${
-                    i === 1 ? 'border-toss bg-toss/5' : 'border-zinc-200 bg-white'
+                  className={`rounded-xl border p-6 shadow-card transition ${
+                    i === 1 ? 'border-ink bg-zinc-50' : 'border-zinc-300/90 bg-white'
                   }`}
                 >
-                  <div className={`flex h-10 w-10 items-center justify-center rounded-xl text-sm font-bold ${
-                    i === 1 ? 'bg-toss text-white' : 'bg-zinc-100 text-ink'
-                  }`}>
+                  <div
+                    className={`flex h-10 w-10 items-center justify-center rounded-lg text-sm font-bold ${
+                      i === 1 ? 'bg-ink text-white' : 'bg-zinc-200 text-ink'
+                    }`}
+                  >
                     {i + 1}
                   </div>
                   <h3 className="mt-4 text-base font-bold tracking-tight text-ink">
                     {f.title}
                   </h3>
-                  <p className="mt-2 text-sm leading-relaxed text-zinc-800">
+                  <p className="mt-3 text-[14px] leading-[1.7] text-zinc-800">
                     {f.desc}
                   </p>
                 </div>
@@ -257,9 +275,9 @@ export default function Landing() {
           {/* Process — 플로우 숫자 토스 블루 */}
           <section
             id="flow"
-            className="mx-auto w-full max-w-4xl rounded-3xl border-2 border-zinc-200 bg-white p-8 shadow-edge md:p-10"
+            className="mx-auto w-full max-w-4xl rounded-xl border border-zinc-300/90 bg-white p-8 shadow-card md:p-10"
           >
-            <p className="section-label text-center text-[10px] font-semibold uppercase tracking-[0.22em]">
+            <p className="text-center text-[10px] font-semibold uppercase tracking-[0.2em] text-zinc-500">
               Flow
             </p>
             <h2 className="mt-2 text-center text-xl font-bold tracking-tight text-ink md:text-2xl">
@@ -282,20 +300,20 @@ export default function Landing() {
 
           {/* Real cases — 좌측 보더 토스 블루 강조 */}
           <section className="mx-auto w-full max-w-5xl">
-            <p className="section-label text-center text-[10px] font-semibold uppercase tracking-[0.22em]">
+            <p className="text-center text-[10px] font-semibold uppercase tracking-[0.2em] text-zinc-500">
               Real Inspection Signals
             </p>
-            <h2 className="mt-2 text-center text-2xl font-bold tracking-tight text-ink md:text-3xl">
+            <h2 className="mt-2 text-center text-2xl font-extrabold tracking-tight text-ink md:text-3xl">
               실제 근로감독 사례로 보는 리스크 경고등
             </h2>
-            <p className="mx-auto mt-3 max-w-2xl text-center text-sm leading-relaxed text-zinc-800">
+            <p className="mx-auto mt-4 max-w-2xl text-center text-[15px] leading-relaxed text-zinc-800 md:text-base md:leading-[1.7]">
               노동부 보도자료와 언론에 자주 등장하는 유형을 바탕으로 재구성한 예시입니다.
             </p>
             <div className="mt-10 grid gap-5 md:grid-cols-3">
               {CASES.map((c, i) => (
                 <article
                   key={c.title}
-                  className="flex h-full flex-col rounded-2xl border-l-4 border-toss border border-zinc-200 bg-white p-6 shadow-edge"
+                  className="flex h-full flex-col rounded-xl border border-zinc-300/90 border-l-4 border-l-ink bg-white p-6 shadow-card"
                 >
                   <p className="text-[10px] font-semibold uppercase tracking-wider text-zinc-600">
                     {c.tag}
@@ -303,7 +321,7 @@ export default function Landing() {
                   <h3 className="mt-3 text-base font-bold tracking-tight text-ink">
                     {c.title}
                   </h3>
-                  <p className="mt-2 flex-1 text-sm leading-relaxed text-zinc-800">
+                  <p className="mt-2 flex-1 text-[14px] leading-[1.7] text-zinc-800">
                     {c.body}
                   </p>
                   <div className="mt-4 rounded-xl border border-zinc-200 bg-zinc-50 px-3 py-2.5 text-[11px] text-zinc-800">
@@ -323,7 +341,7 @@ export default function Landing() {
           {/* 조대진 노무사 — 밝은 배경 + 검정 글씨 */}
           <section
             id="consult"
-            className="mx-auto w-full max-w-5xl rounded-3xl border-2 border-zinc-200 bg-white p-6 shadow-edge md:p-8"
+            className="mx-auto w-full max-w-5xl rounded-xl border border-zinc-300/90 bg-white p-6 shadow-card md:p-8"
           >
             <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between md:gap-8">
               <div className="flex items-start gap-4">
@@ -347,7 +365,7 @@ export default function Landing() {
                     </span>
                     <a
                       href={`tel:${CONTACT_PHONE}`}
-                      className="text-toss text-sm font-bold tracking-tight underline decoration-toss/50 transition hover:text-toss-hover md:text-base"
+                      className="text-sm font-bold tracking-tight text-ink underline decoration-zinc-400 underline-offset-2 transition hover:decoration-ink md:text-base"
                     >
                       {CONTACT_PHONE}
                     </a>
@@ -380,7 +398,7 @@ export default function Landing() {
 
           {/* FAQ */}
           <section id="faq" className="mx-auto w-full max-w-3xl">
-            <p className="section-label text-center text-[10px] font-semibold uppercase tracking-[0.22em]">
+            <p className="text-center text-[10px] font-semibold uppercase tracking-[0.2em] text-zinc-500">
               FAQ
             </p>
             <h2 className="mt-2 text-center text-2xl font-bold tracking-tight text-ink">
@@ -390,19 +408,19 @@ export default function Landing() {
               {FAQ_ITEMS.map((item, i) => (
                 <div
                   key={i}
-                  className="overflow-hidden rounded-2xl border-2 border-zinc-200 bg-white px-5 py-4 shadow-edge"
+                  className="overflow-hidden rounded-xl border border-zinc-300/90 bg-white px-5 py-4 shadow-card"
                 >
                   <button
                     className="flex w-full items-center justify-between gap-4 text-left"
                     onClick={() => setOpenFaq(openFaq === i ? null : i)}
                   >
-                    <span className="font-semibold text-ink">{item.q}</span>
+                    <span className="text-[15px] font-semibold leading-snug text-ink">{item.q}</span>
                     <span className="text-xs font-medium text-zinc-700">
                       {openFaq === i ? '접기' : '펼치기'}
                     </span>
                   </button>
                   {openFaq === i && (
-                    <p className="mt-2 text-xs leading-relaxed text-zinc-800 md:text-sm">
+                    <p className="mt-3 text-[14px] leading-[1.75] text-zinc-800">
                       {item.a}
                     </p>
                   )}
@@ -412,12 +430,12 @@ export default function Landing() {
           </section>
 
           {/* CTA — 밝은 배경 + 검정 글씨 */}
-          <section className="mx-auto w-full max-w-3xl rounded-3xl border-2 border-zinc-200 bg-white px-8 py-10 text-center shadow-edge md:px-10 md:py-12">
-            <h3 className="text-xl font-bold tracking-tight text-ink md:text-2xl">
+          <section className="mx-auto w-full max-w-3xl rounded-xl border border-zinc-300/90 bg-white px-8 py-10 text-center shadow-card md:px-10 md:py-12">
+            <h3 className="text-xl font-extrabold tracking-tight text-ink md:text-2xl">
               지금 사업장의 근로감독 리스크를
               <span className="mt-1 block">숫자와 문장으로 정리해 보세요.</span>
             </h3>
-            <p className="mt-4 text-sm leading-relaxed text-zinc-700">
+            <p className="mt-5 text-[15px] leading-[1.75] text-zinc-700 md:text-base">
               진단 결과는 브라우저에만 임시 저장됩니다. 2025년 고용노동부 자율진단표 7개 영역 기준으로 리스크를 정리해 드립니다.
             </p>
             <div className="mt-8 flex flex-wrap justify-center gap-3">
@@ -429,7 +447,7 @@ export default function Landing() {
               </Link>
               <Link
                 to="/info"
-                className="inline-flex items-center justify-center rounded-full border-2 border-zinc-600 bg-white px-6 py-3.5 text-sm font-semibold text-zinc-800 transition hover:bg-zinc-50"
+                className="inline-flex items-center justify-center rounded-full border border-ink bg-white px-6 py-3.5 text-sm font-semibold text-ink transition hover:bg-zinc-50"
               >
                 사업장 정보 입력 후 진단
               </Link>

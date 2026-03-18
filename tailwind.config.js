@@ -9,7 +9,7 @@ export default {
       colors: {
         ink: '#0a0a0a',
         'ink-muted': '#171717',
-        paper: '#f5f5f5',
+        paper: '#e8e8e8',
         'paper-white': '#fafafa',
         primary: '#0a0a0a',
         'primary-hover': '#262626',
@@ -33,6 +33,10 @@ export default {
         'display': ['2.5rem', { lineHeight: '1.15', letterSpacing: '-0.03em' }],
         'display-md': ['3rem', { lineHeight: '1.1', letterSpacing: '-0.035em' }],
         'display-lg': ['3.75rem', { lineHeight: '1.05', letterSpacing: '-0.04em' }],
+        /* 현대카드식 히어로 — 큰 제목·가독성 */
+        'display-xl': ['2.75rem', { lineHeight: '1.08', letterSpacing: '-0.038em' }],
+        'display-2xl': ['3.25rem', { lineHeight: '1.06', letterSpacing: '-0.04em' }],
+        'display-3xl': ['3.5rem', { lineHeight: '1.04', letterSpacing: '-0.042em' }],
       },
       boxShadow: {
         'card': '0 1px 3px 0 rgb(0 0 0 / 0.06), 0 1px 2px -1px rgb(0 0 0 / 0.06)',

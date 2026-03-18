@@ -7,10 +7,12 @@
 body {
   margin: 0;
   font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
-  background: #f0f0f0;
+  background: #e8e8e8;
   color: #0a0a0a;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: 'kern' 1;
+  text-rendering: optimizeLegibility;
 }
 
 #root {
@@ -66,10 +68,15 @@ span.badge-dark-zinc {
   color: #ffffff !important;
 }
 
-/* FLOW 단계 숫자 원: 1,2,3,4 — 토스 블루 강조 */
+/* FLOW 단계 숫자 원 — 현대카드식: 검정 원 */
 .step-num-circle {
-  background-color: #3182F6 !important;
+  background-color: #0a0a0a !important;
   color: #ffffff !important;
+}
+
+/* 히어로 상단 안내 바 (현대카드식 연회색) */
+.hx-banner-bar {
+  background-color: #e4e4e4;
 }
 
 /* 강조 링크: 토스 블루 */
