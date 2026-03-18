@@ -21,6 +21,7 @@ const answerButtonClassUnselected =
 
 export default function Diagnosis() {
   const navigate = useNavigate()
+  const [showLaw, setShowLaw] = useState(false)
   const [answers, setAnswers] = useState(() => {
     try {
       const s = localStorage.getItem(ANSWERS_KEY)
@@ -40,6 +41,10 @@ export default function Diagnosis() {
   }, [answers])
 
   const currentQ = QUESTIONS[currentIndex]
+  useEffect(() => {
+    setShowLaw(false)
+  }, [currentIndex])
+
   const answeredCount = answers.filter(Boolean).length
   const progress = QUESTIONS.length ? Math.round((answeredCount / QUESTIONS.length) * 100) : 0
 
@@ -167,10 +172,24 @@ export default function Diagnosis() {
                 {currentQ?.text}
               </h2>
               {currentQ?.law && (
-                <p className="mb-4 rounded-xl bg-slate-50 px-3 py-2 text-[10px] leading-relaxed text-slate-500">
-                  <span className="font-semibold text-slate-600">관련 법령 근거 · </span>
-                  {currentQ.law}
-                </p>
+                <div className="mb-4">
+                  <button
+                    type="button"
+                    onClick={() => setShowLaw((v) => !v)}
+                    className="inline-flex items-center gap-2 rounded-full border border-zinc-300 bg-white px-3 py-1.5 text-[11px] font-medium text-zinc-700 transition hover:bg-zinc-50"
+                  >
+                    <span className="inline-flex h-5 w-5 items-center justify-center rounded-full bg-toss/10 text-[10px] font-bold text-toss">
+                      i
+                    </span>
+                    관련 법령 근거 {showLaw ? '닫기' : '보기'}
+                  </button>
+                  {showLaw && (
+                    <div className="mt-2 rounded-xl border border-zinc-200 bg-zinc-50 px-3 py-2 text-[11px] leading-relaxed text-zinc-700">
+                      <span className="font-semibold text-ink">근거 · </span>
+                      {currentQ.law}
+                    </div>
+                  )}
+                </div>
               )}
               <div className="flex flex-wrap gap-2.5">
                 {currentQ?.options.map((opt) => (

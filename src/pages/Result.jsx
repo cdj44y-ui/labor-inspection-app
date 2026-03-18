@@ -54,6 +54,7 @@ function Gauge({ score }) {
 
 export default function Result() {
   const [answers, setAnswers] = useState(null)
+  const [copied, setCopied] = useState(false)
 
   useEffect(() => {
     try {
@@ -106,6 +107,36 @@ export default function Result() {
     .sort((a, b) => categoryScores[a] - categoryScores[b])
     .slice(0, 3)
 
+  const topRiskCategoryId = riskCategoryIndices[0]
+  const topRiskCategoryName = CATEGORIES[topRiskCategoryId]?.name
+
+  const actionHintByCategory = (name) => {
+    const n = String(name || '')
+    if (n.includes('근로시간')) return '근로시간 기록·승인 프로세스를 먼저 정비하세요.'
+    if (n.includes('임금')) return '임금·수당 산정 기준과 증빙(명세서/근태)을 점검하세요.'
+    if (n.includes('휴가') || n.includes('휴일')) return '연차·휴일 부여/사용 기록과 규정을 확인하세요.'
+    if (n.includes('산업안전')) return '안전보건 교육·점검·위험성평가 체계를 확인하세요.'
+    if (n.includes('4대보험')) return '가입 대상·기준일·변동 신고 누락을 우선 점검하세요.'
+    if (n.includes('근로계약')) return '근로계약서 필수 기재·교부 및 서명 보관을 먼저 정리하세요.'
+    return '대표 리스크 1~2개부터 증빙과 프로세스를 정리하세요.'
+  }
+
+  const handleCopy = async () => {
+    const summaryLines = [
+      `근로감독 자가진단 결과 요약`,
+      `- 종합 점수: ${totalScore}점 (${gradeInfo.label})`,
+      topRiskCategoryName ? `- 최우선 개선: ${topRiskCategoryName}` : null,
+      `- 우선 개선 3영역: ${riskCategoryIndices.map((cid) => CATEGORIES[cid]?.name).filter(Boolean).join(', ')}`,
+    ].filter(Boolean)
+    try {
+      await navigator.clipboard.writeText(summaryLines.join('\n'))
+      setCopied(true)
+      window.setTimeout(() => setCopied(false), 1500)
+    } catch (_) {
+      // ignore
+    }
+  }
+
   return (
     <div className="min-h-screen bg-paper text-ink">
       <div className="relative mx-auto flex min-h-screen max-w-5xl flex-col px-4 pb-16 pt-6 md:px-6 md:pt-8">
@@ -137,6 +168,30 @@ export default function Result() {
                   <span className="font-semibold text-ink">{gradeInfo.label}</span>. 아래 우선 개선
                   영역 3가지를 먼저 정비하면 리스크를 줄일 수 있습니다.
                 </p>
+                {topRiskCategoryName && (
+                  <p className="mt-3 text-[13px] font-medium leading-relaxed text-zinc-800">
+                    최우선 개선 영역은{' '}
+                    <span className="font-extrabold text-ink">{topRiskCategoryName}</span>입니다.{' '}
+                    <span className="font-semibold text-toss">{actionHintByCategory(topRiskCategoryName)}</span>
+                  </p>
+                )}
+                <div className="mt-4 flex flex-wrap items-center gap-2">
+                  <button
+                    type="button"
+                    onClick={handleCopy}
+                    className="inline-flex items-center justify-center rounded-full border border-zinc-300 bg-white px-4 py-2 text-[12px] font-semibold text-zinc-800 transition hover:bg-zinc-50"
+                  >
+                    {copied ? '요약 복사됨' : '요약 복사'}
+                  </button>
+                  <a
+                    href="https://www.notion.so/2f5a65e0676180a9964cd57c9efd6147?v=8232b087526f4419ab68bd26bfd4d9ce"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={CONSULT_BUTTON_CLASS + ' no-underline visited:text-white text-center'}
+                  >
+                    비대면 상담(자문 요청)
+                  </a>
+                </div>
               </div>
               <div className="mt-3 md:mt-0">
                 <Gauge score={totalScore} />
@@ -176,6 +231,9 @@ export default function Result() {
                         {score}점
                       </span>
                     </div>
+                    <p className="mt-1.5 text-[10px] font-medium text-zinc-700">
+                      액션 · <span className="text-toss font-semibold">{actionHintByCategory(cat.name)}</span>
+                    </p>
                     {issuesInCat.length > 0 && (
                       <ul className="mt-1.5 space-y-0.5">
                         {issuesInCat.map((item) => (
