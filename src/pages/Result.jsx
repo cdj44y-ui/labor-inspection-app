@@ -2,14 +2,15 @@ import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { QUESTIONS, CATEGORIES } from '../data/questions.js'
 import { getTotalScore, getCategoryScores, getGrade, GRADE_LABELS } from '../utils/score.js'
-import { CONTACT_PHONE, CONSULT_PLAN_ID, CONSULT_BUTTON_CLASS, DIAGNOSIS_CTA_CLASS } from '../constants/contact.js'
+import { CONTACT_PHONE, CONSULT_BUTTON_CLASS, DIAGNOSIS_CTA_CLASS } from '../constants/contact.js'
 
 const ANSWERS_KEY = 'labor_diagnosis_answers'
 
 function Gauge({ score }) {
   const grade = getGrade(score)
   const info = GRADE_LABELS[grade]
-  const colorMap = { safe: '#22C55E', caution: '#EAB308', warning: '#F97316', danger: '#EF4444' }
+  // 종합 점수 게이지 — 안전(Safe) 구간은 토스 블루, 나머지는 경고 색 유지
+  const colorMap = { safe: '#3182F6', caution: '#EAB308', warning: '#F97316', danger: '#EF4444' }
   const r = 80
   const circumference = 2 * Math.PI * r
   const stroke = (score / 100) * circumference
@@ -39,11 +40,14 @@ function Gauge({ score }) {
           className="transition-all duration-500"
         />
       </svg>
-      <p className="text-3xl font-bold mt-2" style={{ color: colorMap[info.color] }}>
-        {score}점
+      <p className="mt-2 text-3xl font-extrabold tracking-tight text-toss">
+        {score}
+        <span className="ml-0.5 text-base font-semibold text-ink">점</span>
       </p>
-      <p className="font-semibold text-gray-700">{info.label}</p>
-      <p className="text-sm text-gray-500">{info.message}</p>
+      <p className="mt-1 inline-flex items-center rounded-full border border-toss/40 bg-toss/5 px-3 py-1 text-[11px] font-semibold text-ink">
+        {info.label}
+      </p>
+      <p className="mt-2 text-xs text-gray-500">{info.message}</p>
     </div>
   )
 }
@@ -124,11 +128,14 @@ export default function Result() {
           <section className="rounded-3xl border-2 border-zinc-200 bg-white p-6 shadow-edge md:p-8">
             <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
               <div>
-                <h1 className="mb-2 text-xl font-bold tracking-tight text-ink md:text-2xl">
+                <h1 className="mb-2 text-xl font-extrabold tracking-tight text-ink md:text-2xl">
                   진단 결과 요약
                 </h1>
                 <p className="text-sm leading-relaxed text-zinc-800">
-                  종합 점수 {totalScore}점, 등급 {gradeInfo.label}. 아래 우선 개선 영역 3가지를 먼저 정비하면 리스크를 줄일 수 있습니다.
+                  종합 점수{' '}
+                  <span className="font-bold text-toss">{totalScore}점</span>, 등급{' '}
+                  <span className="font-semibold text-ink">{gradeInfo.label}</span>. 아래 우선 개선
+                  영역 3가지를 먼저 정비하면 리스크를 줄일 수 있습니다.
                 </p>
               </div>
               <div className="mt-3 md:mt-0">
@@ -165,8 +172,8 @@ export default function Result() {
                           {cat.name}
                         </span>
                       </div>
-                      <span className="text-[10px] font-medium text-zinc-500">
-                        점수 {score}점
+                      <span className="text-[10px] font-semibold text-toss">
+                        {score}점
                       </span>
                     </div>
                     {issuesInCat.length > 0 && (
@@ -198,14 +205,15 @@ export default function Result() {
                     <span className="w-32 shrink-0 truncate text-xs font-medium text-zinc-600 md:w-40">
                       {cat.name}
                     </span>
-                    <div className="flex-1 overflow-hidden rounded-full bg-zinc-200">
+                  <div className="flex-1 overflow-hidden rounded-full bg-zinc-200">
                       <div
                         className={`h-3 rounded-full ${colorMap[g]} transition-all duration-500`}
                         style={{ width: `${score}%` }}
                       />
                     </div>
-                    <span className="w-10 text-right text-xs font-bold text-ink">
-                      {score}점
+                    <span className="w-10 text-right text-xs font-bold text-toss">
+                      {score}
+                      <span className="ml-0.5 text-[11px] text-ink">점</span>
                     </span>
                   </div>
                 )
@@ -224,7 +232,10 @@ export default function Result() {
           </Link>
           <Link
             to="/"
-            className={"inline-flex items-center justify-center rounded-full px-7 py-3 text-sm font-bold shadow-edge " + DIAGNOSIS_CTA_CLASS}
+            className={
+              'inline-flex items-center justify-center rounded-full px-7 py-3 text-sm font-bold shadow-edge ' +
+              CONSULT_BUTTON_CLASS
+            }
           >
             홈으로
           </Link>
@@ -273,13 +284,14 @@ export default function Result() {
               </div>
             </div>
             <div className="flex flex-col gap-2 md:shrink-0 md:basis-44">
-              <Link
-                to="/payment"
-                state={{ planId: CONSULT_PLAN_ID }}
-                className={CONSULT_BUTTON_CLASS + ' no-underline visited:text-white'}
+              <a
+                href="https://www.notion.so/2f5a65e0676180a9964cd57c9efd6147?v=8232b087526f4419ab68bd26bfd4d9ce"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={CONSULT_BUTTON_CLASS + ' no-underline visited:text-white text-center'}
               >
                 비대면 상담
-              </Link>
+              </a>
             </div>
           </div>
         </section>

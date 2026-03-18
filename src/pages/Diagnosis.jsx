@@ -6,16 +6,18 @@ import { DIAGNOSIS_CTA_CLASS } from '../constants/contact.js'
 const STORAGE_KEY = 'labor_diagnosis_business'
 const ANSWERS_KEY = 'labor_diagnosis_answers'
 
-// 선택됐을 때만 적용되는 스타일 (미선택 시에는 모두 동일한 neutral 사용)
+// 선택 상태 — 예/아니오를 가장 강하게, 나머지는 보조 색으로 구분
 const answerButtonClassWhenSelected = {
-  예: 'border-2 border-ink bg-white text-ink hover:bg-zinc-50',
-  아니오: 'border-2 border-danger bg-white text-danger hover:bg-red-50',
-  일부: 'border-2 border-caution bg-white text-amber-800 hover:opacity-90',
-  모름: 'border-2 border-caution bg-white text-amber-800 hover:opacity-90',
-  확인필요: 'border-2 border-caution bg-white text-amber-800 hover:opacity-90',
-  해당없음: 'border-2 border-zinc-400 bg-white text-zinc-700 hover:bg-zinc-50',
+  예: 'border-2 border-toss bg-toss text-white shadow-md hover:bg-toss-hover',
+  아니오: 'border-2 border-danger bg-danger text-white shadow-md hover:bg-red-700',
+  일부: 'border-2 border-caution bg-amber-50 text-amber-900 shadow-sm hover:bg-amber-100',
+  모름: 'border-2 border-caution bg-amber-50 text-amber-900 shadow-sm hover:bg-amber-100',
+  확인필요: 'border-2 border-caution bg-amber-50 text-amber-900 shadow-sm hover:bg-amber-100',
+  해당없음: 'border-2 border-zinc-400 bg-zinc-50 text-zinc-800 shadow-sm hover:bg-zinc-100',
 }
-const answerButtonClassUnselected = 'border-2 border-zinc-300 bg-white text-zinc-800 hover:border-zinc-500 hover:bg-zinc-50'
+// 미선택 상태 — 모두 동일한 연한 회색 버튼으로 bias 최소화
+const answerButtonClassUnselected =
+  'border-2 border-zinc-300 bg-white text-zinc-800 hover:border-zinc-500 hover:bg-zinc-50'
 
 export default function Diagnosis() {
   const navigate = useNavigate()
@@ -170,13 +172,13 @@ export default function Diagnosis() {
                   {currentQ.law}
                 </p>
               )}
-              <div className="flex flex-wrap gap-3">
+              <div className="flex flex-wrap gap-2.5">
                 {currentQ?.options.map((opt) => (
                   <button
                     key={opt}
                     type="button"
                     onClick={() => setAnswer(opt)}
-                    className={`px-5 py-2.5 rounded-xl text-sm font-medium transition ${
+                    className={`inline-flex min-w-[82px] items-center justify-center rounded-full px-5 py-2.5 text-sm font-semibold transition ${
                       answers[currentIndex] === opt
                         ? `${answerButtonClassWhenSelected[opt] || 'border-2 border-zinc-400 bg-white text-zinc-700'} shadow-md shadow-slate-300/50`
                         : answerButtonClassUnselected
