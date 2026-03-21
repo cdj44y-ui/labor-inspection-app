@@ -2,7 +2,12 @@ import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { QUESTIONS, CATEGORIES } from '../data/questions.js'
 import { getTotalScore, getCategoryScores, getGrade, GRADE_LABELS } from '../utils/score.js'
-import { CONTACT_PHONE, CONSULT_BUTTON_CLASS, DIAGNOSIS_CTA_CLASS } from '../constants/contact.js'
+import {
+  CONTACT_PHONE,
+  CONSULT_BUTTON_CLASS,
+  DIAGNOSIS_CTA_CLASS,
+  NOTION_REMOTE_CONSULT_URL,
+} from '../constants/contact.js'
 
 const ANSWERS_KEY = 'labor_diagnosis_answers'
 
@@ -184,7 +189,7 @@ export default function Result() {
                     {copied ? '요약 복사됨' : '요약 복사'}
                   </button>
                   <a
-                    href="https://www.notion.so/2f5a65e0676180a9964cd57c9efd6147?v=8232b087526f4419ab68bd26bfd4d9ce"
+                    href={NOTION_REMOTE_CONSULT_URL}
                     target="_blank"
                     rel="noopener noreferrer"
                     className={CONSULT_BUTTON_CLASS + ' no-underline visited:text-white text-center'}
@@ -343,7 +348,7 @@ export default function Result() {
             </div>
             <div className="flex flex-col gap-2 md:shrink-0 md:basis-44">
               <a
-                href="https://www.notion.so/2f5a65e0676180a9964cd57c9efd6147?v=8232b087526f4419ab68bd26bfd4d9ce"
+                href={NOTION_REMOTE_CONSULT_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 className={CONSULT_BUTTON_CLASS + ' no-underline visited:text-white text-center'}

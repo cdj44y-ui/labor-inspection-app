@@ -1,7 +1,12 @@
 import { Link } from 'react-router-dom'
 import { useState } from 'react'
 import { getUser, clearAuth, authFetch } from '../utils/auth.js'
-import { CONTACT_PHONE, CONSULT_BUTTON_CLASS, DIAGNOSIS_CTA_CLASS } from '../constants/contact.js'
+import {
+  CONTACT_PHONE,
+  CONSULT_BUTTON_CLASS,
+  DIAGNOSIS_CTA_CLASS,
+  NOTION_REMOTE_CONSULT_URL,
+} from '../constants/contact.js'
 
 const FEATURES = [
   {
@@ -90,6 +95,9 @@ export default function Landing() {
               <Link to="/diagnosis" className="font-medium text-zinc-800 transition hover:text-ink">
                 문항 보기
               </Link>
+              <Link to="/worker-status" className="font-medium text-zinc-800 transition hover:text-ink">
+                근로자성
+              </Link>
               <Link to="/result" className="font-medium text-zinc-800 transition hover:text-ink">
                 결과 보기
               </Link>
@@ -174,6 +182,12 @@ export default function Landing() {
                   className={`inline-flex min-h-[48px] items-center justify-center rounded-full px-9 py-3.5 text-[15px] font-bold ${DIAGNOSIS_CTA_CLASS}`}
                 >
                   바로 진단하기
+                </Link>
+                <Link
+                  to="/worker-status"
+                  className="inline-flex min-h-[48px] items-center justify-center rounded-full border-2 border-indigo-600 bg-indigo-50 px-7 py-3.5 text-[15px] font-bold text-indigo-900 transition hover:bg-indigo-100"
+                >
+                  근로자성 · 추정제 대비
                 </Link>
                 <Link
                   to="/info"
@@ -385,7 +399,7 @@ export default function Landing() {
               </div>
               <div className="flex flex-col gap-2 md:shrink-0 md:basis-44">
                 <a
-                  href="https://www.notion.so/2f5a65e0676180a9964cd57c9efd6147?v=8232b087526f4419ab68bd26bfd4d9ce"
+                  href={NOTION_REMOTE_CONSULT_URL}
                   target="_blank"
                   rel="noopener noreferrer"
                   className={CONSULT_BUTTON_CLASS + ' no-underline visited:text-white text-center'}

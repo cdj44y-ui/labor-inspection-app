@@ -2,6 +2,11 @@
 export const SITE_URL = import.meta.env.VITE_SITE_URL || 'https://risk119.site'
 // 연락처·온라인 상담 URL (랜딩·결과 페이지 공통)
 export const CONTACT_PHONE = '02-2138-0240'
+/** 비대면 상담 Notion — `VITE_NOTION_REMOTE_CONSULT_URL` 로 덮어쓰기 가능 */
+export const NOTION_REMOTE_CONSULT_URL =
+  (typeof import.meta.env.VITE_NOTION_REMOTE_CONSULT_URL === 'string' &&
+    import.meta.env.VITE_NOTION_REMOTE_CONSULT_URL.trim()) ||
+  'https://north-saffron-5b7.notion.site/cc7a5b60e4104ef697435cbf880d8341'
 // 비대면 상담 플랜 ID (Supabase plans.id — 결제 연동용)
 export const CONSULT_PLAN_ID = 'a0000000-0000-0000-0000-000000000001'
 // 결제 완료 후 비대면 상담 진행 URL — 래피드(Latpeed) (.env의 VITE_RAPIDO_CONTENT_URL 으로 덮어쓰기 가능)
