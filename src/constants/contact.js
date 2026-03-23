@@ -1,5 +1,12 @@
 // 사이트 도메인 (RISK119.SITE)
 export const SITE_URL = import.meta.env.VITE_SITE_URL || 'https://risk119.site'
+/** Calendly 15분 무료 상담 URL — `VITE_CALENDLY_URL` 로 덮어쓰기 */
+export const CALENDLY_URL =
+  (typeof import.meta.env.VITE_CALENDLY_URL === 'string' && import.meta.env.VITE_CALENDLY_URL.trim()) ||
+  'https://calendly.com/cdj44y/15min'
+/** Formspree 폼 ID (f/ 뒤) — 설정 시 결과 페이지 이메일 CTA 활성화 */
+export const FORMSPREE_FORM_ID =
+  typeof import.meta.env.VITE_FORMSPREE_ID === 'string' ? import.meta.env.VITE_FORMSPREE_ID.trim() : ''
 // 연락처·온라인 상담 URL (랜딩·결과 페이지 공통)
 export const CONTACT_PHONE = '02-2138-0240'
 /** 비대면 상담 Notion — `VITE_NOTION_REMOTE_CONSULT_URL` 로 덮어쓰기 가능 */

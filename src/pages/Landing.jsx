@@ -2,11 +2,14 @@ import { Link } from 'react-router-dom'
 import { useState } from 'react'
 import { getUser, clearAuth, authFetch } from '../utils/auth.js'
 import {
+  CALENDLY_URL,
   CONTACT_PHONE,
   CONSULT_BUTTON_CLASS,
   DIAGNOSIS_CTA_CLASS,
   NOTION_REMOTE_CONSULT_URL,
 } from '../constants/contact.js'
+import SiteHeader from '../components/common/SiteHeader.jsx'
+import SiteFooter from '../components/common/SiteFooter.jsx'
 
 const FEATURES = [
   {
@@ -72,70 +75,54 @@ export default function Landing() {
   return (
     <div className="min-h-screen bg-paper text-ink">
       <div className="relative mx-auto flex min-h-screen max-w-6xl flex-col px-4 pb-12 pt-6 md:px-8 md:pt-8">
-        {/* Top bar — 밝은 배경 + 검정 글씨 (가독성) */}
-        <header className="flex items-center justify-between rounded-xl border border-zinc-300/80 bg-white px-4 py-3 shadow-card md:px-6">
-          <div className="flex items-center gap-3">
-            <div className="flex h-9 w-9 items-center justify-center rounded-lg border border-ink bg-white text-xs font-extrabold tracking-tight text-ink">
-              L
-            </div>
-            <div className="flex flex-col">
-              <span className="text-[10px] font-semibold uppercase tracking-[0.18em] text-zinc-500">
-                Labor Risk Studio
-              </span>
-              <span className="text-[15px] font-bold tracking-tight text-ink">
-                근로감독 자가진단
-              </span>
-            </div>
-          </div>
-          <div className="hidden items-center gap-4 text-[13px] md:flex">
-            <nav className="flex items-center gap-5 text-ink">
-              <Link to="/info" className="font-medium text-zinc-800 transition hover:text-ink">
-                진단 시작
-              </Link>
-              <Link to="/diagnosis" className="font-medium text-zinc-800 transition hover:text-ink">
-                문항 보기
-              </Link>
-              <Link to="/worker-status" className="font-medium text-zinc-800 transition hover:text-ink">
-                근로자성
-              </Link>
-              <Link to="/result" className="font-medium text-zinc-800 transition hover:text-ink">
-                결과 보기
-              </Link>
-            </nav>
-            <span className="rounded-full border-2 border-zinc-300 bg-zinc-50 px-3 py-1.5 text-[11px] font-medium text-zinc-700">
+        <SiteHeader />
+        <div className="mt-3 flex flex-wrap items-center justify-between gap-3 rounded-xl border border-zinc-200/80 bg-zinc-50/50 px-3 py-2 md:px-4">
+          <nav className="flex flex-wrap items-center gap-4 text-[13px] text-ink">
+            <Link to="/info" className="font-medium text-zinc-800 transition hover:text-ink">
+              진단 시작
+            </Link>
+            <Link to="/diagnosis" className="font-medium text-zinc-800 transition hover:text-ink">
+              문항 보기
+            </Link>
+            <Link to="/result" className="font-medium text-zinc-800 transition hover:text-ink">
+              결과 보기
+            </Link>
+          </nav>
+          <div className="flex flex-wrap items-center gap-3">
+            <span className="rounded-full border border-zinc-300 bg-white px-2.5 py-1 text-[10px] font-medium text-zinc-600">
               Closed Beta
             </span>
             {user ? (
               <div className="flex items-center gap-2">
-                <span className="text-[11px] text-zinc-700 truncate max-w-[120px]" title={user.email}>
+                <span className="max-w-[140px] truncate text-[11px] text-zinc-700" title={user.email}>
                   {user.email}
                 </span>
                 <button
                   type="button"
                   onClick={handleLogout}
-                  className="rounded-full border-2 border-zinc-300 bg-zinc-50 px-3 py-1.5 text-[11px] font-medium text-zinc-700 transition hover:bg-zinc-100"
+                  className="rounded-full border border-zinc-300 bg-white px-3 py-1.5 text-[11px] font-medium text-zinc-700 transition hover:bg-zinc-100"
                 >
                   로그아웃
                 </button>
               </div>
             ) : (
               <>
-                <Link to="/login" className="font-medium text-zinc-700 transition hover:text-ink">
+                <Link to="/login" className="text-[13px] font-medium text-zinc-700 transition hover:text-ink">
                   로그인
                 </Link>
-                <Link to="/signup" className="font-medium text-zinc-700 transition hover:text-ink">
+                <Link to="/signup" className="text-[13px] font-medium text-zinc-700 transition hover:text-ink">
                   회원가입
                 </Link>
                 <Link
                   to="/diagnosis"
                   className={`rounded-full px-4 py-2 text-[11px] font-bold ${DIAGNOSIS_CTA_CLASS}`}
                 >
-                  바로 진단하기
+                  무료로 우리 회사 리스크 확인하기
                 </Link>
               </>
             )}
           </div>
-        </header>
+        </div>
 
         {/* 상단 안내 — 첨부 레이아웃: 좌(주황 아이콘+강조) / 우(보조 문구) */}
         <div className="mt-4 flex flex-col gap-2 md:flex-row md:items-stretch md:gap-3">
@@ -181,14 +168,16 @@ export default function Landing() {
                   to="/diagnosis"
                   className={`inline-flex min-h-[48px] items-center justify-center rounded-full px-9 py-3.5 text-[15px] font-bold ${DIAGNOSIS_CTA_CLASS}`}
                 >
-                  바로 진단하기
+                  무료로 우리 회사 리스크 확인하기
                 </Link>
-                <Link
-                  to="/worker-status"
-                  className="inline-flex min-h-[48px] items-center justify-center rounded-full border-2 border-indigo-600 bg-indigo-50 px-7 py-3.5 text-[15px] font-bold text-indigo-900 transition hover:bg-indigo-100"
+                <a
+                  href={CALENDLY_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`inline-flex min-h-[48px] items-center justify-center rounded-full border-2 border-ink bg-white px-7 py-3.5 text-[15px] font-bold text-ink transition hover:bg-zinc-50`}
                 >
-                  근로자성 · 추정제 대비
-                </Link>
+                  전문가와 15분 무료 상담
+                </a>
                 <Link
                   to="/info"
                   className="inline-flex min-h-[48px] items-center justify-center rounded-full border border-ink bg-white px-7 py-3.5 text-[15px] font-semibold text-ink transition hover:bg-zinc-50"
@@ -457,7 +446,7 @@ export default function Landing() {
                 to="/diagnosis"
                 className={`inline-flex items-center justify-center rounded-full px-8 py-3.5 text-sm font-bold ${DIAGNOSIS_CTA_CLASS}`}
               >
-                바로 진단하기
+                무료로 우리 회사 리스크 확인하기
               </Link>
               <Link
                 to="/info"
@@ -475,14 +464,7 @@ export default function Landing() {
           </section>
         </main>
 
-        <footer className="mt-12 border-t-2 border-zinc-200 pt-8 text-center text-[11px] text-zinc-800 space-y-1">
-          <p>근로감독 자가진단 서비스 · 참고용 자가점검 도구입니다.</p>
-          <p className="max-w-3xl mx-auto text-[10px] text-zinc-700">
-            본 서비스는 노동관계 법령과 공개 자료를 바탕으로 한 일반적인 리스크 점검 도구이며, 개별 사건에 대한
-            법률 자문이나 행정해석을 대체하지 않습니다. 최종적인 법적 책임과 판단은 사용자 및 관계 기관(법원·노동부
-            등)에 있으며, 서비스 제공자는 본 진단 결과만을 근거로 한 의사결정에 대해 법적 책임을 지지 않습니다.
-          </p>
-        </footer>
+        <SiteFooter />
       </div>
     </div>
   )

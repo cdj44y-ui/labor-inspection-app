@@ -1,5 +1,6 @@
 import React from 'react'
 import { Routes, Route } from 'react-router-dom'
+import { SpeedInsights } from '@vercel/speed-insights/react'
 import Landing from './pages/Landing'
 import Info from './pages/Info'
 import Diagnosis from './pages/Diagnosis'
@@ -11,6 +12,8 @@ import Pricing from './pages/Pricing'
 import Payment from './pages/Payment'
 import PaymentSuccess from './pages/PaymentSuccess'
 import PaymentFail from './pages/PaymentFail'
+import About from './pages/About'
+import Contact from './pages/Contact'
 
 class AppErrorBoundary extends React.Component {
   constructor(props) {
@@ -58,6 +61,7 @@ class AppErrorBoundary extends React.Component {
 export default function App() {
   return (
     <AppErrorBoundary>
+    <>
     <Routes>
       <Route path="/" element={<Landing />} />
       <Route path="/login" element={<Login />} />
@@ -65,12 +69,16 @@ export default function App() {
       <Route path="/info" element={<Info />} />
       <Route path="/diagnosis" element={<Diagnosis />} />
       <Route path="/result" element={<Result />} />
+      <Route path="/about" element={<About />} />
+      <Route path="/contact" element={<Contact />} />
       <Route path="/c/consult" element={<ConsultContent />} />
       <Route path="/pricing" element={<Pricing />} />
       <Route path="/payment" element={<Payment />} />
       <Route path="/payment/success" element={<PaymentSuccess />} />
       <Route path="/payment/fail" element={<PaymentFail />} />
     </Routes>
+    <SpeedInsights />
+    </>
     </AppErrorBoundary>
   )
 }
