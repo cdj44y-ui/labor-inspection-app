@@ -81,6 +81,9 @@ export default function Landing() {
             <Link to="/info" className="font-medium text-zinc-800 transition hover:text-ink">
               진단 시작
             </Link>
+            <Link to="/about" className="font-medium text-zinc-800 transition hover:text-ink">
+              전문가 소개
+            </Link>
             <Link to="/diagnosis" className="font-medium text-zinc-800 transition hover:text-ink">
               문항 보기
             </Link>

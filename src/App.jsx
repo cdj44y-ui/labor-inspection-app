@@ -1,5 +1,5 @@
 import React from 'react'
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route, Navigate } from 'react-router-dom'
 import { SpeedInsights } from '@vercel/speed-insights/react'
 import Landing from './pages/Landing'
 import Info from './pages/Info'
@@ -61,24 +61,25 @@ class AppErrorBoundary extends React.Component {
 export default function App() {
   return (
     <AppErrorBoundary>
-    <>
-    <Routes>
-      <Route path="/" element={<Landing />} />
-      <Route path="/login" element={<Login />} />
-      <Route path="/signup" element={<SignUp />} />
-      <Route path="/info" element={<Info />} />
-      <Route path="/diagnosis" element={<Diagnosis />} />
-      <Route path="/result" element={<Result />} />
-      <Route path="/about" element={<About />} />
-      <Route path="/contact" element={<Contact />} />
-      <Route path="/c/consult" element={<ConsultContent />} />
-      <Route path="/pricing" element={<Pricing />} />
-      <Route path="/payment" element={<Payment />} />
-      <Route path="/payment/success" element={<PaymentSuccess />} />
-      <Route path="/payment/fail" element={<PaymentFail />} />
-    </Routes>
-    <SpeedInsights />
-    </>
+      <>
+        <Routes>
+          <Route path="/" element={<Landing />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<SignUp />} />
+          <Route path="/info" element={<Info />} />
+          <Route path="/diagnosis" element={<Diagnosis />} />
+          <Route path="/result" element={<Result />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/about-labor" element={<Navigate to="/about" replace />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/c/consult" element={<ConsultContent />} />
+          <Route path="/pricing" element={<Pricing />} />
+          <Route path="/payment" element={<Payment />} />
+          <Route path="/payment/success" element={<PaymentSuccess />} />
+          <Route path="/payment/fail" element={<PaymentFail />} />
+        </Routes>
+        <SpeedInsights />
+      </>
     </AppErrorBoundary>
   )
 }
