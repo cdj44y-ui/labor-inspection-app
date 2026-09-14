@@ -79,10 +79,7 @@ export default function Landing() {
         <div className="mt-3 flex flex-wrap items-center justify-between gap-3 rounded-xl border border-zinc-200/80 bg-zinc-50/50 px-3 py-2 md:px-4">
           <nav className="flex flex-wrap items-center gap-4 text-[13px] text-ink">
             <Link to="/info" className="font-medium text-zinc-800 transition hover:text-ink">
-              진단 시작
-            </Link>
-            <Link to="/about" className="font-medium text-zinc-800 transition hover:text-ink">
-              전문가 소개
+              사업장 정보 입력
             </Link>
             <Link to="/diagnosis" className="font-medium text-zinc-800 transition hover:text-ink">
               문항 보기
