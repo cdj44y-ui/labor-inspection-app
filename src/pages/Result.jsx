@@ -227,6 +227,7 @@ export default function Result() {
 
           <CTASection
             riskLevelLabel={gradeInfo.label}
+            totalScore={totalScore}
             totalPenaltyManwon={Math.round(penaltyTotals.total)}
             violationSummary={violationSummaryText}
           />
