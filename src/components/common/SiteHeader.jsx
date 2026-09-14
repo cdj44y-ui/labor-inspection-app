@@ -10,7 +10,7 @@ export default function SiteHeader() {
         </span>
         <span className="text-[15px] font-bold tracking-tight text-ink">RISK119</span>
       </Link>
-      <nav className="flex flex-wrap items-center gap-4 text-[13px] md:gap-6">
+      <nav className="flex flex-wrap items-center gap-4 text-[15px] md:gap-6">
         <Link to="/diagnosis" className="font-medium text-zinc-800 transition hover:text-ink">
           자가진단
         </Link>
@@ -22,7 +22,7 @@ export default function SiteHeader() {
         </Link>
         <Link
           to="/diagnosis"
-          className={`hidden rounded-full px-4 py-2 text-xs font-bold sm:inline-flex ${DIAGNOSIS_CTA_CLASS}`}
+          className={`hidden rounded-full px-4 py-2 text-sm font-bold sm:inline-flex ${DIAGNOSIS_CTA_CLASS}`}
         >
           무료로 우리 회사 리스크 확인하기
         </Link>
