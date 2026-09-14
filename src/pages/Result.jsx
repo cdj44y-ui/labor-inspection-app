@@ -120,7 +120,7 @@ export default function Result() {
                   <button
                     type="button"
                     onClick={handleCopy}
-                    className="inline-flex items-center justify-center rounded-full border border-zinc-300 bg-white px-4 py-2 text-[12px] font-semibold text-zinc-800 transition hover:bg-zinc-50"
+                    className="inline-flex items-center justify-center rounded-full border border-zinc-300 bg-white px-4 py-2 text-sm font-semibold text-zinc-800 transition hover:bg-zinc-50"
                   >
                     {copied ? '요약 복사됨' : '요약 복사'}
                   </button>
@@ -167,7 +167,7 @@ export default function Result() {
                 const g = score >= 90 ? 'safe' : score >= 70 ? 'caution' : score >= 50 ? 'warning' : 'danger'
                 return (
                   <div key={i} className="flex items-center gap-3">
-                    <span className="w-32 shrink-0 truncate text-xs font-medium text-zinc-600 md:w-44">
+                    <span className="w-32 shrink-0 truncate text-sm font-medium text-zinc-600 md:w-44">
                       {cat.name}
                     </span>
                     <div className="flex-1 overflow-hidden rounded-full bg-zinc-200">
@@ -176,9 +176,9 @@ export default function Result() {
                         style={{ width: `${score}%` }}
                       />
                     </div>
-                    <span className="w-10 text-right text-xs font-bold text-toss">
+                    <span className="w-10 text-right text-sm font-bold text-toss">
                       {score}
-                      <span className="ml-0.5 text-[11px] text-ink">점</span>
+                      <span className="ml-0.5 text-sm text-ink">점</span>
                     </span>
                   </div>
                 )
@@ -197,21 +197,21 @@ export default function Result() {
                 return (
                   <li
                     key={cid}
-                    className="rounded-2xl border-l-4 border-toss border border-zinc-200 bg-zinc-50 px-3 py-2.5 text-[11px]"
+                    className="rounded-2xl border-l-4 border-toss border border-zinc-200 bg-zinc-50 px-3 py-2.5 text-sm"
                   >
                     <div className="flex items-center justify-between gap-2">
                       <div className="flex items-center gap-2">
-                        <span className="inline-flex h-5 w-5 items-center justify-center rounded-full bg-toss text-[10px] font-bold text-white">
+                        <span className="inline-flex h-5 w-5 items-center justify-center rounded-full bg-toss text-xs font-bold text-white">
                           {idx + 1}
                         </span>
-                        <span className="text-[11px] font-bold text-ink">{cat.name}</span>
+                        <span className="text-sm font-bold text-ink">{cat.name}</span>
                       </div>
-                      <span className="text-[10px] font-semibold text-toss">{score}점</span>
+                      <span className="text-sm font-semibold text-toss">{score}점</span>
                     </div>
                     {issuesInCat.length > 0 && (
                       <ul className="mt-1.5 space-y-1">
                         {issuesInCat.map((item) => (
-                          <li key={item.id} className="text-[10px] text-zinc-700">
+                          <li key={item.id} className="text-sm text-zinc-700">
                             ❌ {item.question} — ⚠️ {item.penaltyDetail} ({item.legalBasis.split(' ')[0]}…)
                           </li>
                         ))}
@@ -256,9 +256,9 @@ export default function Result() {
 
         <section className="mt-8 rounded-3xl border-2 border-zinc-200 bg-white p-6 shadow-edge md:flex md:items-center md:justify-between md:gap-8">
           <div>
-            <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-zinc-600">Labor Risk Partner</p>
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-zinc-600">Labor Risk Partner</p>
             <h2 className="mt-1 text-base font-bold text-ink md:text-lg">노무법인 위너스 조대진 노무사 1:1 리스크 코칭</h2>
-            <p className="mt-2 text-[11px] leading-relaxed text-zinc-800">
+            <p className="mt-2 text-sm leading-relaxed text-zinc-800">
               근로감독 리스크를 실제로 줄이고 싶다면 맞춤 코칭을 받아보세요.
             </p>
           </div>
@@ -270,7 +270,7 @@ export default function Result() {
           </a>
         </section>
 
-        <p className="mt-6 text-center text-[10px] text-zinc-800">
+        <p className="mt-6 text-center text-sm text-zinc-800">
           본 진단 결과는 노동관계 법령과 일반적인 실무를 바탕으로 한 참고용 정보이며, 개별 사건에 대한 법률 자문이나
           행정해석을 대체하지 않습니다. 예상 과태료·벌금은 단순 합산 추정치입니다.
         </p>

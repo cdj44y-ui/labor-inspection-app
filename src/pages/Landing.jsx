@@ -77,7 +77,7 @@ export default function Landing() {
       <div className="relative mx-auto flex min-h-screen max-w-6xl flex-col px-4 pb-12 pt-6 md:px-8 md:pt-8">
         <SiteHeader />
         <div className="mt-3 flex flex-wrap items-center justify-between gap-3 rounded-xl border border-zinc-200/80 bg-zinc-50/50 px-3 py-2 md:px-4">
-          <nav className="flex flex-wrap items-center gap-4 text-[13px] text-ink">
+          <nav className="flex flex-wrap items-center gap-4 text-sm text-ink">
             <Link to="/info" className="font-medium text-zinc-800 transition hover:text-ink">
               사업장 정보 입력
             </Link>
@@ -89,33 +89,33 @@ export default function Landing() {
             </Link>
           </nav>
           <div className="flex flex-wrap items-center gap-3">
-            <span className="rounded-full border border-zinc-300 bg-white px-2.5 py-1 text-[10px] font-medium text-zinc-600">
+            <span className="rounded-full border border-zinc-300 bg-white px-2.5 py-1 text-xs font-medium text-zinc-600">
               Closed Beta
             </span>
             {user ? (
               <div className="flex items-center gap-2">
-                <span className="max-w-[140px] truncate text-[11px] text-zinc-700" title={user.email}>
+                <span className="max-w-[140px] truncate text-sm text-zinc-700" title={user.email}>
                   {user.email}
                 </span>
                 <button
                   type="button"
                   onClick={handleLogout}
-                  className="rounded-full border border-zinc-300 bg-white px-3 py-1.5 text-[11px] font-medium text-zinc-700 transition hover:bg-zinc-100"
+                  className="rounded-full border border-zinc-300 bg-white px-3 py-1.5 text-sm font-medium text-zinc-700 transition hover:bg-zinc-100"
                 >
                   로그아웃
                 </button>
               </div>
             ) : (
               <>
-                <Link to="/login" className="text-[13px] font-medium text-zinc-700 transition hover:text-ink">
+                <Link to="/login" className="text-sm font-medium text-zinc-700 transition hover:text-ink">
                   로그인
                 </Link>
-                <Link to="/signup" className="text-[13px] font-medium text-zinc-700 transition hover:text-ink">
+                <Link to="/signup" className="text-sm font-medium text-zinc-700 transition hover:text-ink">
                   회원가입
                 </Link>
                 <Link
                   to="/diagnosis"
-                  className={`rounded-full px-4 py-2 text-[11px] font-bold ${DIAGNOSIS_CTA_CLASS}`}
+                  className={`rounded-full px-4 py-2 text-sm font-bold ${DIAGNOSIS_CTA_CLASS}`}
                 >
                   무료로 우리 회사 리스크 확인하기
                 </Link>
@@ -135,12 +135,12 @@ export default function Landing() {
                 <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm4 18H6V4h7v5h5v11z" />
               </svg>
             </span>
-            <p className="text-[13px] font-semibold leading-snug text-ink md:text-[14px] md:leading-relaxed">
+            <p className="text-sm font-semibold leading-snug text-ink md:text-base md:leading-relaxed">
               입력하신 진단 데이터는 서버 DB에 저장되지 않는 휘발성 자가진단입니다.
             </p>
           </div>
           <div className="hx-banner-bar flex items-center rounded-lg px-4 py-3 md:max-w-md md:px-5 md:py-3.5">
-            <p className="text-[12px] leading-relaxed text-zinc-800 md:text-[13px]">
+            <p className="text-sm leading-relaxed text-zinc-800 md:text-base">
               브라우저에서만 보관되며, 별도 동의 없이는 제3자에게 공유되지 않습니다.
             </p>
           </div>
@@ -149,7 +149,7 @@ export default function Landing() {
         <main className="mt-10 flex flex-1 flex-col gap-20 md:mt-14">
           <section className="mx-auto grid w-full max-w-5xl gap-8 md:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)] md:items-stretch md:gap-10">
             <div className="rounded-xl border border-zinc-300/90 bg-white p-8 shadow-card md:p-10 md:pt-11">
-              <p className="text-[13px] font-medium leading-snug text-ink md:text-sm">
+              <p className="text-sm font-medium leading-snug text-ink md:text-base">
                 고용노동부 자율점검표 기반 실제 근로감독 사례 반영
               </p>
               <h1 className="mt-5 text-display-xl font-extrabold tracking-tight text-ink md:text-display-2xl lg:text-display-3xl">
@@ -190,7 +190,7 @@ export default function Landing() {
                 {['50여개 핵심 문항', '7개 카테고리', '종합 리포트'].map((t) => (
                   <span
                     key={t}
-                    className="rounded-full border border-ink/85 bg-white px-3.5 py-2 text-[12px] font-medium text-ink"
+                    className="rounded-full border border-ink/85 bg-white px-3.5 py-2 text-sm font-medium text-ink"
                   >
                     {t}
                   </span>
@@ -201,13 +201,13 @@ export default function Landing() {
             <div className="flex flex-col rounded-xl border border-zinc-300/90 bg-white p-6 shadow-card md:p-8">
               <p className="text-[15px] font-semibold tracking-tight text-ink">리스크 스냅샷</p>
               <div className="mt-5 flex flex-1 flex-col rounded-lg border border-zinc-300/80 bg-white p-5">
-                <p className="text-[13px] font-medium text-ink">종합 리스크 레벨</p>
+                <p className="text-sm font-medium text-ink">종합 리스크 레벨</p>
                 <div className="mt-4 flex items-center gap-0 overflow-hidden rounded-full border border-zinc-300 bg-zinc-100">
                   <div
                     className="flex h-10 min-w-0 flex-1 items-center justify-end bg-toss pr-0"
                     style={{ flexBasis: '72%', maxWidth: '72%' }}
                   >
-                    <span className="inline-flex shrink-0 items-center rounded-full bg-[#0a0a0a] px-3 py-1.5 text-[11px] font-bold text-white md:text-xs">
+                    <span className="inline-flex shrink-0 items-center rounded-full bg-[#0a0a0a] px-3 py-1.5 text-sm font-bold text-white md:text-sm">
                       양호 B등급
                     </span>
                   </div>
@@ -223,16 +223,16 @@ export default function Landing() {
                       key={label}
                       className="rounded-lg border border-ink/80 bg-white px-3 py-3 text-center md:px-3.5"
                     >
-                      <p className="text-[11px] font-medium text-zinc-600">{label}</p>
+                      <p className="text-sm font-medium text-zinc-600">{label}</p>
                       <p className="mt-1.5 text-lg font-bold tracking-tight text-toss md:text-xl">
                         {score}
-                        <span className="ml-0.5 text-[13px] text-ink">점</span>
+                        <span className="ml-0.5 text-sm text-ink">점</span>
                       </p>
                     </div>
                   ))}
                 </div>
               </div>
-              <p className="mt-5 text-[12px] leading-relaxed text-zinc-700 md:text-[13px]">
+              <p className="mt-5 text-sm leading-relaxed text-zinc-700 md:text-base">
                 귀 사업장 답변 기반으로 카테고리별 점수와 개선 항목을 정리해 드립니다.
               </p>
             </div>
@@ -240,7 +240,7 @@ export default function Landing() {
 
           {/* Features — 2번 카드 토스 블루 강조 */}
           <section id="features" className="mx-auto w-full max-w-5xl">
-            <p className="text-center text-[10px] font-semibold uppercase tracking-[0.2em] text-zinc-500">
+            <p className="text-center text-xs font-semibold uppercase tracking-[0.2em] text-zinc-500">
               Why This Studio
             </p>
             <h2 className="mt-2 text-center text-2xl font-extrabold tracking-tight text-ink md:text-3xl">
@@ -280,7 +280,7 @@ export default function Landing() {
             id="flow"
             className="mx-auto w-full max-w-4xl rounded-xl border border-zinc-300/90 bg-white p-8 shadow-card md:p-10"
           >
-            <p className="text-center text-[10px] font-semibold uppercase tracking-[0.2em] text-zinc-500">
+            <p className="text-center text-xs font-semibold uppercase tracking-[0.2em] text-zinc-500">
               Flow
             </p>
             <h2 className="mt-2 text-center text-xl font-bold tracking-tight text-ink md:text-2xl">
@@ -292,7 +292,7 @@ export default function Landing() {
                   key={i}
                   className="flex items-center gap-2.5 rounded-full border-2 border-zinc-200 bg-zinc-50 px-4 py-2.5 text-sm font-medium text-ink"
                 >
-                  <span className="step-num-circle flex h-7 w-7 items-center justify-center rounded-full text-[10px] font-bold">
+                  <span className="step-num-circle flex h-7 w-7 items-center justify-center rounded-full text-xs font-bold">
                     {i + 1}
                   </span>
                   <span className="whitespace-nowrap">{step}</span>
@@ -303,7 +303,7 @@ export default function Landing() {
 
           {/* Real cases — 좌측 보더 토스 블루 강조 */}
           <section className="mx-auto w-full max-w-5xl">
-            <p className="text-center text-[10px] font-semibold uppercase tracking-[0.2em] text-zinc-500">
+            <p className="text-center text-xs font-semibold uppercase tracking-[0.2em] text-zinc-500">
               Real Inspection Signals
             </p>
             <h2 className="mt-2 text-center text-2xl font-extrabold tracking-tight text-ink md:text-3xl">
@@ -318,7 +318,7 @@ export default function Landing() {
                   key={c.title}
                   className="flex h-full flex-col rounded-xl border border-zinc-300/90 border-l-4 border-l-ink bg-white p-6 shadow-card"
                 >
-                  <p className="text-[10px] font-semibold uppercase tracking-wider text-zinc-600">
+                  <p className="text-xs font-semibold uppercase tracking-wider text-zinc-600">
                     {c.tag}
                   </p>
                   <h3 className="mt-3 text-base font-bold tracking-tight text-ink">
@@ -327,12 +327,12 @@ export default function Landing() {
                   <p className="mt-2 flex-1 text-[14px] leading-[1.7] text-zinc-800">
                     {c.body}
                   </p>
-                  <div className="mt-4 rounded-xl border border-zinc-200 bg-zinc-50 px-3 py-2.5 text-[11px] text-zinc-800">
+                  <div className="mt-4 rounded-xl border border-zinc-200 bg-zinc-50 px-3 py-2.5 text-sm text-zinc-800">
                     <span className="font-bold text-ink">적발 시 손실 가능성 · </span>
                     {c.loss}
                   </div>
                   {i === 0 && (
-                    <p className="mt-3 text-[10px] text-zinc-600">
+                    <p className="mt-3 text-xs text-zinc-600">
                       * 특정 업체를 지칭하지 않으며, 언론 보도 사례를 일반화한 유형입니다.
                     </p>
                   )}
@@ -352,18 +352,18 @@ export default function Landing() {
                   JD
                 </div>
                 <div className="min-w-0 flex-1 space-y-2">
-                  <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-zinc-600">
+                  <p className="text-xs font-semibold uppercase tracking-[0.2em] text-zinc-600">
                     Labor Risk Partner
                   </p>
                   <h2 className="text-base font-bold tracking-tight text-ink md:text-lg">
                     노무법인 위너스 조대진 노무사 1:1 리스크 코칭
                   </h2>
-                  <p className="text-[11px] leading-relaxed text-zinc-800">
+                  <p className="text-sm leading-relaxed text-zinc-800">
                     근로감독 리스크를 실제로 줄이고 싶다면, HR·산업안전·컨설팅 실무를 두루 경험한 조대진 노무사에게
                     맞춤 코칭을 받아보세요.
                   </p>
                   <div className="inline-flex items-center gap-2 rounded-xl border-2 border-zinc-200 bg-zinc-50 px-3 py-2">
-                    <span className="text-[10px] font-medium uppercase tracking-wider text-zinc-600">
+                    <span className="text-xs font-medium uppercase tracking-wider text-zinc-600">
                       유선 연락처
                     </span>
                     <a
@@ -373,7 +373,7 @@ export default function Landing() {
                       {CONTACT_PHONE}
                     </a>
                   </div>
-                  <ul className="flex flex-wrap gap-1.5 text-[10px] text-zinc-700">
+                  <ul className="flex flex-wrap gap-1.5 text-xs text-zinc-700">
                     <li className="rounded-full border border-zinc-200 bg-zinc-50 px-2.5 py-1">
                       현대카드 · 삼성서울병원 HR팀 출신
                     </li>
@@ -401,7 +401,7 @@ export default function Landing() {
 
           {/* FAQ */}
           <section id="faq" className="mx-auto w-full max-w-3xl">
-            <p className="text-center text-[10px] font-semibold uppercase tracking-[0.2em] text-zinc-500">
+            <p className="text-center text-xs font-semibold uppercase tracking-[0.2em] text-zinc-500">
               FAQ
             </p>
             <h2 className="mt-2 text-center text-2xl font-bold tracking-tight text-ink">
@@ -418,7 +418,7 @@ export default function Landing() {
                     onClick={() => setOpenFaq(openFaq === i ? null : i)}
                   >
                     <span className="text-[15px] font-semibold leading-snug text-ink">{item.q}</span>
-                    <span className="text-xs font-medium text-zinc-700">
+                    <span className="text-sm font-medium text-zinc-700">
                       {openFaq === i ? '접기' : '펼치기'}
                     </span>
                   </button>

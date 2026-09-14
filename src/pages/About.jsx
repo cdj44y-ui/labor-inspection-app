@@ -72,7 +72,7 @@ export default function About() {
                 />
               </div>
               <div className="min-w-0 flex-1 text-center sm:text-left">
-                <p className="mb-1 text-[12px] font-semibold" style={{ color: PRIMARY }}>
+                <p className="mb-1 text-sm font-semibold" style={{ color: PRIMARY }}>
                   {E.affiliation}
                 </p>
                 <h1 className="mb-3 text-[28px] font-semibold tracking-tight sm:text-[32px]" style={{ color: PRIMARY }}>
@@ -82,7 +82,7 @@ export default function About() {
                   {E.credentials.map((c) => (
                     <span
                       key={c}
-                      className="inline-block rounded-full border border-zinc-200 px-3 py-1.5 text-[12px] font-medium"
+                      className="inline-block rounded-full border border-zinc-200 px-3 py-1.5 text-sm font-medium"
                       style={{ background: '#F0F4F8', color: '#2E75B6' }}
                     >
                       {c}
@@ -93,7 +93,7 @@ export default function About() {
                   {E.career.map((x) => (
                     <span
                       key={x.company}
-                      className="inline-flex items-center gap-1.5 rounded-full border border-zinc-300 bg-white px-3 py-1.5 text-[13px] text-ink"
+                      className="inline-flex items-center gap-1.5 rounded-full border border-zinc-300 bg-white px-3 py-1.5 text-sm text-ink"
                     >
                       <span aria-hidden>{x.icon}</span>
                       <span className="font-medium">{x.company}</span>
@@ -125,7 +125,7 @@ export default function About() {
                   <h3 className="text-[19px] font-semibold text-ink">{s.area}</h3>
                   <p className="mt-1 text-[14px] italic text-zinc-600">{s.subtitle}</p>
                   <span
-                    className={`mt-3 inline-block rounded-md border px-2.5 py-1 text-[11px] font-semibold ${TONE_BADGE[s.tone]}`}
+                    className={`mt-3 inline-block rounded-md border px-2.5 py-1 text-sm font-semibold ${TONE_BADGE[s.tone]}`}
                   >
                     {s.credentials}
                   </span>
@@ -168,7 +168,7 @@ export default function About() {
                     </span>
                   </div>
                   <p className="mb-2 text-[15px] font-semibold text-ink">{a.label}</p>
-                  <p className="text-[13px] leading-relaxed text-zinc-500">{a.description}</p>
+                  <p className="text-sm leading-relaxed text-zinc-500">{a.description}</p>
                 </div>
               ))}
             </div>
@@ -200,7 +200,7 @@ export default function About() {
             <h2 className="mb-2 text-center text-[22px] font-semibold sm:text-[24px]" style={{ color: PRIMARY }}>
               고객이 말하는 조대진 노무사
             </h2>
-            <p className="mb-10 text-center text-[12px] text-zinc-500">실제 후기 확보 후 교체 예정입니다.</p>
+            <p className="mb-10 text-center text-sm text-zinc-500">실제 후기 확보 후 교체 예정입니다.</p>
             <div className="grid gap-4 md:grid-cols-3">
               {E.testimonials.map((t, i) => (
                 <blockquote
@@ -257,7 +257,7 @@ export default function About() {
                     15분 무료 상담 예약하기
                   </a>
                 </div>
-                <p className="mb-4 text-[12px] text-white/70">
+                <p className="mb-4 text-sm text-white/70">
                   FREE119(근로자성) 진단은{' '}
                   <a
                     href={`${FREE119_SITE_URL}/diagnosis`}
@@ -269,7 +269,7 @@ export default function About() {
                   </a>
                   에서 이용할 수 있습니다.
                 </p>
-                <div className="flex flex-col items-center justify-center gap-3 text-[13px] text-white/90 sm:flex-row sm:gap-6">
+                <div className="flex flex-col items-center justify-center gap-3 text-sm text-white/90 sm:flex-row sm:gap-6">
                   <a href={telHref} className="inline-flex items-center gap-1.5 font-medium hover:underline">
                     {CONTACT_PHONE}
                   </a>
