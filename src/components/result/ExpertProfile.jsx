@@ -27,15 +27,15 @@ export default function ExpertProfile() {
           </div>
         )}
         <div className="min-w-0 flex-1">
-          <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-zinc-500">전문가</p>
+          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-zinc-500">전문가</p>
           <h2 className="mt-0.5 text-base font-extrabold text-ink md:text-lg">
             {E.name} {E.title} · 안전공학 박사
           </h2>
-          <p className="mt-1 text-[11px] text-zinc-700">안전 × 노동법 × HR 트라이브리드</p>
-          <p className="mt-1 text-[11px] text-zinc-700">{E.miniCardLine}</p>
+          <p className="mt-1 text-sm text-zinc-700">안전 × 노동법 × HR 트라이브리드</p>
+          <p className="mt-1 text-sm text-zinc-700">{E.miniCardLine}</p>
           <Link
             to="/about"
-            className="mt-2 inline-block text-[11px] font-semibold text-toss underline decoration-toss/40"
+            className="mt-2 inline-block text-sm font-semibold text-toss underline decoration-toss/40"
           >
             프로필 더 보기 →
           </Link>

@@ -31,14 +31,14 @@ export default function CTASection({ riskLevelLabel, totalScore, totalPenaltyMan
   return (
     <section className="rounded-3xl border-2 border-toss/30 bg-white p-6 shadow-edge md:p-8">
       <h2 className="text-base font-extrabold text-ink md:text-lg">다음 단계</h2>
-      <p className="mt-1 text-[11px] text-zinc-700">부담이 적은 순서로 단계별로 도와드립니다.</p>
+      <p className="mt-1 text-sm text-zinc-700">부담이 적은 순서로 단계별로 도와드립니다.</p>
 
       <div className="mt-6 space-y-8">
         {/* 1단계 */}
         <div>
           <p className="text-sm font-bold text-ink">📋 1단계: 무료 개선 가이드 받기</p>
           <div className="mt-3 rounded-2xl border border-zinc-200 bg-zinc-50/80 p-4">
-            <ul className="space-y-1 text-[11px] text-zinc-700">
+            <ul className="space-y-1 text-sm text-zinc-700">
               <li>
                 ✓ 귀사 진단 결과({riskLevelLabel} · 예상 부담 약 {totalPenaltyManwon}만원) 기반 맞춤 개선 가이드
               </li>
@@ -59,7 +59,7 @@ export default function CTASection({ riskLevelLabel, totalScore, totalPenaltyMan
         <div>
           <p className="text-sm font-bold text-ink">📞 2단계: 15분 무료 전화상담 예약</p>
           <div className="mt-3 rounded-2xl border border-zinc-200 bg-zinc-50/80 p-4">
-            <p className="text-[11px] leading-relaxed text-zinc-800">
+            <p className="text-sm leading-relaxed text-zinc-800">
               &quot;진단 결과를 바탕으로 핵심 개선 포인트를 15분 안에 짚어드립니다.&quot;
             </p>
             {rootEl ? (
@@ -89,7 +89,7 @@ export default function CTASection({ riskLevelLabel, totalScore, totalPenaltyMan
         <div>
           <p className="text-sm font-bold text-ink">💼 3단계: 근로감독 대비 컨설팅 문의</p>
           <div className="mt-3 rounded-2xl border border-zinc-200 bg-zinc-50/80 p-4">
-            <p className="text-[11px] leading-relaxed text-zinc-800">
+            <p className="text-sm leading-relaxed text-zinc-800">
               &quot;체계적 점검부터 감독관 대응까지, 원스톱으로 준비합니다.&quot;
             </p>
             <Link
