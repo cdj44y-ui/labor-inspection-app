@@ -1,7 +1,7 @@
-import { EXPERT_PROFILE } from '../../data/expert.js'
+import { EXPERT_LABOR } from '../../data/expertLabor.js'
 
 export default function SiteFooter() {
-  const { contact } = EXPERT_PROFILE
+  const { contact } = EXPERT_LABOR
   return (
     <footer className="mt-12 border-t-2 border-zinc-200 pt-8 text-center text-sm text-zinc-800 space-y-2">
       <p className="font-semibold text-ink">RISK119 근로감독 자가진단</p>
