@@ -101,24 +101,6 @@ export const EXPERT_LABOR = {
   triadFooter:
     '이 세 영역은 따로 움직이지 않습니다. 사고(안전)가 나면 책임(법)이 따르고, 책임을 줄이려면 성과(HR)가 바뀌어야 합니다.',
 
-  testimonials: [
-    {
-      quote: '사전에 리스크의 크기와 비용을 알 수 있어서 좋았어요.',
-      author: '김○○ 대표',
-      company: '제조업 / 직원 38명',
-    },
-    {
-      quote: '무엇을 먼저 해야할지 정확히 가이드해줘서 좋았어요.',
-      author: '김○○ 대표',
-      company: '제조업 / 직원 38명',
-    },
-    {
-      quote: '세 번째 고객 후기 자리입니다. 다른 업종의 사례를 넣으면 타겟 범위가 넓어집니다.',
-      author: '○○○ 대표',
-      company: '추후 교체 — 다른 업종 후기 추가 권장',
-    },
-  ],
-
   contact: {
     phone: '02-2138-0240',
     email: 'cdj44y@gmail.com',

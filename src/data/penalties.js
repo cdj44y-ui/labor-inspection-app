@@ -88,12 +88,12 @@ const INDEX_OVERRIDES = {
     penaltyType: 'fine',
   },
   1: {
-    penaltyDetail: '500만원 이하 과태료',
-    legalBasis: '근로기준법 제17조',
+    penaltyDetail: '500만원 이하 벌금',
+    legalBasis: '근로기준법 제17조, 제114조',
     penaltyAmount: 500,
-    fineManwon: 0,
-    adminManwon: 500,
-    penaltyType: 'penalty',
+    fineManwon: 500,
+    adminManwon: 0,
+    penaltyType: 'fine',
   },
   5: {
     penaltyDetail: '500만원 이하 과태료',
@@ -105,7 +105,7 @@ const INDEX_OVERRIDES = {
   },
   8: {
     penaltyDetail: '미지급 임금 + 동일금액 부가금 + 형사처벌 가능',
-    legalBasis: '근로기준법 제43조, 제109조',
+    legalBasis: '최저임금법 제6조, 제28조',
     penaltyAmount: 2000,
     fineManwon: 2000,
     adminManwon: 0,
@@ -128,11 +128,11 @@ const INDEX_OVERRIDES = {
     penaltyType: 'fine',
   },
   29: {
-    penaltyDetail: '5,000만원 이하 과태료',
-    legalBasis: '산업안전보건법 제175조',
-    penaltyAmount: 5000,
+    penaltyDetail: '최대 1,000만원 이하 과태료(최초 500만원, 반복 시 최대 1,000만원)',
+    legalBasis: '산업안전보건법 제36조, 시행령 별표35(과태료 부과기준)',
+    penaltyAmount: 1000,
     fineManwon: 0,
-    adminManwon: 5000,
+    adminManwon: 1000,
     penaltyType: 'penalty',
   },
   48: {
