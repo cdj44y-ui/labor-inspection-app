@@ -4,7 +4,7 @@ import SiteHeader from '../components/common/SiteHeader.jsx'
 import SiteFooter from '../components/common/SiteFooter.jsx'
 import TallyEmbed from '../components/common/TallyEmbed.jsx'
 import { CONTACT_PHONE } from '../constants/contact.js'
-import { EXPERT_PROFILE } from '../data/expert.js'
+import { EXPERT_LABOR } from '../data/expertLabor.js'
 import { buildTallyEmbedUrl } from '../utils/tally.js'
 import { CATEGORIES } from '../data/questions.js'
 import { getTotalScore, getGrade, GRADE_LABELS } from '../utils/score.js'
@@ -98,8 +98,8 @@ export default function Contact() {
               {CONTACT_PHONE}
             </a>{' '}
             또는 이메일{' '}
-            <a href={`mailto:${EXPERT_PROFILE.contact.email}`} className="font-medium text-toss underline">
-              {EXPERT_PROFILE.contact.email}
+            <a href={`mailto:${EXPERT_LABOR.contact.email}`} className="font-medium text-toss underline">
+              {EXPERT_LABOR.contact.email}
             </a>
             로 문의해 주세요.
           </p>
