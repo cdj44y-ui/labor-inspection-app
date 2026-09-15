@@ -1,7 +1,5 @@
-import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { PopupButton } from 'react-calendly'
-import { CALENDLY_URL, DIAGNOSIS_CTA_CLASS, CONSULT_BUTTON_CLASS } from '../../constants/contact.js'
+import { DIAGNOSIS_CTA_CLASS, CONSULT_BUTTON_CLASS } from '../../constants/contact.js'
 import { buildTallyUrl } from '../../utils/tally.js'
 
 /**
@@ -13,19 +11,18 @@ import { buildTallyUrl } from '../../utils/tally.js'
  * }} props
  */
 export default function CTASection({ riskLevelLabel, totalScore, totalPenaltyManwon, violationSummary }) {
-  const [rootEl, setRootEl] = useState(/** @type {HTMLElement | null} */ (null))
-
-  useEffect(() => {
-    setRootEl(document.getElementById('root'))
-  }, [])
-
-  const calendlyBaseUrl = CALENDLY_URL.replace(/\?.*$/, '')
-
   const tallyGuideUrl = buildTallyUrl({
     score: totalScore != null ? `${totalScore}점` : undefined,
     grade: riskLevelLabel,
     area: violationSummary,
     items: `예상 과태료·벌금 합계 약 ${totalPenaltyManwon}만원`,
+  })
+
+  const tallyCallUrl = buildTallyUrl({
+    score: totalScore != null ? `${totalScore}점` : undefined,
+    grade: riskLevelLabel,
+    area: violationSummary,
+    items: `15분 전화상담 요청 · 예상 부담 약 ${totalPenaltyManwon}만원`,
   })
 
   return (
@@ -57,31 +54,19 @@ export default function CTASection({ riskLevelLabel, totalScore, totalPenaltyMan
 
         {/* 2단계 */}
         <div>
-          <p className="text-sm font-bold text-ink">📞 2단계: 15분 무료 전화상담 예약</p>
+          <p className="text-sm font-bold text-ink">📞 2단계: 15분 무료 전화상담 요청</p>
           <div className="mt-3 rounded-2xl border border-zinc-200 bg-zinc-50/80 p-4">
             <p className="text-sm leading-relaxed text-zinc-800">
               &quot;진단 결과를 바탕으로 핵심 개선 포인트를 15분 안에 짚어드립니다.&quot;
             </p>
-            {rootEl ? (
-              <div className="mt-3">
-                <PopupButton
-                  url={calendlyBaseUrl}
-                  rootElement={rootEl}
-                  text="무료 상담 예약하기"
-                  className={DIAGNOSIS_CTA_CLASS + ' w-full justify-center px-6 py-3 text-sm sm:w-auto'}
-                  utm={{ utmSource: 'risk119', utmContent: riskLevelLabel, utmCampaign: 'result_cta' }}
-                />
-              </div>
-            ) : (
-              <a
-                href={`${calendlyBaseUrl}?utm_source=risk119&utm_content=${encodeURIComponent(riskLevelLabel)}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={DIAGNOSIS_CTA_CLASS + ' mt-3 inline-flex w-full justify-center px-6 py-3 text-sm sm:w-auto'}
-              >
-                무료 상담 예약하기
-              </a>
-            )}
+            <a
+              href={tallyCallUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={DIAGNOSIS_CTA_CLASS + ' mt-3 inline-flex w-full justify-center px-6 py-3 text-sm sm:w-auto'}
+            >
+              전화상담 요청하기
+            </a>
           </div>
         </div>
 
