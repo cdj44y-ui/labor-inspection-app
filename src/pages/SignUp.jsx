@@ -52,10 +52,10 @@ export default function SignUp() {
         <header className="mb-6 flex items-center justify-between rounded-2xl border-2 border-zinc-200 bg-white px-4 py-3 shadow-edge md:mb-8 md:px-6">
           <Link to="/" className="flex items-center gap-3 text-ink hover:opacity-80 transition">
             <span className="flex h-9 w-9 items-center justify-center rounded-xl border-2 border-ink bg-white text-xs font-bold text-ink">
-              L
+              R
             </span>
             <span className="hidden text-[11px] font-semibold uppercase tracking-[0.18em] text-zinc-600 md:inline">
-              Labor Risk Studio
+              RISK119
             </span>
           </Link>
           <Link

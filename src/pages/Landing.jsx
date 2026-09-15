@@ -7,6 +7,7 @@ import {
   CONSULT_BUTTON_CLASS,
   DIAGNOSIS_CTA_CLASS,
 } from '../constants/contact.js'
+import { EXPERT_LABOR } from '../data/expertLabor.js'
 import SiteHeader from '../components/common/SiteHeader.jsx'
 import SiteFooter from '../components/common/SiteFooter.jsx'
 
@@ -347,9 +348,11 @@ export default function Landing() {
           >
             <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between md:gap-8">
               <div className="flex items-start gap-4">
-                <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl border-2 border-ink bg-white text-sm font-bold text-ink md:h-16 md:w-16">
-                  JD
-                </div>
+                <img
+                  src={EXPERT_LABOR.photo}
+                  alt="조대진 노무사 프로필"
+                  className="h-14 w-14 shrink-0 rounded-2xl border-2 border-ink object-cover object-top md:h-16 md:w-16"
+                />
                 <div className="min-w-0 flex-1 space-y-2">
                   <p className="text-xs font-semibold uppercase tracking-[0.2em] text-zinc-600">
                     Labor Risk Partner
@@ -453,7 +456,7 @@ export default function Landing() {
               </Link>
               <Link
                 to="/diagnosis"
-                className={`inline-flex items-center justify-center rounded-full px-5 py-3.5 text-sm font-medium ${DIAGNOSIS_CTA_CLASS}`}
+                className="inline-flex items-center justify-center rounded-full border border-zinc-300 bg-white px-5 py-3.5 text-sm font-medium text-zinc-600 transition hover:bg-zinc-50"
               >
                 이미 진단 중이에요
               </Link>

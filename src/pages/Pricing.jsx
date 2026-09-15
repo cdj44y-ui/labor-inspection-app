@@ -1,7 +1,7 @@
 import { Link, useNavigate } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { getPlans } from '../api/plans'
-import { DIAGNOSIS_CTA_CLASS } from '../constants/contact.js'
+import { DIAGNOSIS_CTA_CLASS, CONSULT_BUTTON_CLASS } from '../constants/contact.js'
 
 export default function Pricing() {
   const [plans, setPlans] = useState([])
@@ -38,8 +38,17 @@ export default function Pricing() {
           </div>
         )}
         {error && (
-          <div className="rounded-2xl border-2 border-red-200 bg-red-50 p-6 text-center text-sm text-red-800">
-            {error}
+          <div className="rounded-2xl border-2 border-zinc-200 bg-white p-8 text-center">
+            <p className="text-sm font-semibold text-ink">결제 시스템을 준비 중입니다.</p>
+            <p className="mt-2 text-sm text-zinc-600">
+              지금은 요금제 결제 대신 상담 신청을 통해 안내받으실 수 있어요.
+            </p>
+            <Link
+              to="/contact"
+              className={CONSULT_BUTTON_CLASS + ' mt-5 inline-flex px-6 py-3 text-sm font-bold no-underline visited:text-white'}
+            >
+              상담 신청하기
+            </Link>
           </div>
         )}
         {!loading && !error && plans.length === 0 && (

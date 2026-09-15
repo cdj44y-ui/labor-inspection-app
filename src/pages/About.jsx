@@ -198,31 +198,11 @@ export default function About() {
 
           <section className="mt-6 rounded-2xl border border-zinc-200 bg-zinc-50/80 py-12 sm:py-14">
             <h2 className="mb-2 text-center text-[22px] font-semibold sm:text-[24px]" style={{ color: PRIMARY }}>
-              고객이 말하는 조대진 노무사
+              고객 후기, 순차적으로 채워가겠습니다
             </h2>
-            <p className="mb-10 text-center text-sm text-zinc-500">실제 후기 확보 후 교체 예정입니다.</p>
-            <div className="grid gap-4 md:grid-cols-3">
-              {E.testimonials.map((t, i) => (
-                <blockquote
-                  key={i}
-                  className="relative rounded-xl border border-zinc-200 bg-white p-8 pt-10 shadow-sm"
-                >
-                  <span
-                    className="absolute left-5 top-4 font-serif text-[48px] leading-none text-zinc-200 select-none"
-                    aria-hidden
-                  >
-                    &ldquo;
-                  </span>
-                  <p className="relative z-[1] mb-6 text-[15px] italic leading-[1.8] text-zinc-800">
-                    &ldquo;{t.quote}&rdquo;
-                  </p>
-                  <footer className="text-[14px]">
-                    <p className="font-semibold text-zinc-600">{t.author}</p>
-                    <p className="mt-0.5 text-zinc-500">{t.company}</p>
-                  </footer>
-                </blockquote>
-              ))}
-            </div>
+            <p className="mx-auto max-w-lg text-center text-sm leading-relaxed text-zinc-600">
+              실제 자문·컨설팅을 진행한 기업의 후기를 확보하는 대로 이 자리에 정직하게 공개하겠습니다. 지금은 위 실적 수치와 자가진단 결과로 먼저 확인해 주세요.
+            </p>
           </section>
 
           <section className="mt-6 pb-8">

@@ -92,10 +92,10 @@ export default function Diagnosis() {
         <div className="mb-4 flex flex-col gap-3 rounded-2xl border-2 border-zinc-200 bg-white px-4 py-3 shadow-edge md:mb-6 md:flex-row md:items-center md:justify-between md:px-6">
           <div className="flex items-center gap-3 text-xs">
             <span className="flex h-9 w-9 items-center justify-center rounded-xl border-2 border-ink bg-white text-[11px] font-bold text-ink">
-              D
+              R
             </span>
             <span className="section-label text-[11px] font-semibold uppercase tracking-[0.18em]">
-              Diagnosis Flow
+              RISK119
             </span>
           </div>
           <div className="w-full md:w-2/3">
