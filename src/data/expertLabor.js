@@ -104,6 +104,7 @@ export const EXPERT_LABOR = {
   contact: {
     phone: '02-2138-0240',
     email: 'cdj44y@gmail.com',
+    address: '서울시 강서구 마곡중앙로 171, 304호',
     calendly: 'https://calendly.com/cdj44y/15min',
     blog: '',
   },
