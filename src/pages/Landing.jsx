@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom'
 import { useState } from 'react'
-import { getUser, clearAuth, authFetch } from '../utils/auth.js'
 import {
   CALENDLY_URL,
   CONTACT_PHONE,
@@ -36,7 +35,7 @@ const FAQ_ITEMS = [
   { q: '진단에 얼마나 걸리나요?', a: '약 5~10분 정도 소요됩니다. 50여개 핵심 문항에 답하시면 됩니다.' },
   {
     q: '진단 결과는 저장되나요?',
-    a: '현재 버전에서는 브라우저에만 임시 저장되며, 서버 DB에는 저장되지 않습니다. 상담을 신청할 경우에만 암호화 저장 후 노무사에게 공유됩니다.',
+    a: '현재 버전에서는 브라우저에만 임시 저장되며, 서버 DB에는 저장되지 않습니다. 상담을 신청할 경우에만 입력하신 내용이 담당 노무사에게 전달됩니다.',
   },
   { q: '어떤 사업장이 이용할 수 있나요?', a: '중소기업, 개인사업자, 스타트업 등 상시 근로자가 있는 사업장이면 이용 가능합니다.' },
 ]
@@ -64,13 +63,6 @@ const CASES = [
 
 export default function Landing() {
   const [openFaq, setOpenFaq] = useState(null)
-  const [user, setUser] = useState(() => getUser())
-
-  const handleLogout = () => {
-    authFetch('/api/auth/logout', { method: 'POST' }).catch(() => {})
-    clearAuth()
-    setUser(null)
-  }
 
   return (
     <div className="min-h-screen bg-paper text-ink">
@@ -92,35 +84,12 @@ export default function Landing() {
             <span className="rounded-full border border-zinc-300 bg-white px-2.5 py-1 text-xs font-medium text-zinc-600">
               Closed Beta
             </span>
-            {user ? (
-              <div className="flex items-center gap-2">
-                <span className="max-w-[140px] truncate text-sm text-zinc-700" title={user.email}>
-                  {user.email}
-                </span>
-                <button
-                  type="button"
-                  onClick={handleLogout}
-                  className="rounded-full border border-zinc-300 bg-white px-3 py-1.5 text-sm font-medium text-zinc-700 transition hover:bg-zinc-100"
-                >
-                  로그아웃
-                </button>
-              </div>
-            ) : (
-              <>
-                <Link to="/login" className="text-sm font-medium text-zinc-700 transition hover:text-ink">
-                  로그인
-                </Link>
-                <Link to="/signup" className="text-sm font-medium text-zinc-700 transition hover:text-ink">
-                  회원가입
-                </Link>
-                <Link
-                  to="/diagnosis"
-                  className={`rounded-full px-4 py-2 text-sm font-bold ${DIAGNOSIS_CTA_CLASS}`}
-                >
-                  무료로 우리 회사 리스크 확인하기
-                </Link>
-              </>
-            )}
+            <Link
+              to="/diagnosis"
+              className={`rounded-full px-4 py-2 text-sm font-bold ${DIAGNOSIS_CTA_CLASS}`}
+            >
+              무료로 우리 회사 리스크 확인하기
+            </Link>
           </div>
         </div>
 
