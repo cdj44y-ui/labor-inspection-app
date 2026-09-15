@@ -6,7 +6,6 @@ import {
   CONTACT_PHONE,
   CONSULT_BUTTON_CLASS,
   DIAGNOSIS_CTA_CLASS,
-  NOTION_REMOTE_CONSULT_URL,
 } from '../constants/contact.js'
 import SiteHeader from '../components/common/SiteHeader.jsx'
 import SiteFooter from '../components/common/SiteFooter.jsx'
@@ -387,14 +386,12 @@ export default function Landing() {
                 </div>
               </div>
               <div className="flex flex-col gap-2 md:shrink-0 md:basis-44">
-                <a
-                  href={NOTION_REMOTE_CONSULT_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <Link
+                  to="/contact"
                   className={CONSULT_BUTTON_CLASS + ' no-underline visited:text-white text-center'}
                 >
                   비대면 상담
-                </a>
+                </Link>
               </div>
             </div>
           </section>

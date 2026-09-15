@@ -6,7 +6,6 @@ import {
   CONTACT_PHONE,
   CONSULT_BUTTON_CLASS,
   DIAGNOSIS_CTA_CLASS,
-  NOTION_REMOTE_CONSULT_URL,
 } from '../constants/contact.js'
 import SiteHeader from '../components/common/SiteHeader.jsx'
 import SiteFooter from '../components/common/SiteFooter.jsx'
@@ -124,14 +123,12 @@ export default function Result() {
                   >
                     {copied ? '요약 복사됨' : '요약 복사'}
                   </button>
-                  <a
-                    href={NOTION_REMOTE_CONSULT_URL}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                  <Link
+                    to="/contact"
                     className={CONSULT_BUTTON_CLASS + ' no-underline visited:text-white text-center text-sm'}
                   >
-                    비대면 상담(자문 요청)
-                  </a>
+                    상담 신청하기
+                  </Link>
                 </div>
               </div>
               <RiskGauge score={totalScore} grade={grade} />
