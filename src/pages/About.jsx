@@ -254,6 +254,7 @@ export default function About() {
                   <a href={`mailto:${E.contact.email}`} className="break-all hover:underline">
                     {E.contact.email}
                   </a>
+                  <span className="text-white/80">{E.contact.address}</span>
                 </div>
               </div>
             </div>
