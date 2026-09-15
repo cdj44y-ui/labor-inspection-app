@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://risk119.site/sitemap.xml
