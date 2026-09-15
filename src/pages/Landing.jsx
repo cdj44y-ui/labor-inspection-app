@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom'
 import { useState } from 'react'
 import {
-  CALENDLY_URL,
   CONTACT_PHONE,
   CONSULT_BUTTON_CLASS,
   DIAGNOSIS_CTA_CLASS,
@@ -139,14 +138,12 @@ export default function Landing() {
                 >
                   무료로 우리 회사 리스크 확인하기
                 </Link>
-                <a
-                  href={CALENDLY_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={`inline-flex min-h-[48px] items-center justify-center rounded-full border-2 border-ink bg-white px-7 py-3.5 text-[15px] font-bold text-ink transition hover:bg-zinc-50`}
+                <Link
+                  to="/contact"
+                  className="inline-flex min-h-[48px] items-center justify-center rounded-full border-2 border-ink bg-white px-7 py-3.5 text-[15px] font-bold text-ink transition hover:bg-zinc-50"
                 >
-                  전문가와 15분 무료 상담
-                </a>
+                  전문가와 상담 신청하기
+                </Link>
                 <Link
                   to="/info"
                   className="inline-flex min-h-[48px] items-center justify-center rounded-full border border-ink bg-white px-7 py-3.5 text-[15px] font-semibold text-ink transition hover:bg-zinc-50"

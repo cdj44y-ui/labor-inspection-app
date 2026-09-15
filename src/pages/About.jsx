@@ -3,7 +3,7 @@ import { Link, useLocation } from 'react-router-dom'
 import SiteHeader from '../components/common/SiteHeader.jsx'
 import SiteFooter from '../components/common/SiteFooter.jsx'
 import { EXPERT_LABOR } from '../data/expertLabor.js'
-import { SITE_URL, FREE119_SITE_URL, CONTACT_PHONE, CALENDLY_URL } from '../constants/contact.js'
+import { SITE_URL, FREE119_SITE_URL, CONTACT_PHONE } from '../constants/contact.js'
 
 const PRIMARY = '#1B3A5C'
 const ACCENT = '#FF6B35'
@@ -227,15 +227,13 @@ export default function About() {
                   >
                     근로감독 자가진단 시작하기
                   </Link>
-                  <a
-                    href={CALENDLY_URL}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                  <Link
+                    to="/contact"
                     className="inline-flex min-h-[48px] items-center justify-center rounded-full px-6 text-[15px] font-semibold text-white transition hover:opacity-95"
                     style={{ background: ACCENT }}
                   >
-                    15분 무료 상담 예약하기
-                  </a>
+                    상담 신청하기
+                  </Link>
                 </div>
                 <p className="mb-4 text-sm text-white/70">
                   FREE119(근로자성) 진단은{' '}
