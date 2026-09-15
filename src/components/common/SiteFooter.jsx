@@ -17,6 +17,7 @@ export default function SiteFooter() {
           {contact.email}
         </a>
       </p>
+      <p className="text-zinc-600">{contact.address}</p>
       <p className="text-xs text-zinc-600">© {new Date().getFullYear()} 조대진 노무사. All rights reserved.</p>
       <p className="max-w-3xl mx-auto text-sm text-zinc-700">
         본 서비스는 노동관계 법령과 공개 자료를 바탕으로 한 일반적인 리스크 점검 도구이며, 개별 사건에 대한 법률
