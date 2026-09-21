@@ -281,7 +281,7 @@ export const QUESTIONS = [
     categoryId: 5,
     text: '육아기 근로시간 단축을 허용하고 있습니까?',
     options: ['예', '아니오', '해당없음'],
-    law: '남녀고용평등법 제22조(육아기 근로시간 단축)',
+    law: '남녀고용평등법 제19조의2(육아기 근로시간 단축)',
   },
   {
     categoryId: 5,
