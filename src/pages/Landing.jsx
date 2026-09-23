@@ -341,7 +341,7 @@ export default function Landing() {
                       {CONTACT_PHONE}
                     </a>
                   </div>
-                  <ul className="flex flex-wrap gap-1.5 text-xs text-zinc-700">
+                  <ul className="flex flex-wrap gap-1.5 text-sm text-zinc-700">
                     <li className="rounded-full border border-zinc-200 bg-zinc-50 px-2.5 py-1">
                       현대카드 · 삼성서울병원 HR팀 출신
                     </li>
