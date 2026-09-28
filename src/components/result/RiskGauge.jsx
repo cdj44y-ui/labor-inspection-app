@@ -1,10 +1,10 @@
 import { GRADE_LABELS } from '../../utils/score.js'
 
 const TRAFFIC = {
-  safe: { emoji: '🟢', label: '안전', bar: 'bg-safe' },
-  caution: { emoji: '🟡', label: '주의', bar: 'bg-caution' },
-  warning: { emoji: '🟠', label: '위험', bar: 'bg-warning' },
-  danger: { emoji: '🔴', label: '고위험', bar: 'bg-danger' },
+  safe: { emoji: '🟢', label: '안전', bar: 'bg-safe', ring: '#16a34a' },
+  caution: { emoji: '🟡', label: '주의', bar: 'bg-caution', ring: '#ca8a04' },
+  warning: { emoji: '🟠', label: '위험', bar: 'bg-warning', ring: '#ea580c' },
+  danger: { emoji: '🔴', label: '고위험', bar: 'bg-danger', ring: '#dc2626' },
 }
 
 /**
@@ -15,27 +15,44 @@ export default function RiskGauge({ score, grade }) {
   const t = TRAFFIC[grade] || TRAFFIC.warning
   const width = Math.min(100, Math.max(0, score))
 
+  const size = 132
+  const stroke = 11
+  const radius = (size - stroke) / 2
+  const circumference = 2 * Math.PI * radius
+  const dashOffset = circumference * (1 - width / 100)
+
   return (
     <div className="w-full max-w-md">
-      <div className="flex items-center gap-2 text-lg font-extrabold text-ink">
-        <span aria-hidden>{t.emoji}</span>
-        <span>
-          위험 등급: <span className="text-toss">{t.label}</span>
-        </span>
-      </div>
-      <p className="mt-1 text-xs text-zinc-600">{g.message}</p>
-      <div className="mt-4 border-t border-zinc-200 pt-4">
-        <p className="text-sm font-bold text-ink">
-          종합 위험 점수:{' '}
-          <span className="text-toss">
-            {score}/100
-          </span>
-        </p>
-        <div className="mt-2 h-3 w-full overflow-hidden rounded-full bg-zinc-200">
-          <div
-            className={`h-full rounded-full transition-all duration-500 ${t.bar}`}
-            style={{ width: `${width}%` }}
-          />
+      <div className="flex items-center gap-5">
+        <div className="relative shrink-0" style={{ width: size, height: size }}>
+          <svg width={size} height={size} viewBox={`0 0 ${size} ${size}`} style={{ transform: 'rotate(-90deg)' }}>
+            <circle cx={size / 2} cy={size / 2} r={radius} fill="none" stroke="#e4e4e7" strokeWidth={stroke} />
+            <circle
+              cx={size / 2}
+              cy={size / 2}
+              r={radius}
+              fill="none"
+              stroke={t.ring}
+              strokeWidth={stroke}
+              strokeLinecap="round"
+              strokeDasharray={circumference}
+              strokeDashoffset={dashOffset}
+              style={{ transition: 'stroke-dashoffset 0.7s ease' }}
+            />
+          </svg>
+          <div className="absolute inset-0 flex flex-col items-center justify-center">
+            <span className="text-[28px] font-extrabold leading-none text-ink">{score}</span>
+            <span className="mt-1 text-[11px] font-semibold text-zinc-500">/ 100점</span>
+          </div>
+        </div>
+        <div className="min-w-0 flex-1">
+          <div className="flex items-center gap-2 text-lg font-extrabold text-ink">
+            <span aria-hidden>{t.emoji}</span>
+            <span>
+              위험 등급: <span className="text-toss">{t.label}</span>
+            </span>
+          </div>
+          <p className="mt-1.5 text-xs leading-relaxed text-zinc-600">{g.message}</p>
         </div>
       </div>
     </div>
