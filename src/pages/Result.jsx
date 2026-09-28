@@ -15,6 +15,7 @@ import CategoryCard from '../components/result/CategoryCard.jsx'
 import InspectionScenario from '../components/result/InspectionScenario.jsx'
 import ExpertProfile from '../components/result/ExpertProfile.jsx'
 import CTASection from '../components/result/CTASection.jsx'
+import LegalUpdateNotice from '../components/result/LegalUpdateNotice.jsx'
 import {
   buildEnrichedItems,
   filterViolations,
@@ -142,6 +143,8 @@ export default function Result() {
               />
             </div>
           </section>
+
+          <LegalUpdateNotice />
 
           {violations.length > 0 && (
             <section className="space-y-4">
