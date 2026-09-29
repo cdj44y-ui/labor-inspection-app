@@ -212,7 +212,7 @@ export default function Result() {
                       <ul className="mt-1.5 space-y-1">
                         {issuesInCat.map((item) => (
                           <li key={item.id} className="text-sm text-zinc-700">
-                            ❌ {item.question} — ⚠️ {item.penaltyDetail} ({item.legalBasis.split(' ')[0]}…)
+                            ❌ {item.question} — ⚠️ {item.penaltyDetail} ({item.legalBasis})
                           </li>
                         ))}
                       </ul>

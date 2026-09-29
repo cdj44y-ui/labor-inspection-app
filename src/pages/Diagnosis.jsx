@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { QUESTIONS, CATEGORIES } from '../data/questions.js'
+import { getPenaltyMeta } from '../data/penalties.js'
 import { DIAGNOSIS_CTA_CLASS } from '../constants/contact.js'
 
 const STORAGE_KEY = 'labor_diagnosis_business'
@@ -41,6 +42,7 @@ export default function Diagnosis() {
   }, [answers])
 
   const currentQ = QUESTIONS[currentIndex]
+  const currentMeta = getPenaltyMeta(currentIndex)
   useEffect(() => {
     setShowLaw(false)
   }, [currentIndex])
@@ -94,7 +96,7 @@ export default function Diagnosis() {
             <span className="flex h-9 w-9 items-center justify-center rounded-xl border-2 border-ink bg-white text-[11px] font-bold text-ink">
               R
             </span>
-            <span className="section-label text-[11px] font-semibold uppercase tracking-[0.18em]">
+            <span className="section-label text-[12px] font-semibold uppercase tracking-[0.18em]">
               RISK119
             </span>
           </div>
@@ -105,7 +107,7 @@ export default function Diagnosis() {
                 style={{ width: `${progress}%` }}
               />
             </div>
-            <p className="mt-1 text-[11px] font-medium text-zinc-700">
+            <p className="mt-1 text-[13px] font-medium text-zinc-700">
               {answeredCount} / {QUESTIONS.length} 문항 응답 완료
             </p>
           </div>
@@ -114,8 +116,8 @@ export default function Diagnosis() {
         <div className="flex flex-1 flex-col md:flex-row md:gap-5">
           {/* 사이드바: 카테고리 (데스크톱) */}
           <aside className="mb-3 hidden w-60 shrink-0 md:block">
-            <div className="rounded-2xl border-2 border-zinc-200 bg-white p-3 text-xs text-zinc-700 shadow-edge">
-              <p className="mb-3 text-[11px] font-medium text-slate-600">
+            <div className="rounded-2xl border-2 border-zinc-200 bg-white p-3 text-sm text-zinc-700 shadow-edge">
+              <p className="mb-3 text-[13px] font-medium text-slate-600">
                 카테고리 맵
               </p>
               <nav className="space-y-1.5">
@@ -155,7 +157,7 @@ export default function Diagnosis() {
           {/* 메인: 질문 카드 */}
           <main className="flex-1">
             <div className="rounded-3xl border-2 border-zinc-200 bg-white p-5 text-sm text-slate-900 shadow-edge md:p-7">
-              <p className="mb-2 text-[11px] text-slate-500">
+              <p className="mb-2 text-[13px] text-slate-500">
                 {CATEGORIES[currentQ?.categoryId]?.name} ·{' '}
                 {
                   QUESTIONS.filter((q) => q.categoryId === currentQ?.categoryId)
@@ -176,7 +178,7 @@ export default function Diagnosis() {
                   <button
                     type="button"
                     onClick={() => setShowLaw((v) => !v)}
-                    className="inline-flex items-center gap-2 rounded-full border border-zinc-300 bg-white px-3 py-1.5 text-[11px] font-medium text-zinc-700 transition hover:bg-zinc-50"
+                    className="inline-flex items-center gap-2 rounded-full border border-zinc-300 bg-white px-3 py-1.5 text-[13px] font-medium text-zinc-700 transition hover:bg-zinc-50"
                   >
                     <span className="inline-flex h-5 w-5 items-center justify-center rounded-full bg-toss/10 text-[10px] font-bold text-toss">
                       i
@@ -184,9 +186,17 @@ export default function Diagnosis() {
                     관련 법령 근거 {showLaw ? '닫기' : '보기'}
                   </button>
                   {showLaw && (
-                    <div className="mt-2 rounded-xl border border-zinc-200 bg-zinc-50 px-3 py-2 text-[11px] leading-relaxed text-zinc-700">
-                      <span className="font-semibold text-ink">근거 · </span>
-                      {currentQ.law}
+                    <div className="mt-2 space-y-2 rounded-xl border border-zinc-200 bg-zinc-50 px-3 py-2.5 text-[13px] leading-relaxed text-zinc-700">
+                      <p>
+                        <span className="font-semibold text-ink">근거 · </span>
+                        {currentQ.law}
+                      </p>
+                      {currentMeta?.improvementGuide && (
+                        <p className="border-t border-zinc-200 pt-2">
+                          <span className="font-semibold text-toss">💡 이렇게 준비하세요 · </span>
+                          {currentMeta.improvementGuide}
+                        </p>
+                      )}
                     </div>
                   )}
                 </div>
@@ -217,7 +227,7 @@ export default function Diagnosis() {
               </div>
             </div>
 
-            <div className="mt-3 flex items-center justify-between gap-3 text-[11px] text-slate-600 md:mt-4">
+            <div className="mt-3 flex items-center justify-between gap-3 text-[13px] text-slate-600 md:mt-4">
               <button
                 type="button"
                 onClick={() => setAutoAdvance((v) => !v)}
@@ -238,7 +248,7 @@ export default function Diagnosis() {
                 </span>
                 자동 다음 문항 이동
               </button>
-              <div className="text-[10px] text-slate-500 md:text-[11px]">
+              <div className="text-[12px] text-slate-600 md:text-[13px]">
                 답변 후 자동으로 다음 문항으로 이동합니다. 필요하면 언제든 끌 수 있습니다.
               </div>
             </div>
@@ -248,7 +258,7 @@ export default function Diagnosis() {
                 type="button"
                 onClick={goPrev}
                 disabled={currentIndex === 0}
-                className="inline-flex items-center rounded-full border border-slate-200 px-4 py-2 text-[11px] font-medium text-slate-700 transition hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-40"
+                className="inline-flex items-center rounded-full border border-slate-200 px-4 py-2 text-[13px] font-medium text-slate-700 transition hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-40"
               >
                 이전 문항
               </button>
@@ -265,7 +275,7 @@ export default function Diagnosis() {
                   type="button"
                   onClick={handleFinish}
                   disabled={!allAnswered}
-                  className={'inline-flex items-center rounded-full px-7 py-2.5 text-[11px] font-semibold tracking-wide shadow-edge disabled:cursor-not-allowed disabled:opacity-50 ' + DIAGNOSIS_CTA_CLASS}
+                  className={'inline-flex items-center rounded-full px-7 py-2.5 text-sm font-semibold tracking-wide shadow-edge disabled:cursor-not-allowed disabled:opacity-50 ' + DIAGNOSIS_CTA_CLASS}
                 >
                   결과 보기
                 </button>
@@ -275,20 +285,20 @@ export default function Diagnosis() {
         </div>
 
         {/* 현재 카테고리 빠른 이동 맵 (데스크톱 전용) */}
-        <div className="mt-4 hidden rounded-2xl border-2 border-zinc-200 bg-white p-4 text-[11px] text-zinc-700 shadow-edge md:block">
+        <div className="mt-4 hidden rounded-2xl border-2 border-zinc-200 bg-white p-4 text-[13px] text-zinc-700 shadow-edge md:block">
           <div className="mb-3 flex items-center justify-between">
             <div>
               <p className="font-medium text-slate-700">
                 {CATEGORIES[currentQ?.categoryId]?.name} 질문 한눈에 보기
               </p>
-              <span className="text-[10px] text-slate-400">
+              <span className="text-[12px] text-slate-500">
                 카드 클릭 시 해당 문항으로 바로 이동합니다.
               </span>
             </div>
             <button
               type="button"
               onClick={() => setShowOnlyUnanswered((v) => !v)}
-              className={`inline-flex items-center gap-1 rounded-full border px-3 py-1 text-[10px] transition ${
+              className={`inline-flex items-center gap-1 rounded-full border px-3 py-1 text-[12px] transition ${
                 showOnlyUnanswered
                   ? 'border-amber-400 bg-amber-50 text-amber-700'
                   : 'border-slate-200 bg-slate-50 text-slate-500 hover:border-amber-300'
@@ -319,7 +329,7 @@ export default function Diagnosis() {
                   <button
                     key={q.index}
                     onClick={() => setCurrentIndex(q.index)}
-                    className={`flex w-full items-start gap-3 rounded-2xl border px-3 py-2 text-left text-[10px] transition ${
+                    className={`flex w-full items-start gap-3 rounded-2xl border px-3 py-2 text-left text-[12px] transition ${
                       active
                         ? 'border-ink bg-ink/10 text-ink'
                         : answered
@@ -337,10 +347,10 @@ export default function Diagnosis() {
                       {order}
                     </span>
                     <div className="flex-1">
-                      <p className="line-clamp-2 text-[10px] md:text-[11px]">{q.text}</p>
+                      <p className="line-clamp-2 text-[12px] md:text-[13px]">{q.text}</p>
                       <div className="mt-1 flex items-center gap-2">
                         <span
-                          className={`inline-flex items-center rounded-full px-2 py-0.5 text-[9px] ${
+                          className={`inline-flex items-center rounded-full px-2 py-0.5 text-[11px] ${
                             answered
                               ? 'bg-ink/10 text-ink'
                               : 'bg-slate-200 text-slate-600'
@@ -357,7 +367,7 @@ export default function Diagnosis() {
         </div>
 
         {/* 모바일 하단 탭: 카테고리 */}
-        <div className="md:hidden fixed inset-x-0 bottom-0 z-20 border-t border-slate-200 bg-white/90 p-2 text-[11px] text-slate-700 backdrop-blur">
+        <div className="md:hidden fixed inset-x-0 bottom-0 z-20 border-t border-slate-200 bg-white/90 p-2 text-[12px] text-slate-700 backdrop-blur">
           <div className="mb-1 flex items-center justify-between px-1">
             <span className="text-slate-500">
               카테고리 바로가기
@@ -386,7 +396,7 @@ export default function Diagnosis() {
           </div>
         </div>
       </div>
-      <div className="mx-auto mt-6 max-w-5xl px-4 text-center text-[10px] text-slate-400 md:px-6">
+      <div className="mx-auto mt-6 max-w-5xl px-4 text-center text-[12px] text-slate-500 md:px-6">
         본 자가진단 문항과 관련 법령 정보는 최신 노동관계 법령과 실무 자료를 바탕으로 작성되었으나, 모든 개별
         사업장의 상황을 완전히 반영하지 않을 수 있습니다. 구체적인 사건·분쟁에 관한 해석과 대응은 반드시
         노무사·변호사 등 전문가와 별도로 상담하시기 바랍니다.
