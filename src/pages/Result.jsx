@@ -16,6 +16,7 @@ import InspectionScenario from '../components/result/InspectionScenario.jsx'
 import ExpertProfile from '../components/result/ExpertProfile.jsx'
 import CTASection from '../components/result/CTASection.jsx'
 import LegalUpdateNotice from '../components/result/LegalUpdateNotice.jsx'
+import CrossRecommendation from '../components/result/CrossRecommendation.jsx'
 import {
   buildEnrichedItems,
   filterViolations,
@@ -222,6 +223,8 @@ export default function Result() {
               })}
             </ol>
           </section>
+
+          <CrossRecommendation violations={violations} />
 
           <ExpertProfile />
 
