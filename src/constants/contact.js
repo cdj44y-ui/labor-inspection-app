@@ -11,6 +11,10 @@ export const FORMSPREE_FORM_ID =
 export const FREE119_SITE_URL =
   (typeof import.meta.env.VITE_FREE119_URL === 'string' && import.meta.env.VITE_FREE119_URL.trim()) ||
   'https://free119.site'
+/** SAFE119 중대재해처벌법 자가진단 (상호 링크) */
+export const SAFE119_SITE_URL =
+  (typeof import.meta.env.VITE_SAFE119_URL === 'string' && import.meta.env.VITE_SAFE119_URL.trim()) ||
+  'https://safe119.site'
 // 연락처·온라인 상담 URL (랜딩·결과 페이지 공통)
 export const CONTACT_PHONE = '02-2138-0240'
 /** 비대면 상담 Notion — `VITE_NOTION_REMOTE_CONSULT_URL` 로 덮어쓰기 가능 */
