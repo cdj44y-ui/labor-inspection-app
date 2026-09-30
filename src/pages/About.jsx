@@ -3,7 +3,7 @@ import { Link, useLocation } from 'react-router-dom'
 import SiteHeader from '../components/common/SiteHeader.jsx'
 import SiteFooter from '../components/common/SiteFooter.jsx'
 import { EXPERT_LABOR } from '../data/expertLabor.js'
-import { SITE_URL, FREE119_SITE_URL, CONTACT_PHONE } from '../constants/contact.js'
+import { SITE_URL, FREE119_SITE_URL, SAFE119_SITE_URL, CONTACT_PHONE } from '../constants/contact.js'
 
 const PRIMARY = '#1B3A5C'
 const ACCENT = '#FF6B35'
@@ -244,6 +244,15 @@ export default function About() {
                     className="font-medium text-white underline hover:text-white/90"
                   >
                     free119.site
+                  </a>
+                  에서, SAFE119(중대재해처벌법) 진단은{' '}
+                  <a
+                    href={SAFE119_SITE_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-medium text-white underline hover:text-white/90"
+                  >
+                    safe119.site
                   </a>
                   에서 이용할 수 있습니다.
                 </p>
