@@ -14,6 +14,7 @@ import PaymentSuccess from './pages/PaymentSuccess'
 import PaymentFail from './pages/PaymentFail'
 import About from './pages/About'
 import Contact from './pages/Contact'
+import FloatingConsultButton from './components/common/FloatingConsultButton'
 
 class AppErrorBoundary extends React.Component {
   constructor(props) {
@@ -78,6 +79,7 @@ export default function App() {
           <Route path="/payment/success" element={<PaymentSuccess />} />
           <Route path="/payment/fail" element={<PaymentFail />} />
         </Routes>
+        <FloatingConsultButton />
         <SpeedInsights />
       </>
     </AppErrorBoundary>
