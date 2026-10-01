@@ -31,7 +31,7 @@ export default function ExpertProfile() {
           <h2 className="mt-0.5 text-base font-extrabold text-ink md:text-lg">
             {E.name} {E.title} · 안전공학 박사
           </h2>
-          <p className="mt-1 text-sm text-zinc-700">안전 × 노동법 × HR 트라이브리드</p>
+          <p className="mt-1 text-sm text-zinc-700">안전 × 노동법 × HR 통합 전문</p>
           <p className="mt-1 text-sm text-zinc-700">{E.miniCardLine}</p>
           <Link
             to="/about"
