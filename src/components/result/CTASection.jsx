@@ -89,9 +89,9 @@ export default function CTASection({ riskLevelLabel, totalScore, totalPenaltyMan
 
       {/* 카카오톡 채널 — 가장 낮은 진입장벽, 법 개정·소식 구독 */}
       <div className="mt-6 rounded-2xl border border-[#FEE500]/60 bg-[#FFFBE6] p-4">
-        <p className="text-sm font-bold text-ink">💬 지금 바로 소식 받아보기</p>
+        <p className="text-sm font-bold text-ink">💬 이 결과, 다음 달에도 유효할까요?</p>
         <p className="mt-1 text-sm text-zinc-700">
-          상담이 아직 부담스러우시다면, 카카오톡 채널 추가만으로 법 개정·근로감독 이슈를 가장 먼저 받아보세요.
+          법이 바뀌면 오늘 받은 점수도 바뀝니다. 상담은 아직 부담스러우셔도, 채널 추가 한 번이면 근로기준법·중대재해처벌법이 바뀔 때마다 가장 먼저 알려드립니다.
         </p>
         <a
           href={KAKAO_CHANNEL_URL}
@@ -99,7 +99,7 @@ export default function CTASection({ riskLevelLabel, totalScore, totalPenaltyMan
           rel="noopener noreferrer"
           className="mt-3 inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#FEE500] px-6 py-3 text-sm font-bold text-[#391B1B] shadow-edge transition hover:bg-[#F5D800] sm:w-auto"
         >
-          카카오톡 채널 추가하기
+          놓치기 전에 채널 추가하기
         </a>
       </div>
     </section>
