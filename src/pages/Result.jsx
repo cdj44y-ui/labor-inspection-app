@@ -188,7 +188,12 @@ export default function Result() {
           </section>
 
           <section className="rounded-3xl border-2 border-zinc-200 bg-white p-6 shadow-edge md:p-7">
-            <h2 className="mb-2 text-sm font-bold text-ink md:text-base">우선 개선이 필요한 3가지 영역</h2>
+            <div className="mb-2 flex flex-wrap items-center justify-between gap-2">
+              <h2 className="text-sm font-bold text-ink md:text-base">우선 개선이 필요한 3가지 영역</h2>
+              <span className="inline-flex shrink-0 items-center gap-1 rounded-full bg-toss/10 px-2.5 py-1 text-[11px] font-semibold text-toss">
+                ✅ 액션 체크리스트
+              </span>
+            </div>
             <ol className="space-y-2">
               {riskCategoryIndices.map((cid, idx) => {
                 const cat = CATEGORIES[cid]
