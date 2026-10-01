@@ -26,7 +26,7 @@ export default function SiteFooter() {
           rel="noopener noreferrer"
           className="inline-flex items-center gap-1.5 rounded-full bg-[#FEE500] px-4 py-1.5 text-xs font-bold text-[#391B1B] transition hover:bg-[#F5D800]"
         >
-          💬 카카오톡 채널 추가하고 법 개정 소식 받기
+          💬 법 바뀌기 전에 먼저 알기 — 채널 추가
         </a>
       </p>
       <p className="text-xs text-zinc-600">© {new Date().getFullYear()} 조대진 노무사. All rights reserved.</p>
