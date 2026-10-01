@@ -85,12 +85,6 @@ export default function Landing() {
             <span className="rounded-full border border-zinc-300 bg-white px-2.5 py-1 text-xs font-medium text-zinc-600">
               Closed Beta
             </span>
-            <Link
-              to="/diagnosis"
-              className={`rounded-full px-4 py-2 text-sm font-bold ${DIAGNOSIS_CTA_CLASS}`}
-            >
-              무료로 우리 회사 리스크 확인하기
-            </Link>
           </div>
         </div>
 
@@ -208,7 +202,7 @@ export default function Landing() {
 
           {/* Features — 2번 카드 토스 블루 강조 */}
           <section id="features" className="mx-auto w-full max-w-5xl">
-            <p className="text-center text-xs font-semibold uppercase tracking-[0.2em] text-zinc-500">
+            <p className="text-center text-[13px] font-bold uppercase tracking-[0.18em] text-zinc-600">
               Why This Studio
             </p>
             <h2 className="mt-2 text-center text-2xl font-extrabold tracking-tight text-ink md:text-3xl">
@@ -248,7 +242,7 @@ export default function Landing() {
             id="flow"
             className="mx-auto w-full max-w-4xl rounded-xl border border-zinc-300/90 bg-white p-8 shadow-card md:p-10"
           >
-            <p className="text-center text-xs font-semibold uppercase tracking-[0.2em] text-zinc-500">
+            <p className="text-center text-[13px] font-bold uppercase tracking-[0.18em] text-zinc-600">
               Flow
             </p>
             <h2 className="mt-2 text-center text-xl font-bold tracking-tight text-ink md:text-2xl">
@@ -271,7 +265,7 @@ export default function Landing() {
 
           {/* Real cases — 좌측 보더 토스 블루 강조 */}
           <section className="mx-auto w-full max-w-5xl">
-            <p className="text-center text-xs font-semibold uppercase tracking-[0.2em] text-zinc-500">
+            <p className="text-center text-[13px] font-bold uppercase tracking-[0.18em] text-zinc-600">
               Real Inspection Signals
             </p>
             <h2 className="mt-2 text-center text-2xl font-extrabold tracking-tight text-ink md:text-3xl">
@@ -369,7 +363,7 @@ export default function Landing() {
 
           {/* FAQ */}
           <section id="faq" className="mx-auto w-full max-w-3xl">
-            <p className="text-center text-xs font-semibold uppercase tracking-[0.2em] text-zinc-500">
+            <p className="text-center text-[13px] font-bold uppercase tracking-[0.18em] text-zinc-600">
               FAQ
             </p>
             <h2 className="mt-2 text-center text-2xl font-bold tracking-tight text-ink">
