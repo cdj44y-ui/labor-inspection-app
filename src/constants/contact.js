@@ -17,6 +17,8 @@ export const SAFE119_SITE_URL =
   'https://safe119.site'
 // 연락처·온라인 상담 URL (랜딩·결과 페이지 공통)
 export const CONTACT_PHONE = '02-2138-0240'
+/** 카카오톡 채널 친구 추가 URL — 법 개정·소식 저비용 구독 채널 */
+export const KAKAO_CHANNEL_URL = 'https://pf.kakao.com/_yxexbaX/friend'
 /** 비대면 상담 Notion — `VITE_NOTION_REMOTE_CONSULT_URL` 로 덮어쓰기 가능 */
 export const NOTION_REMOTE_CONSULT_URL =
   (typeof import.meta.env.VITE_NOTION_REMOTE_CONSULT_URL === 'string' &&
