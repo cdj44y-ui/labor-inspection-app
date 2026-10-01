@@ -1,4 +1,5 @@
 import { EXPERT_LABOR } from '../../data/expertLabor.js'
+import { KAKAO_CHANNEL_URL } from '../../constants/contact.js'
 
 export default function SiteFooter() {
   const { contact } = EXPERT_LABOR
@@ -18,6 +19,16 @@ export default function SiteFooter() {
         </a>
       </p>
       <p className="text-zinc-600">{contact.address}</p>
+      <p>
+        <a
+          href={KAKAO_CHANNEL_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-1.5 rounded-full bg-[#FEE500] px-4 py-1.5 text-xs font-bold text-[#391B1B] transition hover:bg-[#F5D800]"
+        >
+          💬 카카오톡 채널 추가하고 법 개정 소식 받기
+        </a>
+      </p>
       <p className="text-xs text-zinc-600">© {new Date().getFullYear()} 조대진 노무사. All rights reserved.</p>
       <p className="max-w-3xl mx-auto text-sm text-zinc-700">
         본 서비스는 노동관계 법령과 공개 자료를 바탕으로 한 일반적인 리스크 점검 도구이며, 개별 사건에 대한 법률
