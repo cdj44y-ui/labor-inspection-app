@@ -8,6 +8,7 @@ import {
 import { EXPERT_LABOR } from '../data/expertLabor.js'
 import SiteHeader from '../components/common/SiteHeader.jsx'
 import SiteFooter from '../components/common/SiteFooter.jsx'
+import NewsBanner from '../components/common/NewsBanner.jsx'
 
 const FEATURES = [
   {
@@ -65,6 +66,7 @@ export default function Landing() {
 
   return (
     <div className="min-h-screen bg-paper text-ink">
+      <NewsBanner />
       <div className="relative mx-auto flex min-h-screen max-w-6xl flex-col px-4 pb-12 pt-6 md:px-8 md:pt-8">
         <SiteHeader />
         <div className="mt-3 flex flex-wrap items-center justify-between gap-3 rounded-xl border border-zinc-200/80 bg-zinc-50/50 px-3 py-2 md:px-4">
