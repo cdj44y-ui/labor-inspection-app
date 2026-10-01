@@ -9,7 +9,7 @@ const PRIMARY = '#1B3A5C'
 const ACCENT = '#FF6B35'
 const TITLE = '조대진 노무사 | 안전공학 박사 · 근로감독 전문 - RISK119'
 const DESC =
-  '안전공학 박사, 노무사 15년. 산업안전 × 노동법 × HR 트라이브리드 전문가. 근로감독 대비 컨설팅, 중대재해처벌법 대응 체계 구축, 기업 강의.'
+  '안전공학 박사, 노무사 15년. 산업안전 × 노동법 × HR 통합 전문가. 근로감독 대비 컨설팅, 중대재해처벌법 대응 체계 구축, 기업 강의.'
 
 const TONE_BADGE = {
   safety: 'bg-emerald-50 text-emerald-900 border-emerald-200',
@@ -111,7 +111,7 @@ export default function About() {
 
           <section className="mt-6 border-y border-zinc-200 bg-white py-12 sm:py-14">
             <h2 className="mb-10 text-center text-[22px] font-semibold sm:text-[24px]" style={{ color: PRIMARY }}>
-              트라이브리드 전문 영역
+              통합 전문 영역
             </h2>
             <div className="grid gap-4 md:grid-cols-3 md:gap-5">
               {E.specialties.map((s) => (
