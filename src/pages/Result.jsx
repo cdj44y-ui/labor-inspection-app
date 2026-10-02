@@ -77,6 +77,7 @@ export default function Result() {
   const grade = getGrade(totalScore)
   const gradeInfo = GRADE_LABELS[grade]
   const colorMap = { safe: 'bg-safe', caution: 'bg-caution', warning: 'bg-warning', danger: 'bg-danger' }
+  const textColorMap = { safe: 'text-safe', caution: 'text-caution', warning: 'text-warning', danger: 'text-danger' }
 
   const industryHint = getIndustryComparisonHint(totalScore)
   const violationSummary = violations.map((v) => v.categoryLabel).filter(Boolean)
@@ -177,7 +178,7 @@ export default function Result() {
                         style={{ width: `${score}%` }}
                       />
                     </div>
-                    <span className="w-10 text-right text-sm font-bold text-toss">
+                    <span className={`w-10 text-right text-sm font-bold ${textColorMap[g]}`}>
                       {score}
                       <span className="ml-0.5 text-sm text-ink">점</span>
                     </span>
