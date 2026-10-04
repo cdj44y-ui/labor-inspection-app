@@ -14,11 +14,11 @@ const NEWS_ITEMS = [
   {
     body: (
       <>
-        고용노동부, <b className="font-semibold text-toss">포괄임금 오남용 하반기 기획감독</b> 시행 중 — 제조업·IT·전문서비스업
-        집중 점검
+        한화에어로스페이스 대전사업장 특별감독 결과, 산안법 위반{' '}
+        <b className="font-semibold text-toss">473건 적발·과태료 약 5억원</b> 부과
       </>
     ),
-    source: '고용노동부 보도자료 2026.09.15 · 감독 진행 중',
+    source: '고용노동부 보도자료 2026.10.01',
   },
   {
     body: (
