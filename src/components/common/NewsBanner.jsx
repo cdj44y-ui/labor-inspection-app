@@ -23,7 +23,7 @@ const NEWS_ITEMS = [
   {
     body: (
       <>
-        임금체불 등 벌칙 상향(3년·3천만원 → <b className="font-semibold text-toss">5년·5천만원</b>) 10월 7일 시행
+        임금체불 등 벌칙 상향(3년·3천만원 → <b className="font-semibold text-toss">5년·5천만원</b>) 10월 8일 시행
       </>
     ),
     source: '근로기준법 개정 법률 제21533호',
