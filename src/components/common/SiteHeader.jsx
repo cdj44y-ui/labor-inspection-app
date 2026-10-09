@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom'
-import { DIAGNOSIS_CTA_CLASS } from '../../constants/contact.js'
 
 export default function SiteHeader() {
   return (
@@ -22,7 +21,7 @@ export default function SiteHeader() {
         </Link>
         <Link
           to="/diagnosis"
-          className={`hidden rounded-full px-4 py-2 text-sm font-bold sm:inline-flex ${DIAGNOSIS_CTA_CLASS}`}
+          className="hidden rounded-full border border-toss/50 bg-white px-4 py-2 text-sm font-bold text-toss transition hover:bg-toss/5 sm:inline-flex"
         >
           무료로 우리 회사 리스크 확인하기
         </Link>
