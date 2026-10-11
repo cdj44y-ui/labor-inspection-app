@@ -200,6 +200,44 @@ export default function Landing() {
             </div>
           </section>
 
+          {/* Intro video — 15초 브랜드 소개 */}
+          <section id="intro-video" className="mx-auto w-full max-w-5xl">
+            <p className="text-center text-[13px] font-bold uppercase tracking-[0.18em] text-zinc-600">
+              Intro
+            </p>
+            <h2 className="mt-2 text-center text-2xl font-extrabold tracking-tight text-ink md:text-3xl">
+              15초로 보는 RISK119
+            </h2>
+            <p className="mx-auto mt-4 max-w-2xl text-center text-[15px] leading-relaxed text-zinc-800 md:text-base md:leading-[1.7]">
+              근로감독, 무엇부터 준비할지 막막하다면 판단의 기준부터 잡아드립니다.
+            </p>
+            <div className="mt-8 overflow-hidden rounded-xl border border-zinc-300/90 bg-white shadow-card">
+              <video
+                className="block aspect-video w-full bg-zinc-100"
+                src="/video/risk119-intro.mp4"
+                poster="/video/risk119-intro-poster.jpg"
+                autoPlay
+                muted
+                loop
+                playsInline
+                controls
+                preload="metadata"
+                aria-label="RISK119 소개 영상: 근로감독 준비와 조대진 대표노무사 소개"
+              />
+              <div className="flex flex-wrap items-center justify-between gap-3 border-t border-zinc-200 px-5 py-4 md:px-6">
+                <p className="text-sm text-zinc-700 md:text-[15px]">
+                  <span className="font-bold text-ink">조대진 대표노무사</span> · 노무법인 위너스 · 노동법 · 산업안전 · HR
+                </p>
+                <Link
+                  to="/diagnosis"
+                  className="inline-flex min-h-[40px] items-center justify-center rounded-full border border-ink bg-white px-5 py-2 text-sm font-semibold text-ink transition hover:bg-zinc-50"
+                >
+                  바로 진단 시작하기
+                </Link>
+              </div>
+            </div>
+          </section>
+
           {/* Features — 2번 카드 토스 블루 강조 */}
           <section id="features" className="mx-auto w-full max-w-5xl">
             <p className="text-center text-[13px] font-bold uppercase tracking-[0.18em] text-zinc-600">
