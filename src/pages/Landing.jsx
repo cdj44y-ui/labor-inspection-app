@@ -230,7 +230,7 @@ export default function Landing() {
                 </p>
                 <Link
                   to="/diagnosis"
-                  className="inline-flex min-h-[40px] items-center justify-center rounded-full border border-ink bg-white px-5 py-2 text-sm font-semibold text-ink transition hover:bg-zinc-50"
+                  className="inline-flex min-h-[40px] items-center justify-center rounded-full border border-ink bg-white px-5 py-2 text-sm font-semibold text-ink transition hover:bg-zinc-50 md:mr-28"
                 >
                   바로 진단 시작하기
                 </Link>
