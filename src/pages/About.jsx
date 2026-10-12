@@ -196,15 +196,6 @@ export default function About() {
             </div>
           </section>
 
-          <section className="mt-6 rounded-2xl border border-zinc-200 bg-zinc-50/80 py-12 sm:py-14">
-            <h2 className="mb-2 text-center text-[22px] font-semibold sm:text-[24px]" style={{ color: PRIMARY }}>
-              고객 후기, 순차적으로 채워가겠습니다
-            </h2>
-            <p className="mx-auto max-w-lg text-center text-sm leading-relaxed text-zinc-600">
-              실제 자문·컨설팅을 진행한 기업의 후기를 확보하는 대로 이 자리에 정직하게 공개하겠습니다. 지금은 위 실적 수치와 자가진단 결과로 먼저 확인해 주세요.
-            </p>
-          </section>
-
           <section className="mt-6 pb-8">
             <div className="mx-auto max-w-2xl overflow-hidden rounded-2xl shadow-xl">
               <div
