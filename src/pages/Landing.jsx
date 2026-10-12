@@ -418,8 +418,12 @@ export default function Landing() {
                     onClick={() => setOpenFaq(openFaq === i ? null : i)}
                   >
                     <span className="text-[15px] font-semibold leading-snug text-ink">{item.q}</span>
-                    <span className="text-sm font-medium text-zinc-700">
-                      {openFaq === i ? '접기' : '펼치기'}
+                    <span
+                      className="flex-shrink-0 text-base font-medium text-zinc-500 transition-transform duration-200"
+                      style={{ transform: openFaq === i ? 'rotate(180deg)' : 'rotate(0deg)' }}
+                      aria-hidden="true"
+                    >
+                      ▾
                     </span>
                   </button>
                   {openFaq === i && (
