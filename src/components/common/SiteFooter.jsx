@@ -10,6 +10,7 @@ export default function SiteFooter() {
         <div className="mx-auto max-w-[1120px] space-y-2 px-6 md:px-8">
           <p className="flex flex-wrap items-center gap-x-4 gap-y-1">
             <b className="text-[#1F4E79]">{FAMILY_NAME}</b>
+            <a href="/winners.html" className="font-bold text-[#1F4E79] no-underline hover:underline">회사 소개</a>
             {FAMILY.map((f) => <a key={f.key} href={f.url} target="_blank" rel="noopener noreferrer" className="text-[#4B5563] no-underline hover:text-[#1F4E79] hover:underline">{f.label}</a>)}
           </p>
           <p className="font-semibold text-[#111827]">{PROMISE}</p>
