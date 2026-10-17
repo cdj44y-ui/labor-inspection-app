@@ -15,6 +15,7 @@ import PaymentFail from './pages/PaymentFail'
 import About from './pages/About'
 import Contact from './pages/Contact'
 import FloatingConsultButton from './components/common/FloatingConsultButton'
+import FamilyBar from './components/common/FamilyBar.jsx'
 
 class AppErrorBoundary extends React.Component {
   constructor(props) {
@@ -63,6 +64,7 @@ export default function App() {
   return (
     <AppErrorBoundary>
       <>
+        <FamilyBar />
         <Routes>
           <Route path="/" element={<Landing />} />
           <Route path="/login" element={<Login />} />

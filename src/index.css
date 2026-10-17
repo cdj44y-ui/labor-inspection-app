@@ -42,11 +42,11 @@ h1, h2, .font-display {
   color: #0a0a0a !important;
 }
 
-/* 검정 CTA 버튼: 비대면 상담 등 — 항상 흰 글자, 가독성 확보 */
+/* 상담 CTA 버튼(브랜드 v1.1 위너스 네이비 #1F4E79): 비대면 상담 등 — 항상 흰 글자, 가독성 확보 */
 a.btn-black-cta,
 button.btn-black-cta,
 .btn-black-cta {
-  background-color: #0a0a0a !important;
+  background-color: #1F4E79 !important;
   color: #ffffff !important;
 }
 a.btn-black-cta:hover,
@@ -56,15 +56,15 @@ a.btn-black-cta:visited,
 button.btn-black-cta:hover,
 button.btn-black-cta:focus,
 button.btn-black-cta:active {
-  background-color: #27272a !important;
+  background-color: #173B5C !important;
   color: #ffffff !important;
 }
 
-/* 토스 블루 CTA 버튼: 메인 진단 버튼 등 포인트 강조 */
+/* 사이트 색(노동 블루 #1976D2) CTA 버튼: 메인 진단 버튼 등 포인트 강조 */
 a.btn-toss-cta,
 button.btn-toss-cta,
 .btn-toss-cta {
-  background-color: #3182F6 !important;
+  background-color: #1976D2 !important;
   color: #ffffff !important;
 }
 a.btn-toss-cta:hover,
@@ -74,7 +74,7 @@ a.btn-toss-cta:visited,
 button.btn-toss-cta:hover,
 button.btn-toss-cta:focus,
 button.btn-toss-cta:active {
-  background-color: #1B64DA !important;
+  background-color: #1565C0 !important;
   color: #ffffff !important;
 }
 
@@ -104,11 +104,11 @@ span.badge-dark-zinc {
 /* 강조 링크: 토스 블루 */
 a.text-toss,
 .text-toss-link {
-  color: #3182F6;
+  color: #1976D2;
 }
 a.text-toss:hover,
 .text-toss-link:hover {
-  color: #1B64DA;
+  color: #1565C0;
 }
 
 /* 강조 라벨(섹션 소제목): 남색 */
