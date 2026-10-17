@@ -1,9 +1,12 @@
+import FamilySites from './FamilySites.jsx'
 import { EXPERT_LABOR } from '../../data/expertLabor.js'
 import { KAKAO_CHANNEL_URL } from '../../constants/contact.js'
 
 export default function SiteFooter() {
   const { contact } = EXPERT_LABOR
   return (
+    <>
+    <FamilySites />
     <footer className="mt-12 border-t-2 border-zinc-200 pt-8 text-center text-sm text-zinc-800 space-y-2">
       <p className="font-semibold text-ink">RISK119 근로감독 자가진단</p>
       <p>
@@ -35,5 +38,6 @@ export default function SiteFooter() {
         자문이나 행정해석을 대체하지 않습니다.
       </p>
     </footer>
+    </>
   )
 }
