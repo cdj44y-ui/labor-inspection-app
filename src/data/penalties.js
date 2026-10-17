@@ -20,58 +20,59 @@ export const CATEGORY_LABELS = {
   etc: '기타 노무관리',
 }
 
+// 카테고리 기본값: 문항별 처벌이 원문으로 확인되지 않은 항목은 금액을 합산하지 않음(2026-10-17)
 const BASE_META = {
   contract: {
     penaltyType: 'fine',
-    penaltyAmount: 500,
-    fineManwon: 500,
+    penaltyAmount: 0,
+    fineManwon: 0,
     adminManwon: 0,
-    penaltyDetail: '500만원 이하 벌금',
+    penaltyDetail: '해당 조문에 따른 제재',
     riskLevel: 'medium',
     improvementGuide: '근로계약서 필수 기재·서면 교부·명부·취업규칙 등 증빙을 정비하세요.',
   },
   wage: {
     penaltyType: 'both',
-    penaltyAmount: 2000,
-    fineManwon: 1500,
-    adminManwon: 500,
-    penaltyDetail: '과태료·벌금 등 복합 제재 가능',
+    penaltyAmount: 0,
+    fineManwon: 0,
+    adminManwon: 0,
+    penaltyDetail: '해당 조문에 따른 제재',
     riskLevel: 'high',
     improvementGuide: '임금대장·명세서·가산수당·퇴직금 산정과 지급 기준을 점검하세요.',
   },
   worktime: {
     penaltyType: 'fine',
-    penaltyAmount: 2000,
-    fineManwon: 2000,
+    penaltyAmount: 0,
+    fineManwon: 0,
     adminManwon: 0,
-    penaltyDetail: '2천만원 이하 벌금 등',
+    penaltyDetail: '해당 조문에 따른 제재',
     riskLevel: 'high',
     improvementGuide: '근로시간 기록·연장·휴일·연차 운영을 법정 기준에 맞추세요.',
   },
   safety: {
     penaltyType: 'penalty',
-    penaltyAmount: 3000,
+    penaltyAmount: 0,
     fineManwon: 0,
-    adminManwon: 3000,
-    penaltyDetail: '3천만원 이하 과태료 등',
+    adminManwon: 0,
+    penaltyDetail: '해당 조문에 따른 제재',
     riskLevel: 'high',
     improvementGuide: '안전보건교육·위험성평가·보건관리체계와 기록을 갖추세요.',
   },
   etc: {
     penaltyType: 'penalty',
-    penaltyAmount: 500,
+    penaltyAmount: 0,
     fineManwon: 0,
-    adminManwon: 500,
-    penaltyDetail: '500만원 이하 과태료 등',
+    adminManwon: 0,
+    penaltyDetail: '해당 조문에 따른 제재',
     riskLevel: 'medium',
     improvementGuide: '내부 규정·교육·고충처리 절차를 문서화하고 이행하세요.',
   },
   insurance: {
     penaltyType: 'both',
-    penaltyAmount: 300,
+    penaltyAmount: 0,
     fineManwon: 0,
-    adminManwon: 300,
-    penaltyDetail: '미신고 과태료·소급 보험료·연체금 등',
+    adminManwon: 0,
+    penaltyDetail: '해당 조문에 따른 제재',
     riskLevel: 'high',
     improvementGuide: '가입 대상·취득신고·보험료 납부를 누락 없이 관리하세요.',
   },
@@ -104,8 +105,8 @@ const INDEX_OVERRIDES = {
     penaltyType: 'penalty',
   },
   8: {
-    penaltyDetail: '미지급 임금 + 동일금액 부가금 + 형사처벌 가능',
-    legalBasis: '최저임금법 제6조, 제28조',
+    penaltyDetail: '3년 이하 징역 또는 2,000만원 이하 벌금(병과 가능)',
+    legalBasis: '최저임금법 제6조, 제28조 제1항',
     penaltyAmount: 2000,
     fineManwon: 2000,
     adminManwon: 0,
@@ -128,19 +129,19 @@ const INDEX_OVERRIDES = {
     penaltyType: 'fine',
   },
   29: {
-    penaltyDetail: '최대 1,000만원 이하 과태료(최초 500만원, 반복 시 최대 1,000만원)',
-    legalBasis: '산업안전보건법 제36조, 시행령 별표35(과태료 부과기준)',
-    penaltyAmount: 1000,
+    penaltyDetail: '1,000만원 이하 과태료 — 시행 전: 2027.1.1 시행(상시 50명 이상, 건설업 공사금액 50억원 이상), 2028.1.1 시행(그 미만)',
+    legalBasis: '산업안전보건법 제36조, 제175조, 부칙(법률 제21374호, 2026.2.19.) 제1조',
+    penaltyAmount: 0,
     fineManwon: 0,
-    adminManwon: 1000,
+    adminManwon: 0,
     penaltyType: 'penalty',
   },
   48: {
-    penaltyDetail: '미신고 과태료 + 소급 보험료 + 연체금',
+    penaltyDetail: '각 보험법에 따른 과태료와 미납 보험료 소급 징수',
     legalBasis: '국민건강보험법, 국민연금법, 고용보험법, 산재보험법',
-    penaltyAmount: 300,
+    penaltyAmount: 0,
     fineManwon: 0,
-    adminManwon: 300,
+    adminManwon: 0,
     penaltyType: 'both',
   },
 }
@@ -178,13 +179,4 @@ export function getPenaltyMeta(questionIndex) {
     merged.penaltyAmount ??
     Math.max(merged.fineManwon + merged.adminManwon, merged.fineManwon, merged.adminManwon)
   return merged
-}
-
-/** 진단 화면 노출용: 법령 원문으로 검증된 문항별 처벌만 반환 (카테고리 기본값·시행 전 과태료 제외) */
-const VERIFIED_PENALTY_INDEXES = [0, 1, 5, 9, 18]
-export function getVerifiedPenalty(questionIndex) {
-  if (!VERIFIED_PENALTY_INDEXES.includes(questionIndex)) return null
-  const o = INDEX_OVERRIDES[questionIndex]
-  if (!o) return null
-  return { penaltyDetail: o.penaltyDetail, legalBasis: String(o.legalBasis).split(' — ')[0] }
 }
