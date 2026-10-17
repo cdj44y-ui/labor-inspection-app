@@ -1,28 +1,23 @@
 import { useState, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { QUESTIONS, CATEGORIES } from '../data/questions.js'
-import { getPenaltyMeta } from '../data/penalties.js'
-import { DIAGNOSIS_CTA_CLASS } from '../constants/contact.js'
+import { getPenaltyMeta, getVerifiedPenalty } from '../data/penalties.js'
 
 const STORAGE_KEY = 'labor_diagnosis_business'
 const ANSWERS_KEY = 'labor_diagnosis_answers'
 
-// 선택 상태 — 예/아니오를 가장 강하게(토스 블루/검정), 나머지는 보조 색으로 구분
-const answerButtonClassWhenSelected = {
-  예: 'border-2 border-toss bg-toss text-white shadow-md hover:bg-toss-hover ring-2 ring-toss ring-offset-2 ring-offset-white',
-  아니오: 'border-2 border-ink bg-ink text-white shadow-md hover:bg-zinc-900 ring-2 ring-ink ring-offset-2 ring-offset-white',
-  일부: 'border-2 border-caution bg-amber-50 text-amber-900 shadow-sm hover:bg-amber-100',
-  모름: 'border-2 border-caution bg-amber-50 text-amber-900 shadow-sm hover:bg-amber-100',
-  확인필요: 'border-2 border-caution bg-amber-50 text-amber-900 shadow-sm hover:bg-amber-100',
-  해당없음: 'border-2 border-zinc-400 bg-zinc-50 text-zinc-800 shadow-sm hover:bg-zinc-100',
+const OPTION_HINT = {
+  예: '갖추고 있습니다',
+  아니오: '갖추지 못했습니다',
+  일부: '일부만 갖추었습니다',
+  모름: '잘 모르겠습니다',
+  확인필요: '확인이 필요합니다',
+  해당없음: '우리 회사와 관계없습니다',
 }
-// 미선택 상태 — 모두 동일한 연한 회색 버튼으로 bias 최소화
-const answerButtonClassUnselected =
-  'border-2 border-zinc-300 bg-white text-zinc-800 hover:border-zinc-500 hover:bg-zinc-50 focus:outline-none focus:ring-1 focus:ring-zinc-400/40 focus:ring-offset-0'
 
 export default function Diagnosis() {
   const navigate = useNavigate()
-  const [showLaw, setShowLaw] = useState(false)
+  const [showGuide, setShowGuide] = useState(false)
   const [answers, setAnswers] = useState(() => {
     try {
       const s = localStorage.getItem(ANSWERS_KEY)
@@ -33,7 +28,6 @@ export default function Diagnosis() {
   })
   const [currentIndex, setCurrentIndex] = useState(0)
   const [autoAdvance, setAutoAdvance] = useState(true)
-  const [showOnlyUnanswered, setShowOnlyUnanswered] = useState(false)
 
   useEffect(() => {
     try {
@@ -43,8 +37,10 @@ export default function Diagnosis() {
 
   const currentQ = QUESTIONS[currentIndex]
   const currentMeta = getPenaltyMeta(currentIndex)
+  const verified = getVerifiedPenalty(currentIndex)
   useEffect(() => {
-    setShowLaw(false)
+    setShowGuide(false)
+    try { window.scrollTo({ top: 0, behavior: 'smooth' }) } catch (_) {}
   }, [currentIndex])
 
   const answeredCount = answers.filter(Boolean).length
@@ -57,349 +53,174 @@ export default function Diagnosis() {
       return next
     })
     if (autoAdvance && currentIndex < QUESTIONS.length - 1) {
-      setCurrentIndex((i) => i + 1)
+      setTimeout(() => setCurrentIndex((i) => Math.min(i + 1, QUESTIONS.length - 1)), 250)
     }
   }
 
-  const goPrev = () => {
-    if (currentIndex > 0) setCurrentIndex((i) => i - 1)
-  }
-
-  const goNext = () => {
-    if (currentIndex < QUESTIONS.length - 1) setCurrentIndex((i) => i + 1)
-  }
-
-  const goToQuestion = (index) => setCurrentIndex(index)
+  const goPrev = () => currentIndex > 0 && setCurrentIndex((i) => i - 1)
+  const goNext = () => currentIndex < QUESTIONS.length - 1 && setCurrentIndex((i) => i + 1)
 
   const allAnswered = answers.every((a) => a != null)
+  const firstUnanswered = answers.findIndex((a) => a == null)
   const handleFinish = () => {
-    if (!allAnswered) return
+    if (!allAnswered) {
+      if (firstUnanswered >= 0) setCurrentIndex(firstUnanswered)
+      return
+    }
     navigate('/result')
   }
 
-  const categoryAllDone = CATEGORIES.map((_, cid) => {
-    const indices = QUESTIONS.map((q, i) => (q.categoryId === cid ? i : null)).filter((i) => i !== null)
-    return indices.length > 0 && indices.every((i) => answers[i] != null)
+  const catStats = CATEGORIES.map((_, cid) => {
+    const idx = QUESTIONS.map((q, i) => (q.categoryId === cid ? i : null)).filter((i) => i !== null)
+    return { total: idx.length, done: idx.filter((i) => answers[i] != null).length, first: idx[0] }
   })
-
-  const questionsInCurrentCategory = QUESTIONS.map((q, i) => ({ ...q, index: i })).filter(
-    (q) => q.categoryId === currentQ?.categoryId,
-  )
+  const inCat = QUESTIONS.filter((q) => q.categoryId === currentQ?.categoryId)
+  const orderInCat = inCat.indexOf(currentQ) + 1
+  const isLast = currentIndex === QUESTIONS.length - 1
 
   return (
-    <div className="min-h-screen bg-paper text-ink">
-
-      <div className="relative mx-auto flex min-h-screen max-w-5xl flex-col px-4 pb-16 pt-6 md:px-6 md:pt-8">
-        {/* 상단 헤더 + 진행률 — 밝은 배경 + 검정 글씨 */}
-        <div className="mb-4 flex flex-col gap-3 rounded-2xl border-2 border-zinc-200 bg-white px-4 py-3 shadow-edge md:mb-6 md:flex-row md:items-center md:justify-between md:px-6">
-          <div className="flex items-center gap-3 text-xs">
-            <span className="flex h-9 w-9 items-center justify-center rounded-xl border-2 border-ink bg-white text-[11px] font-bold text-ink">
-              R
-            </span>
-            <span className="section-label text-[12px] font-semibold uppercase tracking-[0.18em]">
-              RISK119
-            </span>
-          </div>
-          <div className="w-full md:w-2/3">
-            <div className="h-1.5 overflow-hidden rounded-full bg-zinc-200">
-              <div
-                className="h-full rounded-full bg-toss transition-all"
-                style={{ width: `${progress}%` }}
-              />
+    <div className="min-h-screen bg-[#F5F7FA] pb-28 text-[#14213D] [word-break:keep-all] md:pb-16">
+      {/* 상단 */}
+      <header className="sticky top-0 z-20 border-b border-[#DDE2EA] bg-white">
+        <div className="mx-auto flex max-w-[1120px] items-center gap-6 px-5 py-4 md:px-8">
+          <Link to="/" className="shrink-0 no-underline text-[#14213D]">
+            <span className="block text-[20px] font-extrabold leading-tight">RISK<span className="text-[#3182F6]">119</span></span>
+          </Link>
+          <div className="flex-1">
+            <div className="flex items-baseline justify-between text-[16px]">
+              <span className="font-bold">진행 {answeredCount} / {QUESTIONS.length} 문항</span>
+              <span className="font-bold text-[#3182F6]">{progress}%</span>
             </div>
-            <p className="mt-1 text-[13px] font-medium text-zinc-700">
-              {answeredCount} / {QUESTIONS.length} 문항 응답 완료
-            </p>
+            <div className="mt-2 h-2.5 overflow-hidden rounded-full bg-[#E6EAF0]">
+              <div className="h-full rounded-full bg-[#3182F6] transition-all" style={{ width: progress + '%' }} />
+            </div>
           </div>
         </div>
+      </header>
 
-        <div className="flex flex-1 flex-col md:flex-row md:gap-5">
-          {/* 사이드바: 카테고리 (데스크톱) */}
-          <aside className="mb-3 hidden w-60 shrink-0 md:block">
-            <div className="rounded-2xl border-2 border-zinc-200 bg-white p-3 text-sm text-zinc-700 shadow-edge">
-              <p className="mb-3 text-[13px] font-medium text-slate-600">
-                카테고리 맵
-              </p>
-              <nav className="space-y-1.5">
-                {CATEGORIES.map((cat, cid) => {
-                  const allDone = categoryAllDone[cid]
-                  const active = currentQ?.categoryId === cid
-                  return (
-                    <button
-                      key={cid}
-                      onClick={() => {
-                        const first = QUESTIONS.findIndex((q) => q.categoryId === cid)
-                        if (first >= 0) setCurrentIndex(first)
-                      }}
-                      className={`flex w-full items-center gap-2 rounded-xl px-3 py-2 text-left transition ${
-                        active
-                          ? 'border border-ink bg-ink/10 text-ink'
-                          : 'border border-slate-200 bg-slate-50 text-slate-600 hover:border-ink/50 hover:bg-white'
-                      }`}
-                    >
-                      <span
-                        className={`flex h-4 w-4 items-center justify-center rounded-full border-2 text-[9px] font-bold ${
-                          allDone
-                            ? 'border-ink bg-white text-ink'
-                            : 'border-slate-300 bg-slate-100 text-slate-400'
-                        }`}
-                      >
-                        {allDone ? '✓' : ''}
-                      </span>
-                      <span className="truncate">{cat.name}</span>
-                    </button>
-                  )
-                })}
-              </nav>
-            </div>
-          </aside>
+      <div className="mx-auto mt-6 grid max-w-[1120px] gap-6 px-5 md:mt-8 md:grid-cols-[260px_1fr] md:px-8">
+        {/* 영역 목록 */}
+        <aside className="hidden md:block">
+          <p className="mb-3 text-[15px] font-bold text-[#5B6680]">점검 영역</p>
+          <nav className="overflow-hidden rounded-[14px] border border-[#DDE2EA] bg-white">
+            {CATEGORIES.map((cat, cid) => {
+              const s = catStats[cid]
+              const active = currentQ?.categoryId === cid
+              const done = s.total > 0 && s.done === s.total
+              return (
+                <button
+                  key={cid}
+                  type="button"
+                  onClick={() => s.first != null && setCurrentIndex(s.first)}
+                  className={'flex w-full items-center justify-between gap-3 border-b border-[#EEF1F5] px-4 py-3.5 text-left text-[16px] last:border-b-0 ' + (active ? 'bg-[#EAF2FE] font-bold text-[#14213D]' : 'bg-white text-[#3D4A63] hover:bg-[#F5F7FA]')}
+                >
+                  <span className="leading-snug">{cat.name}</span>
+                  <span className={'shrink-0 text-[14px] font-bold ' + (done ? 'text-[#1B64DA]' : 'text-[#8A94A6]')}>{done ? '완료' : s.done + '/' + s.total}</span>
+                </button>
+              )
+            })}
+          </nav>
+          <label className="mt-4 flex cursor-pointer items-center gap-2.5 text-[15px] text-[#3D4A63]">
+            <input type="checkbox" checked={autoAdvance} onChange={(e) => setAutoAdvance(e.target.checked)} className="h-5 w-5 accent-[#3182F6]" />
+            답하면 다음 질문으로 자동 이동
+          </label>
+        </aside>
 
-          {/* 메인: 질문 카드 */}
-          <main className="flex-1">
-            <div className="rounded-3xl border-2 border-zinc-200 bg-white p-5 text-sm text-slate-900 shadow-edge md:p-7">
-              <p className="mb-2 text-[13px] text-slate-500">
-                {CATEGORIES[currentQ?.categoryId]?.name} ·{' '}
-                {
-                  QUESTIONS.filter((q) => q.categoryId === currentQ?.categoryId)
-                    .length
-                }
-                문항 중{' '}
-                {
-                  QUESTIONS.filter((q) => q.categoryId === currentQ?.categoryId).indexOf(
-                    currentQ,
-                  ) + 1
-                }
-              </p>
-              <h2 className="mb-5 text-base font-semibold leading-relaxed text-slate-900 md:text-lg">
-                {currentQ?.text}
-              </h2>
-              {currentQ?.law && (
-                <div className="mb-4">
-                  <button
-                    type="button"
-                    onClick={() => setShowLaw((v) => !v)}
-                    className="inline-flex items-center gap-2 rounded-full border border-zinc-300 bg-white px-3 py-1.5 text-[13px] font-medium text-zinc-700 transition hover:bg-zinc-50"
-                  >
-                    <span className="inline-flex h-5 w-5 items-center justify-center rounded-full bg-toss/10 text-[10px] font-bold text-toss">
-                      i
-                    </span>
-                    관련 법령 근거 {showLaw ? '닫기' : '보기'}
-                  </button>
-                  {showLaw && (
-                    <div className="mt-2 space-y-2 rounded-xl border border-zinc-200 bg-zinc-50 px-3 py-2.5 text-[13px] leading-relaxed text-zinc-700">
-                      <p>
-                        <span className="font-semibold text-ink">근거 · </span>
-                        {currentQ.law}
-                      </p>
-                      {currentMeta?.improvementGuide && (
-                        <p className="border-t border-zinc-200 pt-2">
-                          <span className="font-semibold text-toss">💡 이렇게 준비하세요 · </span>
-                          {currentMeta.improvementGuide}
-                        </p>
-                      )}
-                    </div>
-                  )}
+        {/* 질문 */}
+        <main>
+          <div className="rounded-[16px] border border-[#DDE2EA] bg-white p-6 md:p-10">
+            <p className="text-[16px] font-bold text-[#3182F6] md:text-[17px]">
+              {CATEGORIES[currentQ?.categoryId]?.name} · {orderInCat} / {inCat.length}
+            </p>
+            <h1 className="mt-3 text-[25px] font-bold leading-[1.5] tracking-[-0.5px] md:text-[30px]">
+              {currentQ?.text}
+            </h1>
+
+            {/* 근거 */}
+            <div className="mt-6 rounded-xl border border-[#DDE2EA] bg-[#F8FAFC] px-5 py-4">
+              <div className="grid gap-1 md:grid-cols-[86px_1fr] md:gap-3">
+                <p className="text-[15px] font-bold text-[#5B6680]">법적 근거</p>
+                <p className="text-[17px] leading-[1.6]">{currentQ?.law}</p>
+              </div>
+              {verified && (
+                <div className="mt-3 grid gap-1 border-t border-[#E6EAF0] pt-3 md:grid-cols-[86px_1fr] md:gap-3">
+                  <p className="text-[15px] font-bold text-[#B42318]">위반 시</p>
+                  <p className="text-[17px] leading-[1.6]"><b>{verified.penaltyDetail}</b> <span className="text-[15px] text-[#5B6680]">({verified.legalBasis})</span></p>
                 </div>
               )}
-              <div className="flex flex-wrap gap-2.5">
-                {currentQ?.options.map((opt) => (
+              {currentMeta?.improvementGuide && (
+                <div className="mt-3 border-t border-[#E6EAF0] pt-3">
+                  <button type="button" onClick={() => setShowGuide((v) => !v)} className="text-[15px] font-bold text-[#1B64DA]">
+                    {showGuide ? '준비 방법 닫기 ▴' : '어떻게 준비하면 되나요? ▾'}
+                  </button>
+                  {showGuide && <p className="mt-2 text-[16px] leading-[1.7] text-[#3D4A63]">{currentMeta.improvementGuide}</p>}
+                </div>
+              )}
+            </div>
+
+            {/* 답변 */}
+            <div className="mt-7 grid gap-3">
+              {currentQ?.options.map((opt) => {
+                const selected = answers[currentIndex] === opt
+                return (
                   <button
                     key={opt}
                     type="button"
                     onClick={() => setAnswer(opt)}
-                    className={`inline-flex min-w-[92px] items-center justify-center gap-1.5 rounded-full px-5 py-2.5 text-sm font-semibold transition ${
-                      answers[currentIndex] === opt
-                        ? `${answerButtonClassWhenSelected[opt] || 'border-2 border-zinc-400 bg-white text-zinc-700'} shadow-md shadow-slate-300/50`
-                        : answerButtonClassUnselected
-                    }`}
+                    aria-pressed={selected}
+                    className={'flex min-h-[68px] w-full items-center justify-between gap-4 rounded-xl border-2 px-6 text-left transition ' + (selected ? 'border-[#3182F6] bg-[#EAF2FE]' : 'border-[#DDE2EA] bg-white hover:border-[#8FB8F7] hover:bg-[#F8FAFC]')}
                   >
-                    <span className="leading-none">{opt}</span>
-                    {answers[currentIndex] === opt && (
-                      <span
-                        className="inline-flex h-5 w-5 items-center justify-center rounded-full bg-white/20 text-[12px] font-extrabold leading-none"
-                        aria-hidden
-                      >
-                        ✓
-                      </span>
-                    )}
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            <div className="mt-3 flex items-center justify-between gap-3 text-[13px] text-slate-600 md:mt-4">
-              <button
-                type="button"
-                onClick={() => setAutoAdvance((v) => !v)}
-                className={`inline-flex items-center gap-1 rounded-full border px-3 py-1 transition ${
-                  autoAdvance
-                    ? 'border-ink bg-ink/10 text-ink'
-                    : 'border-slate-200 bg-slate-50 text-slate-500 hover:border-ink/50'
-                }`}
-              >
-                <span
-                  className={`flex h-3 w-3 items-center justify-center rounded-full border-2 text-[9px] font-bold ${
-                    autoAdvance
-                      ? 'border-ink bg-white text-ink'
-                      : 'border-slate-300 bg-slate-100 text-slate-400'
-                  }`}
-                >
-                  {autoAdvance ? '✓' : ''}
-                </span>
-                자동 다음 문항 이동
-              </button>
-              <div className="text-[12px] text-slate-600 md:text-[13px]">
-                답변 후 자동으로 다음 문항으로 이동합니다. 필요하면 언제든 끌 수 있습니다.
-              </div>
-            </div>
-
-            <div className="mt-3 flex items-center justify-between gap-3 text-xs text-slate-600 md:mt-5">
-              <button
-                type="button"
-                onClick={goPrev}
-                disabled={currentIndex === 0}
-                className="inline-flex items-center rounded-full border border-slate-200 px-4 py-2 text-[13px] font-medium text-slate-700 transition hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-40"
-              >
-                이전 문항
-              </button>
-              {currentIndex < QUESTIONS.length - 1 ? (
-                <button
-                  type="button"
-                  onClick={goNext}
-                  className={'inline-flex items-center rounded-full px-6 py-3 text-sm font-semibold shadow-edge disabled:opacity-50 ' + DIAGNOSIS_CTA_CLASS}
-                >
-                  다음 문항
-                </button>
-              ) : (
-                <button
-                  type="button"
-                  onClick={handleFinish}
-                  disabled={!allAnswered}
-                  className={'inline-flex items-center rounded-full px-7 py-2.5 text-sm font-semibold tracking-wide shadow-edge disabled:cursor-not-allowed disabled:opacity-50 ' + DIAGNOSIS_CTA_CLASS}
-                >
-                  결과 보기
-                </button>
-              )}
-            </div>
-          </main>
-        </div>
-
-        {/* 현재 카테고리 빠른 이동 맵 (데스크톱 전용) */}
-        <div className="mt-4 hidden rounded-2xl border-2 border-zinc-200 bg-white p-4 text-[13px] text-zinc-700 shadow-edge md:block">
-          <div className="mb-3 flex items-center justify-between">
-            <div>
-              <p className="font-medium text-slate-700">
-                {CATEGORIES[currentQ?.categoryId]?.name} 질문 한눈에 보기
-              </p>
-              <span className="text-[12px] text-slate-500">
-                카드 클릭 시 해당 문항으로 바로 이동합니다.
-              </span>
-            </div>
-            <button
-              type="button"
-              onClick={() => setShowOnlyUnanswered((v) => !v)}
-              className={`inline-flex items-center gap-1 rounded-full border px-3 py-1 text-[12px] transition ${
-                showOnlyUnanswered
-                  ? 'border-amber-400 bg-amber-50 text-amber-700'
-                  : 'border-slate-200 bg-slate-50 text-slate-500 hover:border-amber-300'
-              }`}
-            >
-              <span
-                className={`flex h-3 w-3 items-center justify-center rounded-full border text-[9px] ${
-                  showOnlyUnanswered
-                    ? 'border-2 border-amber-500 bg-white text-amber-700'
-                    : 'border-slate-300 bg-slate-100 text-slate-400'
-                }`}
-              >
-                {showOnlyUnanswered ? '!' : ''}
-              </span>
-              미응답만 보기
-            </button>
-          </div>
-          <div className="grid grid-cols-1 gap-2 md:grid-cols-2">
-            {questionsInCurrentCategory
-              .filter((q) => (showOnlyUnanswered ? answers[q.index] == null : true))
-              .map((q) => {
-                const answered = answers[q.index] != null
-                const active = q.index === currentIndex
-                const order =
-                  QUESTIONS.filter((x) => x.categoryId === q.categoryId).indexOf(q) + 1
-                const answerLabel = answers[q.index]
-                return (
-                  <button
-                    key={q.index}
-                    onClick={() => setCurrentIndex(q.index)}
-                    className={`flex w-full items-start gap-3 rounded-2xl border px-3 py-2 text-left text-[12px] transition ${
-                      active
-                        ? 'border-ink bg-ink/10 text-ink'
-                        : answered
-                        ? 'border-zinc-300 bg-zinc-100 text-slate-700'
-                        : 'border-slate-200 bg-slate-50 text-slate-500 hover:border-ink/50 hover:bg-white'
-                    }`}
-                  >
-                    <span
-                      className={`mt-0.5 flex h-5 w-5 items-center justify-center rounded-full border-2 text-[9px] font-bold ${
-                        answered
-                          ? 'border-ink bg-white text-ink'
-                          : 'border-slate-300 bg-slate-200 text-slate-600'
-                      }`}
-                    >
-                      {order}
+                    <span>
+                      <span className="block text-[21px] font-bold leading-tight">{opt}</span>
+                      <span className="mt-0.5 block text-[15px] text-[#5B6680]">{OPTION_HINT[opt] || ''}</span>
                     </span>
-                    <div className="flex-1">
-                      <p className="line-clamp-2 text-[12px] md:text-[13px]">{q.text}</p>
-                      <div className="mt-1 flex items-center gap-2">
-                        <span
-                          className={`inline-flex items-center rounded-full px-2 py-0.5 text-[11px] ${
-                            answered
-                              ? 'bg-ink/10 text-ink'
-                              : 'bg-slate-200 text-slate-600'
-                          }`}
-                        >
-                          {answered ? `응답: ${answerLabel}` : '미응답'}
-                        </span>
-                      </div>
-                    </div>
+                    <span className={'flex h-8 w-8 shrink-0 items-center justify-center rounded-full border-2 text-[16px] font-extrabold ' + (selected ? 'border-[#3182F6] bg-[#3182F6] text-white' : 'border-[#C9D1DC] bg-white text-transparent')} aria-hidden>✓</span>
                   </button>
                 )
               })}
+            </div>
           </div>
-        </div>
 
-        {/* 모바일 하단 탭: 카테고리 */}
-        <div className="md:hidden fixed inset-x-0 bottom-0 z-20 border-t border-slate-200 bg-white/90 p-2 text-[12px] text-slate-700 backdrop-blur">
-          <div className="mb-1 flex items-center justify-between px-1">
-            <span className="text-slate-500">
-              카테고리 바로가기
-            </span>
-            <span className="text-slate-500">
-              {answeredCount} / {QUESTIONS.length}
-            </span>
-          </div>
-          <div className="flex gap-1 overflow-x-auto">
-            {CATEGORIES.map((cat, cid) => (
-              <button
-                key={cid}
-                onClick={() => {
-                  const first = QUESTIONS.findIndex((q) => q.categoryId === cid)
-                  if (first >= 0) setCurrentIndex(first)
-                }}
-                className={`shrink-0 rounded-full border-2 px-3 py-1.5 whitespace-nowrap ${
-                  currentQ?.categoryId === cid
-                    ? 'border-ink bg-white text-ink font-semibold'
-                    : 'border-slate-200 bg-slate-100 text-slate-600'
-                }`}
-              >
-                {cat.name}
+          {/* 이동 */}
+          <div className="mt-5 flex items-center justify-between gap-3">
+            <button type="button" onClick={goPrev} disabled={currentIndex === 0} className="h-[56px] rounded-[10px] border-[1.5px] border-[#C9D1DC] bg-white px-6 text-[18px] font-bold text-[#3D4A63] disabled:opacity-40">
+              ← 이전 질문
+            </button>
+            {isLast ? (
+              <button type="button" onClick={handleFinish} className="h-[56px] rounded-[10px] bg-[#3182F6] px-8 text-[18px] font-bold text-white hover:bg-[#1B64DA]">
+                {allAnswered ? '결과 보기 →' : '남은 질문 답하기 (' + (QUESTIONS.length - answeredCount) + ')'}
               </button>
-            ))}
+            ) : (
+              <button type="button" onClick={goNext} className="h-[56px] rounded-[10px] bg-[#14213D] px-8 text-[18px] font-bold text-white hover:bg-[#22325A]">
+                다음 질문 →
+              </button>
+            )}
           </div>
-        </div>
+          {allAnswered && !isLast && (
+            <button type="button" onClick={handleFinish} className="mt-3 h-[56px] w-full rounded-[10px] bg-[#3182F6] text-[18px] font-bold text-white hover:bg-[#1B64DA]">
+              모든 질문에 답했습니다 · 결과 보기 →
+            </button>
+          )}
+          <p className="mt-6 text-[14px] leading-[1.7] text-[#5B6680]">
+            본 진단은 법령과 고용노동부 자율진단표를 바탕으로 한 참고용 점검입니다. 개별 사업장의 구체적인 판단은 노무사 상담으로 확인하시기 바랍니다.
+          </p>
+        </main>
       </div>
-      <div className="mx-auto mt-6 max-w-5xl px-4 text-center text-[12px] text-slate-500 md:px-6">
-        본 자가진단 문항과 관련 법령 정보는 최신 노동관계 법령과 실무 자료를 바탕으로 작성되었으나, 모든 개별
-        사업장의 상황을 완전히 반영하지 않을 수 있습니다. 구체적인 사건·분쟁에 관한 해석과 대응은 반드시
-        노무사·변호사 등 전문가와 별도로 상담하시기 바랍니다.
+
+      {/* 모바일 하단: 영역 이동 */}
+      <div className="fixed inset-x-0 bottom-0 z-20 border-t border-[#DDE2EA] bg-white px-3 py-2.5 md:hidden">
+        <div className="flex gap-2 overflow-x-auto">
+          {CATEGORIES.map((cat, cid) => (
+            <button
+              key={cid}
+              type="button"
+              onClick={() => catStats[cid].first != null && setCurrentIndex(catStats[cid].first)}
+              className={'shrink-0 whitespace-nowrap rounded-lg border px-3.5 py-2 text-[15px] ' + (currentQ?.categoryId === cid ? 'border-[#3182F6] bg-[#EAF2FE] font-bold text-[#14213D]' : 'border-[#DDE2EA] bg-white text-[#3D4A63]')}
+            >
+              {cat.name} {catStats[cid].done}/{catStats[cid].total}
+            </button>
+          ))}
+        </div>
       </div>
     </div>
   )
