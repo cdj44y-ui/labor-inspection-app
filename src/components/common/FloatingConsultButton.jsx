@@ -4,7 +4,8 @@ import { Link, useLocation } from 'react-router-dom'
 export default function FloatingConsultButton() {
   const { pathname } = useLocation()
   // 상담 신청 페이지 자체에서는 숨김(이미 해당 페이지에 있으므로 중복 방지)
-  if (pathname === '/contact' || pathname === '/c/consult') return null
+  // 결과 페이지는 자체 하단 고정 상담 바가 있어 중복 방지
+  if (pathname === '/contact' || pathname === '/c/consult' || pathname === '/result') return null
 
   return (
     <Link
