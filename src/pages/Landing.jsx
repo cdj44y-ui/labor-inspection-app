@@ -2,6 +2,8 @@ import { Link } from 'react-router-dom'
 import { useState } from 'react'
 import SiteFooter from '../components/common/SiteFooter.jsx'
 import NewsBanner from '../components/common/NewsBanner.jsx'
+import LawCalendar from '../components/common/LawCalendar.jsx'
+import { PROMISE } from '../constants/brand.js'
 
 const FAQ_ITEMS = [
   {
@@ -38,15 +40,6 @@ const CASES = [
 ]
 
 
-// 법 개정 달력 — 국가법령정보센터 원문 확인 항목만 (매일 점검 루틴에서 갱신)
-const LAW_CALENDAR = [
-  { date: '2026.10.08', status: '시행 중', tone: 'now', title: '임금 체불 처벌 상향, 최대 징역 5년', note: '근로기준법 벌칙 조항 제109조 → 제107조 (법률 제21533호)' },
-  { date: '2026.10.01', status: '공포 전', tone: 'pre', title: '반복 산재 사망 시 영업이익 최대 5% 과징금', note: '산업안전보건법 개정안 국회 본회의 통과' },
-  { date: '2026.12.08', status: '시행 예정', tone: 'next', title: '근로감독관 명칭, 노동감독관으로 변경', note: '근로기준법 제11장·제101조 등 개정, 권한·의무는 「노동감독관 직무집행법」으로 (법률 제21533호)' },
-  { date: '2027.01.08', status: '시행 예정', tone: 'next', title: '외국인 근로자 기초안전보건교육 의무화', note: '산업안전보건법 제31조의2 신설' },
-  { date: '2027.06.10', status: '시행 예정', tone: 'next', title: '연차휴가 관련 조문 개정', note: '근로기준법 제60조' },
-]
-
 const INDUSTRY_POINTS = [
   { name: '금융', point: '영업직 연장근로 관리, 성과급의 임금 해당 여부' },
   { name: 'IT', point: '포괄임금·유연근무 운영과 실제 근로시간 기록' },
@@ -54,13 +47,8 @@ const INDUSTRY_POINTS = [
   { name: '제조', point: '교대제 근로시간과 안전보건교육·위험성평가 기록' },
 ]
 
-const toneClass = {
-  now: 'bg-[#FDECEC] text-[#B42318]',
-  pre: 'bg-[#EEF1F5] text-[#3D4A63]',
-  next: 'bg-[#EAF2FE] text-[#1B64DA]',
-}
-
-const btnPrimary = 'inline-flex h-[60px] items-center justify-center rounded-[10px] bg-[#3182F6] px-8 text-[19px] font-bold text-white no-underline transition hover:bg-[#1B64DA] visited:text-white'
+const btnPrimary = 'inline-flex h-[60px] items-center justify-center rounded-[10px] bg-[#1976D2] px-8 text-[19px] font-bold text-white no-underline transition hover:bg-[#1565C0] visited:text-white'
+const btnConsult = 'inline-flex h-[60px] items-center justify-center rounded-[10px] bg-[#1F4E79] px-8 text-[19px] font-bold text-white no-underline transition hover:bg-[#173B5C] visited:text-white'
 const btnGhost = 'inline-flex h-[60px] items-center justify-center rounded-[10px] border-[1.5px] border-[#14213D] bg-white px-8 text-[19px] font-bold text-[#14213D] no-underline transition hover:bg-[#F5F7FA]'
 
 export default function Landing() {
@@ -70,26 +58,18 @@ export default function Landing() {
     <div className="min-h-screen bg-white text-[#14213D] [word-break:keep-all]">
       <NewsBanner />
 
-      {/* 상단 안내줄 */}
-      <div className="border-b border-[#DDE2EA] bg-[#F5F7FA] text-[15px] text-[#5B6680]">
-        <div className="mx-auto flex h-11 max-w-[1120px] items-center justify-between px-6 md:px-8">
-          <span>노무법인 위너스가 운영하는 <b className="text-[#14213D]">근로감독 자가진단</b> 서비스</span>
-          <span className="hidden md:inline">상담은 신청서 접수 후 순차적으로 안내드립니다</span>
-        </div>
-      </div>
-
       {/* 헤더 */}
       <header className="border-b border-[#DDE2EA]">
         <div className="mx-auto flex h-[76px] max-w-[1120px] items-center justify-between px-6 md:px-8">
           <Link to="/" className="no-underline text-[#14213D]">
-            <span className="block text-[22px] font-extrabold leading-tight tracking-[-0.3px]">RISK<span className="text-[#3182F6]">119</span></span>
+            <span className="block text-[22px] font-extrabold leading-tight tracking-[-0.3px]">RISK<span className="text-[#1976D2]">119</span></span>
             <span className="block text-[13px] font-medium text-[#5B6680]">근로감독 자가진단</span>
           </Link>
           <nav className="flex items-center gap-5 text-[16px] font-semibold text-[#3D4A63] md:gap-8 md:text-[17px]">
             <Link to="/diagnosis" className="no-underline text-[#3D4A63] hover:text-[#14213D]">자가진단</Link>
-            <a href="#law" className="hidden no-underline text-[#3D4A63] hover:text-[#14213D] md:inline">이달의 법 개정</a>
+            <a href="#law" className="hidden no-underline text-[#3D4A63] hover:text-[#14213D] md:inline">달라지는 법령</a>
             <a href="#expert" className="hidden no-underline text-[#3D4A63] hover:text-[#14213D] md:inline">노무사 소개</a>
-            <Link to="/contact" className="no-underline text-[#3D4A63] hover:text-[#14213D]">상담 신청</Link>
+            <Link to="/contact" className="rounded-lg bg-[#1F4E79] px-4 py-2 text-white no-underline hover:bg-[#173B5C] visited:text-white">상담 신청</Link>
           </nav>
         </div>
       </header>
@@ -98,7 +78,7 @@ export default function Landing() {
       <section className="py-14 md:py-[72px]">
         <div className="mx-auto grid max-w-[1120px] gap-12 px-6 md:grid-cols-[1.25fr_0.9fr] md:gap-14 md:px-8">
           <div>
-            <p className="text-[17px] font-bold text-[#3182F6]">고용노동부 자율점검표 기반 · 50여 문항 · 약 10분</p>
+            <p className="text-[17px] font-bold text-[#1976D2]">고용노동부 자율점검표 기반 · 50여 문항 · 약 10분</p>
             <h1 className="mt-3.5 text-[38px] font-bold leading-[1.28] tracking-[-1px] md:text-[52px] md:tracking-[-1.2px]">
               근로감독 오기 전에,<br />우리 회사 위험부터<br />확인하십시오
             </h1>
@@ -107,9 +87,9 @@ export default function Landing() {
             </p>
             <div className="mt-9 flex flex-wrap gap-3">
               <Link to="/diagnosis" className={btnPrimary}>무료로 진단 시작하기 →</Link>
-              <Link to="/contact" className={btnGhost}>노무사와 상담하기</Link>
+              <Link to="/contact" className={btnConsult}>상담 신청</Link>
             </div>
-            <p className="mt-5 text-[16px] text-[#5B6680]">회원가입 없음 · 입력 내용은 서버에 저장되지 않습니다</p>
+            <p className="mt-5 text-[16px] text-[#5B6680]">{PROMISE}</p>
           </div>
           <div className="self-start overflow-hidden rounded-[14px] border border-[#DDE2EA]">
             <div className="flex justify-between bg-[#14213D] px-6 py-[18px] text-[16px] font-semibold text-white">
@@ -133,18 +113,19 @@ export default function Landing() {
         <div className="mx-auto grid max-w-[1120px] items-start gap-10 px-6 md:grid-cols-[260px_1fr] md:gap-14 md:px-8">
           <img src="/expert/cho-daejin.jpg" alt="조대진 대표노무사" width="260" height="338" className="h-[338px] w-[260px] rounded-xl object-cover" />
           <div>
-            <p className="text-[17px] font-bold text-[#3182F6]">이 진단을 설계한 사람</p>
-            <h2 className="mt-2 text-[32px] font-bold leading-[1.35] tracking-[-0.8px] md:text-[36px]">조대진 대표노무사</h2>
+            <p className="text-[17px] font-bold text-[#1976D2]">이 진단을 설계한 사람</p>
+            <h2 className="mt-2 text-[32px] font-bold leading-[1.35] tracking-[-0.8px] md:text-[36px]">대기업 인사팀 출신 노무사, 조대진</h2>
+            <p className="mt-1 text-[18px] font-semibold text-[#5B6680]">공인노무사 16년 · 안전공학 박사</p>
             <p className="mt-2 text-[20px] font-semibold leading-[1.6] md:text-[22px]">
               “감독은 서류보다 실제 운영을 봅니다. 문항 하나하나를 감독관이 묻는 순서대로 만들었습니다.”
             </p>
             <div className="mt-7 grid gap-4 md:grid-cols-2">
               <div className="rounded-xl border border-[#DDE2EA] bg-white p-6">
-                <p className="text-[15px] font-bold text-[#3182F6]">대기업 근로감독, 매년 실전 대응</p>
+                <p className="text-[15px] font-bold text-[#1976D2]">대기업 근로감독, 매년 실전 대응</p>
                 <p className="mt-2 text-[17px] leading-[1.7] text-[#3D4A63]">해마다 돌아오는 대기업 근로감독을 현장에서 직접 대응하며, 감독관이 무엇을 묻고 어떤 자료를 요구하는지 쌓아 온 경험을 문항에 담았습니다.</p>
               </div>
               <div className="rounded-xl border border-[#DDE2EA] bg-white p-6">
-                <p className="text-[15px] font-bold text-[#3182F6]">금융·IT·보건의료·제조 자문사와 함께</p>
+                <p className="text-[15px] font-bold text-[#1976D2]">금융·IT·보건의료·제조 자문사와 함께</p>
                 <p className="mt-2 text-[17px] leading-[1.7] text-[#3D4A63]">업종마다 감독이 보는 지점은 다릅니다. 여러 업종의 자문사와 감독을 함께 대응하며 확인한 업종별 쟁점을 반영했습니다.</p>
               </div>
             </div>
@@ -190,7 +171,7 @@ export default function Landing() {
               ['매일 원문 대조', '국가법령정보센터 원문과 고용노동부 발표를 매일 확인하고, 바뀐 내용은 날짜와 함께 반영합니다.'],
             ].map(([t, d], i) => (
               <div key={t} className="rounded-[14px] border border-[#DDE2EA] p-8">
-                <p className="text-[16px] font-extrabold text-[#3182F6]">근거 {i + 1}</p>
+                <p className="text-[16px] font-extrabold text-[#1976D2]">근거 {i + 1}</p>
                 <h3 className="mt-2.5 text-[22px] font-bold">{t}</h3>
                 <p className="mt-2 text-[17px] leading-[1.7] text-[#5B6680]">{d}</p>
               </div>
@@ -199,26 +180,8 @@ export default function Landing() {
         </div>
       </section>
 
-      {/* 법 개정 달력 */}
-      <section id="law" className="border-t border-[#DDE2EA] bg-[#F5F7FA] py-16 md:py-[88px]">
-        <div className="mx-auto max-w-[1120px] px-6 md:px-8">
-          <h2 className="text-[30px] font-bold leading-[1.35] tracking-[-0.8px] md:text-[36px]">이번 달 달라지는 노동법</h2>
-          <p className="mt-2.5 text-[18px] text-[#5B6680] md:text-[19px]">국가법령정보센터 원문을 확인해 갱신합니다. 사장님 회사에 해당하는지 진단에서 바로 확인할 수 있습니다.</p>
-          <div className="mt-10 border-t-2 border-[#14213D]">
-            {LAW_CALENDAR.map((r) => (
-              <div key={r.date + r.title} className="grid gap-2 border-b border-[#DDE2EA] py-6 md:grid-cols-[150px_120px_1fr_140px] md:items-center md:gap-6">
-                <p className="text-[18px] font-bold">{r.date}</p>
-                <p><span className={'inline-block rounded-md px-2.5 py-1 text-[14px] font-bold ' + toneClass[r.tone]}>{r.status}</span></p>
-                <div>
-                  <p className="text-[19px] font-bold leading-[1.5]">{r.title}</p>
-                  <p className="text-[16px] text-[#5B6680]">{r.note}</p>
-                </div>
-                <Link to="/diagnosis" className="text-[16px] font-bold text-[#3182F6] no-underline md:text-right">진단에서 확인 →</Link>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* 법 개정 한 장 — 네 사이트 공통 */}
+      <LawCalendar />
 
       {/* 소개 영상 */}
       <section id="intro-video" className="border-t border-[#DDE2EA] py-16 md:py-[88px]">
@@ -242,7 +205,7 @@ export default function Landing() {
               ['결과와 할 일', '위험 등급, 해당 조문, 우선 고칠 항목을 정리해 드립니다.'],
             ].map(([t, d], i) => (
               <div key={t} className="rounded-[14px] border border-[#DDE2EA] bg-white p-8">
-                <p className="text-[16px] font-extrabold text-[#3182F6]">{i + 1}단계</p>
+                <p className="text-[16px] font-extrabold text-[#1976D2]">{i + 1}단계</p>
                 <h3 className="mt-2.5 text-[22px] font-bold">{t}</h3>
                 <p className="mt-2 text-[17px] leading-[1.7] text-[#5B6680]">{d}</p>
               </div>
@@ -293,7 +256,7 @@ export default function Landing() {
       <section className="bg-[#14213D] py-16 text-center text-white md:py-[88px]">
         <div className="mx-auto max-w-[1120px] px-6 md:px-8">
           <h2 className="text-[30px] font-bold leading-[1.35] tracking-[-0.8px] text-white md:text-[36px]">감독 통지서가 오기 전에 확인하십시오</h2>
-          <p className="mt-2.5 text-[18px] text-[#C9D1E0] md:text-[19px]">무료 · 회원가입 없음 · 약 10분</p>
+          <p className="mt-2.5 text-[18px] text-[#C9D1E0] md:text-[19px]">{PROMISE} · 약 10분</p>
           <div className="mt-9 flex flex-wrap justify-center gap-3">
             <Link to="/diagnosis" className={btnPrimary}>무료로 진단 시작하기 →</Link>
           </div>

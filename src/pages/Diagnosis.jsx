@@ -1,3 +1,4 @@
+import { VERIFIED_DATE, PROMISE } from '../constants/brand.js'
 import { useState, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { QUESTIONS, CATEGORIES } from '../data/questions.js'
@@ -84,15 +85,15 @@ export default function Diagnosis() {
       <header className="sticky top-0 z-20 border-b border-[#DDE2EA] bg-white">
         <div className="mx-auto flex max-w-[1120px] items-center gap-6 px-5 py-4 md:px-8">
           <Link to="/" className="shrink-0 no-underline text-[#14213D]">
-            <span className="block text-[20px] font-extrabold leading-tight">RISK<span className="text-[#3182F6]">119</span></span>
+            <span className="block text-[20px] font-extrabold leading-tight">RISK<span className="text-[#1976D2]">119</span></span>
           </Link>
           <div className="flex-1">
             <div className="flex items-baseline justify-between text-[16px]">
               <span className="font-bold">진행 {answeredCount} / {QUESTIONS.length} 문항</span>
-              <span className="font-bold text-[#3182F6]">{progress}%</span>
+              <span className="font-bold text-[#1976D2]">{progress}%</span>
             </div>
             <div className="mt-2 h-2.5 overflow-hidden rounded-full bg-[#E6EAF0]">
-              <div className="h-full rounded-full bg-[#3182F6] transition-all" style={{ width: progress + '%' }} />
+              <div className="h-full rounded-full bg-[#1976D2] transition-all" style={{ width: progress + '%' }} />
             </div>
           </div>
         </div>
@@ -112,16 +113,16 @@ export default function Diagnosis() {
                   key={cid}
                   type="button"
                   onClick={() => s.first != null && setCurrentIndex(s.first)}
-                  className={'flex w-full items-center justify-between gap-3 border-b border-[#EEF1F5] px-4 py-3.5 text-left text-[16px] last:border-b-0 ' + (active ? 'bg-[#EAF2FE] font-bold text-[#14213D]' : 'bg-white text-[#3D4A63] hover:bg-[#F5F7FA]')}
+                  className={'flex w-full items-center justify-between gap-3 border-b border-[#EEF1F5] px-4 py-3.5 text-left text-[16px] last:border-b-0 ' + (active ? 'bg-[#E3F0FB] font-bold text-[#14213D]' : 'bg-white text-[#3D4A63] hover:bg-[#F5F7FA]')}
                 >
                   <span className="leading-snug">{cat.name}</span>
-                  <span className={'shrink-0 text-[14px] font-bold ' + (done ? 'text-[#1B64DA]' : 'text-[#8A94A6]')}>{done ? '완료' : s.done + '/' + s.total}</span>
+                  <span className={'shrink-0 text-[14px] font-bold ' + (done ? 'text-[#1565C0]' : 'text-[#8A94A6]')}>{done ? '완료' : s.done + '/' + s.total}</span>
                 </button>
               )
             })}
           </nav>
           <label className="mt-4 flex cursor-pointer items-center gap-2.5 text-[15px] text-[#3D4A63]">
-            <input type="checkbox" checked={autoAdvance} onChange={(e) => setAutoAdvance(e.target.checked)} className="h-5 w-5 accent-[#3182F6]" />
+            <input type="checkbox" checked={autoAdvance} onChange={(e) => setAutoAdvance(e.target.checked)} className="h-5 w-5 accent-[#1976D2]" />
             답하면 다음 질문으로 자동 이동
           </label>
         </aside>
@@ -129,7 +130,7 @@ export default function Diagnosis() {
         {/* 질문 */}
         <main>
           <div className="rounded-[16px] border border-[#DDE2EA] bg-white p-6 md:p-10">
-            <p className="text-[16px] font-bold text-[#3182F6] md:text-[17px]">
+            <p className="text-[16px] font-bold text-[#1976D2] md:text-[17px]">
               {CATEGORIES[currentQ?.categoryId]?.name} · {orderInCat} / {inCat.length}
             </p>
             <h1 className="mt-3 text-[25px] font-bold leading-[1.5] tracking-[-0.5px] md:text-[30px]">
@@ -150,7 +151,7 @@ export default function Diagnosis() {
               )}
               {currentMeta?.improvementGuide && (
                 <div className="mt-3 border-t border-[#E6EAF0] pt-3">
-                  <button type="button" onClick={() => setShowGuide((v) => !v)} className="text-[15px] font-bold text-[#1B64DA]">
+                  <button type="button" onClick={() => setShowGuide((v) => !v)} className="text-[15px] font-bold text-[#1565C0]">
                     {showGuide ? '준비 방법 닫기 ▴' : '어떻게 준비하면 되나요? ▾'}
                   </button>
                   {showGuide && <p className="mt-2 text-[16px] leading-[1.7] text-[#3D4A63]">{currentMeta.improvementGuide}</p>}
@@ -168,13 +169,13 @@ export default function Diagnosis() {
                     type="button"
                     onClick={() => setAnswer(opt)}
                     aria-pressed={selected}
-                    className={'flex min-h-[68px] w-full items-center justify-between gap-4 rounded-xl border-2 px-6 text-left transition ' + (selected ? 'border-[#3182F6] bg-[#EAF2FE]' : 'border-[#DDE2EA] bg-white hover:border-[#8FB8F7] hover:bg-[#F8FAFC]')}
+                    className={'flex min-h-[68px] w-full items-center justify-between gap-4 rounded-xl border-2 px-6 text-left transition ' + (selected ? 'border-[#1976D2] bg-[#E3F0FB]' : 'border-[#DDE2EA] bg-white hover:border-[#90CAF9] hover:bg-[#F8FAFC]')}
                   >
                     <span>
                       <span className="block text-[21px] font-bold leading-tight">{opt}</span>
                       <span className="mt-0.5 block text-[15px] text-[#5B6680]">{OPTION_HINT[opt] || ''}</span>
                     </span>
-                    <span className={'flex h-8 w-8 shrink-0 items-center justify-center rounded-full border-2 text-[16px] font-extrabold ' + (selected ? 'border-[#3182F6] bg-[#3182F6] text-white' : 'border-[#C9D1DC] bg-white text-transparent')} aria-hidden>✓</span>
+                    <span className={'flex h-8 w-8 shrink-0 items-center justify-center rounded-full border-2 text-[16px] font-extrabold ' + (selected ? 'border-[#1976D2] bg-[#1976D2] text-white' : 'border-[#C9D1DC] bg-white text-transparent')} aria-hidden>✓</span>
                   </button>
                 )
               })}
@@ -187,7 +188,7 @@ export default function Diagnosis() {
               ← 이전 질문
             </button>
             {isLast ? (
-              <button type="button" onClick={handleFinish} className="h-[56px] rounded-[10px] bg-[#3182F6] px-8 text-[18px] font-bold text-white hover:bg-[#1B64DA]">
+              <button type="button" onClick={handleFinish} className="h-[56px] rounded-[10px] bg-[#1976D2] px-8 text-[18px] font-bold text-white hover:bg-[#1565C0]">
                 {allAnswered ? '결과 보기 →' : '남은 질문 답하기 (' + (QUESTIONS.length - answeredCount) + ')'}
               </button>
             ) : (
@@ -197,13 +198,14 @@ export default function Diagnosis() {
             )}
           </div>
           {allAnswered && !isLast && (
-            <button type="button" onClick={handleFinish} className="mt-3 h-[56px] w-full rounded-[10px] bg-[#3182F6] text-[18px] font-bold text-white hover:bg-[#1B64DA]">
+            <button type="button" onClick={handleFinish} className="mt-3 h-[56px] w-full rounded-[10px] bg-[#1976D2] text-[18px] font-bold text-white hover:bg-[#1565C0]">
               모든 질문에 답했습니다 · 결과 보기 →
             </button>
           )}
           <p className="mt-6 text-[14px] leading-[1.7] text-[#5B6680]">
             본 진단은 법령과 고용노동부 자율진단표를 바탕으로 한 참고용 점검입니다. 개별 사업장의 구체적인 판단은 노무사 상담으로 확인하시기 바랍니다.
           </p>
+          <p className="mt-2 text-[14px] font-semibold text-[#5B6680]">근거 원문 대조일 {VERIFIED_DATE} · {PROMISE}</p>
         </main>
       </div>
 
@@ -215,7 +217,7 @@ export default function Diagnosis() {
               key={cid}
               type="button"
               onClick={() => catStats[cid].first != null && setCurrentIndex(catStats[cid].first)}
-              className={'shrink-0 whitespace-nowrap rounded-lg border px-3.5 py-2 text-[15px] ' + (currentQ?.categoryId === cid ? 'border-[#3182F6] bg-[#EAF2FE] font-bold text-[#14213D]' : 'border-[#DDE2EA] bg-white text-[#3D4A63]')}
+              className={'shrink-0 whitespace-nowrap rounded-lg border px-3.5 py-2 text-[15px] ' + (currentQ?.categoryId === cid ? 'border-[#1976D2] bg-[#E3F0FB] font-bold text-[#14213D]' : 'border-[#DDE2EA] bg-white text-[#3D4A63]')}
             >
               {cat.name} {catStats[cid].done}/{catStats[cid].total}
             </button>
