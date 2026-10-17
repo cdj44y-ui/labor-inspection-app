@@ -179,3 +179,12 @@ export function getPenaltyMeta(questionIndex) {
     Math.max(merged.fineManwon + merged.adminManwon, merged.fineManwon, merged.adminManwon)
   return merged
 }
+
+/** 진단 화면 노출용: 법령 원문으로 검증된 문항별 처벌만 반환 (카테고리 기본값·시행 전 과태료 제외) */
+const VERIFIED_PENALTY_INDEXES = [0, 1, 5, 9, 18]
+export function getVerifiedPenalty(questionIndex) {
+  if (!VERIFIED_PENALTY_INDEXES.includes(questionIndex)) return null
+  const o = INDEX_OVERRIDES[questionIndex]
+  if (!o) return null
+  return { penaltyDetail: o.penaltyDetail, legalBasis: String(o.legalBasis).split(' — ')[0] }
+}
