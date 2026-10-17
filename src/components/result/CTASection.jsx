@@ -22,7 +22,7 @@ export default function CTASection({ riskLevelLabel, totalScore, totalPenaltyMan
     score: totalScore != null ? `${totalScore}점` : undefined,
     grade: riskLevelLabel,
     area: violationSummary,
-    items: `15분 전화상담 요청 · 예상 부담 약 ${totalPenaltyManwon}만원`,
+    items: `상담 신청 · 예상 부담 약 ${totalPenaltyManwon}만원`,
   })
 
   return (
@@ -33,7 +33,7 @@ export default function CTASection({ riskLevelLabel, totalScore, totalPenaltyMan
       <div className="mt-6 space-y-8">
         {/* 1단계 */}
         <div>
-          <p className="text-sm font-bold text-ink">📋 1단계: 무료 개선 가이드 받기</p>
+          <p className="text-sm font-bold text-ink">📋 1단계: 개선 가이드 요청</p>
           <div className="mt-3 rounded-2xl border border-zinc-200 bg-zinc-50/80 p-4">
             <ul className="space-y-1 text-sm text-zinc-700">
               <li>
@@ -47,17 +47,17 @@ export default function CTASection({ riskLevelLabel, totalScore, totalPenaltyMan
               rel="noopener noreferrer"
               className={DIAGNOSIS_CTA_CLASS + ' mt-3 inline-flex w-full justify-center px-6 py-3 text-sm sm:w-auto'}
             >
-              무료 개선 가이드 받기
+              개선 가이드 요청하기
             </a>
           </div>
         </div>
 
         {/* 2단계 */}
         <div>
-          <p className="text-sm font-bold text-ink">📞 2단계: 15분 무료 전화상담 요청</p>
+          <p className="text-sm font-bold text-ink">📞 2단계: 상담 신청</p>
           <div className="mt-3 rounded-2xl border border-zinc-200 bg-zinc-50/80 p-4">
             <p className="text-sm leading-relaxed text-zinc-800">
-              &quot;진단 결과를 바탕으로 핵심 개선 포인트를 15분 안에 짚어드립니다.&quot;
+              상담은 유료 자문으로 진행되며, 신청서를 확인한 뒤 일정과 비용을 안내드립니다.
             </p>
             <a
               href={tallyCallUrl}
@@ -65,7 +65,7 @@ export default function CTASection({ riskLevelLabel, totalScore, totalPenaltyMan
               rel="noopener noreferrer"
               className={DIAGNOSIS_CTA_CLASS + ' mt-3 inline-flex w-full justify-center px-6 py-3 text-sm sm:w-auto'}
             >
-              전화상담 요청하기
+              상담 신청하기
             </a>
           </div>
         </div>
