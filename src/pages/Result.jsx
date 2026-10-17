@@ -2,7 +2,6 @@ import { useState, useEffect, useMemo } from 'react'
 import { Link } from 'react-router-dom'
 import { QUESTIONS, CATEGORIES } from '../data/questions.js'
 import { getTotalScore, getCategoryScores, getGrade, GRADE_LABELS } from '../utils/score.js'
-import { CONTACT_PHONE } from '../constants/contact.js'
 import { buildTallyUrl } from '../utils/tally.js'
 import { getVerifiedPenalty } from '../data/penalties.js'
 import SiteFooter from '../components/common/SiteFooter.jsx'
@@ -62,13 +61,7 @@ export default function Result() {
     score: totalScore + '점',
     grade: gradeInfo.label,
     area: areas.join(', ') || '위반 소지 없음',
-    items: '15분 전화상담 요청 · 위반 소지 ' + items.length + '건' + (criminalCount ? ' (형사처벌 조문 ' + criminalCount + '건)' : ''),
-  })
-  const tallyGuide = buildTallyUrl({
-    score: totalScore + '점',
-    grade: gradeInfo.label,
-    area: areas.join(', ') || '위반 소지 없음',
-    items: '무료 개선 가이드 요청 · 위반 소지 ' + items.length + '건',
+    items: '상담 신청 · 위반 소지 ' + items.length + '건' + (criminalCount ? ' (형사처벌 조문 ' + criminalCount + '건)' : ''),
   })
 
   const weakest = CATEGORIES.map((c, i) => ({ name: c.name, score: categoryScores[i] })).sort((a, b) => a.score - b.score)
@@ -78,7 +71,7 @@ export default function Result() {
       <header className="border-b border-[#DDE2EA]">
         <div className="mx-auto flex h-[68px] max-w-[1040px] items-center justify-between px-5 md:px-8">
           <Link to="/" className="text-[21px] font-extrabold no-underline text-[#14213D]">RISK<span className="text-[#3182F6]">119</span></Link>
-          <a href={'tel:' + String(CONTACT_PHONE).replace(/[^0-9]/g, '')} className="text-[16px] font-bold no-underline text-[#14213D]">상담 전화 {CONTACT_PHONE}</a>
+          <span className="text-[16px] font-semibold text-[#5B6680]">노무법인 위너스</span>
         </div>
       </header>
 
@@ -159,19 +152,39 @@ export default function Result() {
       )}
 
       {/* 영역별 점수 */}
-      <section className="border-b border-[#DDE2EA] py-14 md:py-[64px]">
+      <section className="border-b border-[#DDE2EA] py-14 md:py-[72px]">
         <div className="mx-auto max-w-[1040px] px-5 md:px-8">
-          <h2 className="text-[26px] font-bold md:text-[30px]">영역별 점수</h2>
-          <div className="mt-6 space-y-4">
-            {weakest.map((c) => (
-              <div key={c.name} className="grid grid-cols-[150px_1fr_56px] items-center gap-4 md:grid-cols-[220px_1fr_64px]">
-                <span className="text-[17px] font-semibold">{c.name}</span>
-                <div className="h-3.5 overflow-hidden rounded-full bg-[#E6EAF0]">
-                  <div className="h-full rounded-full" style={{ width: c.score + '%', background: c.score >= 90 ? '#1B64DA' : c.score >= 70 ? '#B7791F' : c.score >= 50 ? '#C2410C' : '#B42318' }} />
+          <div className="flex flex-wrap items-end justify-between gap-3">
+            <div>
+              <h2 className="text-[28px] font-bold tracking-[-0.6px] md:text-[32px]">영역별 점수</h2>
+              <p className="mt-1.5 text-[17px] text-[#5B6680]">점수가 낮은 영역부터 보여드립니다. 점선은 양호 기준(90점)입니다.</p>
+            </div>
+            <div className="flex flex-wrap gap-3 text-[14px] font-semibold text-[#3D4A63]">
+              {[['양호', '#1B64DA'], ['주의', '#C08A1E'], ['경고', '#D2601A'], ['위험', '#B42318']].map(([l, c]) => (
+                <span key={l} className="inline-flex items-center gap-1.5"><span className="h-3 w-3 rounded-sm" style={{ background: c }} />{l}</span>
+              ))}
+            </div>
+          </div>
+          <div className="mt-8 divide-y divide-[#E6EAF0] rounded-[16px] border border-[#DDE2EA] bg-white">
+            {weakest.map((c) => {
+              const s = c.score >= 90 ? ['양호', '#1B64DA', '#EAF2FE'] : c.score >= 70 ? ['주의', '#C08A1E', '#FBF3E2'] : c.score >= 50 ? ['경고', '#D2601A', '#FDEEE4'] : ['위험', '#B42318', '#FDECEC']
+              return (
+                <div key={c.name} className="px-5 py-5 md:px-7">
+                  <div className="flex items-baseline justify-between gap-3">
+                    <p className="text-[19px] font-bold">{c.name}</p>
+                    <p className="flex items-baseline gap-2">
+                      <span className="rounded-md px-2 py-0.5 text-[14px] font-bold" style={{ color: s[1], background: s[2] }}>{s[0]}</span>
+                      <span className="text-[28px] font-extrabold leading-none tracking-[-0.5px]" style={{ color: s[1] }}>{c.score}</span>
+                      <span className="text-[16px] font-semibold text-[#5B6680]">점</span>
+                    </p>
+                  </div>
+                  <div className="relative mt-3 h-[18px] rounded-full bg-[#EEF1F5]">
+                    <div className="h-full rounded-full transition-all duration-700" style={{ width: Math.max(c.score, 2) + '%', background: s[1] }} />
+                    <div className="absolute inset-y-[-4px] w-0 border-l-2 border-dashed border-[#14213D]/40" style={{ left: '90%' }} aria-hidden />
+                  </div>
                 </div>
-                <span className="text-right text-[18px] font-bold">{c.score}점</span>
-              </div>
-            ))}
+              )
+            })}
           </div>
         </div>
       </section>
@@ -187,7 +200,7 @@ export default function Result() {
             <p className="mt-5 text-[20px] font-semibold leading-[1.6]">대기업 근로감독을 매년 현장에서 대응해 왔고, 금융·IT·보건의료·제조 자문사와 감독을 함께 준비해 왔습니다. 위반 항목을 어떤 순서로, 어떤 서류로 정리해야 하는지 알고 있습니다.</p>
             <div className="mt-7 border-t-2 border-[#14213D]">
               {[
-                ['1', '결과 해설', '15분 통화로 위반 소지 항목 중 먼저 손볼 것을 짚어 드립니다.'],
+                ['1', '결과 검토', '신청서에 담긴 진단 결과를 검토해 먼저 손볼 항목을 정리합니다.'],
                 ['2', '정비와 소급 정리', '계약서·임금대장·근로시간 기록을 맞추고 과거분 정리 방안을 세웁니다.'],
                 ['3', '감독 대비', '감독관이 요구하는 서류와 설명 순서를 미리 준비합니다.'],
               ].map(([n, t, d]) => (
@@ -207,12 +220,10 @@ export default function Result() {
           <h2 className="text-[32px] font-bold leading-[1.35] tracking-[-0.8px] md:text-[38px]">감독 통지서가 오기 전에<br />결과를 함께 정리하십시오</h2>
           <p className="mt-4 text-[19px] leading-[1.7] text-[#3D4A63]">진단 결과는 상담 신청서에 자동으로 담깁니다. 다시 설명하실 필요가 없습니다.</p>
           <a href={tallyCall} target="_blank" rel="noopener noreferrer" className="mt-8 inline-flex h-[64px] w-full items-center justify-center rounded-[12px] bg-[#3182F6] text-[21px] font-bold text-white no-underline hover:bg-[#1B64DA] visited:text-white md:w-auto md:px-12">
-            15분 무료 전화상담 요청하기 →
+            상담 신청서 작성하기 →
           </a>
-          <p className="mt-4 text-[16px] text-[#5B6680]">상담 신청은 무료이며, 이후 진행 여부는 직접 결정하시면 됩니다.</p>
+          <p className="mt-4 text-[16px] leading-[1.7] text-[#5B6680]">상담은 유료 자문으로 진행됩니다. 신청서를 확인한 뒤 일정과 비용을 안내드립니다.<br />일정에 따라 노무법인 위너스 소속의 경험 많은 노무사가 먼저 연락드릴 수 있습니다.</p>
           <div className="mt-6 flex flex-wrap justify-center gap-x-6 gap-y-2 text-[17px]">
-            <a href={tallyGuide} target="_blank" rel="noopener noreferrer" className="font-bold text-[#1B64DA] underline underline-offset-4">무료 개선 가이드 받기</a>
-            <a href={'tel:' + String(CONTACT_PHONE).replace(/[^0-9]/g, '')} className="font-bold text-[#14213D] underline underline-offset-4">바로 전화하기 {CONTACT_PHONE}</a>
             <Link to="/diagnosis" className="text-[#5B6680] underline underline-offset-4">다시 진단하기</Link>
           </div>
         </div>
@@ -227,8 +238,8 @@ export default function Result() {
       {items.length > 0 && (
         <div className="fixed inset-x-0 bottom-0 z-30 border-t border-[#DDE2EA] bg-white/95 backdrop-blur">
           <div className="mx-auto flex max-w-[1040px] items-center justify-between gap-3 px-5 py-3 md:px-8">
-            <p className="text-[16px] font-bold md:text-[18px]">위반 소지 <span className="text-[#B42318]">{items.length}건</span><span className="hidden font-normal text-[#5B6680] md:inline"> · 결과가 상담 신청서에 자동으로 담깁니다</span></p>
-            <a href={tallyCall} target="_blank" rel="noopener noreferrer" className="inline-flex h-[52px] shrink-0 items-center rounded-[10px] bg-[#3182F6] px-6 text-[17px] font-bold text-white no-underline visited:text-white">15분 무료 상담 요청</a>
+            <p className="text-[16px] font-bold md:text-[18px]">위반 소지 <span className="text-[#B42318]">{items.length}건</span><span className="hidden font-normal text-[#5B6680] md:inline"> · 진단 결과가 신청서에 자동으로 담깁니다</span></p>
+            <a href={tallyCall} target="_blank" rel="noopener noreferrer" className="inline-flex h-[52px] shrink-0 items-center rounded-[10px] bg-[#3182F6] px-6 text-[17px] font-bold text-white no-underline visited:text-white">상담 신청서 작성</a>
           </div>
         </div>
       )}

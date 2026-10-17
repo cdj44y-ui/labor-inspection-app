@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom'
 import { useState } from 'react'
-import { CONTACT_PHONE } from '../constants/contact.js'
 import SiteFooter from '../components/common/SiteFooter.jsx'
 import NewsBanner from '../components/common/NewsBanner.jsx'
 
@@ -43,6 +42,7 @@ const CASES = [
 const LAW_CALENDAR = [
   { date: '2026.10.08', status: '시행 중', tone: 'now', title: '임금 체불 처벌 상향, 최대 징역 5년', note: '근로기준법 벌칙 조항 제109조 → 제107조 (법률 제21533호)' },
   { date: '2026.10.01', status: '공포 전', tone: 'pre', title: '반복 산재 사망 시 영업이익 최대 5% 과징금', note: '산업안전보건법 개정안 국회 본회의 통과' },
+  { date: '2026.12.08', status: '시행 예정', tone: 'next', title: '근로감독관 명칭, 노동감독관으로 변경', note: '근로기준법 제11장·제101조 등 개정, 권한·의무는 「노동감독관 직무집행법」으로 (법률 제21533호)' },
   { date: '2027.01.08', status: '시행 예정', tone: 'next', title: '외국인 근로자 기초안전보건교육 의무화', note: '산업안전보건법 제31조의2 신설' },
   { date: '2027.06.10', status: '시행 예정', tone: 'next', title: '연차휴가 관련 조문 개정', note: '근로기준법 제60조' },
 ]
@@ -74,9 +74,7 @@ export default function Landing() {
       <div className="border-b border-[#DDE2EA] bg-[#F5F7FA] text-[15px] text-[#5B6680]">
         <div className="mx-auto flex h-11 max-w-[1120px] items-center justify-between px-6 md:px-8">
           <span>노무법인 위너스가 운영하는 <b className="text-[#14213D]">근로감독 자가진단</b> 서비스</span>
-          <a href={'tel:' + String(CONTACT_PHONE).replace(/[^0-9]/g, '')} className="hidden no-underline text-[#5B6680] md:inline">
-            상담 전화 <b className="text-[#14213D]">{CONTACT_PHONE}</b> · 평일 09:00–18:00
-          </a>
+          <span className="hidden md:inline">상담은 신청서 접수 후 순차적으로 안내드립니다</span>
         </div>
       </div>
 

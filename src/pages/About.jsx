@@ -208,7 +208,7 @@ export default function About() {
                 <p className="mb-8 text-[15px] leading-relaxed text-white/85 sm:text-[16px]">
                   3분 자가진단으로 확인하고,
                   <br className="hidden sm:block" />
-                  전문가와 15분 무료 상담으로 해결 방향을 잡으세요.
+                  상담 신청서를 남기시면 해결 방향을 함께 정리해 드립니다.
                 </p>
                 <div className="mb-8 flex flex-col justify-center gap-3 sm:flex-row">
                   <Link
