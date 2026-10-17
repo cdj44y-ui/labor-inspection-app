@@ -59,7 +59,7 @@ export default function Result() {
 
   const tallyCall = buildTallyUrl({
     score: totalScore + '점',
-    grade: gradeInfo.label,
+    grade: '[RISK119] ' + gradeInfo.label,
     area: areas.join(', ') || '위반 소지 없음',
     items: '상담 신청 · 위반 소지 ' + items.length + '건' + (criminalCount ? ' (형사처벌 조문 ' + criminalCount + '건)' : ''),
   })
