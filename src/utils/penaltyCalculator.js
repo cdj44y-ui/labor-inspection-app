@@ -73,18 +73,13 @@ export function groupByCategory(violations) {
   return map
 }
 
-/** 동종업계 비교용 문구 (추정·참고). bucketIndex는 UI에서 4단계 세그먼트 중 활성 구간을 표시하기 위한 보조값(0~3). */
+/** 점수 구간 안내. bucketIndex는 UI에서 4단계 세그먼트 중 활성 구간을 표시하기 위한 보조값(0~3). */
 export function getIndustryComparisonHint(totalScore) {
-  if (totalScore >= 90) {
-    return { percentile: '하위 ~20%', hint: '유사 규모 사업장 추정 평균 대비 상대적으로 양호한 편입니다.', bucketIndex: 0 }
-  }
-  if (totalScore >= 70) {
-    return { percentile: '중위 40~60%', hint: '일부 항목에서 동종 업종 평균 대비 개선 여지가 있습니다.', bucketIndex: 1 }
-  }
-  if (totalScore >= 50) {
-    return { percentile: '상위 ~25%', hint: '동종 업종 추정 대비 위반 노출 가능성이 높은 편입니다.', bucketIndex: 2 }
-  }
-  return { percentile: '상위 ~10%', hint: '동종 업종 추정 대비 즉시 점검이 필요한 수준입니다.', bucketIndex: 3 }
+  // 업계 통계 없이 백분위를 표시하지 않음 — 점수 구간만 안내(2026-10-17)
+  if (totalScore >= 90) return { percentile: '90점 이상', hint: '기본 항목을 대부분 갖추고 있습니다.', bucketIndex: 0 }
+  if (totalScore >= 70) return { percentile: '70~89점', hint: '일부 항목에 보완이 필요합니다.', bucketIndex: 1 }
+  if (totalScore >= 50) return { percentile: '50~69점', hint: '여러 항목에서 위반 소지가 있어 점검이 필요합니다.', bucketIndex: 2 }
+  return { percentile: '50점 미만', hint: '주요 항목 다수가 미비해 즉시 점검이 필요합니다.', bucketIndex: 3 }
 }
 
 export { CATEGORY_LABELS }
