@@ -36,7 +36,7 @@ export const EXPERT_LABOR = {
       icon: '⚖️',
       area: '노동법',
       subtitle: '책임을 법으로 방어한다',
-      credentials: '공인노무사 15년',
+      credentials: '공인노무사 16년',
       details: [
         '근로감독 대비 컨설팅',
         '취업규칙·인사규정 정비',
