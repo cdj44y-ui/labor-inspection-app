@@ -16,8 +16,8 @@ export default function SiteHeader() {
         <Link to="/about" className="font-medium text-zinc-800 transition hover:text-ink">
           전문가소개
         </Link>
-        <Link to="/contact" className="font-medium text-zinc-800 transition hover:text-ink">
-          상담신청
+        <Link to="/contact" className="rounded-lg bg-[#1F4E79] px-3.5 py-1.5 font-bold text-white no-underline transition hover:bg-[#173B5C] visited:text-white">
+          상담 신청
         </Link>
         <Link
           to="/diagnosis"

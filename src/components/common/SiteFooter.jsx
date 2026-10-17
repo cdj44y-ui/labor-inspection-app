@@ -1,43 +1,27 @@
 import FamilySites from './FamilySites.jsx'
-import { EXPERT_LABOR } from '../../data/expertLabor.js'
-import { KAKAO_CHANNEL_URL } from '../../constants/contact.js'
+import { FAMILY, FAMILY_NAME, PROMISE, DISCLAIMER, KAKAO_URL } from '../../constants/brand.js'
 
+/** A5 푸터 — 네 사이트 동일 문구·순서 (브랜드 v1.1) */
 export default function SiteFooter() {
-  const { contact } = EXPERT_LABOR
   return (
     <>
-    <FamilySites />
-    <footer className="mt-12 border-t-2 border-zinc-200 pt-8 text-center text-sm text-zinc-800 space-y-2">
-      <p className="font-semibold text-ink">RISK119 근로감독 자가진단</p>
-      <p>
-        조대진 노무사 · 안전공학 박사
-        <br />
-        전화:{' '}
-        <a href={`tel:${contact.phone.replace(/-/g, '')}`} className="font-medium text-toss underline">
-          {contact.phone}
-        </a>{' '}
-        | 이메일:{' '}
-        <a href={`mailto:${contact.email}`} className="font-medium text-toss underline">
-          {contact.email}
-        </a>
-      </p>
-      <p className="text-zinc-600">{contact.address}</p>
-      <p>
-        <a
-          href={KAKAO_CHANNEL_URL}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-1.5 rounded-full bg-[#FEE500] px-4 py-1.5 text-xs font-bold text-[#391B1B] transition hover:bg-[#F5D800]"
-        >
-          💬 법 바뀌기 전에 먼저 알기 — 채널 추가
-        </a>
-      </p>
-      <p className="text-xs text-zinc-600">© {new Date().getFullYear()} 조대진 노무사. All rights reserved.</p>
-      <p className="max-w-3xl mx-auto text-sm text-zinc-700">
-        본 서비스는 노동관계 법령과 공개 자료를 바탕으로 한 일반적인 리스크 점검 도구이며, 개별 사건에 대한 법률
-        자문이나 행정해석을 대체하지 않습니다.
-      </p>
-    </footer>
+      <FamilySites />
+      <footer className="border-t border-[#E5E7EB] bg-white py-10 text-[15px] leading-[1.75] text-[#4B5563] [word-break:keep-all]">
+        <div className="mx-auto max-w-[1120px] space-y-2 px-6 md:px-8">
+          <p className="flex flex-wrap items-center gap-x-4 gap-y-1">
+            <b className="text-[#1F4E79]">{FAMILY_NAME}</b>
+            {FAMILY.map((f) => <a key={f.key} href={f.url} target="_blank" rel="noopener noreferrer" className="text-[#4B5563] no-underline hover:text-[#1F4E79] hover:underline">{f.label}</a>)}
+          </p>
+          <p className="font-semibold text-[#111827]">{PROMISE}</p>
+          <p>노무법인 위너스 | 대표노무사 조대진 | 사업자등록번호 134-85-60666</p>
+          <p>서울시 강서구 마곡중앙로 171, 304호 | Tel. <a href="tel:0221380240" className="text-[#4B5563]">02-2138-0240</a> | Email. <a href="mailto:cdj44y@gmail.com" className="break-all text-[#4B5563]">cdj44y@gmail.com</a></p>
+          <p className="text-[14px] text-[#6B7280]">{DISCLAIMER}</p>
+          <p className="pt-1">
+            <a href={KAKAO_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 rounded-full bg-[#FEE500] px-4 py-1.5 text-[14px] font-bold text-[#391B1B] no-underline hover:bg-[#F5D800]">💬 법 바뀌기 전에 먼저 알기 — 채널 추가</a>
+          </p>
+          <p className="text-[14px] text-[#6B7280]">© 2026 노무법인 위너스</p>
+        </div>
+      </footer>
     </>
   )
 }

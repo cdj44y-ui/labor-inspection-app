@@ -1,5 +1,5 @@
-/** 형제 사이트 (2026-10-18 AUDIT119 추가). audit119.site 연결 전까지 vercel 주소 사용 */
-export const AUDIT119_URL = 'https://audit119.vercel.app'
+/** 형제 사이트 — audit119.site 연결 완료(2026-10-18) */
+export const AUDIT119_URL = 'https://www.audit119.site'
 export const FAMILY_SITES = [
   { key: 'RISK119', name: '근로감독 자가진단', desc: '임금·근로시간·연차·4대보험, 감독관이 보는 항목 점검', url: 'https://risk119.site' },
   { key: 'SAFE119', name: '중대재해처벌법 자가진단', desc: '경영책임자 의무와 위험성평가, 수사에서 보는 기록 점검', url: 'https://safe119.site' },
@@ -17,8 +17,8 @@ export default function FamilySites() {
             const self = s.key === 'RISK119'
             return (
               <a key={s.key} href={s.url} target={self ? undefined : '_blank'} rel="noopener noreferrer" aria-current={self ? 'page' : undefined}
-                className={'block rounded-[12px] border p-5 text-left transition-colors ' + (self ? 'border-[#14213D] bg-[#14213D] text-white' : 'border-[#DDE2EA] bg-white text-[#14213D] hover:border-[#3182F6]')}>
-                <p className="text-[17px] font-extrabold tracking-[-0.2px]">{s.key.replace('119', '')}<span className={self ? 'text-[#9CC3FF]' : 'text-[#3182F6]'}>119</span>{self ? <span className="ml-2 align-middle text-[12px] font-bold text-[#9CC3FF]">현재 사이트</span> : null}</p>
+                className={'block rounded-[12px] border p-5 text-left transition-colors ' + (self ? 'border-[#14213D] bg-[#14213D] text-white' : 'border-[#DDE2EA] bg-white text-[#14213D] hover:border-[#1976D2]')}>
+                <p className="text-[17px] font-extrabold tracking-[-0.2px]">{s.key.replace('119', '')}<span className={self ? 'text-[#90CAF9]' : 'text-[#1976D2]'}>119</span>{self ? <span className="ml-2 align-middle text-[12px] font-bold text-[#90CAF9]">현재 사이트</span> : null}</p>
                 <p className="mt-1 text-[15px] font-bold">{s.name}</p>
                 <p className={'mt-1.5 text-[14px] leading-[1.6] ' + (self ? 'text-[#C9D1E0]' : 'text-[#5B6680]')}>{s.desc}</p>
               </a>
