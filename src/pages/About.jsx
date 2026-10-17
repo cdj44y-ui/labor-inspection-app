@@ -9,7 +9,7 @@ const PRIMARY = '#1B3A5C'
 const ACCENT = '#FF6B35'
 const TITLE = '조대진 노무사 | 안전공학 박사 · 근로감독 전문 - RISK119'
 const DESC =
-  '안전공학 박사, 노무사 15년. 산업안전 × 노동법 × HR 통합 전문가. 근로감독 대비 컨설팅, 중대재해처벌법 대응 체계 구축, 기업 강의.'
+  '안전공학 박사, 노무사 16년. 산업안전 × 노동법 × HR 통합 전문가. 근로감독 대비 컨설팅, 중대재해처벌법 대응 체계 구축, 기업 강의.'
 
 const TONE_BADGE = {
   safety: 'bg-emerald-50 text-emerald-900 border-emerald-200',
