@@ -1,7 +1,63 @@
 {
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
+  "redirects": [
+    {
+      "source": "/winners",
+      "has": [
+        {
+          "type": "host",
+          "value": "risk119.site"
+        }
+      ],
+      "destination": "https://win119.site/",
+      "permanent": true
+    },
+    {
+      "source": "/winners.html",
+      "has": [
+        {
+          "type": "host",
+          "value": "risk119.site"
+        }
+      ],
+      "destination": "https://win119.site/",
+      "permanent": true
+    },
+    {
+      "source": "/sangdamso",
+      "has": [
+        {
+          "type": "host",
+          "value": "risk119.site"
+        }
+      ],
+      "destination": "https://win119.site/sangdamso",
+      "permanent": true
+    },
+    {
+      "source": "/sangdamso.html",
+      "has": [
+        {
+          "type": "host",
+          "value": "risk119.site"
+        }
+      ],
+      "destination": "https://win119.site/sangdamso",
+      "permanent": true
+    }
+  ],
   "rewrites": [
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "win119.site"
+        }
+      ],
+      "destination": "/winners.html"
+    },
     {
       "source": "/sangdamso",
       "destination": "/sangdamso.html"
