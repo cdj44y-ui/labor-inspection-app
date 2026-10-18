@@ -1,0 +1,626 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>사장님 1분 상담소 · 노무법인 위너스</title>
+<meta name="description" content="직원 때문에 막막할 때, 1분이면 오늘 할 일이 정해집니다. 잠수·주휴수당·퇴직금·4대보험 등 사장님들이 많이 묻는 고민 10가지에 근거 조문과 함께 답합니다.">
+<link rel="canonical" href="https://risk119.site/sangdamso">
+<meta property="og:type" content="website">
+<meta property="og:title" content="사장님 1분 상담소 — 직원 때문에 막막할 때, 1분이면 오늘 할 일이 정해집니다">
+<meta property="og:description" content="고민 하나에 1분 답, 오늘 할 일 3개. 모든 답에 근거 조문. 노무법인 위너스.">
+<meta property="og:url" content="https://risk119.site/sangdamso">
+<meta property="og:locale" content="ko_KR">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;800&display=swap">
+<style>
+:root{
+  --navy:#14213D; --brand:#1F4E79; --blue:#1976D2; --blue-d:#1565C0; --blue-soft:#E3F0FC;
+  --ink:#111827; --sub:#3D4A63; --muted:#5B6680; --line:#E6EAF0; --line2:#DDE2EA;
+  --bg:#FFFFFF; --bg2:#F5F7FA; --card:#FFFFFF; --warn:#B42318; --ok:#1E7B4B; --ok-soft:#E7F5EE; --amber:#8A5300; --amber-soft:#FFF5E1;
+  --f:Pretendard,"Noto Sans KR",-apple-system,BlinkMacSystemFont,system-ui,sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --navy:#E8EEF8;--brand:#5B8FC4;--blue:#64A9EE;--blue-d:#90CAF9;--blue-soft:#17283D;
+  --ink:#EDF0F5;--sub:#C2CAD8;--muted:#98A3B8;--line:#273246;--line2:#2E3A50;
+  --bg:#0E1420;--bg2:#131B2A;--card:#172133;--warn:#F08A80;--ok:#6FD3A0;--ok-soft:#143326;--amber:#F2C46B;--amber-soft:#2E2615;color-scheme:dark}}
+:root[data-theme="dark"]{
+  --navy:#E8EEF8;--brand:#5B8FC4;--blue:#64A9EE;--blue-d:#90CAF9;--blue-soft:#17283D;
+  --ink:#EDF0F5;--sub:#C2CAD8;--muted:#98A3B8;--line:#273246;--line2:#2E3A50;
+  --bg:#0E1420;--bg2:#131B2A;--card:#172133;--warn:#F08A80;--ok:#6FD3A0;--ok-soft:#143326;--amber:#F2C46B;--amber-soft:#2E2615;color-scheme:dark}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--f);font-size:16px;line-height:1.65;word-break:keep-all;overflow-wrap:anywhere;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 16px}
+
+/* 패밀리 바 · 헤더 */
+.family{border-bottom:1px solid var(--line);font-size:13px;background:var(--bg)}
+.family .wrap{display:flex;justify-content:space-between;align-items:center;gap:12px;min-height:44px;flex-wrap:wrap;padding-block:6px}
+.family b{color:var(--brand)}
+.family nav{display:flex;gap:18px;flex-wrap:wrap;color:var(--muted)}
+.family nav a{text-decoration:none}
+.family nav a:hover{color:var(--ink)}
+header.top{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+header.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:72px}
+.logo{background:none;border:0;padding:0;text-align:left;line-height:1.15}
+.logo strong{display:block;font-size:20px;font-weight:800;color:var(--navy);letter-spacing:-.02em}
+.logo strong em{font-style:normal;color:var(--blue)}
+.logo small{font-size:12px;color:var(--muted)}
+.mainnav{display:flex;align-items:center;gap:28px;font-weight:700;color:var(--sub);font-size:15.5px}
+.mainnav button.link{background:none;border:0;padding:8px 0}
+.mainnav button.link:hover{color:var(--blue)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;border:0;border-radius:10px;font-weight:700;min-height:48px;padding:0 22px;text-decoration:none;font-size:16px}
+.btn.blue{background:var(--blue);color:#fff}.btn.blue:hover{background:var(--blue-d)}
+.btn.navy{background:var(--brand);color:#fff}
+.btn.line{background:var(--card);border:1.5px solid var(--line2);color:var(--sub)}
+.btn.lg{min-height:58px;font-size:17px;padding:0 30px}
+@media (max-width:760px){.mainnav .link{display:none}.mainnav{gap:0}.family nav{display:none}}
+
+/* 섹션 공통 */
+section{padding:72px 0}
+section.alt{background:var(--bg2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.eyebrow{color:var(--blue);font-weight:700;font-size:15px;margin:0 0 10px}
+h1,h2,h3{color:var(--navy);letter-spacing:-.025em;margin:0}
+h2{font-size:clamp(24px,3.2vw,32px);font-weight:800;line-height:1.3}
+.lead{color:var(--muted);margin:10px 0 0;font-size:16.5px}
+
+/* 히어로 */
+.hero{padding:64px 0 72px}
+.hero .wrap{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:56px;align-items:center}
+.hero h1{font-size:clamp(32px,4.6vw,46px);font-weight:800;line-height:1.22}
+.hero p.desc{color:var(--sub);font-size:18px;margin:22px 0 32px;max-width:34em}
+.hero .ctas{display:flex;gap:12px;flex-wrap:wrap}
+.hero .micro{color:var(--muted);font-size:14px;margin:16px 0 0}
+.panel{background:var(--card);border:1px solid var(--line2);border-radius:16px;overflow:hidden;box-shadow:0 1px 2px rgba(20,33,61,.04)}
+.panel .ph{background:#14213D;color:#fff;display:flex;justify-content:space-between;align-items:center;padding:16px 24px;font-weight:700;font-size:15px}
+.panel .ph span{font-weight:500;opacity:.8;font-size:13px}
+.toplist{list-style:none;margin:0;padding:8px 0}
+.toplist button{width:100%;display:grid;grid-template-columns:34px minmax(0,1fr) auto;gap:10px;align-items:center;text-align:left;background:none;border:0;border-top:1px solid var(--line);padding:16px 24px;min-height:64px}
+.toplist li:first-child button{border-top:0}
+.toplist button:hover{background:var(--bg2)}
+.toplist .n{font-weight:800;font-size:22px;color:var(--blue)}
+.toplist .q{font-weight:700;color:var(--navy);line-height:1.45}
+.toplist .go{font-size:13px;color:var(--blue);font-weight:700;white-space:nowrap}
+.panel .pf{padding:14px 24px;border-top:1px solid var(--line);font-size:13px;color:var(--muted)}
+@media (max-width:860px){.hero .wrap{grid-template-columns:minmax(0,1fr);gap:36px}.hero{padding:40px 0 56px}}
+
+/* 고민 그리드 */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px;margin-top:32px}
+.tile{background:var(--card);border:1px solid var(--line2);border-radius:14px;padding:22px 22px 20px;text-align:left;display:flex;flex-direction:column;gap:6px;min-height:150px;transition:border-color .15s,box-shadow .15s,transform .15s}
+.tile:hover{border-color:var(--blue);box-shadow:0 6px 20px rgba(25,118,210,.10);transform:translateY(-2px)}
+.tile .k{display:flex;justify-content:space-between;align-items:center;font-size:13px;color:var(--muted);font-weight:700}
+.tile .t{font-size:20px;font-weight:800;color:var(--navy);letter-spacing:-.02em}
+.tile .ex{font-size:14px;color:var(--muted);line-height:1.5}
+.tile .st{margin-top:auto;font-size:13.5px;font-weight:700;color:var(--muted)}
+.tile .st.on{color:var(--blue)}
+.tag{font-size:12px;font-weight:700;border-radius:999px;padding:2px 9px;white-space:nowrap}
+.tag.hot{background:var(--blue-soft);color:var(--blue)}
+
+/* 노무사 소개 */
+.who{display:grid;grid-template-columns:200px minmax(0,1fr);gap:40px;align-items:start}
+.who img{width:200px;height:260px;object-fit:cover;border-radius:14px;background:var(--line)}
+.who h2{margin-top:4px}
+.who .cred{color:var(--muted);margin:6px 0 0}
+.who blockquote{margin:18px 0 0;font-size:19px;font-weight:700;color:var(--navy);line-height:1.55}
+.facts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));border-top:2px solid var(--navy);margin-top:28px}
+.facts div{padding:14px 0;border-bottom:1px solid var(--line);padding-right:12px}
+.facts dt{font-size:13px;color:var(--muted)}
+.facts dd{margin:2px 0 0;font-weight:700;color:var(--ink)}
+@media (max-width:760px){.who{grid-template-columns:minmax(0,1fr);gap:20px}.who img{width:140px;height:182px}.facts{grid-template-columns:minmax(0,1fr)}}
+
+/* 3카드 · 단계 */
+.three{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:32px}
+.box{background:var(--card);border:1px solid var(--line2);border-radius:14px;padding:26px}
+.box .k{color:var(--blue);font-weight:700;font-size:14px}
+.box h3{font-size:19px;margin:8px 0 8px}
+.box p{margin:0;color:var(--muted);font-size:15px}
+@media (max-width:760px){.three{grid-template-columns:minmax(0,1fr)}}
+
+/* FAQ */
+.faq{margin-top:28px;border-top:2px solid var(--navy)}
+.faq details{border-bottom:1px solid var(--line)}
+.faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;gap:12px;padding:20px 4px;font-weight:700;color:var(--navy);font-size:17px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"▾";color:var(--muted);transition:transform .2s}
+.faq details[open] summary::after{transform:rotate(180deg)}
+.faq p{margin:0 4px 20px;color:var(--sub)}
+
+/* CTA 밴드 · 푸터 */
+.band{background:#14213D;color:#fff;text-align:center;padding:64px 0}
+.band h2{color:#fff}
+.band p{color:rgba(255,255,255,.75);margin:12px 0 28px}
+.fam{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:20px}
+.fam a{display:block;text-decoration:none;background:var(--card);border:1px solid var(--line2);border-radius:12px;padding:18px}
+.fam a:hover{border-color:var(--blue)}
+.fam b{color:var(--navy);font-size:17px}
+.fam b em{font-style:normal;color:var(--blue)}
+.fam span{display:block;font-weight:700;font-size:14px;margin-top:2px}
+.fam small{display:block;color:var(--muted);font-size:13px;margin-top:4px;line-height:1.5}
+@media (max-width:860px){.fam{grid-template-columns:repeat(2,minmax(0,1fr))}}
+footer{background:var(--bg2);border-top:1px solid var(--line);padding:40px 0 96px;font-size:13px;color:var(--muted)}
+footer p{margin:4px 0}
+.float{position:fixed;right:20px;bottom:calc(20px + env(safe-area-inset-bottom,0px));z-index:30;background:var(--brand);color:#fff;border:0;border-radius:999px;padding:0 24px;min-height:58px;font-weight:700;font-size:16px;box-shadow:0 8px 24px rgba(20,33,61,.25)}
+
+/* ── 답 카드 화면 (진단 화면 문법) ── */
+.progress{border-bottom:1px solid var(--line);background:var(--bg)}
+.progress .wrap{display:flex;align-items:center;gap:20px;min-height:72px}
+.progress .bar{flex:1;min-width:0}
+.progress .row{display:flex;justify-content:space-between;font-weight:700;font-size:15px;color:var(--navy)}
+.progress .row b{color:var(--blue)}
+.track{height:8px;border-radius:99px;background:var(--line);margin-top:8px;overflow:hidden}
+.track i{display:block;height:100%;background:var(--blue);border-radius:99px;transition:width .3s}
+.stage{background:var(--bg2);padding:36px 0 120px;min-height:70vh}
+.stage .wrap{display:grid;grid-template-columns:260px minmax(0,1fr);gap:28px;align-items:start}
+.side h4{margin:0 0 12px;font-size:14px;color:var(--muted)}
+.side ul{list-style:none;margin:0;padding:0;background:var(--card);border:1px solid var(--line2);border-radius:14px;overflow:hidden}
+.side li button{width:100%;display:flex;justify-content:space-between;gap:8px;text-align:left;background:none;border:0;border-top:1px solid var(--line);padding:15px 18px;font-size:15px;color:var(--sub)}
+.side li:first-child button{border-top:0}
+.side li button.on{background:var(--blue-soft);color:var(--navy);font-weight:700}
+.side li button span{color:var(--muted);font-size:13px;font-weight:700}
+.side .hint{font-size:13px;color:var(--muted);margin:14px 2px 0}
+@media (max-width:860px){.stage .wrap{grid-template-columns:minmax(0,1fr)}.side{display:none}}
+.qcard{background:var(--card);border:1px solid var(--line2);border-radius:16px;padding:40px 44px}
+@media (max-width:600px){.qcard{padding:26px 20px}}
+.qcard .k{color:var(--blue);font-weight:700;font-size:15px}
+.qcard h1{font-size:clamp(23px,3vw,28px);font-weight:800;line-height:1.35;margin:10px 0 0}
+.qcard .heart{color:var(--muted);margin:10px 0 0}
+.basis{background:var(--bg2);border:1px solid var(--line2);border-radius:12px;margin-top:24px}
+.basis .r{display:grid;grid-template-columns:96px minmax(0,1fr);gap:16px;padding:16px 22px;border-top:1px solid var(--line)}
+.basis .r:first-child{border-top:0}
+.basis .r dt{font-size:14px;font-weight:700;color:var(--muted);padding-top:2px}
+.basis .r dt.a{color:var(--blue)}
+.basis .r dd{margin:0}
+.basis .ans{font-size:17.5px;font-weight:500;color:var(--ink);line-height:1.7}
+.basis .ans mark{background:linear-gradient(transparent 55%,rgba(25,118,210,.22) 55%);color:inherit;font-weight:700;padding:0 2px}
+.basis .ref{font-size:14.5px;color:var(--sub)}
+.basis .ref small{color:var(--muted)}
+@media (max-width:600px){.basis .r{grid-template-columns:minmax(0,1fr);gap:4px;padding:14px 16px}}
+.todo-h{display:flex;justify-content:space-between;align-items:baseline;margin:32px 0 12px}
+.todo-h h3{font-size:18px}
+.todo-h span{font-weight:700;color:var(--blue);font-size:15px}
+.opt{display:flex;flex-direction:column;gap:10px}
+.opt label{display:grid;grid-template-columns:minmax(0,1fr) 36px;gap:14px;align-items:center;border:1.5px solid var(--line2);border-radius:12px;padding:16px 22px;cursor:pointer;background:var(--card);transition:border-color .15s,background .15s}
+.opt label:hover{border-color:var(--blue)}
+.opt input{position:absolute;opacity:0;width:1px;height:1px}
+.opt .tx{font-weight:700;color:var(--navy)}
+.opt .tx small{display:block;font-weight:400;color:var(--muted);font-size:13.5px}
+.opt .ck{width:34px;height:34px;border-radius:50%;border:2px solid var(--line2);display:grid;place-items:center;color:transparent;font-weight:800;transition:all .15s}
+.opt label:has(input:checked){border-color:var(--blue);background:var(--blue-soft)}
+.opt input:checked ~ .ck{background:var(--blue);border-color:var(--blue);color:#fff}
+.opt input:focus-visible ~ .ck{outline:3px solid var(--blue);outline-offset:2px}
+.goal{margin-top:16px;border-radius:12px;padding:18px 22px;background:var(--bg2);border:1px dashed var(--line2)}
+.goal b{display:block;font-size:13px;color:var(--muted);margin-bottom:4px}
+.goal.done{background:var(--ok-soft);border:1px solid transparent}
+.goal.done b{color:var(--ok)}
+.seal{display:inline-flex;align-items:center;gap:8px;font-weight:800;color:var(--ok);font-size:16px;margin-bottom:6px}
+.seal i{width:26px;height:26px;border-radius:50%;background:var(--ok);color:#fff;display:grid;place-items:center;font-style:normal;font-size:14px}
+.pop{animation:pop .4s cubic-bezier(.2,1.5,.4,1)}
+@keyframes pop{0%{transform:scale(.9);opacity:0}100%{transform:scale(1);opacity:1}}
+.acc{margin-top:28px;border-top:1px solid var(--line)}
+.acc details{border-bottom:1px solid var(--line)}
+.acc summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;gap:10px;padding:16px 2px;font-weight:700;color:var(--navy)}
+.acc summary::-webkit-details-marker{display:none}
+.acc summary::after{content:"▾";color:var(--muted)}
+.acc details[open] summary::after{content:"▴"}
+.acc .in{padding:0 2px 18px;color:var(--sub)}
+.acc ul{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:6px}
+.acc details.sos summary{color:var(--amber)}
+.ox .stmt{font-weight:700;color:var(--ink);margin:0 0 12px}
+.ox .b2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.ox .b2 button{border:1.5px solid var(--line2);background:var(--card);border-radius:12px;min-height:54px;font-weight:800;font-size:18px;color:var(--navy)}
+.ox .b2 button.right{border-color:var(--ok);background:var(--ok-soft);color:var(--ok)}
+.ox .b2 button.wrong{border-color:var(--line2);color:var(--muted);text-decoration:line-through}
+.ox .exp{margin:12px 0 0;background:var(--bg2);border-radius:10px;padding:12px 16px}
+.nav2{display:flex;justify-content:space-between;gap:10px;margin-top:20px}
+.nav2 .btn[disabled]{opacity:.4;cursor:default}
+.note{font-size:13px;color:var(--muted);margin:22px 0 0;line-height:1.6}
+
+/* 목록 · 기준판 · 문의 */
+.wlist{display:flex;flex-direction:column;gap:10px;margin-top:22px}
+.wlist button{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:14px;align-items:center;text-align:left;background:var(--card);border:1.5px solid var(--line2);border-radius:12px;padding:18px 22px;min-height:64px;font-weight:700;color:var(--navy)}
+.wlist button:hover{border-color:var(--blue)}
+.wlist .tag{font-size:12.5px}
+.tag.ready{background:var(--blue);color:#fff}
+.tag.ask{background:var(--bg2);color:var(--muted);border:1px solid var(--line2)}
+.ghost{background:none;border:1.5px dashed var(--line2);border-radius:12px;padding:16px 22px;color:var(--muted);text-align:left;font-weight:700;min-height:58px}
+.blist{list-style:none;margin:20px 0 0;padding:0;display:flex;flex-direction:column;gap:10px}
+.blist li{display:grid;grid-template-columns:30px minmax(0,1fr);gap:12px;align-items:start;background:var(--card);border:1px solid var(--line2);border-radius:12px;padding:16px 20px}
+.blist li i{width:28px;height:28px;border-radius:50%;display:grid;place-items:center;font-style:normal;font-weight:800;font-size:13px;background:var(--bg2);color:var(--muted)}
+.blist li.on i{background:var(--ok);color:#fff}
+.blist li b{color:var(--navy)}
+.blist li small{display:block;color:var(--muted)}
+.blist li.on small{color:var(--ok)}
+.contact{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:24px}
+.contact a{display:block;text-decoration:none;border:1.5px solid var(--line2);border-radius:12px;padding:20px 22px;background:var(--card)}
+.contact a:hover{border-color:var(--blue)}
+.contact b{display:block;color:var(--navy);font-size:17px}
+.contact span{color:var(--muted);font-size:14px}
+@media (max-width:600px){.contact{grid-template-columns:minmax(0,1fr)}}
+.toast{position:fixed;left:50%;bottom:96px;transform:translateX(-50%);background:var(--navy);color:var(--bg);padding:10px 18px;border-radius:999px;font-size:14px;z-index:40}
+@media (max-width:760px){.float{display:none}.mainnav .btn{margin-left:0!important}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+</style>
+<script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
+<script defer src="/_vercel/insights/script.js"></script>
+<script>window.va('beforeSend', function (e) { try { var u = new URL(e.url); if (u.hash.indexOf('#/') === 0) { u.pathname = '/sangdamso' + u.hash.slice(1).split('?')[0]; u.hash = ''; } return Object.assign({}, e, { url: u.toString() }); } catch (_) { return e; } });
+window.addEventListener('hashchange', function () { var p = '/sangdamso' + ((location.hash.indexOf('#/') === 0 ? location.hash.slice(1).split('?')[0] : '/') || '/'); window.va('pageview', { route: p, path: p }); });</script>
+</head>
+<body>
+<div id="root"></div>
+<script>
+(() => {
+  const TEL = "02-2138-0240";
+  const tallyEmbed = (q) => { const p = new URLSearchParams({ alignLeft: "1", hideTitle: "1", transparentBackground: "1", grade: "[1분 상담소]", area: q ? ("보고 있던 고민: " + q) : "사장님 1분 상담소" }); return "https://tally.so/embed/GxZyzz?" + p.toString(); };
+  const PHOTO = "data:image/jpeg;base64,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";
+  const REVIEWED = "2026.10.18";
+  const STORE = "sangdam-v06";
+  const load = () => { try { return JSON.parse(localStorage.getItem(STORE)) || {}; } catch (e) { return {}; } };
+  const save = () => { try { localStorage.setItem(STORE, JSON.stringify(state)); } catch (e) {} };
+  const state = Object.assign({ checks:{} }, load());
+
+  // 순서 = 사장님들이 많이 묻는 순서. 건수는 화면에 내보내지 않는다.
+  const GROUPS = [
+    { id:"pay",  t:"주휴·시급", ex:"이 시간도 돈을 줘야 하나요?", worries:[
+      ["하루 3시간 알바한테도 주휴수당 줘야 하나요?", "B5-3"],
+      ["일찍 나온 직원, 그 시간도 돈 줘야 하나요?"],
+      ["눈 와서 문 닫은 날도 급여를 줘야 하나요?"],
+      ["주휴수당 안 주기로 서로 얘기했는데 그래도 줘야 하나요?"] ]},
+    { id:"gone", t:"잠수·당일 퇴사", ex:"연락이 끊겼어요", worries:[
+      ["출근날인데 전화도 문자도 안 받아요", "B4-3"],
+      ["웃으며 퇴근하더니 2시간 뒤 카톡으로 그만둔대요"],
+      ["하루 나오고 잠수 탄 직원, 급여 줘야 하나요?"] ]},
+    { id:"att",  t:"태도·지적·손해", ex:"한 소리 했더니 그만두겠대요", worries:[
+      ["바쁘지도 않은데 앉아서 휴대폰만 봐요"],
+      ["한 소리 했더니 그만두겠대요. 지적은 어떻게 하죠?"],
+      ["알바가 가게 음식을 마음대로 해먹어요"] ]},
+    { id:"cont", t:"계약서·채용", ex:"계약서 쓰기를 피해요", worries:[
+      ["알바가 근로계약서 쓰기를 자꾸 피해요"],
+      ["합격시켰는데 첫 출근날 안 나왔어요"] ]},
+    { id:"sev",  t:"퇴직금", ex:"알바도 퇴직금이 있나요?", worries:[
+      ["1년 일한 알바한테도 퇴직금 꼭 줘야 하나요?", "N-01"],
+      ["목돈이 없는데 퇴직금을 나눠서 줘도 되나요?"] ]},
+    { id:"ins",  t:"4대보험·3.3%", ex:"보험 안 들겠대요", worries:[
+      ["직원이 고용보험을 안 들겠다고 해요", "N-02"],
+      ["4대보험 말고 프리랜서로 해 달래요"] ]},
+    { id:"hurt", t:"다쳤어요", ex:"일하다 다쳤어요", worries:[
+      ["근무 중에 알바가 화상을 입었어요"],
+      ["산재 처리해 주면 가게에 불이익이 있나요?"] ]},
+    { id:"fire", t:"해고·내보내기", ex:"나가라고 해도 되나요?", worries:[
+      ["무단결근한 알바, 바로 해고해도 되나요?"],
+      ["홧김에 나가라 했는데 해고라며 돈을 달래요"] ]},
+    { id:"rep",  t:"신고한대요", ex:"노동청에 간대요", worries:[
+      ["14일 안에 월급 안 주면 신고한대요", "N-04"],
+      ["자기가 그만둬 놓고 부당해고로 신고했어요"] ]},
+    { id:"ui",   t:"실업급여 해달래요", ex:"권고사직으로 해 달래요", worries:[
+      ["실업급여 받게 권고사직으로 해 달래요", "N-03"] ]}
+  ];
+  const HOT = ["pay","gone","att"];
+  const TOP = ["N-02","N-01","B5-3"];
+
+  const CARDS = {
+    "B4-3": { tag:"근태", group:"gone",
+      q:"출근날인데 전화도 문자도 안 받아요",
+      heart:"사장님이 잘못하신 게 아닙니다. 이럴 때 따를 순서가 없었을 뿐입니다.",
+      answer:"연락이 안 된다고 <mark>바로 퇴사 처리하시면 안 됩니다.</mark> 연락한 기록을 남기고 출근 요청을 글로 보낸 뒤, 그래도 연락이 없으면 퇴사 날짜와 사유를 다시 글로 알리세요.",
+      todo:[["연락한 시간을 기록해 두기","전화·문자 시각을 캡처해 두면 됩니다"],["출근 요청 문자 보내기","'○일까지 출근하거나 연락 달라'고 날짜를 적어서"],["퇴사 날짜를 글로 알리고 14일 안에 정산하기","보낸 문자는 지우지 말고 보관"]],
+      day:"취업규칙에 '연락 없이 ○일 결근하면 이렇게 한다'가 한 줄 적혀 있습니다.",
+      ox:{ s:"연락이 끊기면 자동으로 퇴사 처리된다", a:false, exp:"그만두겠다는 뜻을 확인하지 않고 정리하면, 나중에 해고였다고 다퉈질 수 있습니다." },
+      sos:["몇 주 뒤 나타나 해고당했다고 하면, 연락 기록과 출근 요청 문자가 사장님을 지켜 줍니다."],
+      red:["연락이 끊기기 전에 다툼이나 괴롭힘 이야기가 있었다면","해고로 정리해야 하는 상황이라면 (직원 5명 이상이면 해고는 반드시 서면으로 알려야 합니다)"],
+      refs:"근로기준법 제26조(해고 예고)·제27조(해고 서면 통지)·제36조(금품 청산) · 고용노동부 회시 근로기준정책과-1426(2021.5.14.)" },
+    "B5-3": { tag:"임금", group:"pay",
+      q:"하루 3시간 알바한테도 주휴수당 줘야 하나요?",
+      heart:"일 안 한 날 돈을 왜 주나 싶으실 수 있습니다. 계산법을 들을 기회가 없었을 뿐입니다.",
+      answer:"하루 시간이 아니라 <mark>일주일에 15시간 이상</mark>(4주 평균)인지로 정해집니다. 3시간씩 주 5일이면 15시간이라 정한 날을 다 나온 주에 생기고, 주 4일이면 12시간이라 생기지 않습니다.",
+      todo:[["알바별 '한 주 몇 시간' 세어 보기","근무표에서 정해진 시간 기준으로"],["하루치 금액 계산해 보기","(한 주 근무시간 ÷ 40) × 8 × 시급"],["급여명세서에 '주휴수당' 칸 만들기","기본급과 따로 적어 두면 다툼이 줄어듭니다"]],
+      day:"알바 급여명세서에 '주휴수당' 칸이 따로 있습니다.",
+      ox:{ s:"직원 5명이 안 되는 가게는 주휴수당이 없다", a:false, exp:"주휴수당은 직원 수와 상관없이, 주 15시간 이상 일하고 정한 날을 다 나온 주에 생깁니다." },
+      sos:["그동안 안 드린 알바가 있다면 지난 근무표로 계산해 지급하세요. 최근 3년 치까지 청구될 수 있습니다."],
+      red:["주휴를 피하려고 근무를 15시간 아래로 쪼개고 있다면","주 40시간 넘게 일하는 직원이 섞여 있다면"],
+      refs:"근로기준법 제18조제3항·제55조제1항, 시행령 제30조·별표1 · 고용노동부 회시 근로기준정책과-1954(2023.6.19.)" },
+    "N-01": { tag:"퇴직금", group:"sev",
+      q:"1년 일한 알바한테도 퇴직금 꼭 줘야 하나요?",
+      heart:"알바니까 괜찮겠지 하셨을 수 있습니다. 이름이 알바라도 기준은 같다는 걸 들을 기회가 없었을 뿐입니다.",
+      answer:"<mark>1년 이상 일했고 4주 평균 주 15시간 이상</mark>이었다면 알바도 퇴직금을 드려야 합니다. 대략 1년에 한 달 치 평균 급여입니다.",
+      todo:[["입사일과 주당 근무시간 확인하기","4주 평균이 15시간 이상인지"],["평균임금 계산해 보기","퇴사 전 3개월 급여 기준"],["14일 안에 직원 IRP 계좌로 지급하기","55세 이후 퇴직 등 예외가 아니면 IRP로 보냅니다"]],
+      day:"입사 1년이 되는 달, 장부에 '퇴직금 대상' 표시가 붙습니다.",
+      ox:{ s:"퇴직금 안 받기로 미리 합의했으면 안 줘도 된다", a:false, exp:"일하는 동안 미리 퇴직금을 포기하기로 한 약속은 효력이 없습니다." },
+      sos:["금액을 두고 다투고 있다면, 서로 계산한 근거(근무표·급여 이체)를 나란히 놓고 비교하세요."],
+      red:["알바로 시작해 정직원이 된 경우","월급에 퇴직금을 나눠 줬다고 생각하신다면","중간에 쉰 기간이 있다면"],
+      refs:"근로자퇴직급여 보장법 제4조·제8조·제9조, 시행령 제3조의2" },
+    "N-02": { tag:"4대보험", group:"ins",
+      q:"직원이 고용보험을 안 들겠다고 해요",
+      heart:"직원이 원해서 들어준 건데 문제가 될까 걱정되셨을 겁니다. 누구 의무인지 알려 주는 곳이 없었을 뿐입니다.",
+      answer:"주 15시간·한 달 60시간 이상 일하거나, 그보다 짧아도 3개월 넘게 일하는 직원이라면 <mark>직원이 원하지 않아도 가입은 사장님 의무</mark>입니다.",
+      todo:[["직원별 근무시간과 기간 확인하기","월 60시간 또는 3개월이 기준"],["보험료 지원 대상인지 확인하기","작은 사업장 지원(두루누리)"],["취득 신고하기","입사한 다음 달 15일까지, 본인 부담분은 급여에서 공제"]],
+      day:"입사 서류 묶음에 4대보험 취득 신고 확인증이 같이 꽂혀 있습니다.",
+      ox:{ s:"직원이 싫다고 확인서를 쓰면 안 들어도 된다", a:false, exp:"신고 의무는 사업주에게 있어, 나중에 밀린 보험료와 과태료가 사장님께 돌아옵니다." },
+      sos:["안 들어 준 채로 퇴사한 직원이 실업급여 문제로 연락해 왔다면, 근무 기간을 확인해 늦은 신고부터 상의하세요."],
+      red:["프리랜서(3.3%)로 바꿔 달라는 요청을 받았다면","가족이 직원으로 함께 일한다면","65세가 넘어 새로 채용한 직원이라면"],
+      refs:"고용보험법 제10조·제15조·제118조, 시행령 제3조·제7조",
+      notice:"2027년 1월 1일부터 가입 기준이 근로시간에서 '월 보수'로 바뀝니다(고용보험법 개정 법률 제21473호, 2027.1.1. 시행). 이미 가입한 직원은 처음 그만둘 때까지 그대로 유지됩니다. 시행 전에 이 답을 고쳐 둡니다." },
+    "N-03": { tag:"실업급여", group:"ui",
+      q:"실업급여 받게 권고사직으로 해 달래요",
+      heart:"정든 직원 부탁이라 들어주고 싶으셨을 겁니다. 그 부탁이 사장님께 어떤 무게인지 몰랐을 뿐입니다.",
+      answer:"퇴사 사유는 <mark>있었던 그대로 신고</mark>하셔야 합니다. 스스로 그만둔 직원을 권고사직으로 바꿔 신고하면 직원과 함께 사장님도 처벌받을 수 있습니다.",
+      todo:[["누가 먼저 말했는지 정리하기","메신저·대화 기록을 모아 두기"],["사직서 받기","본인 글씨로, 날짜까지"],["지원금 영향 확인하기","정부 지원금을 받는 중이라면 처리 전에"]],
+      day:"퇴사 면담이 끝나면 누가 먼저 말했는지 한 줄 기록이 남습니다.",
+      ox:{ s:"사유를 바꿔 주는 건 직원을 돕는 일이라 괜찮다", a:false, exp:"거짓 사유로 실업급여를 받게 하면 받은 돈을 돌려줘야 하고, 함께한 사업주도 형사처벌 대상이 됩니다." },
+      sos:["이미 사유를 바꿔 신고했다면 혼자 고치려 하지 말고 먼저 상의하세요."],
+      red:["실제로 가게 사정 때문에 그만두게 하는 상황이라면","고용지원금을 받고 있다면"],
+      refs:"고용보험법 제58조·제62조·제116조" },
+    "N-04": { tag:"신고", group:"rep",
+      q:"그만두면서 14일 안에 월급 안 주면 신고한대요",
+      heart:"그만두는 쪽이 큰소리치니 억울하셨을 겁니다. 정해진 날짜를 알려 준 사람이 없었을 뿐입니다.",
+      answer:"퇴사하면 <mark>14일 안에 남은 돈을 정산</mark>하는 것이 원칙입니다. 사정이 있으면 <b>14일이 지나기 전에</b> 직원과 합의해 날짜를 늦출 수 있으니, 합의는 글로 남기세요.",
+      todo:[["남은 돈 한 장에 계산하기","급여·주휴·퇴직금까지"],["늦어지면 14일 안에 날짜 합의하기","14일이 지난 뒤 합의하면 이미 법 위반입니다"],["손해 본 돈은 따로 다루기","급여에서 빼면 안 됩니다"]],
+      day:"퇴사 통보를 받은 날, 정산 날짜가 달력에 바로 적힙니다.",
+      ox:{ s:"서로 합의하면 14일보다 늦게 정산해도 된다", a:true, exp:"특별한 사정이 있으면 14일이 지나기 전에 합의해 늦출 수 있습니다. 14일이 지난 뒤의 합의로는 위반을 되돌리지 못합니다." },
+      sos:["진정이 이미 들어갔다면, 출석 전에 정산 내역과 합의 기록을 들고 상의하세요."],
+      red:["직원이 갑자기 그만둬 손해를 봤고 청구하고 싶다면","퇴직금까지 함께 걸려 있다면"],
+      refs:"근로기준법 제20조·제36조·제43조 · 고용노동부 「소규모 사업장 7가지 노른자 노동법」(2026)" }
+  };
+  const ORDER = GROUPS.flatMap(g => g.worries.filter(w => w[1]).map(w => w[1]));
+  const done = (no) => (state.checks[no] || []).filter(Boolean).length === 3;
+  const doneCount = () => ORDER.filter(done).length;
+
+  const esc = (t) => String(t).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+  const root = document.getElementById("root");
+  let ox = {};
+
+  const family = `<div class="family"><div class="wrap"><span><a href="https://risk119.site/winners.html" style="color:inherit;text-decoration:none"><b>노무법인 위너스 기준진단</b></a> · 사장님 1분 상담소</span>
+    <nav aria-label="위너스 진단 서비스"><a href="https://risk119.site/winners.html"><b>회사 소개</b></a><a href="https://risk119.site" target="_blank" rel="noopener">RISK119 근로감독</a><a href="https://safe119.site" target="_blank" rel="noopener">SAFE119 중대재해</a><a href="https://free119.site" target="_blank" rel="noopener">FREE119 근로자성</a><a href="https://www.audit119.site" target="_blank" rel="noopener">AUDIT119 괴롭힘 조사</a></nav></div></div>`;
+  const header = () => `<header class="top"><div class="wrap">
+    <button class="logo" data-nav="#/" aria-label="처음으로"><strong>사장님 <em>1분</em> 상담소</strong><small>직원 고민 해결</small></button>
+    <nav class="mainnav"><button class="link" data-nav="#/" data-to="worries">고민 고르기</button><button class="link" data-nav="#/board">우리 가게 기준 ${doneCount()}</button><button class="link" data-nav="#/" data-to="who">노무사 소개</button>
+    <button class="btn navy" data-nav="#/ask" style="margin-left:28px">상담 신청</button></nav></div></header>`;
+  const footer = `<footer><div class="wrap">
+    <h3 style="font-size:15px;margin-bottom:4px">노무법인 위너스 진단 서비스</h3>
+    <div class="fam">
+      <a href="https://risk119.site" target="_blank" rel="noopener"><b>RISK<em>119</em></b><span>근로감독 자가진단</span><small>임금·근로시간·연차·4대보험 점검</small></a>
+      <a href="https://safe119.site" target="_blank" rel="noopener"><b>SAFE<em>119</em></b><span>중대재해처벌법 자가진단</span><small>경영책임자 의무와 위험성평가</small></a>
+      <a href="https://free119.site" target="_blank" rel="noopener"><b>FREE<em>119</em></b><span>근로자성 자가진단</span><small>3.3% 프리랜서 계약 점검</small></a>
+      <a href="https://www.audit119.site" target="_blank" rel="noopener"><b>AUDIT<em>119</em></b><span>괴롭힘 조사체계</span><small>사내 조사체계 진단과 외부 독립조사</small></a>
+      <a href="#/" data-nav="#/"><b>사장님 <em>1분</em> 상담소</b><span>현재 사이트</span><small>직원 고민, 1분 답과 오늘 할 일</small></a>
+    </div>
+    <p style="margin-top:28px"><a href="https://risk119.site/winners.html"><b>회사 소개</b></a></p>
+    <p>노무법인 위너스 | 대표노무사 조대진 | 사업자등록번호 134-85-60666</p>
+    <p>서울시 강서구 마곡중앙로 171, 304호 | Tel. ${TEL} | Email. cdj44y@gmail.com</p>
+    <p>이 상담소의 답은 법령에 근거한 일반 기준이며 법적 효력이 없습니다. 개별 사안은 사실관계에 따라 달라질 수 있습니다.</p>
+    <p>© 2026 노무법인 위너스</p></div></footer>
+    <button class="float" data-nav="#/ask">💬 상담 신청</button>`;
+
+  function home() {
+    return `${family}${header()}
+    <section class="hero"><div class="wrap">
+      <div>
+        <p class="eyebrow">직원 고민 10가지 · 고민 하나에 1분 · 오늘 할 일 3개</p>
+        <h1>직원 때문에 막막할 때,<br>1분이면 오늘 할 일이<br>정해집니다</h1>
+        <p class="desc">잠수, 주휴수당, 퇴직금, 4대보험. 사장님들이 실제로 많이 묻는 고민에 근거 조문과 함께 답합니다. 할 일 3개를 마치면 우리 가게 기준이 하나 생깁니다.</p>
+        <div class="ctas"><button class="btn blue lg" data-to="worries">고민 고르기 →</button><button class="btn navy lg" data-nav="#/ask">상담 신청</button></div>
+        <p class="micro">회원가입 없음 · 이름·가게 이름 입력 없음 · 체크 기록은 이 기기에만</p>
+      </div>
+      <div class="panel">
+        <div class="ph">사장님들이 가장 많이 묻는 고민<span>1분 답</span></div>
+        <ol class="toplist">${TOP.map((no,i)=>`<li><button data-nav="#/c/${no}"><span class="n">${i+1}</span><span class="q">${esc(CARDS[no].q)}</span><span class="go">보기 →</span></button></li>`).join("")}</ol>
+        <div class="pf">근거: 각 답 카드에 조문 표기 · 법령 원문 대조 ${REVIEWED}</div>
+      </div>
+    </div></section>
+
+    <section class="alt" id="worries"><div class="wrap">
+      <p class="eyebrow">고민 고르기</p>
+      <h2>어떤 일로 마음이 쓰이세요?</h2>
+      <p class="lead">많이 묻는 순서대로 놓았습니다. 가장 가까운 고민을 골라 주세요.</p>
+      <div class="grid">${GROUPS.map((g,i)=>{ const n=g.worries.filter(w=>w[1]).length;
+        return `<button class="tile" data-nav="#/g/${g.id}"><span class="k"><span>${String(i+1).padStart(2,"0")}</span>${HOT.includes(g.id)?'<span class="tag hot">많이 물어요</span>':""}</span>
+        <span class="t">${esc(g.t)}</span><span class="ex">“${esc(g.ex)}”</span>
+        <span class="st ${n?"on":""}">${n?`1분 답 ${n}개 →`:"노무사에게 바로 묻기 →"}</span></button>`;}).join("")}</div>
+    </div></section>
+
+    <section id="who"><div class="wrap who">
+      <img src="${PHOTO}" alt="조대진 대표노무사" width="200" height="260">
+      <div>
+        <p class="eyebrow">이 상담소를 만든 사람</p>
+        <h2>기준을 세우는 노무사, 조대진</h2>
+        <p class="cred">공인노무사 16년 · 안전공학 박사</p>
+        <blockquote>“사장님이 부족했던 게 아닙니다. 가게에 기준이 없었을 뿐입니다. 하나씩 세우면 됩니다.”</blockquote>
+        <dl class="facts">
+          <div><dt>소속</dt><dd>노무법인 위너스 대표노무사</dd></div>
+          <div><dt>실무 이력</dt><dd>현대카드 · 삼성서울병원 인사 출신</dd></div>
+          <div><dt>학위</dt><dd>안전공학 박사</dd></div>
+          <div><dt>전문 분야</dt><dd>노동법 · 산업안전 · 인사제도</dd></div>
+        </dl>
+      </div>
+    </div></section>
+
+    <section class="alt"><div class="wrap">
+      <h2>모든 답에 근거를 답니다</h2>
+      <p class="lead">일반론이 아니라, 확인할 수 있는 근거로만 답합니다.</p>
+      <div class="three">
+        <div class="box"><span class="k">근거 1</span><h3>답마다 조문 표기</h3><p>1분 답 아래에 근로기준법·퇴직급여법·고용보험법 해당 조문을 그대로 적습니다.</p></div>
+        <div class="box"><span class="k">근거 2</span><h3>사장님 말로 1분</h3><p>법률 용어 대신 사장님이 쓰는 말로, 결론부터 한 문단에 담았습니다.</p></div>
+        <div class="box"><span class="k">근거 3</span><h3>확인일 표시</h3><p>답마다 확인한 날짜를 적고, 법이 바뀌면 날짜와 함께 고칩니다.</p></div>
+      </div>
+    </div></section>
+
+    <section><div class="wrap">
+      <h2>1분이면 끝납니다</h2>
+      <div class="three">
+        <div class="box"><span class="k">1단계</span><h3>고민 고르기</h3><p>지금 마음 쓰이는 일과 가장 가까운 고민 하나를 고르세요.</p></div>
+        <div class="box"><span class="k">2단계</span><h3>1분 답 읽기</h3><p>결론과 근거 조문, 많이 하는 오해를 한 화면에서 봅니다.</p></div>
+        <div class="box"><span class="k">3단계</span><h3>할 일 3개 체크</h3><p>세 가지를 마치면 우리 가게 기준이 하나 생깁니다.</p></div>
+      </div>
+    </div></section>
+
+    <section class="alt"><div class="wrap">
+      <h2>자주 묻는 질문</h2>
+      <div class="faq">
+        <details><summary>어떤 곳인가요?</summary><p>직원 문제로 막막한 사장님이 고민 하나를 고르면, 1분 안에 읽을 답과 오늘 할 일 3가지를 드리는 곳입니다. 노무법인 위너스가 만들고 고칩니다.</p></details>
+        <details><summary>제 이야기가 어디에 남나요?</summary><p>이름이나 가게 이름을 묻지 않습니다. 할 일 체크 기록은 지금 쓰시는 기기에만 남고, 저희에게 전송되지 않습니다.</p></details>
+        <details><summary>답과 제 상황이 조금 달라요</summary><p>답 카드는 일반적인 기준입니다. 각 카드의 '이럴 땐 노무사에게'에 해당하시면 상담을 신청해 주세요. 있었던 일만 말씀하시면 됩니다.</p></details>
+        <details><summary>상담은 어떻게 진행되나요?</summary><p>상담 신청서를 남겨 주시면 영업일 3일 안에 연락드립니다. 상담은 유료 자문이며, 비용은 먼저 안내드립니다. 조대진·김지예 노무사 두 사람이 끝까지 맡습니다.</p></details>
+      </div>
+    </div></section>
+
+    <div class="band"><div class="wrap">
+      <h2>혼자 고민하지 마시고, 먼저 30분</h2>
+      <p>자료 준비 없이 있었던 일만 말씀해 주세요. 지금 가장 급한 하나를 같이 정합니다. 상담은 유료 자문이며, 신청서 확인 후 비용을 먼저 안내드립니다.</p>
+      <button class="btn blue lg" data-nav="#/ask">상담 신청 →</button>
+    </div></div>
+    ${footer}`;
+  }
+
+  function sidebar(activeGroup) {
+    return `<aside class="side"><h4>고민 묶음</h4><ul>${GROUPS.map(g=>{ const r=g.worries.filter(w=>w[1]).map(w=>w[1]); const d=r.filter(done).length;
+      return `<li><button class="${g.id===activeGroup?"on":""}" data-nav="#/g/${g.id}">${esc(g.t)}<span>${r.length?`${d}/${r.length}`:"묻기"}</span></button></li>`;}).join("")}</ul>
+      <p class="hint">숫자는 할 일 3개를 마친 답 카드 수입니다.</p></aside>`;
+  }
+  function progressBar(label, cur, total) {
+    const pct = total ? Math.round(cur/total*100) : 0;
+    return `<div class="progress"><div class="wrap">
+      <button class="logo" data-nav="#/"><strong>사장님 <em>1분</em> 상담소</strong></button>
+      <div class="bar"><div class="row"><span>${label}</span><b>${pct}%</b></div><div class="track"><i style="width:${pct}%"></i></div></div></div></div>`;
+  }
+
+  function group(gid) {
+    const g = GROUPS.find(x => x.id === gid) || GROUPS[0];
+    return `${family}${progressBar(`우리 가게 기준 ${doneCount()} / ${ORDER.length}`, doneCount(), ORDER.length)}
+    <div class="stage"><div class="wrap">${sidebar(g.id)}
+      <div class="qcard">
+        <span class="k">고민 묶음 · ${esc(g.t)}</span>
+        <h1>가장 가까운 고민을 골라 주세요</h1>
+        <div class="wlist">${g.worries.map(w=>`<button data-nav="${w[1]?`#/c/${w[1]}`:`#/ask?q=${encodeURIComponent(w[0])}`}"><span>${esc(w[0])}</span><span class="tag ${w[1]?(done(w[1])?"ready":"ready"):"ask"}">${w[1]?(done(w[1])?"기준 생김 ✓":"1분 답"):"노무사에게 묻기"}</span></button>`).join("")}
+          <button class="ghost" data-nav="#/ask">제 상황은 달라요 → 노무사에게 직접 묻기</button></div>
+      </div></div></div>
+    ${footer}`;
+  }
+
+  function card(no) {
+    const c = CARDS[no]; const g = GROUPS.find(x => x.id === c.group);
+    const ck = state.checks[no] || [false,false,false]; const n = ck.filter(Boolean).length;
+    const i = ORDER.indexOf(no); const prev = ORDER[i-1], next = ORDER[i+1];
+    const o = ox[no];
+    return `${family}${progressBar(`오늘 할 일 ${n} / 3`, n, 3)}
+    <div class="stage"><div class="wrap">${sidebar(g.id)}
+      <div>
+      <article class="qcard">
+        <span class="k">${esc(g.t)} · 1분 답 · No.${no}</span>
+        <h1>“${esc(c.q)}”</h1>
+        <p class="heart">${esc(c.heart)}</p>
+        <dl class="basis">
+          <div class="r"><dt class="a">1분 답</dt><dd class="ans">${c.answer}</dd></div>
+          <div class="r"><dt>근거</dt><dd class="ref">${esc(c.refs)}<br><small>국가법령정보센터 원문 대조 ${REVIEWED} · 고용노동부 자료 대조</small></dd></div>${c.notice?`<div class="r"><dt style="color:var(--amber)">바뀌는 법</dt><dd class="ref">${esc(c.notice)}</dd></div>`:""}
+        </dl>
+
+        <div class="todo-h"><h3>오늘 하실 일</h3><span>${n} / 3</span></div>
+        <div class="opt">${c.todo.map((t,k)=>`<label><span class="tx">${esc(t[0])}<small>${esc(t[1])}</small></span><input type="checkbox" data-todo="${k}" ${ck[k]?"checked":""}><span class="ck" aria-hidden="true">✓</span></label>`).join("")}</div>
+        ${n===3
+          ? `<div class="goal done ${state.just===no?"pop":""}"><span class="seal"><i>✓</i>우리 가게 기준 1개 생김</span><br>${esc(c.day)}</div>`
+          : `<div class="goal"><b>세 가지를 마치면</b>${esc(c.day)}</div>`}
+
+        <div class="acc">
+          <details ${o!==undefined?"open":""}><summary>많이 하는 오해 O/X</summary><div class="in ox">
+            <p class="stmt">${esc(c.ox.s)}</p>
+            <div class="b2"><button data-ox="1" class="${o===true?(c.ox.a?"right":"wrong"):""}" aria-pressed="${o===true}">O 맞다</button><button data-ox="0" class="${o===false?(!c.ox.a?"right":"wrong"):""}" aria-pressed="${o===false}">X 아니다</button></div>
+            ${o===undefined?"":`<p class="exp"><b>정답 ${c.ox.a?"O":"X"}</b> · ${esc(c.ox.exp)}</p>`}
+          </div></details>
+          <details><summary>이럴 땐 노무사에게</summary><div class="in"><ul>${c.red.map(s=>`<li>${esc(s)}</li>`).join("")}</ul></div></details>
+          <details class="sos"><summary>이미 일이 터졌다면</summary><div class="in"><ul>${c.sos.map(s=>`<li>${esc(s)}</li>`).join("")}</ul></div></details>
+        </div>
+        <p class="note">일반적인 기준을 설명한 것으로, 실제 사안은 사실관계에 따라 달라질 수 있습니다.</p>
+      </article>
+      <div class="nav2">
+        <button class="btn line" ${prev?`data-nav="#/c/${prev}"`:"disabled"}>← 이전 답</button>
+        <button class="btn line" data-share="${no}">공유</button>
+        ${next?`<button class="btn navy" data-nav="#/c/${next}">다음 답 →</button>`:`<button class="btn navy" data-nav="#/board">우리 가게 기준 보기 →</button>`}
+      </div></div>
+    </div></div>
+    ${footer}`;
+  }
+
+  function board() {
+    const d = doneCount();
+    return `${family}${progressBar(`우리 가게 기준 ${d} / ${ORDER.length}`, d, ORDER.length)}
+    <div class="stage"><div class="wrap">${sidebar("")}
+      <div class="qcard">
+        <span class="k">우리 가게 기준</span>
+        <h1>${d ? `기준 ${d}개가 섰습니다` : "아직 세운 기준이 없습니다"}</h1>
+        <p class="heart">사장님이 부족했던 게 아닙니다. 가게에 기준이 없었을 뿐입니다. 하나씩 세우면 됩니다.</p>
+        <ul class="blist">${ORDER.map(no=>{ const c=CARDS[no]; const on=done(no);
+          return `<li class="${on?"on":""}"><i>${on?"✓":"·"}</i><div><button data-nav="#/c/${no}" style="all:unset;cursor:pointer"><b>${esc(c.q)}</b></button><small>${on?esc(c.day):"할 일 3개를 마치면 기준이 생깁니다"}</small></div></li>`;}).join("")}</ul>
+        <p class="note">이 기록은 지금 쓰시는 기기에만 남습니다. ${d?`<button data-reset="1" style="background:none;border:0;padding:0;color:var(--blue);text-decoration:underline;font-size:13px">기록 지우기</button>`:""}</p>
+      </div></div></div>
+    ${footer}`;
+  }
+
+  function ask(q) {
+    return `${family}${header()}
+    <section><div class="wrap" style="max-width:760px">
+      <p class="eyebrow">상담 신청 · 영업일 3일 안에 연락</p>
+      <h2>자료 준비 없이,<br>있었던 일만 말씀해 주세요</h2>
+      <p class="lead">30분이면 지금 가장 급한 하나가 무엇인지 같이 정할 수 있습니다.</p>
+      ${q?`<div class="goal" style="margin-top:20px"><b>보고 계시던 고민</b>“${esc(q)}” — 아래 신청서에 자동으로 함께 전달됩니다.</div>`:""}
+      <p class="note" style="margin-top:16px">상담은 유료 자문으로 진행됩니다. 신청서 확인 후 일정과 비용을 먼저 안내드리며, 일정에 따라 노무법인 위너스 소속의 경험 많은 노무사가 먼저 연락드릴 수 있습니다.</p>
+      <iframe src="${tallyEmbed(q)}" title="상담 신청서 · 노무법인 위너스" loading="lazy" style="width:100%;height:1250px;border:0;margin-top:18px" frameborder="0"></iframe>
+      <p class="note">가게 이름은 쓰지 않으셔도 됩니다.</p>
+    </div></section>
+    ${footer}`;
+  }
+
+
+  function route() {
+    const h = location.hash || "#/";
+    const legacy = h.slice(1);
+    let html;
+    if (CARDS[legacy]) html = card(legacy);                       // 예전 공유 주소 #N-02
+    else if (h.startsWith("#/c/") && CARDS[h.slice(4)]) html = card(h.slice(4));
+    else if (h.startsWith("#/g/")) html = group(h.slice(4));
+    else if (h === "#/board") html = board();
+    else if (h.startsWith("#/ask")) { const m = h.match(/q=([^&]+)/); html = ask(m ? decodeURIComponent(m[1]) : ""); }
+    else html = home();
+    root.innerHTML = html;
+    delete state.just;
+  }
+  const go = (hash, to) => {
+    if (location.hash === hash || (!location.hash && hash === "#/")) { route(); }
+    else { location.hash = hash; }
+    setTimeout(() => {
+      const t = to && document.getElementById(to);
+      try { t ? t.scrollIntoView({behavior:"smooth"}) : window.scrollTo({top:0}); } catch (e) {}
+    }, 0);
+  };
+  function toast(msg){ const t=document.createElement("div"); t.className="toast"; t.textContent=msg; document.body.appendChild(t); setTimeout(()=>t.remove(),1800); }
+
+  root.addEventListener("click", (e) => {
+    const b = e.target.closest("[data-nav],[data-to],[data-ox],[data-share],[data-reset]"); if (!b) return;
+    if (b.dataset.nav || b.dataset.to) { e.preventDefault(); go(b.dataset.nav || "#/", b.dataset.to); return; }
+    const no = (location.hash.match(/#\/c\/(.+)/) || [])[1] || location.hash.slice(1);
+    if (b.dataset.ox !== undefined) { ox[no] = b.dataset.ox === "1"; route(); return; }
+    if (b.dataset.share) {
+      const url = location.href.split("#")[0] + "#/c/" + b.dataset.share;
+      if (navigator.share) { navigator.share({ title:"사장님 1분 상담소", url }).catch(()=>{}); return; }
+      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(url).then(()=>toast("답 카드 주소를 복사했어요")).catch(()=>toast("주소 복사가 막혀 있어요"));
+      else toast("주소 복사가 막혀 있어요");
+      return;
+    }
+    if (b.dataset.reset) { state.checks = {}; save(); route(); }
+  });
+  root.addEventListener("change", (e) => {
+    const k = e.target.dataset.todo; if (k === undefined) return;
+    const no = (location.hash.match(/#\/c\/(.+)/) || [])[1] || location.hash.slice(1);
+    const ck = state.checks[no] || [false,false,false];
+    const was = ck.every(Boolean);
+    ck[+k] = e.target.checked; state.checks[no] = ck;
+    if (!was && ck.every(Boolean)) state.just = no;
+    save(); route();
+  });
+  window.addEventListener("hashchange", route);
+  route();
+})();
+</script>
+</body>
+</html>
