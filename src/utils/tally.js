@@ -1,5 +1,5 @@
 // Tally 문의 폼 연동 헬퍼
-// 폼: https://tally.so/forms/GxZyzz (노무 상담 문의 · 조대진 노무사)
+// 폼: https://tally.so/forms/GxZyzz (노무 상담 문의)
 export const TALLY_FORM_ID = 'GxZyzz'
 
 function buildParams(prefill = {}) {
