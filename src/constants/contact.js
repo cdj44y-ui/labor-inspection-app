@@ -16,13 +16,13 @@ export const KAKAO_CHANNEL_URL = 'https://pf.kakao.com/_yxexbaX/friend'
 export const NOTION_REMOTE_CONSULT_URL =
   (typeof import.meta.env.VITE_NOTION_REMOTE_CONSULT_URL === 'string' &&
     import.meta.env.VITE_NOTION_REMOTE_CONSULT_URL.trim()) ||
-  'https://north-saffron-5b7.notion.site/cc7a5b60e4104ef697435cbf880d8341'
+  'https://tally.so/r/GxZyzz?grade=%5BRISK119%5D'
 // 비대면 상담 플랜 ID (Supabase plans.id — 결제 연동용)
 export const CONSULT_PLAN_ID = 'a0000000-0000-0000-0000-000000000001'
 // 결제 완료 후 비대면 상담 진행 URL — 래피드(Latpeed) (.env의 VITE_RAPIDO_CONTENT_URL 으로 덮어쓰기 가능)
 export const RAPIDO_CONTENT_URL =
   import.meta.env.VITE_RAPIDO_CONTENT_URL ||
-  'https://www.latpeed.com/spaces/0/products/editor?product_short_id=oYzwz&type=link&content_closed=true'
+  'https://tally.so/r/GxZyzz?grade=%5BRISK119%5D'
 // 버튼 공통: 검정/토스 블루 (index.css .btn-black-cta / .btn-toss-cta와 연동)
 const BLACK_BTN_BASE =
   'btn-black-cta inline-flex items-center justify-center rounded-full text-white shadow-edge transition no-underline cursor-pointer'
