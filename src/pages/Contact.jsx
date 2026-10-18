@@ -89,7 +89,7 @@ export default function Contact() {
           </fieldset>
 
           <div className="mt-6 overflow-hidden rounded-3xl border-2 border-zinc-200 bg-white p-2 shadow-edge md:p-4">
-            <TallyEmbed src={tallySrc} title="노무 상담 문의 · 조대진 노무사" height={760} />
+            <TallyEmbed src={tallySrc} title="노무 상담 문의" height={760} />
           </div>
 
           <p className="mt-6 text-center text-sm text-zinc-700">
