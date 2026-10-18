@@ -105,7 +105,6 @@ export const EXPERT_LABOR = {
     phone: '02-2138-0240',
     email: 'cdj44y@gmail.com',
     address: '서울시 강서구 마곡중앙로 171, 304호',
-    calendly: '', // 무료 상담 폐지(2026-10-18)
     blog: '',
   },
 
