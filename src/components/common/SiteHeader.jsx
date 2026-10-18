@@ -23,7 +23,7 @@ export default function SiteHeader() {
           to="/diagnosis"
           className="hidden rounded-full border border-toss/50 bg-white px-4 py-2 text-sm font-bold text-toss transition hover:bg-toss/5 sm:inline-flex"
         >
-          무료로 우리 회사 리스크 확인하기
+          우리 회사 자가진단 시작하기
         </Link>
       </nav>
     </header>
