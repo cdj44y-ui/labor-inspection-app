@@ -75,11 +75,11 @@ export default function App() {
           <Route path="/about" element={<About />} />
           <Route path="/about-labor" element={<Navigate to="/about" replace />} />
           <Route path="/contact" element={<Contact />} />
-          <Route path="/c/consult" element={<ConsultContent />} />
-          <Route path="/pricing" element={<Pricing />} />
-          <Route path="/payment" element={<Payment />} />
-          <Route path="/payment/success" element={<PaymentSuccess />} />
-          <Route path="/payment/fail" element={<PaymentFail />} />
+          <Route path="/c/consult" element={<Navigate to="/contact" replace />} />
+          <Route path="/pricing" element={<Navigate to="/contact" replace />} />
+          <Route path="/payment" element={<Navigate to="/contact" replace />} />
+          <Route path="/payment/success" element={<Navigate to="/contact" replace />} />
+          <Route path="/payment/fail" element={<Navigate to="/contact" replace />} />
         </Routes>
         <FloatingConsultButton />
         <SpeedInsights />
