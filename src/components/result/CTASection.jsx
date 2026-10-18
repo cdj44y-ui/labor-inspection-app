@@ -89,7 +89,7 @@ export default function CTASection({ riskLevelLabel, totalScore, totalPenaltyMan
 
       {/* 카카오톡 채널 — 가장 낮은 진입장벽, 법 개정·소식 구독 */}
       <div className="mt-6 rounded-2xl border border-[#FEE500]/60 bg-[#FFFBE6] p-4">
-        <p className="text-sm font-bold text-ink">💬 이 결과, 다음 달에도 유효할까요?</p>
+        <p className="text-sm font-bold text-ink">이 결과, 다음 달에도 유효할까요?</p>
         <p className="mt-1 text-sm text-zinc-700">
           법이 바뀌면 오늘 받은 점수도 바뀝니다. 상담은 아직 부담스러우셔도, 채널 추가 한 번이면 근로기준법·중대재해처벌법이 바뀔 때마다 가장 먼저 알려드립니다.
         </p>
