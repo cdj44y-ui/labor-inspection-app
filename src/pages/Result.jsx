@@ -80,7 +80,7 @@ export default function Result() {
       <ResultSheet answers={answers} totalScore={totalScore} gradeLabel={gradeInfo.label} gradeMessage={gradeInfo.message} categoryScores={categoryScores} items={items} />
       <div className="bg-[#F9FAFB] pb-12">
         <div className="mx-auto flex max-w-[880px] flex-col items-center gap-3 px-4 text-center md:px-8">
-          <a href={tallyCall} target="_blank" rel="noopener noreferrer" className="inline-flex h-[60px] w-full items-center justify-center rounded-[12px] bg-[#1F4E79] text-[20px] font-bold text-white no-underline hover:bg-[#173B5C] visited:text-white md:w-auto md:px-12">상담 신청서 작성하기 →</a>
+          <a href={tallyCall} target="_blank" rel="noopener noreferrer" className="inline-flex h-[60px] w-full items-center justify-center rounded-[12px] bg-[#1F4E79] text-[20px] font-bold text-white no-underline hover:bg-[#173B5C] visited:text-white md:w-auto md:px-12">상담 신청 →</a>
           <p className="text-[15px] text-[#6B7280]">진단 결과가 신청서에 자동으로 담깁니다. 상담은 유료 자문으로 진행됩니다.</p>
         </div>
       </div>
@@ -116,7 +116,7 @@ export default function Result() {
         <section className="border-b border-[#DDE2EA] py-14 md:py-[72px]">
           <div className="mx-auto max-w-[1040px] px-5 md:px-8">
             <h2 className="text-[30px] font-bold leading-[1.35] tracking-[-0.8px] md:text-[34px]">지금 놓치고 계신 것</h2>
-            <p className="mt-2 text-[18px] text-[#5B6680]">답변하신 내용 중 위반 소지가 있는 항목입니다. 처벌 수준이 법령 원문으로 확인된 항목부터 보여드립니다.</p>
+            <p className="mt-2 text-[18px] text-[#5B6680]">위반 소지가 있는 항목입니다. 처벌 수준이 확인된 항목부터 보여드립니다.</p>
             <div className="mt-8 border-t-2 border-[#14213D]">
               {shown.map((v, i) => (
                 <div key={v.id} className="grid gap-3 border-b border-[#DDE2EA] py-6 md:grid-cols-[48px_1fr]">
@@ -207,7 +207,7 @@ export default function Result() {
             <p className="text-[17px] font-bold text-[#1976D2]">이 결과를 함께 정리할 사람</p>
             <h2 className="mt-2 text-[30px] font-bold md:text-[34px]">대기업 인사팀 출신 노무사, 조대진</h2>
             <p className="mt-1 text-[17px] text-[#5B6680]">공인노무사 16년 · 안전공학 박사 · 노무법인 위너스 · 현대카드·삼성서울병원 인사 출신</p>
-            <p className="mt-5 text-[20px] font-semibold leading-[1.6]">대기업 근로감독을 매년 현장에서 대응해 왔고, 금융·IT·보건의료·제조 자문사와 감독을 함께 준비해 왔습니다. 위반 항목을 어떤 순서로, 어떤 서류로 정리해야 하는지 알고 있습니다.</p>
+            <p className="mt-5 text-[20px] font-semibold leading-[1.6]">대기업 근로감독을 매년 현장에서 대응해 왔습니다. 위반 항목을 어떤 순서와 서류로 정리할지 함께 짚어 드립니다.</p>
             <div className="mt-7 border-t-2 border-[#14213D]">
               {[
                 ['1', '결과 검토', '신청서에 담긴 진단 결과를 검토해 먼저 손볼 항목을 정리합니다.'],
@@ -228,11 +228,11 @@ export default function Result() {
       <section className="py-14 md:py-[80px]">
         <div className="mx-auto max-w-[760px] px-5 text-center md:px-8">
           <h2 className="text-[32px] font-bold leading-[1.35] tracking-[-0.8px] md:text-[38px]">감독 통지서가 오기 전에<br />결과를 함께 정리하십시오</h2>
-          <p className="mt-4 text-[19px] leading-[1.7] text-[#3D4A63]">진단 결과는 상담 신청서에 자동으로 담깁니다. 다시 설명하실 필요가 없습니다.</p>
+          <p className="mt-4 text-[19px] leading-[1.7] text-[#3D4A63]">진단 결과는 신청서에 자동으로 담깁니다.</p>
           <a href={tallyCall} target="_blank" rel="noopener noreferrer" className="mt-8 inline-flex h-[64px] w-full items-center justify-center rounded-[12px] bg-[#1F4E79] text-[21px] font-bold text-white no-underline hover:bg-[#173B5C] visited:text-white md:w-auto md:px-12">
-            상담 신청서 작성하기 →
+            상담 신청 →
           </a>
-          <p className="mt-4 text-[16px] leading-[1.7] text-[#5B6680]">상담은 유료 자문으로 진행됩니다. 신청서를 확인한 뒤 일정과 비용을 안내드립니다.<br />일정에 따라 노무법인 위너스 소속의 경험 많은 노무사가 먼저 연락드릴 수 있습니다.</p>
+          <p className="mt-4 text-[16px] leading-[1.7] text-[#5B6680]">상담은 유료 자문으로 진행됩니다. 신청서를 확인한 뒤 일정과 비용을 안내드립니다.<br />일정에 따라 노무법인 위너스 소속 노무사가 먼저 연락드릴 수 있습니다.</p>
           <div className="mt-6 flex flex-wrap justify-center gap-x-6 gap-y-2 text-[17px]">
             <Link to="/diagnosis" className="text-[#5B6680] underline underline-offset-4">다시 진단하기</Link>
           </div>
@@ -249,7 +249,7 @@ export default function Result() {
         <div className="fixed inset-x-0 bottom-0 z-30 border-t border-[#DDE2EA] bg-white/95 backdrop-blur">
           <div className="mx-auto flex max-w-[1040px] items-center justify-between gap-3 px-5 py-3 md:px-8">
             <p className="text-[16px] font-bold md:text-[18px]">위반 소지 <span className="text-[#B42318]">{items.length}건</span><span className="hidden font-normal text-[#5B6680] md:inline"> · 진단 결과가 신청서에 자동으로 담깁니다</span></p>
-            <a href={tallyCall} target="_blank" rel="noopener noreferrer" className="inline-flex h-[52px] shrink-0 items-center rounded-[10px] bg-[#1F4E79] hover:bg-[#173B5C] px-6 text-[17px] font-bold text-white no-underline visited:text-white">상담 신청서 작성</a>
+            <a href={tallyCall} target="_blank" rel="noopener noreferrer" className="inline-flex h-[52px] shrink-0 items-center rounded-[10px] bg-[#1F4E79] hover:bg-[#173B5C] px-6 text-[17px] font-bold text-white no-underline visited:text-white">상담 신청</a>
           </div>
         </div>
       )}

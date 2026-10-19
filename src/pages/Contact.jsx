@@ -58,7 +58,7 @@ export default function Contact() {
         <main className="mt-8">
           <h1 className="text-2xl font-extrabold">상담 신청</h1>
           <p className="mt-2 text-sm text-zinc-700">
-            근로감독 대비 컨설팅·긴급 자문 요청을 남겨 주세요. 아래 폼을 제출하시면 담당 노무사에게 바로 접수됩니다.
+            신청서를 남겨 주세요. 확인한 뒤 일정과 비용을 먼저 안내드립니다. 상담은 유료 자문입니다.
           </p>
 
           {diagnosis && (
@@ -68,7 +68,7 @@ export default function Contact() {
           )}
 
           <fieldset className="mt-6">
-            <legend className="text-sm font-semibold text-zinc-700">관심 영역 (복수 선택, 선택 사항)</legend>
+            <legend className="text-sm font-semibold text-zinc-700">관심 영역 (선택)</legend>
             <div className="mt-2 flex flex-wrap gap-2">
               {CATEGORIES.map((c) => (
                 <button

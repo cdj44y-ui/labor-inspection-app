@@ -203,7 +203,7 @@ export default function Diagnosis() {
             </button>
           )}
           <p className="mt-6 text-[14px] leading-[1.7] text-[#5B6680]">
-            본 진단은 법령과 고용노동부 자율진단표를 바탕으로 한 참고용 점검입니다. 개별 사업장의 구체적인 판단은 노무사 상담으로 확인하시기 바랍니다.
+            법령과 고용노동부 자율진단표를 바탕으로 한 참고용 점검입니다. 개별 판단은 노무사 상담이 필요합니다.
           </p>
           <p className="mt-2 text-[14px] font-semibold text-[#5B6680]">근거 원문 대조일 {VERIFIED_DATE} · {PROMISE}</p>
         </main>
