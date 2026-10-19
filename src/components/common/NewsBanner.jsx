@@ -14,11 +14,11 @@ const NEWS_ITEMS = [
   {
     body: (
       <>
-        한화에어로스페이스 대전사업장 특별감독 결과, 산안법 위반{' '}
-        <b className="font-semibold text-toss">473건 적발·과태료 약 5억원</b> 부과
+        고용노동부, 10.19~11.13 전국 사업장{' '}
+        <b className="font-semibold text-toss">화재·폭발 사고예방 집중점검</b> 실시 — 위반 시 즉시 과태료·사법조치
       </>
     ),
-    source: '고용노동부 보도자료 2026.10.01',
+    source: '고용노동부 보도자료 2026.10.18',
   },
   {
     body: (
