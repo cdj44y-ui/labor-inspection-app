@@ -18,7 +18,7 @@ export default function SiteFooter() {
           <p>서울시 강서구 마곡중앙로 171, 304호 | Tel. <a href="tel:0221380240" className="text-[#4B5563]">02-2138-0240</a> | Email. <a href="mailto:cdj44y@gmail.com" className="break-all text-[#4B5563]">cdj44y@gmail.com</a></p>
           <p className="text-[14px] text-[#6B7280]">{DISCLAIMER}</p>
           <p className="pt-1">
-            <a href={KAKAO_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 rounded-full bg-[#FEE500] px-4 py-1.5 text-[14px] font-bold text-[#391B1B] no-underline hover:bg-[#F5D800]">💬 법 바뀌기 전에 먼저 알기 — 채널 추가</a>
+            <a href={KAKAO_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 rounded-full bg-[#FEE500] px-4 py-1.5 text-[14px] font-bold text-[#391B1B] no-underline hover:bg-[#F5D800]">법 바뀌기 전에 먼저 알기 · 채널 추가</a>
           </p>
           <p className="text-[14px] text-[#6B7280]">© 2026 노무법인 위너스</p>
         </div>
