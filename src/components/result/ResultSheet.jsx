@@ -110,7 +110,7 @@ export default function ResultSheet({ answers, totalScore, gradeLabel, gradeMess
           <div className="py-6">
             <Head n="⑤" t="다음 점검일" />
             <p className="mt-2 text-[22px] font-bold text-[#111827] tabular-nums">{fmt(next)}</p>
-            <p className="mt-1">결과는 저장되지 않습니다. 6개월 뒤 같은 문항으로 다시 점검하시면 달라진 점을 바로 확인할 수 있습니다.</p>
+            <p className="mt-1">결과는 서버에 저장되지 않습니다. 6개월 뒤 같은 문항으로 다시 점검하시면 달라진 점을 바로 확인할 수 있습니다.</p>
             <div className="mt-4 flex flex-wrap gap-2.5">
               <button type="button" onClick={() => downloadIcs(next)} className="inline-flex h-[48px] items-center rounded-lg border-2 px-5 text-[16px] font-bold" style={{ borderColor: SITE_COLOR, color: SITE_COLOR }}>캘린더에 추가</button>
               <a href={KAKAO_URL} target="_blank" rel="noopener noreferrer" className="inline-flex h-[48px] items-center rounded-lg bg-[#FEE500] px-5 text-[16px] font-bold text-[#391B1B] no-underline">법 바뀌기 전에 먼저 알기</a>
