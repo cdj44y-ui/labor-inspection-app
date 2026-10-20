@@ -85,7 +85,7 @@ export const QUESTIONS = [
     categoryId: 1,
     text: '임금명세서를 교부하고 있습니까?',
     options: ['예', '아니오', '일부'],
-    law: '근로기준법 제48조의2(임금명세서 교부 의무)',
+    law: '근로기준법 제48조 제2항(임금명세서 교부 의무)',
   },
   {
     categoryId: 1,
