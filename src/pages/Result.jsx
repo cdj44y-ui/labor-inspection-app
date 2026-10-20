@@ -78,13 +78,6 @@ export default function Result() {
 
       {/* 결과지 — 브랜드 v1.1 공통 형식 */}
       <ResultSheet answers={answers} totalScore={totalScore} gradeLabel={gradeInfo.label} gradeMessage={gradeInfo.message} categoryScores={categoryScores} items={items} />
-      <div className="bg-[#F9FAFB] pb-12">
-        <div className="mx-auto flex max-w-[880px] flex-col items-center gap-3 px-4 text-center md:px-8">
-          <a href={tallyCall} target="_blank" rel="noopener noreferrer" className="inline-flex h-[60px] w-full items-center justify-center rounded-[12px] bg-[#1F4E79] text-[20px] font-bold text-white no-underline hover:bg-[#173B5C] visited:text-white md:w-auto md:px-12">상담 신청 →</a>
-          <p className="text-[15px] text-[#6B7280]">진단 결과가 신청서에 자동으로 담깁니다. 상담은 유료 자문으로 진행됩니다.</p>
-        </div>
-      </div>
-
       {/* 1. 나의 위험 */}
       <section className="bg-[#14213D] text-white">
         <div className="mx-auto grid max-w-[1040px] gap-10 px-5 py-14 md:grid-cols-[1fr_1.1fr] md:px-8 md:py-[72px]">
@@ -110,34 +103,6 @@ export default function Result() {
           </div>
         </div>
       </section>
-
-      {/* 2. 놓치고 있는 것 */}
-      {items.length > 0 && (
-        <section className="border-b border-[#DDE2EA] py-14 md:py-[72px]">
-          <div className="mx-auto max-w-[1040px] px-5 md:px-8">
-            <h2 className="text-[30px] font-bold leading-[1.35] tracking-[-0.8px] md:text-[34px]">지금 놓치고 계신 것</h2>
-            <p className="mt-2 text-[18px] text-[#5B6680]">위반 소지가 있는 항목입니다. 처벌 수준이 확인된 항목부터 보여드립니다.</p>
-            <div className="mt-8 border-t-2 border-[#14213D]">
-              {shown.map((v, i) => (
-                <div key={v.id} className="grid gap-3 border-b border-[#DDE2EA] py-6 md:grid-cols-[48px_1fr]">
-                  <p className="text-[22px] font-extrabold text-[#B42318]">{String(i + 1).padStart(2, '0')}</p>
-                  <div>
-                    <p className="text-[15px] font-bold text-[#5B6680]">{v.categoryLabel} · 응답: {v.answer}</p>
-                    <h3 className="mt-1 text-[21px] font-bold leading-[1.5]">{v.question}</h3>
-                    <p className="mt-2 text-[17px] text-[#3D4A63]"><b className="text-[#14213D]">법적 근거</b> · {v.legalBasis}</p>
-                    {v.verified ? (
-                      <p className="mt-1 text-[17px] text-[#B42318]"><b>위반 시</b> · {v.verified.penaltyDetail}</p>
-                    ) : (
-                      <p className="mt-1 text-[16px] text-[#5B6680]">처벌 수준은 위반 내용과 해당 조문에 따라 정해집니다.</p>
-                    )}
-                  </div>
-                </div>
-              ))}
-            </div>
-            {rest > 0 && <p className="mt-5 text-[18px] font-semibold">이 밖에도 <b className="text-[#B42318]">{rest}건</b>이 더 있습니다. 전체 목록은 상담에서 함께 확인해 드립니다.</p>}
-          </div>
-        </section>
-      )}
 
       {/* 3. 왜 혼자 어려운가 */}
       {items.length > 0 && (
