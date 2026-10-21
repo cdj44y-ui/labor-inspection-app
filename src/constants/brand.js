@@ -1,7 +1,7 @@
 // 위너스 119 브랜드 전략 v1.1 (2026-10-18) — 네 사이트 공통 문구. 글자 하나까지 같게 유지
 export const SITE_NAME = 'RISK119'
 export const FAMILY_NAME = '노무법인 위너스 기준진단'
-export const PROMISE = '무료 진단 · 회원가입 없음 · 입력 내용은 이 기기에만'
+export const PROMISE = '회원가입 없음 · 입력 내용은 이 기기에만'
 export const VERIFIED_DATE = '2026.10.18' // 원문 대조일 — 매일 점검 루틴이 갱신
 export const SITE_COLOR = '#1976D2'
 export const CONSULT_COLOR = '#1F4E79'
