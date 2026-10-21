@@ -60,11 +60,11 @@ button.btn-black-cta:active {
   color: #ffffff !important;
 }
 
-/* 사이트 색(노동 블루 #1976D2) CTA 버튼: 메인 진단 버튼 등 포인트 강조 */
+/* 사이트 색(노동 블루 #1B2A44) CTA 버튼: 메인 진단 버튼 등 포인트 강조 */
 a.btn-toss-cta,
 button.btn-toss-cta,
 .btn-toss-cta {
-  background-color: #1976D2 !important;
+  background-color: #1B2A44 !important;
   color: #ffffff !important;
 }
 a.btn-toss-cta:hover,
@@ -74,7 +74,7 @@ a.btn-toss-cta:visited,
 button.btn-toss-cta:hover,
 button.btn-toss-cta:focus,
 button.btn-toss-cta:active {
-  background-color: #1565C0 !important;
+  background-color: #131F33 !important;
   color: #ffffff !important;
 }
 
@@ -104,11 +104,11 @@ span.badge-dark-zinc {
 /* 강조 링크: 토스 블루 */
 a.text-toss,
 .text-toss-link {
-  color: #1976D2;
+  color: #1B2A44;
 }
 a.text-toss:hover,
 .text-toss-link:hover {
-  color: #1565C0;
+  color: #131F33;
 }
 
 /* 강조 라벨(섹션 소제목): 남색 */
