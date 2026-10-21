@@ -5,7 +5,7 @@ const TIER_LINKS = [
   { key: 'RISK119', label: 'RISK119 근로감독', url: 'https://risk119.site' },
   { key: 'SAFE119', label: 'SAFE119 중대재해', url: 'https://safe119.site' },
   { key: 'FREE119', label: 'FREE119 근로자성', url: 'https://free119.site' },
-  { key: 'SANGDAMSO', label: '사장님 1분 상담소', url: 'https://risk119.site/sangdamso' },
+  { key: 'SANGDAMSO', label: '사장님 1분 상담소', url: 'https://win119.site/sangdamso' },
 ]
 
 /** A1 상단 패밀리 바 — 네 사이트 공통(높이 40px, 흰 바탕). 회사 소개: /winners.html */
