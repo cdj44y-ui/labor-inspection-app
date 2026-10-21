@@ -36,7 +36,7 @@ export default function Result() {
         <div className="w-full max-w-[560px] rounded-[16px] border border-[#DDE2EA] bg-white p-10 text-center">
           <p className="text-[22px] font-bold">아직 진단 결과가 없습니다</p>
           <p className="mt-2 text-[17px] text-[#5B6680]">50여 개 질문에 답하시면 위반 소지 항목과 법적 근거를 정리해 드립니다.</p>
-          <Link to="/diagnosis" className="mt-7 inline-flex h-[56px] items-center rounded-[10px] bg-[#1976D2] px-8 text-[18px] font-bold text-white no-underline visited:text-white">진단 시작하기 →</Link>
+          <Link to="/diagnosis" className="mt-7 inline-flex h-[56px] items-center rounded-[10px] bg-[#1B2A44] px-8 text-[18px] font-bold text-white no-underline visited:text-white">진단 시작하기 →</Link>
         </div>
       </div>
     )
@@ -71,7 +71,7 @@ export default function Result() {
     <div className="min-h-screen bg-white pb-28 text-[#14213D] [word-break:keep-all]">
       <header className="border-b border-[#DDE2EA]">
         <div className="mx-auto flex h-[68px] max-w-[1040px] items-center justify-between px-5 md:px-8">
-          <Link to="/" className="text-[21px] font-extrabold no-underline text-[#14213D]">RISK<span className="text-[#1976D2]">119</span></Link>
+          <Link to="/" className="text-[21px] font-extrabold no-underline text-[#14213D]">RISK<span className="text-[#1B2A44]">119</span></Link>
           <span className="text-[16px] font-semibold text-[#5B6680]">노무법인 위너스</span>
         </div>
       </header>
@@ -169,7 +169,7 @@ export default function Result() {
         <div className="mx-auto grid max-w-[1040px] items-start gap-10 px-5 md:grid-cols-[200px_1fr] md:px-8">
           <img src="/expert/cho-daejin.jpg" alt="조대진 대표노무사" width="200" height="260" className="h-[260px] w-[200px] rounded-xl object-cover" />
           <div>
-            <p className="text-[17px] font-bold text-[#1976D2]">이 결과를 함께 정리할 사람</p>
+            <p className="text-[17px] font-bold text-[#1B2A44]">이 결과를 함께 정리할 사람</p>
             <h2 className="mt-2 text-[30px] font-bold md:text-[34px]">대기업 인사팀 출신 노무사, 조대진</h2>
             <p className="mt-1 text-[17px] text-[#5B6680]">공인노무사 16년 · 안전공학 박사 · 노무법인 위너스 · 현대카드·삼성서울병원 인사 출신</p>
             <p className="mt-5 text-[20px] font-semibold leading-[1.6]">대기업 근로감독을 매년 현장에서 대응해 왔습니다. 위반 항목을 어떤 순서와 서류로 정리할지 함께 짚어 드립니다.</p>
@@ -180,7 +180,7 @@ export default function Result() {
                 ['3', '감독 대비', '감독관이 요구하는 서류와 설명 순서를 미리 준비합니다.'],
               ].map(([n, t, d]) => (
                 <div key={n} className="grid grid-cols-[44px_1fr] gap-3 border-b border-[#DDE2EA] py-4">
-                  <span className="text-[22px] font-extrabold text-[#1976D2]">{n}</span>
+                  <span className="text-[22px] font-extrabold text-[#1B2A44]">{n}</span>
                   <p className="text-[18px] leading-[1.6]"><b>{t}</b> — <span className="text-[#3D4A63]">{d}</span></p>
                 </div>
               ))}

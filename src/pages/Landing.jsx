@@ -47,7 +47,7 @@ const INDUSTRY_POINTS = [
   { name: '제조', point: '교대제 근로시간과 안전보건교육·위험성평가 기록' },
 ]
 
-const btnPrimary = 'inline-flex h-[60px] items-center justify-center rounded-[10px] bg-[#1976D2] px-8 text-[19px] font-bold text-white no-underline transition hover:bg-[#1565C0] visited:text-white'
+const btnPrimary = 'inline-flex h-[60px] items-center justify-center rounded-[10px] bg-[#1B2A44] px-8 text-[19px] font-bold text-white no-underline transition hover:bg-[#131F33] visited:text-white'
 const btnConsult = 'inline-flex h-[60px] items-center justify-center rounded-[10px] bg-[#1F4E79] px-8 text-[19px] font-bold text-white no-underline transition hover:bg-[#173B5C] visited:text-white'
 const btnGhost = 'inline-flex h-[60px] items-center justify-center rounded-[10px] border-[1.5px] border-[#14213D] bg-white px-8 text-[19px] font-bold text-[#14213D] no-underline transition hover:bg-[#F5F7FA]'
 
@@ -62,7 +62,7 @@ export default function Landing() {
       <header className="border-b border-[#DDE2EA]">
         <div className="mx-auto flex h-[76px] max-w-[1120px] items-center justify-between px-6 md:px-8">
           <Link to="/" className="no-underline text-[#14213D]">
-            <span className="block text-[22px] font-extrabold leading-tight tracking-[-0.3px]">RISK<span className="text-[#1976D2]">119</span></span>
+            <span className="block text-[22px] font-extrabold leading-tight tracking-[-0.3px]">RISK<span className="text-[#1B2A44]">119</span></span>
             <span className="block text-[13px] font-medium text-[#5B6680]">근로감독 자가진단</span>
           </Link>
           <nav className="flex items-center gap-5 text-[16px] font-semibold text-[#3D4A63] md:gap-8 md:text-[17px]">
@@ -78,7 +78,7 @@ export default function Landing() {
       <section className="py-14 md:py-[72px]">
         <div className="mx-auto grid max-w-[1120px] gap-12 px-6 md:grid-cols-[1.25fr_0.9fr] md:gap-14 md:px-8">
           <div>
-            <p className="text-[17px] font-bold text-[#1976D2]">50여 문항 · 약 10분</p>
+            <p className="text-[17px] font-bold text-[#1B2A44]">50여 문항 · 약 10분</p>
             <h1 className="mt-3.5 text-[38px] font-bold leading-[1.28] tracking-[-1px] md:text-[52px] md:tracking-[-1.2px]">
               근로감독 오기 전에,<br />우리 회사 위험부터<br />확인하십시오
             </h1>
@@ -113,7 +113,7 @@ export default function Landing() {
         <div className="mx-auto grid max-w-[1120px] items-start gap-10 px-6 md:grid-cols-[260px_1fr] md:gap-14 md:px-8">
           <img src="/expert/cho-daejin.jpg" alt="조대진 대표노무사" width="260" height="338" className="h-[220px] w-[170px] rounded-xl object-cover md:h-[338px] md:w-[260px]" />
           <div>
-            <p className="text-[17px] font-bold text-[#1976D2]">이 진단을 설계한 사람</p>
+            <p className="text-[17px] font-bold text-[#1B2A44]">이 진단을 설계한 사람</p>
             <h2 className="mt-2 text-[32px] font-bold leading-[1.35] tracking-[-0.8px] md:text-[36px]">대기업 인사팀 출신 노무사, 조대진</h2>
             <p className="mt-1 text-[18px] font-semibold text-[#5B6680]">공인노무사 16년 · 안전공학 박사</p>
             <p className="mt-2 text-[20px] font-semibold leading-[1.6] md:text-[22px]">
@@ -216,7 +216,7 @@ export default function Landing() {
       <section className="border-y border-[#DDE2EA] bg-[#F5F7FA]">
         <div className="mx-auto flex max-w-[1120px] flex-col gap-4 px-6 py-7 md:flex-row md:items-center md:justify-between md:px-8">
           <div>
-            <p className="text-[15px] font-bold text-[#1976D2]">진단 전에 고민부터 풀고 싶으시다면</p>
+            <p className="text-[15px] font-bold text-[#1B2A44]">진단 전에 고민부터 풀고 싶으시다면</p>
             <p className="mt-1 text-[19px] font-bold leading-[1.5] text-[#14213D]">잠수·주휴수당·퇴직금 등 직원 고민 10가지, 1분 답과 할 일 3개</p>
           </div>
           <a href="https://win119.site/sangdamso" className="inline-flex h-[52px] shrink-0 items-center justify-center rounded-[10px] border-2 border-[#14213D] px-6 text-[17px] font-bold text-[#14213D] hover:bg-white">사장님 1분 상담소 →</a>
