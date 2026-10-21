@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react'
 import { VERIFIED_DATE, SITE_COLOR } from '../../constants/brand.js'
 
 /** D3 법 개정 한 장 — 네 사이트 공통 데이터·모양 */
@@ -12,25 +13,49 @@ export const LAW_ITEMS = [
 ]
 
 const statusColor = (s) => (s === '시행' ? '#111827' : s === '시행 예정' ? SITE_COLOR : '#6B7280')
+const LAW_URL = 'https://win119.site/data/law-changes.json'
 
 export default function LawCalendar({ id = 'law' }) {
+  const [items, setItems] = useState(LAW_ITEMS)
+  const [verified, setVerified] = useState(VERIFIED_DATE)
+
+  useEffect(() => {
+    let alive = true
+    fetch(LAW_URL)
+      .then((r) => (r.ok ? r.json() : Promise.reject(new Error('bad status'))))
+      .then((json) => {
+        if (!alive || !json || !Array.isArray(json.items)) return
+        const list = json.items.filter((i) => Array.isArray(i.sites) && i.sites.includes('risk'))
+        if (list.length > 0) {
+          setItems(list)
+          if (json.verifiedAt) setVerified(json.verifiedAt)
+        }
+      })
+      .catch(() => {})
+    return () => { alive = false }
+  }, [])
+
   return (
-    <section id={id} className="border-t border-[#E5E7EB] bg-[#F9FAFB] py-16 text-[#111827] [word-break:keep-all] md:py-[88px]">
+    <section id={id} className="border-t border-[#E5E7EB] bg-[#F9FAFB] py-4 text-[#111827] [word-break:keep-all]">
       <div className="mx-auto max-w-[1120px] px-6 md:px-8">
-        <h2 className="text-[30px] font-bold leading-[1.35] tracking-[-0.8px] md:text-[36px]">앞으로 달라지는 노동·안전 법령</h2>
-        <p className="mt-2.5 text-[17px] text-[#6B7280] md:text-[18px]">국가법령정보센터 원문 대조 {VERIFIED_DATE} · 시행 전 법령은 시행일 표기</p>
-        <div className="mt-10 border-t-2 border-[#111827]">
-          {LAW_ITEMS.map((r) => (
-            <div key={r.date + r.title} className="grid gap-1.5 border-b border-[#E5E7EB] py-5 md:grid-cols-[130px_150px_1fr] md:items-baseline md:gap-6">
-              <p className="text-[18px] font-bold tabular-nums">{r.date}</p>
-              <p className="text-[15px] font-bold" style={{ color: statusColor(r.status) }}>{r.status}</p>
-              <div>
-                <p className="text-[18px] font-bold leading-[1.55]">{r.title}</p>
-                <p className="mt-0.5 text-[15px] text-[#6B7280]">{r.basis}</p>
+        <details>
+          <summary className="flex min-h-[48px] cursor-pointer items-center text-[19px] font-bold leading-[1.45] md:text-[20px]">
+            앞으로 달라지는 노동·안전 법령 · {items.length}건 (원문 대조 {verified})
+          </summary>
+          <p className="mt-2 text-[16px] text-[#6B7280]">국가법령정보센터 원문 대조 · 시행 전 법령은 시행일 표기</p>
+          <div className="mt-4 border-t-2 border-[#111827]">
+            {items.map((r) => (
+              <div key={r.date + r.title} className="grid gap-1.5 border-b border-[#E5E7EB] py-5 md:grid-cols-[130px_150px_1fr] md:items-baseline md:gap-6">
+                <p className="text-[18px] font-bold tabular-nums">{r.date}</p>
+                <p className="text-[15px] font-bold" style={{ color: statusColor(r.status) }}>{r.status}</p>
+                <div>
+                  <p className="text-[18px] font-bold leading-[1.55]">{r.title}</p>
+                  <p className="mt-0.5 text-[15px] text-[#6B7280]">{r.basis}</p>
+                </div>
               </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        </details>
       </div>
     </section>
   )
