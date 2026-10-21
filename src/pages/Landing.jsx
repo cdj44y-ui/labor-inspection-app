@@ -22,19 +22,19 @@ const CASES = [
   {
     tag: '외식·프랜차이즈',
     title: '주 52시간 초과 + 연장수당 미지급',
-    body: '카페·베이커리 사업장이 근로시간을 기록하지 않고 포괄임금으로 연장수당을 주지 않아, 감독에서 시정지시와 체불임금 지급 명령을 받는 유형입니다.',
+    body: '근로시간을 기록하지 않고 포괄임금으로 연장수당을 주지 않아 시정지시를 받는 유형입니다.',
     loss: '연장수당·주휴수당 소급 지급과 평판 하락',
   },
   {
     tag: '스타트업·사무직',
     title: '자율 출퇴근제인데 연장근로 관리가 없는 경우',
-    body: 'IT·스타트업이 자율 출퇴근제를 운영하면서 야근·주말 근무를 사실상 요구했지만, 근로시간 기록과 연장근로 승인·수당 체계가 없어 근로시간 위반으로 판단되는 유형입니다.',
+    body: '야근·주말 근무를 사실상 요구하면서 근로시간 기록과 수당 체계가 없어 위반으로 판단되는 유형입니다.',
     loss: '연장·야간·휴일수당 일괄 정산과 근로시간 제도 재설계',
   },
   {
     tag: '소규모 사업장',
     title: '단시간 근로자의 4대보험·연차·주휴수당 미적용',
-    body: '소규모 사업장이 파트타이머를 단순 도우미로 보고 4대보험·연차·주휴수당을 적용하지 않다가, 진정과 감독에서 여러 해 치 체불이 한꺼번에 확인되는 유형입니다.',
+    body: '파트타이머에게 4대보험·연차·주휴수당을 적용하지 않다가 여러 해 치 체불이 확인되는 유형입니다.',
     loss: '과거 체불임금 정산과 과태료',
   },
 ]
@@ -109,27 +109,17 @@ export default function Landing() {
       </section>
 
       {/* 전문가 */}
-      <section id="expert" className="border-t border-[#DDE2EA] bg-[#F5F7FA] py-16 md:py-[88px]">
+      <section id="expert" className="border-t border-[#DDE2EA] bg-[#F5F7FA] py-10 md:py-14">
         <div className="mx-auto grid max-w-[1120px] items-start gap-10 px-6 md:grid-cols-[260px_1fr] md:gap-14 md:px-8">
-          <img src="/expert/cho-daejin.jpg" alt="조대진 대표노무사" width="260" height="338" className="h-[338px] w-[260px] rounded-xl object-cover" />
+          <img src="/expert/cho-daejin.jpg" alt="조대진 대표노무사" width="260" height="338" className="h-[220px] w-[170px] rounded-xl object-cover md:h-[338px] md:w-[260px]" />
           <div>
             <p className="text-[17px] font-bold text-[#1976D2]">이 진단을 설계한 사람</p>
             <h2 className="mt-2 text-[32px] font-bold leading-[1.35] tracking-[-0.8px] md:text-[36px]">대기업 인사팀 출신 노무사, 조대진</h2>
             <p className="mt-1 text-[18px] font-semibold text-[#5B6680]">공인노무사 16년 · 안전공학 박사</p>
             <p className="mt-2 text-[20px] font-semibold leading-[1.6] md:text-[22px]">
-              “감독은 서류보다 실제 운영을 봅니다. 문항 하나하나를 감독관이 묻는 순서대로 만들었습니다.”
+              “감독은 서류보다 실제 운영을 봅니다. 대기업 근로감독을 매년 직접 대응한 경험으로, 문항을 감독관이 묻는 순서대로 만들었습니다.”
             </p>
-            <div className="mt-7 grid gap-4 md:grid-cols-2">
-              <div className="rounded-xl border border-[#DDE2EA] bg-white p-6">
-                <p className="text-[15px] font-bold text-[#1976D2]">대기업 근로감독, 매년 실전 대응</p>
-                <p className="mt-2 text-[17px] leading-[1.7] text-[#3D4A63]">대기업 근로감독을 매년 직접 대응하며 감독관의 질문과 요구 자료를 확인했고, 그 경험을 문항에 담았습니다.</p>
-              </div>
-              <div className="rounded-xl border border-[#DDE2EA] bg-white p-6">
-                <p className="text-[15px] font-bold text-[#1976D2]">금융·IT·보건의료·제조 자문사와 함께</p>
-                <p className="mt-2 text-[17px] leading-[1.7] text-[#3D4A63]">업종마다 감독이 보는 지점이 다릅니다. 자문 경험에서 확인한 업종별 쟁점을 반영했습니다.</p>
-              </div>
-            </div>
-            <div className="mt-7 grid grid-cols-1 border-t-2 border-[#14213D] md:grid-cols-2">
+            <div className="mt-5 grid grid-cols-1 border-t-2 border-[#14213D] md:grid-cols-2">
               {[
                 ['소속', '노무법인 위너스 대표노무사'],
                 
@@ -138,7 +128,7 @@ export default function Landing() {
                 ['강의', '삼성전자 · SK가스 · 두산그룹 등 기업 강의'],
                 ['전문 분야', '근로감독 대응 · 노동법 · 산업안전 · 인사제도'],
               ].map(([k, v]) => (
-                <div key={k} className="border-b border-[#DDE2EA] py-4 md:pr-6">
+                <div key={k} className="border-b border-[#DDE2EA] py-3 md:pr-6">
                   <p className="text-[15px] font-semibold text-[#5B6680]">{k}</p>
                   <p className="text-[17px]">{v}</p>
                 </div>
@@ -159,23 +149,24 @@ export default function Landing() {
         </div>
       </section>
 
-      {/* 근거 원칙 */}
-      <section className="border-t border-[#DDE2EA] py-16 md:py-[88px]">
-        <div className="mx-auto max-w-[1120px] px-6 md:px-8">
-          <h2 className="text-[30px] font-bold leading-[1.35] tracking-[-0.8px] md:text-[36px]">모든 문항에 법적 근거를 답니다</h2>
-          <p className="mt-2.5 text-[18px] text-[#5B6680] md:text-[19px]">추측이나 일반론이 아니라, 확인할 수 있는 근거로만 진단합니다.</p>
-          <div className="mt-10 grid gap-6 md:grid-cols-3">
-            {[
-              ['문항마다 조문 표기', '모든 질문에 해당 조문을 함께 보여드립니다.'],
-              ['공식 점검표 기반', '고용노동부 「사업장 기초노동질서 자율진단표」를 바탕으로 50여 개 핵심 문항을 구성했습니다.'],
-              ['매일 원문 대조', '국가법령정보센터 원문과 고용노동부 발표를 매일 확인하고, 바뀐 내용은 날짜와 함께 반영합니다.'],
-            ].map(([t, d], i) => (
-              <div key={t} className="rounded-[14px] border border-[#DDE2EA] p-8">
-                <p className="text-[16px] font-extrabold text-[#1976D2]">근거 {i + 1}</p>
-                <h3 className="mt-2.5 text-[22px] font-bold">{t}</h3>
-                <p className="mt-2 text-[17px] leading-[1.7] text-[#5B6680]">{d}</p>
-              </div>
-            ))}
+      {/* 근거 원칙 + 진행 방식 */}
+      <section className="border-t border-[#DDE2EA] py-10 md:py-14">
+        <div className="mx-auto grid max-w-[1120px] gap-8 px-6 md:grid-cols-2 md:gap-14 md:px-8">
+          <div>
+            <h2 className="text-[26px] font-bold leading-[1.35] tracking-[-0.6px] md:text-[30px]">모든 문항에 법적 근거를 답니다</h2>
+            <ul className="mt-4 space-y-2 text-[17px] leading-[1.7] text-[#3D4A63]">
+              <li><b className="text-[#14213D]">문항마다 조문 표기</b> · 모든 질문에 해당 조문을 함께 보여드립니다.</li>
+              <li><b className="text-[#14213D]">공식 점검표 기반</b> · 고용노동부 「사업장 기초노동질서 자율진단표」 기준 50여 문항입니다.</li>
+              <li><b className="text-[#14213D]">매일 원문 대조</b> · 국가법령정보센터 원문을 확인해 날짜와 함께 반영합니다.</li>
+            </ul>
+          </div>
+          <div>
+            <h2 className="text-[26px] font-bold leading-[1.35] tracking-[-0.6px] md:text-[30px]">10분이면 끝납니다</h2>
+            <ul className="mt-4 space-y-2 text-[17px] leading-[1.7] text-[#3D4A63]">
+              <li><b className="text-[#14213D]">1. 사업장 정보</b> · 업종과 직원 수만 고르시면 됩니다.</li>
+              <li><b className="text-[#14213D]">2. 질문에 답하기</b> · 한 화면에 질문 하나씩 답하시면 됩니다.</li>
+              <li><b className="text-[#14213D]">3. 결과와 할 일</b> · 위험 등급, 해당 조문, 우선 고칠 항목을 정리해 드립니다.</li>
+            </ul>
           </div>
         </div>
       </section>
@@ -183,39 +174,8 @@ export default function Landing() {
       {/* 법 개정 한 장 — 네 사이트 공통 */}
       <LawCalendar />
 
-      {/* 소개 영상 */}
-      <section id="intro-video" className="border-t border-[#DDE2EA] py-16 md:py-[88px]">
-        <div className="mx-auto max-w-[1120px] px-6 md:px-8">
-          <h2 className="text-[30px] font-bold leading-[1.35] tracking-[-0.8px] md:text-[36px]">15초로 보는 RISK119</h2>
-          <p className="mt-2.5 text-[18px] text-[#5B6680] md:text-[19px]">근로감독, 무엇부터 준비할지 막막하다면 판단의 기준부터 잡아드립니다.</p>
-          <div className="mt-8 overflow-hidden rounded-[14px] border border-[#DDE2EA]">
-            <video className="block aspect-video w-full bg-[#F5F7FA]" src="/video/risk119-intro.mp4" poster="/video/risk119-intro-poster.jpg" muted loop playsInline controls preload="none" aria-label="RISK119 소개 영상" />
-          </div>
-        </div>
-      </section>
-
-      {/* 진행 방식 */}
-      <section className="border-t border-[#DDE2EA] bg-[#F5F7FA] py-16 md:py-[88px]">
-        <div className="mx-auto max-w-[1120px] px-6 md:px-8">
-          <h2 className="text-[30px] font-bold leading-[1.35] tracking-[-0.8px] md:text-[36px]">10분이면 끝납니다</h2>
-          <div className="mt-10 grid gap-6 md:grid-cols-3">
-            {[
-              ['사업장 정보', '업종과 직원 수만 고르시면 됩니다.'],
-              ['질문에 답하기', '한 화면에 질문 하나씩 답하시면 됩니다.'],
-              ['결과와 할 일', '위험 등급, 해당 조문, 우선 고칠 항목을 정리해 드립니다.'],
-            ].map(([t, d], i) => (
-              <div key={t} className="rounded-[14px] border border-[#DDE2EA] bg-white p-8">
-                <p className="text-[16px] font-extrabold text-[#1976D2]">{i + 1}단계</p>
-                <h3 className="mt-2.5 text-[22px] font-bold">{t}</h3>
-                <p className="mt-2 text-[17px] leading-[1.7] text-[#5B6680]">{d}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* 사례 */}
-      <section className="border-t border-[#DDE2EA] py-16 md:py-[88px]">
+      <section className="border-t border-[#DDE2EA] py-10 md:py-14">
         <div className="mx-auto max-w-[1120px] px-6 md:px-8">
           <h2 className="text-[30px] font-bold leading-[1.35] tracking-[-0.8px] md:text-[36px]">실제 감독에서 자주 나오는 위반</h2>
           <p className="mt-2.5 text-[18px] text-[#5B6680] md:text-[19px]">노동부 보도자료와 언론 보도에 반복되는 유형을 정리했습니다. 특정 업체를 지칭하지 않습니다.</p>
@@ -235,7 +195,7 @@ export default function Landing() {
       </section>
 
       {/* FAQ */}
-      <section id="faq" className="border-t border-[#DDE2EA] bg-[#F5F7FA] py-16 md:py-[88px]">
+      <section id="faq" className="border-t border-[#DDE2EA] bg-[#F5F7FA] py-10 md:py-14">
         <div className="mx-auto max-w-[880px] px-6 md:px-8">
           <h2 className="text-[30px] font-bold leading-[1.35] tracking-[-0.8px] md:text-[36px]">자주 묻는 질문</h2>
           <div className="mt-8 border-t-2 border-[#14213D]">
@@ -260,6 +220,18 @@ export default function Landing() {
             <p className="mt-1 text-[19px] font-bold leading-[1.5] text-[#14213D]">잠수·주휴수당·퇴직금 등 직원 고민 10가지, 1분 답과 할 일 3개</p>
           </div>
           <a href="https://win119.site/sangdamso" className="inline-flex h-[52px] shrink-0 items-center justify-center rounded-[10px] border-2 border-[#14213D] px-6 text-[17px] font-bold text-[#14213D] hover:bg-white">사장님 1분 상담소 →</a>
+        </div>
+      </section>
+
+      {/* 소개 영상 (접힘) */}
+      <section id="intro-video" className="border-t border-[#DDE2EA] py-6">
+        <div className="mx-auto max-w-[880px] px-6 md:px-8">
+          <details className="group">
+            <summary className="flex min-h-[48px] cursor-pointer items-center text-[19px] font-bold text-[#14213D]">15초 소개 영상 보기</summary>
+            <div className="mt-4 overflow-hidden rounded-[14px] border border-[#DDE2EA]">
+              <video className="block aspect-video w-full bg-[#F5F7FA]" src="/video/risk119-intro.mp4" poster="/video/risk119-intro-poster.jpg" muted loop playsInline controls preload="none" aria-label="RISK119 소개 영상" />
+            </div>
+          </details>
         </div>
       </section>
 
