@@ -23,7 +23,7 @@ export default function CrossRecommendation({ violations }) {
             <div className="min-w-0 flex-1">
               <p className="text-sm font-bold text-ink">산업안전보건 항목에서 미충족이 발견됐습니다</p>
               <p className="mt-0.5 text-sm text-zinc-700">
-                중대재해처벌법상 안전보건관리체계 의무까지 함께 확인하려면 SAFE119에서 무료로 점검해보세요.
+                중대재해처벌법상 안전보건관리체계 의무까지 함께 확인하려면 SAFE119에서 점검해 보세요.
               </p>
             </div>
             <span className="shrink-0 text-zinc-400">→</span>
@@ -42,7 +42,7 @@ export default function CrossRecommendation({ violations }) {
             <div className="min-w-0 flex-1">
               <p className="text-sm font-bold text-ink">4대보험·도급 형태 관련 항목에서 미충족이 발견됐습니다</p>
               <p className="mt-0.5 text-sm text-zinc-700">
-                계약직·프리랜서 인력의 근로자성 여부를 FREE119에서 무료로 점검해보세요.
+                계약직·프리랜서 인력의 근로자성 여부를 FREE119에서 점검해 보세요.
               </p>
             </div>
             <span className="shrink-0 text-zinc-400">→</span>
