@@ -189,7 +189,7 @@ export default function Landing() {
           <h2 className="text-[30px] font-bold leading-[1.35] tracking-[-0.8px] md:text-[36px]">15초로 보는 RISK119</h2>
           <p className="mt-2.5 text-[18px] text-[#5B6680] md:text-[19px]">근로감독, 무엇부터 준비할지 막막하다면 판단의 기준부터 잡아드립니다.</p>
           <div className="mt-8 overflow-hidden rounded-[14px] border border-[#DDE2EA]">
-            <video className="block aspect-video w-full bg-[#F5F7FA]" src="/video/risk119-intro.mp4" poster="/video/risk119-intro-poster.jpg" autoPlay muted loop playsInline controls preload="metadata" aria-label="RISK119 소개 영상" />
+            <video className="block aspect-video w-full bg-[#F5F7FA]" src="/video/risk119-intro.mp4" poster="/video/risk119-intro-poster.jpg" muted loop playsInline controls preload="none" aria-label="RISK119 소개 영상" />
           </div>
         </div>
       </section>
@@ -259,7 +259,7 @@ export default function Landing() {
             <p className="text-[15px] font-bold text-[#1976D2]">진단 전에 고민부터 풀고 싶으시다면</p>
             <p className="mt-1 text-[19px] font-bold leading-[1.5] text-[#14213D]">잠수·주휴수당·퇴직금 등 직원 고민 10가지, 1분 답과 할 일 3개</p>
           </div>
-          <a href="/sangdamso" className="inline-flex h-[52px] shrink-0 items-center justify-center rounded-[10px] border-2 border-[#14213D] px-6 text-[17px] font-bold text-[#14213D] hover:bg-white">사장님 1분 상담소 →</a>
+          <a href="https://win119.site/sangdamso" className="inline-flex h-[52px] shrink-0 items-center justify-center rounded-[10px] border-2 border-[#14213D] px-6 text-[17px] font-bold text-[#14213D] hover:bg-white">사장님 1분 상담소 →</a>
         </div>
       </section>
 
