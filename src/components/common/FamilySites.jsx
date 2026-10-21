@@ -17,8 +17,8 @@ export default function FamilySites() {
             const self = s.key === 'RISK119'
             return (
               <a key={s.key} href={s.url} target={self ? undefined : '_blank'} rel="noopener noreferrer" aria-current={self ? 'page' : undefined}
-                className={'block rounded-[12px] border p-5 text-left transition-colors ' + (self ? 'border-[#14213D] bg-[#14213D] text-white' : 'border-[#DDE2EA] bg-white text-[#14213D] hover:border-[#1976D2]')}>
-                <p className="text-[17px] font-extrabold tracking-[-0.2px]">{s.key.replace('119', '')}<span className={self ? 'text-[#90CAF9]' : 'text-[#1976D2]'}>119</span>{self ? <span className="ml-2 align-middle text-[12px] font-bold text-[#90CAF9]">현재 사이트</span> : null}</p>
+                className={'block rounded-[12px] border p-5 text-left transition-colors ' + (self ? 'border-[#14213D] bg-[#14213D] text-white' : 'border-[#DDE2EA] bg-white text-[#14213D] hover:border-[#1B2A44]')}>
+                <p className="text-[17px] font-extrabold tracking-[-0.2px]">{s.key.replace('119', '')}<span className={self ? 'text-[#90CAF9]' : 'text-[#1B2A44]'}>119</span>{self ? <span className="ml-2 align-middle text-[12px] font-bold text-[#90CAF9]">현재 사이트</span> : null}</p>
                 <p className="mt-1 text-[15px] font-bold">{s.name}</p>
                 <p className={'mt-1.5 text-[14px] leading-[1.6] ' + (self ? 'text-[#C9D1E0]' : 'text-[#5B6680]')}>{s.desc}</p>
               </a>
