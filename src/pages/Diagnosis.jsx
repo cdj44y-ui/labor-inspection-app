@@ -157,6 +157,17 @@ export default function Diagnosis() {
                   {showGuide && <p className="mt-2 text-[16px] leading-[1.7] text-[#3D4A63]">{currentMeta.improvementGuide}</p>}
                 </div>
               )}
+              {currentQ?.text === '위험성 평가를 실시하고 기록을 보존하고 있습니까?' && (
+                <div className="mt-3 border-t border-[#E6EAF0] pt-3">
+                  <p className="text-[15px] leading-[1.6] text-[#5B6680]">
+                    더 자세한 위험성평가 점검이 필요하면{' '}
+                    <a href="https://www.safe119.site/risk-assessment" target="_blank" rel="noopener noreferrer" className="font-bold text-[#1B2A44] underline">
+                      SAFE119 위험성평가 자가진단표
+                    </a>
+                    에서 항목별로 확인할 수 있습니다. (선택)
+                  </p>
+                </div>
+              )}
             </div>
 
             {/* 답변 */}
