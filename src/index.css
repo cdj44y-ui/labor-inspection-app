@@ -115,3 +115,6 @@ a.text-toss:hover,
 .section-label {
   color: #1e3a8a;
 }
+
+/* 2026-10-22 전 사이트 폰트 통일: 대제목 굵기 800 */
+h1 { font-weight: 800 !important; letter-spacing: -0.03em; }
