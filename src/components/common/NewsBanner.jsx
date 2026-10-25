@@ -5,11 +5,11 @@ const NEWS_ITEMS = [
   {
     body: (
       <>
-        국회 본회의, 반복 산재 사망 시{' '}
-        <b className="font-semibold text-toss">영업이익 최대 5% 과징금</b> 부과하는 산업안전보건법 개정안 통과
+        고용노동부, 대형 물류기업 산업안전·근로기준 기획감독에서{' '}
+        <b className="font-semibold text-toss">산안법 위반 205건</b> 적발 — 산재은폐 정황 61건 즉시 수사 착수
       </>
     ),
-    source: '연합뉴스 2026.10.01 · 공포·시행 전',
+    source: '고용노동부 보도자료 2026.10.22',
   },
   {
     body: (
