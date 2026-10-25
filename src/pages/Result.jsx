@@ -116,28 +116,36 @@ export default function Result() {
       </section>
 
       {/* 2. 지금 어디쯤 — 감독이 수사로 넘어가는 순서 */}
-      <section className="border-b border-[#DDE2EA] py-14 md:py-[72px]">
+      <section className="border-b border-[#DDE2EA] bg-[#F5F7FA] py-14 md:py-[80px]">
         <div className="mx-auto max-w-[1040px] px-5 md:px-8">
-          <h2 className="text-[30px] font-bold leading-[1.35] tracking-[-0.8px] md:text-[34px]">감독이 수사로 넘어가는 순서</h2>
-          <p className="mt-2 text-[17px] text-[#5B6680]">우리 회사는 지금 1단계 앞, <b className="text-[#14213D]">감독 전</b>에 있습니다.</p>
-          <ol className="mt-8 grid gap-0 md:grid-cols-5">
-            {FLOW.map(([t, d, law], i) => (
-              <li key={t} className="border-t-2 border-[#DDE2EA] py-5 md:border-t-[3px] md:pr-5" style={i === 0 ? { borderTopColor: '#14213D' } : undefined}>
-                <p className="text-[15px] font-bold text-[#5B6680]">{i + 1}단계</p>
-                <p className="mt-1 text-[21px] font-bold">{t}</p>
-                <p className="mt-2 text-[16px] leading-[1.65] text-[#3D4A63]">{d}</p>
-                <p className="mt-2 text-[14px] font-semibold text-[#5B6680]">수사규칙 {law}</p>
-              </li>
-            ))}
-          </ol>
-          <div className="mt-6 rounded-[14px] border border-[#DDE2EA] bg-[#F5F7FA] px-6 py-5">
-            <p className="text-[18px] leading-[1.65]">
-              {items.length > 0
-                ? <>지적될 수 있는 <b>{items.length}건</b>을 감독 전에 정리해 두면, 시정기한에 쫓기며 3단계를 맞을 일이 줄어듭니다.</>
-                : <>지금 응답 기준으로는 지적될 항목이 확인되지 않았습니다. 기록을 그대로 유지하는 것이 가장 좋은 준비입니다.</>}
-            </p>
-            <p className="mt-2 text-[14px] font-semibold text-[#5B6680]">근거: 노동감독관 수사규칙(고용노동부훈령 제612호, 2026.10.2. 시행)</p>
+          <p className="text-[16px] font-bold text-[#5B6680]">감독관 수사규칙으로 본 흐름</p>
+          <h2 className="mt-2 text-[32px] font-extrabold leading-[1.3] tracking-[-0.8px] md:text-[40px]">감독이 수사로 넘어가는 순서</h2>
+          <div className="mt-8 grid gap-3 md:grid-cols-[150px_repeat(5,minmax(0,1fr))]">
+            <div className="flex flex-col justify-center rounded-[14px] border-2 border-dashed border-[#14213D] bg-white px-4 py-5 text-center">
+              <p className="text-[14px] font-bold text-[#5B6680]">지금 우리 회사</p>
+              <p className="mt-1 text-[22px] font-extrabold">감독 전</p>
+            </div>
+            {FLOW.map(([t, d, law], i) => {
+              const key = i === 2
+              return (
+                <div key={t} className={'rounded-[14px] p-5 ' + (key ? 'bg-[#14213D] text-white shadow-[0_12px_28px_rgba(20,33,61,0.22)]' : 'border border-[#DDE2EA] bg-white')}>
+                  <span className={'flex h-9 w-9 items-center justify-center rounded-full text-[17px] font-extrabold ' + (key ? 'bg-white text-[#14213D]' : 'bg-[#14213D] text-white')}>{i + 1}</span>
+                  <p className="mt-3 text-[21px] font-extrabold">{t}</p>
+                  <p className={'mt-2 text-[16px] leading-[1.6] ' + (key ? 'text-[#DCE4F2]' : 'text-[#3D4A63]')}>{d}</p>
+                  <p className={'mt-3 text-[13px] font-bold ' + (key ? 'text-[#AFC3E8]' : 'text-[#5B6680]')}>수사규칙 {law}</p>
+                </div>
+              )
+            })}
           </div>
+          <div className="mt-7 rounded-[16px] bg-[#14213D] px-6 py-6 text-white md:flex md:items-center md:justify-between md:gap-8 md:px-9">
+            <p className="text-[20px] font-bold leading-[1.55] md:text-[22px]">
+              {items.length > 0
+                ? <>지적될 수 있는 <span className="text-[#FFB4A8]">{items.length}건</span>, 감독 전에 정리하면 <span className="underline decoration-2 underline-offset-4">3단계 시정기한</span>에 쫓기지 않습니다.</>
+                : <>지금 응답 기준으로는 지적될 항목이 없습니다. 기록을 그대로 유지하는 것이 가장 좋은 준비입니다.</>}
+            </p>
+            {items.length > 0 && <a href={tallyCall} target="_blank" rel="noopener noreferrer" className="mt-5 inline-flex h-[56px] shrink-0 items-center justify-center rounded-[10px] bg-white px-7 text-[18px] font-bold text-[#14213D] no-underline md:mt-0">상담 신청 →</a>}
+          </div>
+          <p className="mt-3 text-[14px] font-semibold text-[#5B6680]">근거: 노동감독관 수사규칙(고용노동부훈령 제612호, 2026.10.2. 시행)</p>
         </div>
       </section>
 

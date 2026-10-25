@@ -156,11 +156,13 @@ export default function Diagnosis() {
         {/* 질문 */}
         <main>
           {MID_CARDS[currentQ?.categoryId] && currentIndex === catStats[currentQ.categoryId].first && (
-            <div className="mb-4 rounded-[14px] border border-[#DDE2EA] bg-white px-6 py-5 md:px-8">
-              <p className="text-[15px] font-bold text-[#5B6680]">알아 두면 좋은 것</p>
-              <p className="mt-1.5 text-[19px] font-bold leading-[1.5]">{MID_CARDS[currentQ.categoryId].t}</p>
-              <p className="mt-2 text-[17px] leading-[1.7] text-[#3D4A63]">{MID_CARDS[currentQ.categoryId].d}</p>
-              <p className="mt-2 text-[14px] font-semibold text-[#5B6680]">근거: {MID_CARDS[currentQ.categoryId].law} (고용노동부훈령 제612호, 2026.10.2. 시행)</p>
+            <div className="mb-5 overflow-hidden rounded-[16px] bg-[#14213D] text-white shadow-[0_12px_28px_rgba(20,33,61,0.18)]">
+              <div className="px-6 py-6 md:px-9 md:py-8">
+                <span className="inline-flex items-center rounded-md bg-white px-2.5 py-1 text-[14px] font-extrabold text-[#14213D]">감독관 수사규칙 · 알아 두면 좋은 것</span>
+                <p className="mt-4 text-[23px] font-extrabold leading-[1.4] tracking-[-0.4px] md:text-[27px]">{MID_CARDS[currentQ.categoryId].t}</p>
+                <p className="mt-3 text-[18px] leading-[1.7] text-[#DCE4F2]">{MID_CARDS[currentQ.categoryId].d}</p>
+              </div>
+              <p className="border-t border-white/15 px-6 py-3.5 text-[14px] font-semibold text-[#AFC3E8] md:px-9">근거: {MID_CARDS[currentQ.categoryId].law} (고용노동부훈령 제612호, 2026.10.2. 시행)</p>
             </div>
           )}
           <div className="rounded-[16px] border border-[#DDE2EA] bg-white p-6 md:p-10">
