@@ -65,6 +65,17 @@ export default function Result() {
     items: '상담 신청 · 위반 소지 ' + items.length + '건' + (criminalCount ? ' (형사처벌 조문 ' + criminalCount + '건)' : ''),
   })
 
+  try { if (!window.__riskDone) { window.__riskDone = 1; window.va && window.va('event', { name: 'diag_complete', data: { site: 'risk', grade: gradeInfo.label } }) } } catch (_) {}
+
+  // 2026-10-25 '지금 우리 회사는 어디쯤' 흐름 — 근거: 노동감독관 수사규칙(고용노동부훈령 제612호, 2026.10.2. 시행)
+  const FLOW = [
+    ['신고·제보', '익명 신고나 언론 보도만으로도 입건 전 사실 확인이 시작될 수 있습니다.', '제17조'],
+    ['감독', '감독관이 계약서·임금대장·근로시간 기록을 확인합니다. 대개 기한을 정해 시정을 지시하지만, 주요 근로조건 위반 등은 바로 수사로 넘어갈 수 있습니다.', '제18조 제2항 제2호·제5호'],
+    ['시정기한', '기한 안에 이행하지 않으면 감독관은 즉시 범죄를 인지해 수사를 시작합니다.', '제18조 제2항 제4호'],
+    ['수사', '고소·고발·범죄인지 사건은 원칙적으로 3개월 안에 송치 여부를 결정합니다(일부 법률 제외).', '제21조'],
+    ['송치', '수사 결과와 의견서가 검찰로 넘어갑니다.', '제44조'],
+  ]
+
   const weakest = CATEGORIES.map((c, i) => ({ name: c.name, score: categoryScores[i] })).sort((a, b) => a.score - b.score)
 
   return (
@@ -100,6 +111,32 @@ export default function Result() {
             ) : (
               <p className="text-[28px] font-bold leading-[1.45]">현재 응답 기준으로 위반 소지 항목이 확인되지 않았습니다.</p>
             )}
+          </div>
+        </div>
+      </section>
+
+      {/* 2. 지금 어디쯤 — 감독이 수사로 넘어가는 순서 */}
+      <section className="border-b border-[#DDE2EA] py-14 md:py-[72px]">
+        <div className="mx-auto max-w-[1040px] px-5 md:px-8">
+          <h2 className="text-[30px] font-bold leading-[1.35] tracking-[-0.8px] md:text-[34px]">감독이 수사로 넘어가는 순서</h2>
+          <p className="mt-2 text-[17px] text-[#5B6680]">우리 회사는 지금 1단계 앞, <b className="text-[#14213D]">감독 전</b>에 있습니다.</p>
+          <ol className="mt-8 grid gap-0 md:grid-cols-5">
+            {FLOW.map(([t, d, law], i) => (
+              <li key={t} className="border-t-2 border-[#DDE2EA] py-5 md:border-t-[3px] md:pr-5" style={i === 0 ? { borderTopColor: '#14213D' } : undefined}>
+                <p className="text-[15px] font-bold text-[#5B6680]">{i + 1}단계</p>
+                <p className="mt-1 text-[21px] font-bold">{t}</p>
+                <p className="mt-2 text-[16px] leading-[1.65] text-[#3D4A63]">{d}</p>
+                <p className="mt-2 text-[14px] font-semibold text-[#5B6680]">수사규칙 {law}</p>
+              </li>
+            ))}
+          </ol>
+          <div className="mt-6 rounded-[14px] border border-[#DDE2EA] bg-[#F5F7FA] px-6 py-5">
+            <p className="text-[18px] leading-[1.65]">
+              {items.length > 0
+                ? <>지적될 수 있는 <b>{items.length}건</b>을 감독 전에 정리해 두면, 시정기한에 쫓기며 3단계를 맞을 일이 줄어듭니다.</>
+                : <>지금 응답 기준으로는 지적될 항목이 확인되지 않았습니다. 기록을 그대로 유지하는 것이 가장 좋은 준비입니다.</>}
+            </p>
+            <p className="mt-2 text-[14px] font-semibold text-[#5B6680]">근거: 노동감독관 수사규칙(고용노동부훈령 제612호, 2026.10.2. 시행)</p>
           </div>
         </div>
       </section>

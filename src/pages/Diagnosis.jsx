@@ -1,5 +1,5 @@
 import { VERIFIED_DATE, PROMISE } from '../constants/brand.js'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { QUESTIONS, CATEGORIES } from '../data/questions.js'
 import { getPenaltyMeta, getVerifiedPenalty } from '../data/penalties.js'
@@ -15,6 +15,22 @@ const OPTION_HINT = {
   확인필요: '확인이 필요합니다',
   해당없음: '우리 회사와 관계없습니다',
 }
+
+// 2026-10-25 진단 중간 카드(이탈 방지): 영역 진입 시 1회 노출 — 근거 노동감독관 수사규칙(고용노동부훈령 제612호, 2026.10.2. 시행)
+const MID_CARDS = {
+  2: {
+    t: '임금 영역을 마쳤습니다. 하나만 기억해 두십시오',
+    d: "체불을 합의로 정리할 때, 근로자가 '처벌을 원하지 않는다'고 밝히면 그 뜻은 거둘 수 없습니다. 다만 '돈을 받으면 취하'처럼 조건을 붙인 뜻은 처벌을 원하지 않는 것으로 보지 않습니다.",
+    law: '노동감독관 수사규칙 제23조 제2항·제4항',
+  },
+  4: {
+    t: '근로조건 영역을 마쳤습니다. 감독에서 가장 중요한 날짜',
+    d: '감독에서 시정지시를 받았다면 기한이 가장 중요합니다. 시정기한 안에 이행하지 않으면, 감독관은 그때 바로 범죄를 인지해 수사를 시작합니다.',
+    law: '노동감독관 수사규칙 제18조 제2항 제4호',
+  },
+}
+
+const track = (name, data) => { try { window.va && window.va('event', { name, data }) } catch (_) {} }
 
 export default function Diagnosis() {
   const navigate = useNavigate()
@@ -44,6 +60,15 @@ export default function Diagnosis() {
     try { window.scrollTo({ top: 0, behavior: 'smooth' }) } catch (_) {}
   }, [currentIndex])
 
+  // 영역 진입 이벤트(어디서 나가는지 측정): 영역별 1회
+  const seenCats = useRef(new Set())
+  useEffect(() => {
+    const cid = currentQ?.categoryId
+    if (cid == null || seenCats.current.has(cid)) return
+    seenCats.current.add(cid)
+    track('diag_section', { site: 'risk', section: cid + 1 + '. ' + (CATEGORIES[cid]?.name || '') })
+  }, [currentQ?.categoryId])
+
   const answeredCount = answers.filter(Boolean).length
   const progress = QUESTIONS.length ? Math.round((answeredCount / QUESTIONS.length) * 100) : 0
 
@@ -68,6 +93,7 @@ export default function Diagnosis() {
       if (firstUnanswered >= 0) setCurrentIndex(firstUnanswered)
       return
     }
+    track('diag_finish', { site: 'risk' })
     navigate('/result')
   }
 
@@ -129,6 +155,14 @@ export default function Diagnosis() {
 
         {/* 질문 */}
         <main>
+          {MID_CARDS[currentQ?.categoryId] && currentIndex === catStats[currentQ.categoryId].first && (
+            <div className="mb-4 rounded-[14px] border border-[#DDE2EA] bg-white px-6 py-5 md:px-8">
+              <p className="text-[15px] font-bold text-[#5B6680]">알아 두면 좋은 것</p>
+              <p className="mt-1.5 text-[19px] font-bold leading-[1.5]">{MID_CARDS[currentQ.categoryId].t}</p>
+              <p className="mt-2 text-[17px] leading-[1.7] text-[#3D4A63]">{MID_CARDS[currentQ.categoryId].d}</p>
+              <p className="mt-2 text-[14px] font-semibold text-[#5B6680]">근거: {MID_CARDS[currentQ.categoryId].law} (고용노동부훈령 제612호, 2026.10.2. 시행)</p>
+            </div>
+          )}
           <div className="rounded-[16px] border border-[#DDE2EA] bg-white p-6 md:p-10">
             <p className="text-[16px] font-bold text-[#1B2A44] md:text-[17px]">
               {CATEGORIES[currentQ?.categoryId]?.name} · {orderInCat} / {inCat.length}
