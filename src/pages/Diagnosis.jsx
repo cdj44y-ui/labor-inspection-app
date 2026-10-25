@@ -177,7 +177,14 @@ export default function Diagnosis() {
             <div className="mt-6 rounded-xl border border-[#DDE2EA] bg-[#F8FAFC] px-5 py-4">
               <div className="grid gap-1 md:grid-cols-[86px_1fr] md:gap-3">
                 <p className="text-[15px] font-bold text-[#5B6680]">법적 근거</p>
-                <p className="text-[17px] leading-[1.6]">{currentQ?.law}</p>
+                <div>
+                  {currentQ?.law?.includes('시행 개정') && (
+                    <span className="mb-1 inline-flex items-center rounded-full bg-[#EAF2FE] px-2 py-0.5 text-[12px] font-semibold text-[#1B2A44]">
+                      최근 법령 개정 반영
+                    </span>
+                  )}
+                  <p className="text-[17px] leading-[1.6]">{currentQ?.law}</p>
+                </div>
               </div>
               {verified && (
                 <div className="mt-3 grid gap-1 border-t border-[#E6EAF0] pt-3 md:grid-cols-[86px_1fr] md:gap-3">
