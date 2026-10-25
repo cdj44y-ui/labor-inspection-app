@@ -69,10 +69,10 @@ export default function Result() {
 
   // 2026-10-25 '지금 우리 회사는 어디쯤' 흐름 — 근거: 노동감독관 수사규칙(고용노동부훈령 제612호, 2026.10.2. 시행)
   const FLOW = [
-    ['신고·제보', '익명 신고나 언론 보도만으로도 입건 전 사실 확인이 시작될 수 있습니다.', '제17조'],
-    ['감독', '감독관이 계약서·임금대장·근로시간 기록을 확인합니다. 대개 기한을 정해 시정을 지시하지만, 주요 근로조건 위반 등은 바로 수사로 넘어갈 수 있습니다.', '제18조 제2항 제2호·제5호'],
+    ['신고·제보', '익명 신고나 보도만으로도 입건 전 확인이 시작될 수 있습니다.', '제17조'],
+    ['감독', '감독관이 기록을 확인하고 대개 기한을 정해 시정을 지시합니다. 중대한 위반은 바로 수사로 갈 수 있습니다.', '제18조 제2항 제2호·제5호'],
     ['시정기한', '기한 안에 이행하지 않으면 감독관은 즉시 범죄를 인지해 수사를 시작합니다.', '제18조 제2항 제4호'],
-    ['수사', '고소·고발·범죄인지 사건은 원칙적으로 3개월 안에 송치 여부를 결정합니다(일부 법률 제외).', '제21조'],
+    ['수사', '원칙적으로 3개월 안에 송치 여부를 결정합니다(일부 법률 제외).', '제21조'],
     ['송치', '수사 결과와 의견서가 검찰로 넘어갑니다.', '제44조'],
   ]
 
@@ -120,11 +120,8 @@ export default function Result() {
         <div className="mx-auto max-w-[1040px] px-5 md:px-8">
           <p className="text-[16px] font-bold text-[#5B6680]">감독관 수사규칙으로 본 흐름</p>
           <h2 className="mt-2 text-[32px] font-extrabold leading-[1.3] tracking-[-0.8px] md:text-[40px]">감독이 수사로 넘어가는 순서</h2>
-          <div className="mt-8 grid gap-3 md:grid-cols-[150px_repeat(5,minmax(0,1fr))]">
-            <div className="flex flex-col justify-center rounded-[14px] border-2 border-dashed border-[#14213D] bg-white px-4 py-5 text-center">
-              <p className="text-[14px] font-bold text-[#5B6680]">지금 우리 회사</p>
-              <p className="mt-1 text-[22px] font-extrabold">감독 전</p>
-            </div>
+          <p className="mt-6 inline-flex items-center gap-2 rounded-full border-2 border-dashed border-[#14213D] bg-white px-4 py-2 text-[16px] font-bold">지금 우리 회사 <span className="text-[#5B6680]">·</span> 감독 전, 1단계 앞</p>
+          <div className="mt-5 grid gap-3 md:grid-cols-5">
             {FLOW.map(([t, d, law], i) => {
               const key = i === 2
               return (
