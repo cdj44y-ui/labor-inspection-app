@@ -22,7 +22,7 @@ export default function LawCalendar({ id = 'law' }) {
 
   useEffect(() => {
     let alive = true
-    fetch(LAW_URL)
+    fetch(LAW_URL, { cache: 'no-store' })
       .then((r) => (r.ok ? r.json() : Promise.reject(new Error('bad status'))))
       .then((json) => {
         if (!alive || !json || !Array.isArray(json.items)) return
