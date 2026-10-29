@@ -118,3 +118,24 @@ a.text-toss:hover,
 
 /* 2026-10-22 전 사이트 폰트 통일: 대제목 굵기 800 */
 h1 { font-weight: 800 !important; letter-spacing: -0.03em; }
+
+
+/* ===== 2026-10-29 위너스 진단 통일 레이어 v5 (현대카드식 흑백 + 사이트색 #1B2A44) ===== */
+:root { --site: #1B2A44; --site-h: #131F33; }
+/* 1. 주 버튼(진단 시작): 사이트색·직각 */
+a[class~="bg-[#1B2A44]"], a[class~="bg-[#8E2B2B]"], a[class~="bg-[#2F5D50]"], button[class~="bg-[#8E2B2B]"], .btn-site, .btn-primary, .nav-cta {
+  background-color: var(--site) !important; border-radius: 2px !important; }
+a[class~="bg-[#1B2A44]"]:hover, a[class~="bg-[#8E2B2B]"]:hover, a[class~="bg-[#2F5D50]"]:hover, .btn-site:hover, .btn-primary:hover { background-color: var(--site-h) !important; }
+/* 2. 상담 버튼: 검정·직각 (상단·떠 있는 버튼) */
+a[class~="bg-[#1F4E79]"], button[class~="bg-[#1F4E79]"], .fab, .btn-consult { background-color: #111 !important; border-radius: 2px !important; }
+a[class~="bg-[#1F4E79]"]:hover, .fab:hover, .btn-consult:hover { background-color: #333 !important; }
+/* 3. 첫 화면 본문의 중복 상담 버튼 숨김(상단·떠 있는 버튼만 유지) */
+a[class~="h-[60px]"][class~="bg-[#1F4E79]"], a[class~="h-[62px]"][class~="bg-[#1F4E79]"], .hero .btn-consult { display: none !important; }
+/* 4. 빨간 강조 → 검정 굵게 (겁주는 색 제거) */
+[class~="text-[#B42318]"], [class~="text-[#A4262C]"], [class~="text-[#E03131]"] { color: #111 !important; font-weight: 800; }
+/* 5. 모바일 최소 글자 14px */
+@media (max-width: 767px) {
+  [class~="text-xs"], [class~="text-[11px]"], [class~="text-[12px]"], [class~="text-[13px]"] { font-size: 14px !important; }
+}
+
+.btn-black-cta { background-color: #111 !important; border-radius: 2px !important; }
