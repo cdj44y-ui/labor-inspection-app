@@ -7,6 +7,7 @@ import { getVerifiedPenalty } from '../data/penalties.js'
 import SiteFooter from '../components/common/SiteFooter.jsx'
 import ResultSheet from '../components/result/ResultSheet.jsx'
 import { buildEnrichedItems, filterViolations } from '../utils/penaltyCalculator.js'
+import ReportRequest from '../components/result/ReportRequest.jsx'
 
 const ANSWERS_KEY = 'labor_diagnosis_answers'
 const GRADE_TONE = {
@@ -114,6 +115,9 @@ export default function Result() {
           </div>
         </div>
       </section>
+
+      {/* 2026-10-29 리포트 받기 */}
+      <ReportRequest answers={answers} tallyUrl={tallyCall} />
 
       {/* 2. 지금 어디쯤 — 감독이 수사로 넘어가는 순서 */}
       <section className="border-b border-[#DDE2EA] bg-[#F5F7FA] py-14 md:py-[80px]">
