@@ -139,3 +139,5 @@ a[class~="h-[60px]"][class~="bg-[#1F4E79]"], a[class~="h-[62px]"][class~="bg-[#1
 }
 
 .btn-black-cta { background-color: #111 !important; border-radius: 2px !important; }
+
+a.btn-black-cta.fixed { background-color: #111 !important; border-radius: 2px !important; }
