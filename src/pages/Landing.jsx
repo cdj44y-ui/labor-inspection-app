@@ -108,6 +108,23 @@ export default function Landing() {
         </div>
       </section>
 
+      {/* 2026-10-29 실제 사례 (동의받은 사례 · 회사 이름 비공개) */}
+      <section className="border-t border-[#E6E6E6] bg-white py-12 md:py-16">
+        <div className="mx-auto max-w-[1120px] px-6 md:px-8">
+          <p className="text-[15px] font-bold text-[#666]">실제 사례 · 회사 이름은 쓰지 않습니다</p>
+          <h2 className="mt-2 text-[28px] font-extrabold leading-[1.35] tracking-[-0.6px] md:text-[34px]">대표가 직접 보지 않아도, 같은 기준으로 채용합니다</h2>
+          <p className="mt-2 text-[16px] font-bold" style={{ color: '#1B2A44' }}>전문서비스기업 · 채용</p>
+          <div className="mt-6 grid border-t border-[#111] md:grid-cols-3">
+            {[['상황', '상시 30인을 넘으면서 법적 의무가 늘었고, 감으로 뽑던 채용도 한계에 부딪혔습니다.'], ['세운 기준', '공정채용 6단계와 구조화 면접을 설계하고, 팀장에게는 평가자 교육을 진행했습니다.'], ['달라진 점', '대표가 모든 면접에 들어가지 않아도 같은 기준으로 사람을 뽑고, 평가를 설명할 수 있게 됐습니다.']].map(([k, v], i) => (
+              <div key={k} className={'border-b border-[#E6E6E6] py-5 md:border-b-0 md:pr-8 ' + (i === 2 ? 'bg-[#F5F5F4] md:px-6' : '')}>
+                <p className="text-[14px] font-bold text-[#666]">{k}</p>
+                <p className={'mt-2 text-[17px] leading-[1.7] ' + (i === 2 ? 'font-bold text-[#111]' : 'text-[#333]')}>{v}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* 전문가 */}
       <section id="expert" className="border-t border-[#DDE2EA] bg-[#F5F7FA] py-10 md:py-14">
         <div className="mx-auto grid max-w-[1120px] items-start gap-10 px-6 md:grid-cols-[260px_1fr] md:gap-14 md:px-8">
