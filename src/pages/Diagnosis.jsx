@@ -30,6 +30,9 @@ const MID_CARDS = {
   },
 }
 
+// 2026-10-30 진단 순서: 영역 순으로 표시(추가 문항은 배열 끝에 두어 기존 문항 번호·제재 매핑을 유지)
+const ORDER = QUESTIONS.map((_, i) => i).sort((a, b) => QUESTIONS[a].categoryId - QUESTIONS[b].categoryId || a - b)
+
 const track = (name, data) => { try { window.va && window.va('event', { name, data }) } catch (_) {} }
 
 export default function Diagnosis() {
@@ -38,12 +41,16 @@ export default function Diagnosis() {
   const [answers, setAnswers] = useState(() => {
     try {
       const s = localStorage.getItem(ANSWERS_KEY)
-      return s ? JSON.parse(s) : QUESTIONS.map(() => null)
+      const arr = s ? JSON.parse(s) : QUESTIONS.map(() => null)
+      while (arr.length < QUESTIONS.length) arr.push(null)
+      return arr.slice(0, QUESTIONS.length)
     } catch {
       return QUESTIONS.map(() => null)
     }
   })
-  const [currentIndex, setCurrentIndex] = useState(0)
+  const [pos, setPos] = useState(0)
+  const currentIndex = ORDER[pos]
+  const setCurrentIndex = (qi) => setPos(Math.max(0, ORDER.indexOf(qi)))
   const [autoAdvance, setAutoAdvance] = useState(true)
 
   useEffect(() => {
@@ -78,16 +85,16 @@ export default function Diagnosis() {
       next[currentIndex] = value
       return next
     })
-    if (autoAdvance && currentIndex < QUESTIONS.length - 1) {
-      setTimeout(() => setCurrentIndex((i) => Math.min(i + 1, QUESTIONS.length - 1)), 250)
+    if (autoAdvance && pos < ORDER.length - 1) {
+      setTimeout(() => setPos((p) => Math.min(p + 1, ORDER.length - 1)), 250)
     }
   }
 
-  const goPrev = () => currentIndex > 0 && setCurrentIndex((i) => i - 1)
-  const goNext = () => currentIndex < QUESTIONS.length - 1 && setCurrentIndex((i) => i + 1)
+  const goPrev = () => pos > 0 && setPos((p) => p - 1)
+  const goNext = () => pos < ORDER.length - 1 && setPos((p) => p + 1)
 
   const allAnswered = answers.every((a) => a != null)
-  const firstUnanswered = answers.findIndex((a) => a == null)
+  const firstUnanswered = ORDER.find((i) => answers[i] == null) ?? -1
   const handleFinish = () => {
     if (!allAnswered) {
       if (firstUnanswered >= 0) setCurrentIndex(firstUnanswered)
@@ -101,9 +108,9 @@ export default function Diagnosis() {
     const idx = QUESTIONS.map((q, i) => (q.categoryId === cid ? i : null)).filter((i) => i !== null)
     return { total: idx.length, done: idx.filter((i) => answers[i] != null).length, first: idx[0] }
   })
-  const inCat = QUESTIONS.filter((q) => q.categoryId === currentQ?.categoryId)
-  const orderInCat = inCat.indexOf(currentQ) + 1
-  const isLast = currentIndex === QUESTIONS.length - 1
+  const inCat = ORDER.filter((i) => QUESTIONS[i].categoryId === currentQ?.categoryId)
+  const orderInCat = inCat.indexOf(currentIndex) + 1
+  const isLast = pos === ORDER.length - 1
 
   return (
     <div className="min-h-screen bg-[#F5F7FA] pb-28 text-[#14213D] [word-break:keep-all] md:pb-16">
@@ -238,7 +245,7 @@ export default function Diagnosis() {
 
           {/* 이동 */}
           <div className="mt-5 flex items-center justify-between gap-3">
-            <button type="button" onClick={goPrev} disabled={currentIndex === 0} className="h-[56px] rounded-[10px] border-[1.5px] border-[#C9D1DC] bg-white px-6 text-[18px] font-bold text-[#3D4A63] disabled:opacity-40">
+            <button type="button" onClick={goPrev} disabled={pos === 0} className="h-[56px] rounded-[10px] border-[1.5px] border-[#C9D1DC] bg-white px-6 text-[18px] font-bold text-[#3D4A63] disabled:opacity-40">
               ← 이전 질문
             </button>
             {isLast ? (
