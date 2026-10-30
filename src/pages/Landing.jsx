@@ -16,19 +16,26 @@ function LocalInspection() {
       <div className="mx-auto max-w-[1120px] px-6 md:px-8">
         <p className="text-[15px] font-bold text-[#666]">2026년 12월 8일부터 달라지는 감독</p>
         <h2 className="mt-2 text-[28px] font-extrabold leading-[1.35] tracking-[-0.6px] md:text-[34px]">30인 미만 사업장은 시·도 감독관도 점검합니다</h2>
-        <div className="mt-6 grid border-t border-[#111] md:grid-cols-3">
+        {/* 2026-10-31 읽기 쉽게: 한 줄 요약 3개 + 근거는 펼쳐 보기(노션 토글) */}
+        <ol className="mt-6 border-t border-[#111]">
           {[
-            ['지방 노동감독관', '「노동감독관 직무집행법」이 2026년 12월 8일 시행되면 시·도에도 노동감독관을 둡니다.', '노동감독관 직무집행법(2026.12.8. 시행)'],
-            ['30인 미만은 시·도가', '30인 미만 사업장의 감독과 후속 조치(수사·과태료)를 시·도에 맡기는 시행령안이 입법예고됐습니다. 신고 사건은 계속 노동청이 맡습니다.', '시행령안 입법예고(2026.7.24.~9.2.) · 확정 전'],
-            ['점검표로, 시정 기회 먼저', '감독은 체크리스트로 표준화하고 시정 기회를 먼저 줍니다. 기한 안에 고치지 않으면 수사나 과태료로 이어집니다.', '고용노동부 실행방안(2026.9)'],
-          ].map(([t, d, s]) => (
-            <div key={t} className="border-b border-[#E6E6E6] py-5 md:border-b-0 md:pr-8">
-              <p className="text-[19px] font-extrabold">{t}</p>
-              <p className="mt-2 text-[17px] leading-[1.7] text-[#333]">{d}</p>
-              <p className="mt-2 text-[14px] text-[#777]">{s}</p>
-            </div>
+            ['12월 8일부터', '시·도에도 노동감독관을 둡니다.'],
+            ['30인 미만', '시·도가 감독을 맡는 안이 나와 있습니다. (확정 전)'],
+            ['감독 방식', '점검표로 보고, 고칠 기회를 먼저 줍니다.'],
+          ].map(([k, v]) => (
+            <li key={k} className="grid grid-cols-[110px_1fr] gap-3 border-b border-[#E6E6E6] py-4 text-[17px] md:grid-cols-[160px_1fr] md:text-[18px]">
+              <b className="text-[#1B2A44]">{k}</b><span className="leading-[1.6]">{v}</span>
+            </li>
           ))}
-        </div>
+        </ol>
+        <details className="mt-3 text-[15px] text-[#555]">
+          <summary className="cursor-pointer py-2 font-bold text-[#333]">근거 보기</summary>
+          <ul className="mt-1 space-y-1 pl-4 leading-[1.7]">
+            <li>노동감독관 직무집행법 · 2026년 12월 8일 시행</li>
+            <li>30인 미만 감독·후속 조치(수사·과태료) 시·도 위임 시행령안 · 입법예고 2026.7.24.~9.2. · 확정 전. 신고 사건은 계속 노동청이 맡습니다.</li>
+            <li>고용노동부 「지방정부 노동감독체계 구축 및 실행방안」(2026.9) · 기한 안에 고치지 않으면 수사·과태료로 이어집니다.</li>
+          </ul>
+        </details>
         <div className="mt-8 bg-[#F5F5F4] px-5 py-6 md:px-8">
           <div className="flex flex-wrap items-center gap-3">
             <p className="text-[18px] font-extrabold">우리 지역 중점 업종(예시)</p>
@@ -41,7 +48,8 @@ function LocalInspection() {
               <li key={v} className="flex items-baseline gap-3 border-t border-[#DADADA] pt-3 text-[17px]"><span className="text-[22px] font-light text-[#1B2A44]">0{i + 1}</span><span className="font-bold">{v}</span></li>
             ))}
           </ol>
-          <p className="mt-4 text-[14px] leading-[1.7] text-[#666]">고용노동부 「지방정부 노동감독체계 구축 및 실행방안」(2026.9)의 위임 대상 분야 선정 예시입니다. 체불 인원, 지역 집중도, 업종 내 체불 사업장 비율로 뽑았으며 실제 감독 대상은 협의회에서 정합니다. 해당 업종이라면 지금 진단으로 먼저 점검해 보세요.</p>
+          <p className="mt-4 text-[16px] text-[#333]">해당 업종이라면 진단으로 먼저 점검해 보세요.</p>
+          <details className="mt-1 text-[14px] text-[#666]"><summary className="cursor-pointer py-2 font-bold">이 목록은 어떻게 뽑았나요?</summary><p className="leading-[1.7]">고용노동부 실행방안(2026.9)의 선정 예시입니다. 체불 인원, 지역 집중도, 업종 내 체불 사업장 비율로 뽑았고, 실제 감독 대상은 협의회에서 정합니다.</p></details>
           <Link to="/diagnosis" className="mt-4 inline-flex h-[52px] items-center bg-[#1B2A44] px-6 text-[17px] font-bold text-white no-underline visited:text-white">진단 시작하기 →</Link>
         </div>
       </div>
