@@ -149,3 +149,8 @@ main [class*="shadow-"] { box-shadow: none !important; }
 .bg-red-600 { background: #111 !important; }
 [class*="bg-[#14213D]"] a[class*="bg-[#1B2A44]"] { background: #fff !important; color: #1B2A44 !important; }
 @media (max-width: 767px) { main img[class*="object-cover"][class*="w-[170px]"] { width: 120px !important; height: 156px !important; } }
+
+/* 2026-10-31 easy7 문항 화면: 질문 → 답 → 근거 순서(토스식), 진단 중 떠 있는 상담 버튼 숨김(영역 이동 칩 가림 방지) */
+main div[class*="md:p-10"]:has(> h1):has(> div.grid) { display: flex; flex-direction: column; }
+main div[class*="md:p-10"]:has(> h1) > div[class*="bg-[#F8FAFC]"] { order: 5; margin-top: 20px; }
+body:has(main div[class*="md:p-10"] > h1) a[aria-label="상담 신청하기"] { display: none !important; }
