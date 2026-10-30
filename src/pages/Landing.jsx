@@ -5,6 +5,50 @@ import NewsBanner from '../components/common/NewsBanner.jsx'
 import LawCalendar from '../components/common/LawCalendar.jsx'
 import { PROMISE } from '../constants/brand.js'
 
+
+// 2026-10-30 고용노동부 「지방정부 노동감독체계 구축 및 실행방안」(2026.9) — 위임 대상 분야 선정 예시(체불 인원·지역 집중도·업종 내 체불 비율로 추출)
+const REGION_FOCUS = {"서울":["출판업 · 5~29인","의복·의복 액세서리 제조업 · 5~9인","사업지원 서비스업 · 10~29인"],"부산":["가죽·가방·신발 제조업 · 10~29인","종합 건설업 · 5~9인","음식점 및 주점업 · 10~29인"],"대구":["섬유제품 제조업 · 5~29인","소매업 · 5~9인","음식점 및 주점업 · 5~29인"],"인천":["사업지원 서비스업 · 5~9인","스포츠·오락 관련 서비스업 · 1~4인","전자부품·컴퓨터 등 제조업 · 10~29인"],"광주":["종합 건설업 · 5~9인","전자부품·컴퓨터 등 제조업 · 10~29인","보건업 · 10~29인"],"대전":["출판업 · 5~9인","기타 개인 서비스업 · 10~29인","연구개발업 · 10~29인"],"울산":["기타 운송장비 제조업 · 5~29인","기타 기계·장비 제조업 · 10~29인","자동차·트레일러 제조업 · 1~29인"],"세종":["의료·정밀·광학기기·시계 제조업 · 10~29인","전기장비 제조업 · 10~29인","보건업 · 10~29인"],"경기":["섬유제품 제조업 · 10~29인","가구 제조업 · 5~29인","고무·플라스틱제품 제조업 · 10~29인"],"강원":["숙박업 · 10~29인","농업 · 1~4인","식료품 제조업 · 10~29인"],"충북":["식료품 제조업 · 5~29인","금속가공제품 제조업 · 10~29인","비금속 광물제품 제조업 · 10~29인"],"충남":["금속가공제품 제조업 · 5~29인","자동차·트레일러 제조업 · 10~29인","어업 · 1~4인"],"전북":["어업 · 1~4인","식료품 제조업 · 5~29인","의복·의복 액세서리 및 모피제품 제조업 · 5~9인"],"전남":["기타 운송장비 제조업 · 1~29인","어업 · 1~4인","금속가공제품 제조업 · 10~29인"],"경북":["자동차·트레일러 제조업 · 10~29인","섬유제품 제조업 · 5~9인","금속가공제품 제조업 · 5~9인"],"경남":["기타 운송장비 제조업 · 1~29인","금속가공제품 제조업 · 10~29인","기타 제품 제조업 · 5~9인"],"제주":["숙박업 · 5~29인","수상운송업 · 1~4인","기타 전문·과학·기술 서비스업 · 5~9인"]}
+
+function LocalInspection() {
+  const [rg, setRg] = useState('서울')
+  return (
+    <section className="border-t border-[#E6E6E6] bg-white py-12 md:py-16">
+      <div className="mx-auto max-w-[1120px] px-6 md:px-8">
+        <p className="text-[15px] font-bold text-[#666]">2026년 12월 8일부터 달라지는 감독</p>
+        <h2 className="mt-2 text-[28px] font-extrabold leading-[1.35] tracking-[-0.6px] md:text-[34px]">30인 미만 사업장은 시·도 감독관도 점검합니다</h2>
+        <div className="mt-6 grid border-t border-[#111] md:grid-cols-3">
+          {[
+            ['지방 노동감독관', '「노동감독관 직무집행법」이 2026년 12월 8일 시행되면 시·도에도 노동감독관을 둡니다.', '노동감독관 직무집행법(2026.12.8. 시행)'],
+            ['30인 미만은 시·도가', '30인 미만 사업장의 감독과 후속 조치(수사·과태료)를 시·도에 맡기는 시행령안이 입법예고됐습니다. 신고 사건은 계속 노동청이 맡습니다.', '시행령안 입법예고(2026.7.24.~9.2.) · 확정 전'],
+            ['점검표로, 시정 기회 먼저', '감독은 체크리스트로 표준화하고 시정 기회를 먼저 줍니다. 기한 안에 고치지 않으면 수사나 과태료로 이어집니다.', '고용노동부 실행방안(2026.9)'],
+          ].map(([t, d, s]) => (
+            <div key={t} className="border-b border-[#E6E6E6] py-5 md:border-b-0 md:pr-8">
+              <p className="text-[19px] font-extrabold">{t}</p>
+              <p className="mt-2 text-[17px] leading-[1.7] text-[#333]">{d}</p>
+              <p className="mt-2 text-[14px] text-[#777]">{s}</p>
+            </div>
+          ))}
+        </div>
+        <div className="mt-8 bg-[#F5F5F4] px-5 py-6 md:px-8">
+          <div className="flex flex-wrap items-center gap-3">
+            <p className="text-[18px] font-extrabold">우리 지역 중점 업종(예시)</p>
+            <select value={rg} onChange={(e) => setRg(e.target.value)} className="h-[48px] border border-[#BDBDBD] bg-white px-3 text-[17px]" aria-label="시·도 선택">
+              {Object.keys(REGION_FOCUS).map((k) => <option key={k} value={k}>{k}</option>)}
+            </select>
+          </div>
+          <ol className="mt-4 grid gap-2 md:grid-cols-3">
+            {REGION_FOCUS[rg].map((v, i) => (
+              <li key={v} className="flex items-baseline gap-3 border-t border-[#DADADA] pt-3 text-[17px]"><span className="text-[22px] font-light text-[#1B2A44]">0{i + 1}</span><span className="font-bold">{v}</span></li>
+            ))}
+          </ol>
+          <p className="mt-4 text-[14px] leading-[1.7] text-[#666]">고용노동부 「지방정부 노동감독체계 구축 및 실행방안」(2026.9)의 위임 대상 분야 선정 예시입니다. 체불 인원, 지역 집중도, 업종 내 체불 사업장 비율로 뽑았으며 실제 감독 대상은 협의회에서 정합니다. 해당 업종이라면 지금 진단으로 먼저 점검해 보세요.</p>
+          <Link to="/diagnosis" className="mt-4 inline-flex h-[52px] items-center bg-[#1B2A44] px-6 text-[17px] font-bold text-white no-underline visited:text-white">진단 시작하기 →</Link>
+        </div>
+      </div>
+    </section>
+  )
+}
+
 const FAQ_ITEMS = [
   {
     q: '이 서비스는 어떤 서비스인가요?',
@@ -107,6 +151,8 @@ export default function Landing() {
           </div>
         </div>
       </section>
+
+      <LocalInspection />
 
       {/* 2026-10-29 실제 사례 (동의받은 사례 · 회사 이름 비공개) */}
       <section className="border-t border-[#E6E6E6] bg-white py-12 md:py-16">
