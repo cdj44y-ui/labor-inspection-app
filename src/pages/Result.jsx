@@ -90,28 +90,27 @@ export default function Result() {
 
       {/* 결과지 — 브랜드 v1.1 공통 형식 */}
       <ResultSheet answers={answers} totalScore={totalScore} gradeLabel={gradeInfo.label} gradeMessage={gradeInfo.message} categoryScores={categoryScores} items={items} />
-      {/* 1. 나의 위험 */}
-      <section className="bg-[#14213D] text-white">
-        <div className="mx-auto grid max-w-[1040px] gap-10 px-5 py-14 md:grid-cols-[1fr_1.1fr] md:px-8 md:py-[72px]">
-          <div>
-            <p className="text-[17px] font-semibold text-[#AFC3E8]">근로감독 자가진단 결과</p>
-            <p className="mt-3 text-[88px] font-extrabold leading-none tracking-[-3px] md:text-[104px]">{totalScore}<span className="ml-1 text-[32px] font-bold tracking-normal text-[#AFC3E8]">점</span></p>
-            <p className="mt-4 inline-block rounded-md bg-white px-3 py-1.5 text-[18px] font-extrabold" style={{ color: tone.text }}>{gradeInfo.label} · {gradeInfo.message}</p>
-          </div>
-          <div className="self-end">
-            {items.length > 0 ? (
-              <>
-                <p className="text-[30px] font-bold leading-[1.4] md:text-[36px]">
-                  감독관이 확인하면 지적될 수 있는<br />항목이 <span className="text-[#FFB4A8]">{items.length}건</span> 있습니다.
-                </p>
-                {criminalCount > 0 && (
-                  <p className="mt-4 text-[19px] leading-[1.6] text-[#DCE4F2]">그중 <b className="text-white">{criminalCount}건</b>은 징역형까지 규정된 조문에 해당합니다.</p>
-                )}
-                <p className="mt-2 text-[17px] text-[#AFC3E8]">위반 소지 영역: {areas.join(' · ')}</p>
-              </>
-            ) : (
-              <p className="text-[28px] font-bold leading-[1.45]">현재 응답 기준으로 위반 소지 항목이 확인되지 않았습니다.</p>
-            )}
+      {/* 영역별 점수 — 2026-10-31 읽기 쉽게: 막대는 사이트색 하나, 낮은 영역만 굵게 */}
+      <section className="border-b border-[#E6E6E6] py-12 md:py-[64px]">
+        <div className="mx-auto max-w-[1040px] px-5 md:px-8">
+          <h2 className="text-[26px] font-bold tracking-[-0.6px] md:text-[30px]">영역별 점수</h2>
+          <p className="mt-1.5 text-[16px] text-[#666]">낮은 영역부터 보여드립니다. 90점 이상이면 양호입니다.</p>
+          <div className="mt-6 border-t border-[#111]">
+            {weakest.map((c) => {
+              const low = c.score < 70
+              const word = c.score >= 90 ? '양호' : c.score >= 70 ? '주의' : c.score >= 50 ? '경고' : '위험'
+              return (
+                <div key={c.name} className="border-b border-[#E6E6E6] py-4">
+                  <div className="flex items-baseline justify-between gap-3">
+                    <p className={'text-[18px] ' + (low ? 'font-extrabold text-[#111]' : 'font-semibold text-[#333]')}>{c.name}</p>
+                    <p className="flex items-baseline gap-2"><span className="text-[15px] text-[#666]">{word}</span><span className="text-[24px] font-extrabold leading-none text-[#1B2A44]">{c.score}</span></p>
+                  </div>
+                  <div className="mt-2.5 h-[8px] bg-[#EEEEEE]">
+                    <div className="h-full" style={{ width: Math.max(c.score, 2) + '%', background: low ? '#1B2A44' : '#8A93A6' }} />
+                  </div>
+                </div>
+              )
+            })}
           </div>
         </div>
       </section>
@@ -119,93 +118,38 @@ export default function Result() {
       {/* 2026-10-29 리포트 받기 */}
       <ReportRequest answers={answers} tallyUrl={tallyCall} />
 
-      {/* 2. 지금 어디쯤 — 감독이 수사로 넘어가는 순서 */}
-      <section className="border-b border-[#DDE2EA] bg-[#F5F7FA] py-14 md:py-[80px]">
+      {/* 더 알아보기 — 2026-10-31 읽기 쉽게: 긴 설명은 접어 두기(노션 토글) */}
+      <section className="border-b border-[#E6E6E6] py-12 md:py-[64px]">
         <div className="mx-auto max-w-[1040px] px-5 md:px-8">
-          <p className="text-[16px] font-bold text-[#5B6680]">감독관 수사규칙으로 본 흐름</p>
-          <h2 className="mt-2 text-[32px] font-extrabold leading-[1.3] tracking-[-0.8px] md:text-[40px]">감독이 수사로 넘어가는 순서</h2>
-          <p className="mt-6 inline-flex items-center gap-2 rounded-full border-2 border-dashed border-[#14213D] bg-white px-4 py-2 text-[16px] font-bold">지금 우리 회사 <span className="text-[#5B6680]">·</span> 감독 전, 1단계 앞</p>
-          <div className="mt-5 grid gap-3 md:grid-cols-5">
-            {FLOW.map(([t, d, law], i) => {
-              const key = i === 2
-              return (
-                <div key={t} className={'rounded-[14px] p-5 ' + (key ? 'bg-[#14213D] text-white shadow-[0_12px_28px_rgba(20,33,61,0.22)]' : 'border border-[#DDE2EA] bg-white')}>
-                  <span className={'flex h-9 w-9 items-center justify-center rounded-full text-[17px] font-extrabold ' + (key ? 'bg-white text-[#14213D]' : 'bg-[#14213D] text-white')}>{i + 1}</span>
-                  <p className="mt-3 text-[21px] font-extrabold">{t}</p>
-                  <p className={'mt-2 text-[16px] leading-[1.6] ' + (key ? 'text-[#DCE4F2]' : 'text-[#3D4A63]')}>{d}</p>
-                  <p className={'mt-3 text-[13px] font-bold ' + (key ? 'text-[#AFC3E8]' : 'text-[#5B6680]')}>수사규칙 {law}</p>
-                </div>
-              )
-            })}
-          </div>
-          <div className="mt-7 rounded-[16px] bg-[#14213D] px-6 py-6 text-white md:flex md:items-center md:justify-between md:gap-8 md:px-9">
-            <p className="text-[20px] font-bold leading-[1.55] md:text-[22px]">
-              {items.length > 0
-                ? <>지적될 수 있는 <span className="text-[#FFB4A8]">{items.length}건</span>, 감독 전에 정리하면 <span className="underline decoration-2 underline-offset-4">3단계 시정기한</span>에 쫓기지 않습니다.</>
-                : <>지금 응답 기준으로는 지적될 항목이 없습니다. 기록을 그대로 유지하는 것이 가장 좋은 준비입니다.</>}
-            </p>
-            {items.length > 0 && <a href={tallyCall} target="_blank" rel="noopener noreferrer" className="mt-5 inline-flex h-[56px] shrink-0 items-center justify-center rounded-[10px] bg-white px-7 text-[18px] font-bold text-[#14213D] no-underline md:mt-0">상담 신청 →</a>}
-          </div>
-          <p className="mt-3 text-[14px] font-semibold text-[#5B6680]">근거: 노동감독관 수사규칙(고용노동부훈령 제612호, 2026.10.2. 시행)</p>
-        </div>
-      </section>
-
-      {/* 3. 왜 혼자 어려운가 */}
-      {items.length > 0 && (
-        <section className="border-b border-[#DDE2EA] bg-[#F5F7FA] py-14 md:py-[72px]">
-          <div className="mx-auto max-w-[1040px] px-5 md:px-8">
-            <h2 className="text-[30px] font-bold leading-[1.35] tracking-[-0.8px] md:text-[34px]">서류만 고친다고 끝나지 않습니다</h2>
-            <div className="mt-8 grid gap-5 md:grid-cols-3">
-              {[
-                ['과거분은 이미 쌓여 있습니다', '임금채권은 3년간 행사할 수 있습니다. 지금 고쳐도 지난 3년 치 미지급분은 따로 정리해야 합니다.', '근로기준법 제49조'],
-                ['서류끼리 맞아야 합니다', '감독은 근로계약서, 임금대장, 출퇴근 기록을 서로 대조합니다. 한 곳만 고치면 오히려 불일치가 드러납니다.', '근로기준법 제17조·제41조·제48조'],
-                ['제도를 바꾸는 데도 절차가 있습니다', '취업규칙을 근로자에게 불리하게 바꾸려면 근로자 과반수(과반수 노동조합이 있으면 그 노동조합)의 동의가 필요합니다. 절차를 놓치면 변경의 효력이 인정되지 않을 수 있습니다.', '근로기준법 제94조'],
-              ].map(([t, d, law]) => (
-                <div key={t} className="rounded-[14px] border border-[#DDE2EA] bg-white p-7">
-                  <h3 className="text-[21px] font-bold leading-[1.45]">{t}</h3>
-                  <p className="mt-2.5 text-[17px] leading-[1.7] text-[#3D4A63]">{d}</p>
-                  <p className="mt-3 text-[14px] font-semibold text-[#5B6680]">근거: {law}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
-
-      {/* 영역별 점수 */}
-      <section className="border-b border-[#DDE2EA] py-14 md:py-[72px]">
-        <div className="mx-auto max-w-[1040px] px-5 md:px-8">
-          <div className="flex flex-wrap items-end justify-between gap-3">
-            <div>
-              <h2 className="text-[28px] font-bold tracking-[-0.6px] md:text-[32px]">영역별 점수</h2>
-              <p className="mt-1.5 text-[17px] text-[#5B6680]">점수가 낮은 영역부터 보여드립니다. 점선은 양호 기준(90점)입니다.</p>
-            </div>
-            <div className="flex flex-wrap gap-3 text-[14px] font-semibold text-[#3D4A63]">
-              {[['양호', '#1565C0'], ['주의', '#C08A1E'], ['경고', '#D2601A'], ['위험', '#B42318']].map(([l, c]) => (
-                <span key={l} className="inline-flex items-center gap-1.5"><span className="h-3 w-3 rounded-sm" style={{ background: c }} />{l}</span>
-              ))}
-            </div>
-          </div>
-          <div className="mt-8 divide-y divide-[#E6EAF0] rounded-[16px] border border-[#DDE2EA] bg-white">
-            {weakest.map((c) => {
-              const s = c.score >= 90 ? ['양호', '#1565C0', '#E3F0FB'] : c.score >= 70 ? ['주의', '#C08A1E', '#FBF3E2'] : c.score >= 50 ? ['경고', '#D2601A', '#FDEEE4'] : ['위험', '#B42318', '#FDECEC']
-              return (
-                <div key={c.name} className="px-5 py-5 md:px-7">
-                  <div className="flex items-baseline justify-between gap-3">
-                    <p className="text-[19px] font-bold">{c.name}</p>
-                    <p className="flex items-baseline gap-2">
-                      <span className="rounded-md px-2 py-0.5 text-[14px] font-bold" style={{ color: s[1], background: s[2] }}>{s[0]}</span>
-                      <span className="text-[28px] font-extrabold leading-none tracking-[-0.5px]" style={{ color: s[1] }}>{c.score}</span>
-                      <span className="text-[16px] font-semibold text-[#5B6680]">점</span>
-                    </p>
-                  </div>
-                  <div className="relative mt-3 h-[18px] rounded-full bg-[#EEF1F5]">
-                    <div className="h-full rounded-full transition-all duration-700" style={{ width: Math.max(c.score, 2) + '%', background: s[1] }} />
-                    <div className="absolute inset-y-[-4px] w-0 border-l-2 border-dashed border-[#14213D]/40" style={{ left: '90%' }} aria-hidden />
-                  </div>
-                </div>
-              )
-            })}
+          <h2 className="text-[26px] font-bold tracking-[-0.6px] md:text-[30px]">더 알아보기</h2>
+          <div className="mt-5 border-t border-[#111]">
+            <details className="border-b border-[#E6E6E6]">
+              <summary className="flex min-h-[56px] cursor-pointer items-center py-3 text-[19px] font-bold">감독이 수사로 넘어가는 순서</summary>
+              <ol className="pb-5">
+                {FLOW.map(([t, d, law], i) => (
+                  <li key={t} className="grid grid-cols-[32px_1fr] gap-3 py-2.5">
+                    <span className={'text-[20px] leading-none ' + (i === 2 ? 'font-extrabold text-[#1B2A44]' : 'font-light text-[#666]')}>{i + 1}</span>
+                    <p className="text-[17px] leading-[1.6]"><b>{t}</b> <span className="text-[#444]">{d}</span> <span className="text-[14px] text-[#777]">수사규칙 {law}</span></p>
+                  </li>
+                ))}
+              </ol>
+              <p className="pb-5 text-[16px] leading-[1.7] text-[#333]">{items.length > 0 ? <>지적될 수 있는 <b>{items.length}건</b>을 감독 전에 정리하면 3단계 시정기한에 쫓기지 않습니다.</> : <>지금 응답 기준으로는 지적될 항목이 없습니다. 기록을 그대로 유지하세요.</>}</p>
+              <p className="pb-5 text-[14px] text-[#777]">근거: 노동감독관 수사규칙(고용노동부훈령 제612호, 2026.10.2. 시행)</p>
+            </details>
+            {items.length > 0 && (
+              <details className="border-b border-[#E6E6E6]">
+                <summary className="flex min-h-[56px] cursor-pointer items-center py-3 text-[19px] font-bold">서류만 고친다고 끝나지 않는 이유</summary>
+                <ul className="pb-5">
+                  {[
+                    ['과거분이 남습니다.', '임금채권은 3년간 행사할 수 있어, 지난 3년 치 미지급분은 따로 정리해야 합니다.', '근로기준법 제49조'],
+                    ['서류끼리 맞아야 합니다.', '감독은 근로계약서·임금대장·출퇴근 기록을 서로 대조합니다.', '근로기준법 제17조·제41조·제48조'],
+                    ['바꾸는 데도 절차가 있습니다.', '취업규칙을 불리하게 바꾸려면 근로자 과반수(과반수 노조가 있으면 그 노조)의 동의가 필요합니다.', '근로기준법 제94조'],
+                  ].map(([t, d, law]) => (
+                    <li key={t} className="py-2.5 text-[17px] leading-[1.6]"><b>{t}</b> <span className="text-[#444]">{d}</span> <span className="text-[14px] text-[#777]">{law}</span></li>
+                  ))}
+                </ul>
+              </details>
+            )}
           </div>
         </div>
       </section>
@@ -213,7 +157,7 @@ export default function Result() {
       {/* 4. 먼저 지나온 사람 */}
       <section className="border-b border-[#DDE2EA] bg-[#F5F7FA] py-14 md:py-[72px]">
         <div className="mx-auto grid max-w-[1040px] items-start gap-10 px-5 md:grid-cols-[200px_1fr] md:px-8">
-          <img src="/expert/cho-daejin.jpg" alt="조대진 대표노무사" width="200" height="260" className="h-[260px] w-[200px] rounded-xl object-cover" />
+          <img src="/expert/cho-daejin.jpg" alt="조대진 대표노무사" width="200" height="260" className="h-[156px] w-[120px] rounded-[4px] object-cover md:h-[200px] md:w-[154px]" />
           <div>
             <p className="text-[17px] font-bold text-[#1B2A44]">이 결과를 함께 정리할 사람</p>
             <h2 className="mt-2 text-[30px] font-bold md:text-[34px]">대기업 인사팀 출신 노무사, 조대진</h2>
@@ -240,7 +184,7 @@ export default function Result() {
         <div className="mx-auto max-w-[760px] px-5 text-center md:px-8">
           <h2 className="text-[32px] font-bold leading-[1.35] tracking-[-0.8px] md:text-[38px]">감독 통지서가 오기 전에<br />결과를 함께 정리하십시오</h2>
           <p className="mt-4 text-[19px] leading-[1.7] text-[#3D4A63]">진단 결과는 신청서에 자동으로 담깁니다.</p>
-          <a href={tallyCall} target="_blank" rel="noopener noreferrer" className="mt-8 inline-flex h-[64px] w-full items-center justify-center rounded-[12px] bg-[#1F4E79] text-[21px] font-bold text-white no-underline hover:bg-[#173B5C] visited:text-white md:w-auto md:px-12">
+          <a href={tallyCall} target="_blank" rel="noopener noreferrer" className="mt-8 inline-flex h-[64px] w-full items-center justify-center bg-[#111] text-[21px] font-bold text-white no-underline hover:bg-[#333] visited:text-white md:w-auto md:px-12">
             상담 신청 →
           </a>
           <p className="mt-4 text-[16px] leading-[1.7] text-[#5B6680]">상담은 유료 자문으로 진행됩니다. 신청서를 확인한 뒤 일정과 비용을 안내드립니다.<br />일정에 따라 노무법인 위너스 소속 노무사가 먼저 연락드릴 수 있습니다.</p>
