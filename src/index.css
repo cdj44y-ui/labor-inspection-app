@@ -141,3 +141,11 @@ a[class~="h-[60px]"][class~="bg-[#1F4E79]"], a[class~="h-[62px]"][class~="bg-[#1
 .btn-black-cta { background-color: #111 !important; border-radius: 2px !important; }
 
 a.btn-black-cta.fixed { background-color: #111 !important; border-radius: 2px !important; }
+
+
+/* 2026-10-31 easy6 — 읽기 쉬운 화면(노션·GOV.UK·토스 원칙): 모서리 4px, 그림자·빨강 없음, 어두운 바탕 위 버튼은 흰색, 모바일 사진 작게 */
+main [class*="rounded-[1"], main [class*="rounded-xl"], main [class*="rounded-2xl"], main [class*="rounded-lg"] { border-radius: 4px !important; }
+main [class*="shadow-"] { box-shadow: none !important; }
+.bg-red-600 { background: #111 !important; }
+[class*="bg-[#14213D]"] a[class*="bg-[#1B2A44]"] { background: #fff !important; color: #1B2A44 !important; }
+@media (max-width: 767px) { main img[class*="object-cover"][class*="w-[170px]"] { width: 120px !important; height: 156px !important; } }
