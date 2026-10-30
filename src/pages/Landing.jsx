@@ -154,20 +154,27 @@ export default function Landing() {
 
       <LocalInspection />
 
-      {/* 2026-10-29 실제 사례 (동의받은 사례 · 회사 이름 비공개) */}
+      {/* 2026-10-31 진단과 같은 주제의 결과 견본 (실제 고객 문서 아님 · 회사 소개 견본과 동일) */}
       <section className="border-t border-[#E6E6E6] bg-white py-12 md:py-16">
         <div className="mx-auto max-w-[1120px] px-6 md:px-8">
-          <p className="text-[15px] font-bold text-[#666]">실제 사례 · 회사 이름은 쓰지 않습니다</p>
-          <h2 className="mt-2 text-[28px] font-extrabold leading-[1.35] tracking-[-0.6px] md:text-[34px]">대표가 직접 보지 않아도, 같은 기준으로 채용합니다</h2>
-          <p className="mt-2 text-[16px] font-bold" style={{ color: '#1B2A44' }}>전문서비스기업 · 채용</p>
-          <div className="mt-6 grid border-t border-[#111] md:grid-cols-3">
-            {[['상황', '상시 30인을 넘으면서 법적 의무가 늘었고, 감으로 뽑던 채용도 한계에 부딪혔습니다.'], ['세운 기준', '공정채용 6단계와 구조화 면접을 설계하고, 팀장에게는 평가자 교육을 진행했습니다.'], ['달라진 점', '대표가 모든 면접에 들어가지 않아도 같은 기준으로 사람을 뽑고, 평가를 설명할 수 있게 됐습니다.']].map(([k, v], i) => (
-              <div key={k} className={'border-b border-[#E6E6E6] py-5 md:border-b-0 md:pr-8 ' + (i === 2 ? 'bg-[#F5F5F4] md:px-6' : '')}>
-                <p className="text-[14px] font-bold text-[#666]">{k}</p>
-                <p className={'mt-2 text-[17px] leading-[1.7] ' + (i === 2 ? 'font-bold text-[#111]' : 'text-[#333]')}>{v}</p>
+          <p className="text-[15px] font-bold text-[#666]">진단 뒤에 받으시는 검토 결과 · 견본</p>
+          <h2 className="mt-2 text-[28px] font-extrabold leading-[1.35] tracking-[-0.6px] md:text-[34px]">근로시간 점검은 이렇게 한 장으로 정리됩니다</h2>
+          <p className="mt-2 text-[16px] font-bold text-[#1B2A44]">제조업 · 상시 40명 · 근로시간 점검</p>
+          <div className="mt-6 border-t border-[#111]">
+            {[
+              ['결론', '연장근로가 주 12시간을 넘은 주가 있습니다. 이번 달 근무표부터 조정이 필요합니다.'],
+              ['근거', '근로기준법 제53조 제1항 · 최근 3개월 출퇴근 기록 대조'],
+              ['확인 필요', '교대조가 휴게시간을 실제로 쉬었는지는 아직 현장에서 확인하지 못했습니다.'],
+              ['실행', '인사 담당 · 다음 달 첫 주까지 · 생산 2팀 근무표부터'],
+              ['다음', '3개월 뒤 같은 기록으로 다시 점검'],
+            ].map(([k, v], i) => (
+              <div key={k} className={'grid gap-1 border-b border-[#E6E6E6] py-4 md:grid-cols-[140px_1fr] md:gap-6 ' + (i === 0 ? 'bg-[#F5F5F4] px-4' : 'px-4')}>
+                <p className="text-[15px] font-bold text-[#666]">{k}</p>
+                <p className={'text-[17px] leading-[1.7] ' + (i === 0 ? 'font-bold text-[#111]' : 'text-[#333]')}>{v}</p>
               </div>
             ))}
           </div>
+          <p className="mt-3 text-[14px] text-[#777]">형식을 보여 드리는 견본입니다. 실제 문서는 귀사의 자료와 현장 확인 결과로 작성합니다.</p>
         </div>
       </section>
 
