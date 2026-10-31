@@ -77,34 +77,17 @@ export default function ResultSheet({ answers, totalScore, gradeLabel, gradeMess
             )}
           </div>
 
+          {/* 2026-10-31 부분 공개: 상세 근거·확인 필요는 메일 리포트로(정보에 걸맞은 3칸 입력 — 대표님 결정) */}
           <div className="border-b border-[#E5E7EB] py-6">
-            <Head n="③" t="항목별 근거" right={'원문 대조일 ' + VERIFIED_DATE} />
-            <div className="mt-3 divide-y divide-[#F3F4F6]">
-              {CATEGORIES.map((c, ci) => {
-                const vs = items.filter((v) => QUESTIONS[v.questionIndex]?.categoryId === ci)
-                const laws = [...new Set(vs.map((v) => shortLaw(QUESTIONS[v.questionIndex]?.law)).filter(Boolean))].slice(0, 3)
-                return (
-                  <div key={c.id} className="grid gap-1 py-3 md:grid-cols-[200px_70px_1fr] md:gap-4">
-                    <p className="font-semibold text-[#111827]">{c.name}</p>
-                    <p className="tabular-nums">{categoryScores[ci]}점</p>
-                    <p className="text-[15px]">{vs.length > 0 ? '위반 소지 ' + vs.length + '건 · ' + laws.join(', ') : '확인된 위반 소지 없음'}</p>
-                  </div>
-                )
-              })}
-            </div>
-          </div>
-
-          <div className="border-b border-[#E5E7EB] py-6">
-            <Head n="④" t="확인 필요" />
-            {pending.length === 0 ? (
-              <p className="mt-2">없음</p>
-            ) : (
-              <ul className="mt-3 space-y-1.5">
-                {pending.map((x) => (
-                  <li key={x.q.text} className="text-[16px]">[확인 필요] {x.q.text} <span className="text-[#6B7280]">(응답: {x.a})</span></li>
-                ))}
+            <div className="border border-[#111827] bg-[#F9FAFB] px-5 py-5">
+              <p className="text-[18px] font-bold text-[#111827]">전체 결과지는 메일로 보내 드립니다</p>
+              <ul className="mt-2 space-y-1 text-[16px] leading-[1.6] text-[#374151]">
+                <li>③ 항목별 근거 · 영역 {CATEGORIES.length}개</li>
+                <li>④ 확인 필요 · {pending.length}개 문항</li>
+                <li>문항별 답과 근거 조문, 다음 점검일</li>
               </ul>
-            )}
+              <a href="#report" className="mt-4 inline-flex h-[48px] items-center bg-[#111827] px-5 text-[16px] font-bold text-white no-underline visited:text-white">리포트 받기 ↓</a>
+            </div>
           </div>
 
           <div className="py-6">
