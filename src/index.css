@@ -155,3 +155,6 @@ main details > summary.flex { list-style: none; }
 main details > summary.flex::-webkit-details-marker { display: none; }
 main details > summary.flex::after { content: '+'; margin-left: auto; padding-left: 12px; font-weight: 400; font-size: 22px; opacity: .7; }
 main details[open] > summary.flex::after { content: '−'; }
+
+/* 2026-10-31 easy8: 맨 아래 진단 서비스 카드 모서리 4px */
+a.block[class*="rounded-[12px]"][class*="p-5"] { border-radius: 4px !important; }
