@@ -195,18 +195,11 @@ export default function Diagnosis() {
               </div>
               {verified && (
                 <div className="mt-3 grid gap-1 border-t border-[#E6EAF0] pt-3 md:grid-cols-[86px_1fr] md:gap-3">
-                  <p className="text-[15px] font-bold text-[#B42318]">위반 시</p>
+                  <p className="text-[15px] font-bold text-[#5B6680]">위반 시</p>
                   <p className="text-[17px] leading-[1.6]"><b>{verified.penaltyDetail}</b> <span className="text-[15px] text-[#5B6680]">({verified.legalBasis})</span></p>
                 </div>
               )}
-              {currentMeta?.improvementGuide && (
-                <div className="mt-3 border-t border-[#E6EAF0] pt-3">
-                  <button type="button" onClick={() => setShowGuide((v) => !v)} className="text-[15px] font-bold text-[#131F33]">
-                    {showGuide ? '준비 방법 닫기 ▴' : '어떻게 준비하면 되나요? ▾'}
-                  </button>
-                  {showGuide && <p className="mt-2 text-[16px] leading-[1.7] text-[#3D4A63]">{currentMeta.improvementGuide}</p>}
-                </div>
-              )}
+              {/* 2026-10-31 lean: 문항별 '준비 방법'은 상담에서 안내(진단은 무엇이 문제인지까지) */}
               {currentQ?.text === '위험성 평가를 실시하고 기록을 보존하고 있습니까?' && (
                 <div className="mt-3 border-t border-[#E6EAF0] pt-3">
                   <p className="text-[15px] leading-[1.6] text-[#5B6680]">

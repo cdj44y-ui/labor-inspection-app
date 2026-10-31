@@ -62,7 +62,12 @@ const FAQ_ITEMS = [
     q: '이 서비스는 어떤 서비스인가요?',
     a: '고용노동부 자율진단표를 바탕으로 우리 회사의 근로감독 위험을 미리 점검하는 자가진단입니다.',
   },
-  { q: '진단에 얼마나 걸리나요?', a: '약 10분 걸립니다. 50여 개 핵심 문항에 답하시면 됩니다.' },
+  { q: '진단에 얼마나 걸리나요?', a: '약 10분 걸립니다. 61개 문항에 답하시면 됩니다.' },
+  {
+    q: '12월부터 감독이 달라진다는데요?',
+    a: '노동감독관 직무집행법이 2026년 12월 8일 시행되면 시·도에도 노동감독관을 둡니다. 30인 미만 사업장 감독을 시·도에 맡기는 시행령안은 아직 확정 전입니다. 감독은 점검표로 하고 고칠 기회를 먼저 줍니다.',
+  },
+  { q: '고치는 방법도 알려 주나요?', a: '진단 결과에는 먼저 고칠 항목과 해당 조문까지 담깁니다. 고치는 순서, 서류 정비, 과거분 정리는 사업장마다 달라 상담에서 함께 정합니다.' },
   {
     q: '진단 결과는 저장되나요?',
     a: '답변은 이 브라우저에만 임시로 남고 서버에는 저장되지 않습니다. 상담을 신청하실 때만 진단 결과가 노무사에게 전달됩니다.',
@@ -130,12 +135,12 @@ export default function Landing() {
       <section className="py-14 md:py-[72px]">
         <div className="mx-auto grid max-w-[1120px] gap-12 px-6 md:grid-cols-[1.25fr_0.9fr] md:gap-14 md:px-8">
           <div>
-            <p className="text-[17px] font-bold text-[#1B2A44]">50여 문항 · 약 10분</p>
+            <p className="text-[17px] font-bold text-[#1B2A44]">61문항 · 약 10분</p>
             <h1 className="mt-3.5 text-[38px] font-bold leading-[1.28] tracking-[-1px] md:text-[52px] md:tracking-[-1.2px]">
               근로감독 오기 전에,<br />우리 회사 위험부터<br />확인하십시오
             </h1>
             <p className="mt-6 max-w-[560px] text-[19px] leading-[1.75] text-[#3D4A63] md:text-[20px]">
-              감독관이 실제로 보는 임금·근로시간·연차·4대보험 항목을 점검합니다. 결과에서 해당 조문과 처벌 수준을 확인하실 수 있습니다.
+              감독관이 보는 임금·근로시간·연차·4대보험을 10분 만에 점검합니다.
             </p>
             <div className="mt-9 flex flex-wrap gap-3">
               <Link to="/diagnosis" className={btnPrimary}>진단 시작하기 →</Link>
@@ -143,24 +148,28 @@ export default function Landing() {
             </div>
             <p className="mt-5 text-[16px] text-[#5B6680]">{PROMISE}</p>
           </div>
-          <div className="self-start overflow-hidden rounded-[14px] border border-[#DDE2EA]">
-            <div className="flex justify-between bg-[#14213D] px-6 py-[18px] text-[16px] font-semibold text-white">
-              <span>지금 꼭 아셔야 할 변화</span><span>2026.10.8 시행</span>
+          {/* 2026-10-31 lean: 진단에서 드리는 것 / 상담에서 하는 것 — 경계를 분명히(삼쩜삼·HubSpot Grader 방식) */}
+          <div className="self-start border border-[#111] bg-white">
+            <div className="border-b border-[#E6E6E6] px-6 py-5">
+              <p className="text-[15px] font-bold text-[#1B2A44]">진단에서 바로 확인</p>
+              <ul className="mt-2 space-y-1.5 text-[17px] leading-[1.6]">
+                <li>위험 등급과 점수</li>
+                <li>먼저 고칠 3가지와 해당 조문</li>
+                <li>다음 점검일 · 메일 리포트</li>
+              </ul>
             </div>
-            <div className="px-6 py-[26px]">
-              <p className="text-[38px] font-extrabold leading-[1.2] tracking-[-1px] md:text-[44px]">
-                임금 체불,<br />이제 최대 <span className="text-[#B42318]">징역 5년</span>
-              </p>
-              <p className="mt-3 text-[17px] leading-[1.7] text-[#3D4A63]">
-                근로기준법 개정으로 임금 정기지급·체불 위반의 처벌이 <b>3년 이하 징역·3천만 원 이하 벌금</b>에서 <b>5년 이하 징역·5천만 원 이하 벌금</b>으로 올랐습니다.
-              </p>
-              <p className="mt-4 border-t border-[#DDE2EA] pt-3 text-[14px] text-[#5B6680]">근거: 근로기준법 제107조(법률 제21533호) · 국가법령정보센터</p>
+            <div className="bg-[#F5F5F4] px-6 py-5">
+              <p className="text-[15px] font-bold text-[#666]">상담에서 함께</p>
+              <ul className="mt-2 space-y-1.5 text-[17px] leading-[1.6] text-[#333]">
+                <li>고치는 순서와 서류 정비</li>
+                <li>과거분(3년) 정리 방안</li>
+                <li>감독 당일 설명 준비</li>
+              </ul>
             </div>
           </div>
         </div>
       </section>
 
-      <LocalInspection />
 
       {/* 2026-10-31 진단과 같은 주제의 결과 견본 (실제 고객 문서 아님 · 회사 소개 견본과 동일) */}
       <section className="border-t border-[#E6E6E6] bg-white py-12 md:py-16">
@@ -214,17 +223,6 @@ export default function Landing() {
             </div>
           </div>
         </div>
-        <div className="mx-auto mt-12 max-w-[1120px] px-6 md:px-8">
-          <h3 className="text-[22px] font-bold">업종별로 감독이 자주 보는 지점</h3>
-          <div className="mt-5 grid gap-0 border-t border-[#14213D] md:grid-cols-4">
-            {INDUSTRY_POINTS.map((it) => (
-              <div key={it.name} className="border-b border-[#DDE2EA] py-5 md:border-b-0 md:border-r md:px-5 md:first:pl-0 md:last:border-r-0">
-                <p className="text-[19px] font-bold">{it.name}</p>
-                <p className="mt-1 text-[16px] leading-[1.65] text-[#3D4A63]">{it.point}</p>
-              </div>
-            ))}
-          </div>
-        </div>
       </section>
 
       {/* 근거 원칙 + 진행 방식 */}
@@ -249,29 +247,6 @@ export default function Landing() {
         </div>
       </section>
 
-      {/* 법 개정 한 장 — 네 사이트 공통 */}
-      <LawCalendar />
-
-      {/* 사례 */}
-      <section className="border-t border-[#DDE2EA] py-10 md:py-14">
-        <div className="mx-auto max-w-[1120px] px-6 md:px-8">
-          <h2 className="text-[30px] font-bold leading-[1.35] tracking-[-0.8px] md:text-[36px]">실제 감독에서 자주 나오는 위반</h2>
-          <p className="mt-2.5 text-[18px] text-[#5B6680] md:text-[19px]">노동부 보도자료와 언론 보도에 반복되는 유형을 정리했습니다. 특정 업체를 지칭하지 않습니다.</p>
-          <div className="mt-8">
-            {CASES.map((c) => (
-              <div key={c.title} className="grid gap-2 border-b border-[#DDE2EA] py-7 md:grid-cols-[180px_1fr] md:gap-8">
-                <p className="text-[15px] font-bold text-[#5B6680]">{c.tag}</p>
-                <div>
-                  <h3 className="text-[21px] font-bold">{c.title}</h3>
-                  <p className="mt-1.5 text-[17px] leading-[1.75] text-[#3D4A63]">{c.body}</p>
-                  <p className="mt-2.5 text-[16px] font-semibold text-[#B42318]">적발 시 · {c.loss}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* FAQ */}
       <section id="faq" className="border-t border-[#DDE2EA] bg-[#F5F7FA] py-10 md:py-14">
         <div className="mx-auto max-w-[880px] px-6 md:px-8">
@@ -287,29 +262,6 @@ export default function Landing() {
               </div>
             ))}
           </div>
-        </div>
-      </section>
-
-      {/* 사장님 1분 상담소 연결 (2026-10-18) */}
-      <section className="border-y border-[#DDE2EA] bg-[#F5F7FA]">
-        <div className="mx-auto flex max-w-[1120px] flex-col gap-4 px-6 py-7 md:flex-row md:items-center md:justify-between md:px-8">
-          <div>
-            <p className="text-[15px] font-bold text-[#1B2A44]">진단 전에 고민부터 풀고 싶으시다면</p>
-            <p className="mt-1 text-[19px] font-bold leading-[1.5] text-[#14213D]">잠수·주휴수당·퇴직금 등 직원 고민 10가지, 1분 답과 할 일 3개</p>
-          </div>
-          <a href="https://win119.site/sangdamso" className="inline-flex h-[52px] shrink-0 items-center justify-center rounded-[10px] border-2 border-[#14213D] px-6 text-[17px] font-bold text-[#14213D] hover:bg-white">사장님 1분 상담소 →</a>
-        </div>
-      </section>
-
-      {/* 소개 영상 (접힘) */}
-      <section id="intro-video" className="border-t border-[#DDE2EA] py-6">
-        <div className="mx-auto max-w-[880px] px-6 md:px-8">
-          <details className="group">
-            <summary className="flex min-h-[48px] cursor-pointer items-center text-[19px] font-bold text-[#14213D]">15초 소개 영상 보기</summary>
-            <div className="mt-4 overflow-hidden rounded-[14px] border border-[#DDE2EA]">
-              <video className="block aspect-video w-full bg-[#F5F7FA]" src="/video/risk119-intro.mp4" poster="/video/risk119-intro-poster.jpg" muted loop playsInline controls preload="none" aria-label="RISK119 소개 영상" />
-            </div>
-          </details>
         </div>
       </section>
 

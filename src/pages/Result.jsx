@@ -118,42 +118,6 @@ export default function Result() {
       {/* 2026-10-29 리포트 받기 */}
       <ReportRequest answers={answers} tallyUrl={tallyCall} />
 
-      {/* 더 알아보기 — 2026-10-31 읽기 쉽게: 긴 설명은 접어 두기(노션 토글) */}
-      <section className="border-b border-[#E6E6E6] py-12 md:py-[64px]">
-        <div className="mx-auto max-w-[1040px] px-5 md:px-8">
-          <h2 className="text-[26px] font-bold tracking-[-0.6px] md:text-[30px]">더 알아보기</h2>
-          <div className="mt-5 border-t border-[#111]">
-            <details className="border-b border-[#E6E6E6]">
-              <summary className="flex min-h-[56px] cursor-pointer items-center py-3 text-[19px] font-bold">감독이 수사로 넘어가는 순서</summary>
-              <ol className="pb-5">
-                {FLOW.map(([t, d, law], i) => (
-                  <li key={t} className="grid grid-cols-[32px_1fr] gap-3 py-2.5">
-                    <span className={'text-[20px] leading-none ' + (i === 2 ? 'font-extrabold text-[#1B2A44]' : 'font-light text-[#666]')}>{i + 1}</span>
-                    <p className="text-[17px] leading-[1.6]"><b>{t}</b> <span className="text-[#444]">{d}</span> <span className="text-[14px] text-[#777]">수사규칙 {law}</span></p>
-                  </li>
-                ))}
-              </ol>
-              <p className="pb-5 text-[16px] leading-[1.7] text-[#333]">{items.length > 0 ? <>지적될 수 있는 <b>{items.length}건</b>을 감독 전에 정리하면 3단계 시정기한에 쫓기지 않습니다.</> : <>지금 응답 기준으로는 지적될 항목이 없습니다. 기록을 그대로 유지하세요.</>}</p>
-              <p className="pb-5 text-[14px] text-[#777]">근거: 노동감독관 수사규칙(고용노동부훈령 제612호, 2026.10.2. 시행)</p>
-            </details>
-            {items.length > 0 && (
-              <details className="border-b border-[#E6E6E6]">
-                <summary className="flex min-h-[56px] cursor-pointer items-center py-3 text-[19px] font-bold">서류만 고친다고 끝나지 않는 이유</summary>
-                <ul className="pb-5">
-                  {[
-                    ['과거분이 남습니다.', '임금채권은 3년간 행사할 수 있어, 지난 3년 치 미지급분은 따로 정리해야 합니다.', '근로기준법 제49조'],
-                    ['서류끼리 맞아야 합니다.', '감독은 근로계약서·임금대장·출퇴근 기록을 서로 대조합니다.', '근로기준법 제17조·제41조·제48조'],
-                    ['바꾸는 데도 절차가 있습니다.', '취업규칙을 불리하게 바꾸려면 근로자 과반수(과반수 노조가 있으면 그 노조)의 동의가 필요합니다.', '근로기준법 제94조'],
-                  ].map(([t, d, law]) => (
-                    <li key={t} className="py-2.5 text-[17px] leading-[1.6]"><b>{t}</b> <span className="text-[#444]">{d}</span> <span className="text-[14px] text-[#777]">{law}</span></li>
-                  ))}
-                </ul>
-              </details>
-            )}
-          </div>
-        </div>
-      </section>
-
       {/* 4. 먼저 지나온 사람 */}
       <section className="border-b border-[#DDE2EA] bg-[#F5F7FA] py-14 md:py-[72px]">
         <div className="mx-auto grid max-w-[1040px] items-start gap-10 px-5 md:grid-cols-[200px_1fr] md:px-8">
